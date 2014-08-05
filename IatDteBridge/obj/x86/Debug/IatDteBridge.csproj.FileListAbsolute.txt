@@ -1,0 +1,8 @@
+C:\Users\Osvaldo\documents\visual studio 2010\Projects\IatDteBridge\IatDteBridge\obj\x86\Debug\IatDteBridge.csprojResolveAssemblyReference.cache
+C:\Users\Osvaldo\documents\visual studio 2010\Projects\IatDteBridge\IatDteBridge\obj\x86\Debug\IatDteBridge.FormMain.resources
+C:\Users\Osvaldo\documents\visual studio 2010\Projects\IatDteBridge\IatDteBridge\obj\x86\Debug\IatDteBridge.Properties.Resources.resources
+C:\Users\Osvaldo\documents\visual studio 2010\Projects\IatDteBridge\IatDteBridge\obj\x86\Debug\IatDteBridge.csproj.GenerateResource.Cache
+C:\Users\Osvaldo\documents\visual studio 2010\Projects\IatDteBridge\IatDteBridge\bin\Debug\IatDteBridge.exe
+C:\Users\Osvaldo\documents\visual studio 2010\Projects\IatDteBridge\IatDteBridge\bin\Debug\IatDteBridge.pdb
+C:\Users\Osvaldo\documents\visual studio 2010\Projects\IatDteBridge\IatDteBridge\obj\x86\Debug\IatDteBridge.exe
+C:\Users\Osvaldo\documents\visual studio 2010\Projects\IatDteBridge\IatDteBridge\obj\x86\Debug\IatDteBridge.pdb

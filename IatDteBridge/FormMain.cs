@@ -16,6 +16,16 @@ namespace IatDteBridge
             InitializeComponent();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Connect conn = new Connect();
+            
+            string response = conn.ping();
+
+           Console.WriteLine("respuesta = {0}.", response);
+
+        }
+
 
 
   
