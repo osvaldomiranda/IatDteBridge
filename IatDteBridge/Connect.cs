@@ -19,10 +19,12 @@ namespace IatDteBridge
         {
             try
             {
-                string getUrl = string.Format("{0}{1}/iphone/current_version?auth_token={2}",
-                                    Uri.EscapeDataString(server),
-                                    Uri.EscapeDataString(version),
-                                    Uri.EscapeDataString(auth_token));
+                string getUrl = string.Format("{0}{1}/iphone/current_version.json?auth_token={2}",
+                                    server,
+                                    version,
+                                    auth_token);
+
+                Console.WriteLine("Url = {0}.", getUrl);
                 string response;
                 using (WebClient client = new WebClient())
                 {
