@@ -26,6 +26,25 @@ namespace IatDteBridge
 
         }
 
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            File archivo = new File();
+
+            archivo.OpenFile();
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Pdf pdf = new Pdf();
+            pdf.CreatePdf();
+        }
+
 
 
   
