@@ -15,3 +15,5 @@ C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\IatDteBridge\IatDteBridg
 C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\IatDteBridge\IatDteBridge\obj\x86\Debug\IatDteBridge.Properties.Resources.resources
 C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\IatDteBridge\IatDteBridge\obj\x86\Debug\IatDteBridge.csproj.GenerateResource.Cache
 C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\IatDteBridge\IatDteBridge\bin\Debug\itextsharp.dll
+C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\IatDteBridge\IatDteBridge\bin\Debug\itextsharp.pdfa.dll
+C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\IatDteBridge\IatDteBridge\bin\Debug\itextsharp.xtra.dll

@@ -24,6 +24,22 @@ namespace IatDteBridge
                 Console.WriteLine(sOutput);
             Console.ReadLine();
         }
+
+        public ArrayList FileToArray()
+        {
+            StreamReader objReader = new StreamReader("c://file/test.txt");
+            string sLine = "";
+            ArrayList arrText = new ArrayList();
+
+            while (sLine != null)
+            {
+                sLine = objReader.ReadLine();
+                if (sLine != null)
+                    arrText.Add(sLine);
+            }
+            objReader.Close();
+            return arrText;
+        }
     }
 
 
