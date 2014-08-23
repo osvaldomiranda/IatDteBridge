@@ -6,3 +6,5 @@ C:\Users\Osvaldo\documents\visual studio 2010\Projects\IatDteBridge\IatDteBridge
 C:\Users\Osvaldo\documents\visual studio 2010\Projects\IatDteBridge\IatDteBridge\bin\Debug\IatDteBridge.pdb
 C:\Users\Osvaldo\documents\visual studio 2010\Projects\IatDteBridge\IatDteBridge\obj\x86\Debug\IatDteBridge.exe
 C:\Users\Osvaldo\documents\visual studio 2010\Projects\IatDteBridge\IatDteBridge\obj\x86\Debug\IatDteBridge.pdb
+C:\Users\Mauricio\Documents\Visual Studio 2010\IatDteBridge\IatDteBridge\obj\x86\Debug\IatDteBridge.exe
+C:\Users\Mauricio\Documents\Visual Studio 2010\IatDteBridge\IatDteBridge\obj\x86\Debug\IatDteBridge.pdb
