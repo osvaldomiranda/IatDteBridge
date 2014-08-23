@@ -26,41 +26,6 @@ namespace IatDteBridge
 
         }
 
-        private void FormMain_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            File archivo = new File();
-
-            archivo.OpenFile();
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            Pdf pdf = new Pdf();
-            pdf.OpenPdf();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            Timbre timbre = new Timbre();
-            timbre.CreaTimbre();
-
-            Console.WriteLine("Timbre creado!!");
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            Timbre codbarra = new Timbre();
-            codbarra.CreaCodigoBarra();
-            Console.WriteLine("Codigo de barra creado!!");
-
-        }
-
 
 
   
