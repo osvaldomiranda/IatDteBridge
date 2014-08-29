@@ -207,6 +207,7 @@ namespace IatDteBridge
 //++++++++++++++++++++++++++++++++++++++++++++++++++++ referencias +++++++++++++++++++++++++++++++++++++
        PdfPTable referencias = new PdfPTable(4);
        referencias.WidthPercentage = 100;
+
        PdfPCell headerReferncia = new PdfPCell(new Paragraph("Referencia a otros Documentos",fuenteNegra));
        headerReferncia.Colspan = 4;
        headerReferncia.HorizontalAlignment = 1;
@@ -224,14 +225,60 @@ namespace IatDteBridge
 
        }
 //++++++++++++++++++++++++++++++++++++++++++++++++++ Pie de pagina ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       PdfPTable footer = new PdfPTable(1);
+       PdfPTable footer = new PdfPTable(2);
        footer.WidthPercentage = 100;
        PdfPCell celdaTimbre = new PdfPCell(timbre);
        celdaTimbre.BorderWidth = 0;
        celdaTimbre.MinimumHeight = 200;
        footer.AddCell(celdaTimbre);
 
+       PdfPTable totales = new PdfPTable(2);
+       totales.WidthPercentage = 100;
 
+       PdfPCell celdaEtiquetaDescuento = new PdfPCell(new Paragraph("Descuento: ", fuenteNegra));
+       celdaEtiquetaDescuento.BorderWidth = 0;
+       totales.AddCell(celdaEtiquetaDescuento);
+
+       PdfPCell celdaDescuento = new PdfPCell(new Paragraph("$ 00000000", fuenteNegra));
+       celdaDescuento.BorderWidth = 0;
+       totales.AddCell(celdaDescuento); 
+ 
+       PdfPCell celdaEtiquetaSubTotal = new PdfPCell(new Paragraph("Sub Total: ",fuenteNegra));
+       celdaEtiquetaSubTotal.BorderWidth = 0;
+       totales.AddCell(celdaEtiquetaSubTotal);
+
+       PdfPCell celdaSubTotal = new PdfPCell(new Paragraph("$ 00000000", fuenteNegra));
+       celdaSubTotal.BorderWidth = 0;
+       totales.AddCell(celdaSubTotal);
+
+       PdfPCell celdaEtiquetaMontoExento = new PdfPCell(new Paragraph("Monto Exento:  ", fuenteNegra));
+       celdaEtiquetaMontoExento.BorderWidth = 0;
+       totales.AddCell(celdaEtiquetaMontoExento);
+
+       PdfPCell celdaMontoExento = new PdfPCell(new Paragraph("$ 00000000", fuenteNegra));
+       celdaMontoExento.BorderWidth = 0;
+       totales.AddCell(celdaMontoExento);
+ 
+       PdfPCell celdaEtiquetaIva = new PdfPCell(new Paragraph("IVA (19%):  ", fuenteNegra));
+       celdaEtiquetaIva.BorderWidth = 0;
+       totales.AddCell(celdaEtiquetaIva);
+
+       PdfPCell celdaIva = new PdfPCell(new Paragraph("$ 00000000", fuenteNegra));
+       celdaIva.BorderWidth = 0;
+       totales.AddCell(celdaIva);
+ 
+       PdfPCell celdaEtiquetaMontoTotal = new PdfPCell(new Paragraph("Monto Total:  ", fuenteNegra));
+       celdaEtiquetaMontoTotal.BorderWidth = 0;
+       totales.AddCell(celdaEtiquetaMontoTotal);
+
+       PdfPCell celdaMontoTotal = new PdfPCell(new Paragraph("$ 00000000", fuenteNegra));
+       celdaMontoTotal.BorderWidth = 0;
+       totales.AddCell(celdaMontoTotal);
+      
+       PdfPCell celdaTotales = new PdfPCell(totales);
+       celdaTotales.BorderWidth = 0;
+       celdaTotales.MinimumHeight = 200;
+       footer.AddCell(celdaTotales);
       
         pdf.Add(cabecera);
         pdf.Add(contenedorDatosReceptor);
