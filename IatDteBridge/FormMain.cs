@@ -11,9 +11,12 @@ namespace IatDteBridge
 {
     public partial class FormMain : Form
     {
+
+        PingProcess ping = new PingProcess();
         public FormMain()
         {
             InitializeComponent();
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -59,6 +62,17 @@ namespace IatDteBridge
             codbarra.CreaCodigoBarra();
             Console.WriteLine("Codigo de barra creado!!");
 
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            
+            ping.StartPing();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            ping.StopPing();
         }
 
 

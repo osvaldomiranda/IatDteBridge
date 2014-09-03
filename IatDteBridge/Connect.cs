@@ -8,9 +8,10 @@ namespace IatDteBridge
 {
     class Connect
     {
-        public static string server = "http://www.cranberrychic.com";
-        public static string version = "/api/v2";
-        public static string auth_token = "aksub82763";
+       // public static string server = "http://www.cranberrychic.com";
+        public static string server = "http://104.130.1.179";
+        public static string version = "/api/v1";
+        public static string auth_token = "tokenprueba";
 
         public Connect() {
         }
@@ -19,7 +20,7 @@ namespace IatDteBridge
         {
             try
             {
-                string getUrl = string.Format("{0}{1}/iphone/current_version.json?auth_token={2}",
+                string getUrl = string.Format("{0}{1}/iat_ping/1.json?auth_token={2}",
                                     server,
                                     version,
                                     auth_token);
