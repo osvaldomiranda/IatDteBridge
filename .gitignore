@@ -7,6 +7,7 @@
 *.exe
 *.dll
 *.sln.docstates
+*.csproj
 
 # Build results
 [Dd]ebug/
@@ -183,3 +184,10 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
+
+
+IatDteBridge/IatDteBridge.csproj
+IatDteBridge/bin/Debug/IatDteBridge.exe
+IatDteBridge/bin/Debug/IatDteBridge.pdb
+IatDteBridge/obj/x86/Debug/IatDteBridge.exe
+IatDteBridge/obj/x86/Debug/IatDteBridge.pdb
