@@ -23,16 +23,5 @@ namespace IatDteBridge
             System.Drawing.Bitmap imagen = new Bitmap(pdf417.CreateDrawingImage(Color.Black, Color.White));
             imagen.Save("Timbre.jpg");
         }
-        public void CreaCodigoBarra()
-        {
-            string contenido;
-            BarcodeEAN codbarra = new BarcodeEAN();
-            codbarra.CodeType = BarcodeEAN.EAN13;
-            contenido = "7893421234564";
-            codbarra.Code = contenido;
-            System.Drawing.Bitmap imagen_codbarra = new Bitmap(codbarra.CreateDrawingImage(Color.Black, Color.White));
-            imagen_codbarra.Save("cod_barra.jpg");
-
-        }
     }
 }

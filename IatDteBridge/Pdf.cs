@@ -19,7 +19,7 @@ namespace IatDteBridge
         private string datosSii = "S.I.I - SANTIAGO SUR";
         private string fechaDoc = "Santiago, 26 de Agosto de 2014";
         private String[] headerDetalle = { "Item", "Codigo", "Descripción", "Cantidad", "Unidad", "P Unit.", "Dscto.", "Valor" };
-        private String[] datosDetalle = { "1", "7890231234", "COCA-COLA", "2", "UNID", "1200", "0", "2400", "2", "7890231234", "FANTA", "2", "UNID", "1200", "0", "2400", "3", "7890231234", "FANTA", "2", "UNID", "1200", "0", "2400", "4", "7890231234", "FANTA", "2", "UNID", "1200", "0", "2400", "5", "7890231234", "FANTA", "2", "UNID", "1200", "0", "2400" };
+        private String[] datosDetalle = { "1", "7890231234", "AAAAAAAAA AAAAAAAAA AAAAAAAAA ", "2", "UNID", "1200", "0", "2400", "2", "7890231234", "FANTA", "2", "UNID", "1200", "0", "2400", "3", "7890231234", "FANTA", "2", "UNID", "1200", "0", "2400", "4", "7890231234", "FANTA", "2", "UNID", "1200", "0", "2400", "5", "7890231234", "FANTA", "2", "UNID", "1200", "0", "2400" };
         private String[] datosHeaderReferencia = { "Tipo de Documento", "Folio", "Fecha", "Razón Referancia" };
         iTextSharp.text.Font fuenteNegra = new Font(iTextSharp.text.Font.FontFamily.HELVETICA,8,iTextSharp.text.Font.NORMAL);
         iTextSharp.text.Font fuenteRoja = new Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font.NORMAL, BaseColor.RED);
@@ -174,8 +174,10 @@ namespace IatDteBridge
         contenedorDatosReceptor.AddCell(celdaContDatRecep);
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++ Detalle +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        float[] anchosDetalle = new float[] { 50f, 50f, 200f, 50f, 50f, 50f, 50f, 50f };
 
         PdfPTable detalle = new PdfPTable(8);
+        detalle.SetWidths(anchosDetalle);
         detalle.WidthPercentage = 100;
                
             
