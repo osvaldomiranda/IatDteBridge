@@ -7,7 +7,7 @@ namespace IatDteBridge
 {
     class Documento
     {
-        int TipoDte;
+        public int TipoDte {get;set;}
         int Folio;
         DateTime FchEmis;
         int IndNoRebaja;
@@ -31,6 +31,15 @@ namespace IatDteBridge
         String NumCtaPago;
         String BcoPago;
 
+        det_documento[] detalle;
+
         
+    }
+
+    class det_documento
+    {
+        int item;
+        String codigo;
+
     }
 }
