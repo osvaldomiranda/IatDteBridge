@@ -28,5 +28,14 @@ namespace IatDteBridge
             Console.ReadLine();
         }
 
+        Documento lecturaEnDuro()
+        {
+            Documento doc = new Documento();
+            doc.TipoDte = 33;
+            doc.Folio = 1;
+            doc.FchEmis = "2014-10-01 00:00:00";
+            return doc;
+        }
+
     }
 }

@@ -8,28 +8,30 @@ namespace IatDteBridge
     class Documento
     {
         public int TipoDte {get;set;}
-        int Folio;
-        DateTime FchEmis;
-        int IndNoRebaja;
-        int TipoDespacho;
-        int IndTraslado;
-        String TpoImpresion;
-        int IndServicio;
-        int MntBruto;
-        int FmaPago;
-        int FmaPagoExp;
-        DateTime FchCancel;
-        int MntCancel;
-        int SaldoInsol;
-        DateTime FchPago;
-        int MntPago;
-        String GlosaPago;
-        DateTime PeriodoDesde;
-        DateTime PeriodoHasta;
-        String MedioPago;
-        String TipoCtaPago;
-        String NumCtaPago;
-        String BcoPago;
+        public int Folio;
+        public String FchEmis;
+        public int IndNoRebaja;
+        public int TipoDespacho;
+        public int IndTraslado;
+        public String TpoImpresion;
+        public int IndServicio;
+        public int MntBruto;
+        public int FmaPago;
+        public int FmaPagoExp;
+        public DateTime FchCancel;
+        public int MntCancel;
+        public int SaldoInsol;
+        public DateTime FchPago;
+        public int MntPago;
+        public String GlosaPago;
+        public DateTime PeriodoDesde;
+        public DateTime PeriodoHasta;
+        public String MedioPago;
+        public String TipoCtaPago;
+        public String NumCtaPago;
+        public String BcoPago;
+        public String TermPagoCdg;
+        public String TermPagoGlosa;
 
         det_documento[] detalle;
 
