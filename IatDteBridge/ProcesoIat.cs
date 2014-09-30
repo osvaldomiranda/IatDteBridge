@@ -21,9 +21,9 @@ namespace IatDteBridge
                  * Implementar el siguiente ciclo en un Thread con un ciclo iterativo
                  */
 
-                // Instancia txt_admin
+                // Instancia txt_reader
 
-                // Ejecuta metodo de txt_admin que llena y obtienen Clase Documento
+                // Ejecuta metodo de txt_reader que llena y obtienen Clase Documento
 
                 // intancia objeto de la clase PDF_admin
 
