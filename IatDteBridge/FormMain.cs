@@ -56,13 +56,6 @@ namespace IatDteBridge
             Console.WriteLine("Timbre creado!!");
         }
 
-        private void button5_Click(object sender, EventArgs e)
-        {
-            Timbre codbarra = new Timbre();
-            codbarra.CreaCodigoBarra();
-            Console.WriteLine("Codigo de barra creado!!");
-
-        }
 
         private void button6_Click(object sender, EventArgs e)
         {
