@@ -128,7 +128,7 @@ namespace IatDteBridge
 
 // ################################# Area Otra Moneda ##########################################################################
 
-        public string TpoMoneda { get; set; } // Moneda alternativa en que se expresan los Montos Totales.
+        public string TpoMonedas { get; set; } // Moneda alternativa en que se expresan los Montos Totales.
         public int TpoCambio { get; set; } // 1. Factor de conversión utilizado de pesos a Otra moneda 2. 6 enteros y 4 decimales 3. En documentos de Exportación corresponde al tipo de cambio de la fecha de emisión del documento, publicado por
         // Faltan campos pero en esta etapa no es importante
 
@@ -156,7 +156,7 @@ namespace IatDteBridge
         int MntMargComer; // Sólo para transacciones realizadas por Agentes Retenedores, según códigos de retención 14 y 50
         int PrcConsFinal; // Sólo para transacciones realizadas por Agentes Retenedores, según códigos de retención 14, 17 y 50
         string NmbItem; //Nombre del producto o servicio
-        string DscItem // Descripción Adicional del producto o servicio. Se utiliza para pack, servicios con detalle
+        string DscItem; // Descripción Adicional del producto o servicio. Se utiliza para pack, servicios con detalle
         int QtyRef; // Cantidad para la unidad de medida de referencia (no se usa para el cálculo del valor neto) en 12 enteros y 6 decimales.
                     // Obligatorio para facturas de venta o compra que indican emisor opera como Agente Retenedor
         string UnmdRef; //Glosa con unidad de medida de referencia Obligatorio para facturas de venta, compra o notas que indican emisor opera como Agente Retenedor
