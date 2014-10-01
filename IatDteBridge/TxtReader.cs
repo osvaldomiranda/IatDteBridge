@@ -52,7 +52,7 @@ namespace IatDteBridge
 
 
 
-            return doc;
+            return factura;
         }
 
     }
