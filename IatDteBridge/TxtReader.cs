@@ -30,10 +30,28 @@ namespace IatDteBridge
 
         Documento lecturaEnDuro()
         {
-            Documento doc = new Documento();
-            doc.TipoDte = 33;
-            doc.Folio = 1;
-            doc.FchEmis = "2014-10-01 00:00:00";
+            Documento factura = new Documento();
+            factura.TipoDte = 33;
+            factura.Folio = 1;
+            factura.RUTRecep = "14193259-4";
+            factura.FchEmis = "2014-10-01 00:00:00";
+            factura.RznSocRecep = "FABIAN ARNOLDO";
+            factura.GiroRecep = "ALMACEN";
+            factura.DirRecep = "LEBRELE #03572";
+            factura.CmnaRecep ="LO ESPEJO";
+            factura.CiudadRecep = "SANTIAGO";
+            factura.MntNeto = 15068;
+            factura.TasaIVA = 19;
+            factura.IVA = 2863;
+            factura.MntTotal = 19890;
+            // estos son los valore del detalle no cache como hacerlo ayuda pliss???
+            //1;2077;BEB ANDINA COCA COLA MINI  BT 250CC;100;167.4242;10;1674;0;0;0;15068.18;INT1;C/U;BEB ANDINA COCA COLA MINI  BT 250CC;
+
+
+
+
+
+
             return doc;
         }
 
