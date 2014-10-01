@@ -23,6 +23,14 @@ namespace IatDteBridge
 
                 // Instancia txt_reader
 
+                TxtReader lec = new TxtReader();
+
+                Documento docLectura = new Documento();
+
+                docLectura = lec.lecturaEnDuro();
+
+                Console.WriteLine("Folio = {0}", docLectura.Folio);
+
                 // Ejecuta metodo de txt_reader que llena y obtienen Clase Documento
 
                 // intancia objeto de la clase PDF_admin

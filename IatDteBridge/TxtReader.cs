@@ -28,7 +28,7 @@ namespace IatDteBridge
             Console.ReadLine();
         }
 
-        Documento lecturaEnDuro()
+        public Documento lecturaEnDuro()
         {
             Documento doc = new Documento();
             doc.TipoDte = 33;

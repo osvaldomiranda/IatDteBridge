@@ -13,6 +13,8 @@ namespace IatDteBridge
     {
 
         PingProcess ping = new PingProcess();
+        ProcesoIat proc = new ProcesoIat();
+
         public FormMain()
         {
             InitializeComponent();
@@ -60,12 +62,14 @@ namespace IatDteBridge
         private void button6_Click(object sender, EventArgs e)
         {
             
-            ping.StartPing();
+            //ping.StartPing();
+            proc.StartProcessIat();
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            ping.StopPing();
+           // ping.StopPing();
+            proc.StopProcessIat();
         }
 
 
