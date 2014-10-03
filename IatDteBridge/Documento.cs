@@ -7,7 +7,7 @@ namespace IatDteBridge
 {
     class Documento
     {
-        public int TipoDte { get; set; }
+        public int TipoDte { get; set; } // 
         public int Folio{get;set;}
         public String FchEmis { get; set; }
         public int IndNoRebaja { get; set; }

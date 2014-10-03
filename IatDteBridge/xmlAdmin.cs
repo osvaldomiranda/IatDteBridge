@@ -204,11 +204,18 @@ namespace IatDteBridge
             byte[] HashValue = new SHA1CryptoServiceProvider().ComputeHash(bytesStrDD);
 
             ////
+<<<<<<< HEAD
             //// Cree el objeto Rsa para poder firmar el hashValue creado
             //// en el punto anterior. La clase FuncionesComunes.crearRsaDesdePEM()
             //// Transforma la llave rivada del CAF en formato PEM a el objeto
             //// Rsa necesario para la firma.
             RSACryptoServiceProvider rsa = FuncionesComunes.crearRsaDesdePEM(pk);
+=======
+            //// Agregue la referencia al objeto signature
+            XMLSignature.SignedInfo.AddReference(reference);
+            KeyInfo keyInfo = new KeyInfo();
+           // keyInfo.AddClause(new RSAKeyValue((RSA)certificado.PrivateKey));
+>>>>>>> Mauricio
 
             ////
             //// Firme el HashValue ( arreglo de bytes representativo de DD )
