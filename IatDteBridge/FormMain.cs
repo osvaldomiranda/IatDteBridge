@@ -36,9 +36,8 @@ namespace IatDteBridge
 
         private void button2_Click(object sender, EventArgs e)
         {
-            File archivo = new File();
-
-            archivo.OpenFile();
+            TxtReader lee = new TxtReader();
+            lee.lectura();
 
         }
 

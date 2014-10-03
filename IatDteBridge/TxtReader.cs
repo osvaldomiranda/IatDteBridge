@@ -55,5 +55,22 @@ namespace IatDteBridge
             return factura;
         }
 
+        public Documento lectura()
+        {
+            // si el archivo es el ultimo
+ 
+            StreamReader objReader = new StreamReader("c://file/test.txt");
+ 
+            // si el archivo comienza por '33'
+            
+            Documento factura = new Documento();
+
+
+
+            return factura;
+            
+
+        }
+
     }
 }

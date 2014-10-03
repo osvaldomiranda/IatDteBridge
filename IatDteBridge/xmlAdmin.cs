@@ -52,7 +52,7 @@ namespace IatDteBridge
             //// Agregue la referencia al objeto signature
             XMLSignature.SignedInfo.AddReference(reference);
             KeyInfo keyInfo = new KeyInfo();
-            keyInfo.AddClause(new RSAKeyValue((RSA)certificado.PrivateKey));
+           // keyInfo.AddClause(new RSAKeyValue((RSA)certificado.PrivateKey));
 
             ////
             //// Agregar información del certificado x509
