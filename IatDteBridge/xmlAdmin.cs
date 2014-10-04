@@ -15,7 +15,7 @@ namespace IatDteBridge
     {
 
 
-        public void doc_to_xmlSii() //recibir parametro de tipo documento
+        public void doc_to_xmlSii(Documento doc) //recibir parametro de tipo documento
         {
             String dte = "<DTE version=\"1.0\"> " +
 	                     "<Documento ID=\"F1T33\"> ";
