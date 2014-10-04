@@ -63,7 +63,13 @@ namespace IatDteBridge
         {
             
             //ping.StartPing();
-            proc.StartProcessIat();
+           // proc.StartProcessIat();
+
+            xmlAdmin a = new xmlAdmin();
+
+            a.PruebaTimbreDD();
+            
+
         }
 
         private void button7_Click(object sender, EventArgs e)
