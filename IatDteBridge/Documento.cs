@@ -134,7 +134,7 @@ namespace IatDteBridge
 
 
  //############################## Area Detalle #################################################################################
-         det_documento[] detalle;
+        public det_documento[] detalle { set; get; }
 
         
     }

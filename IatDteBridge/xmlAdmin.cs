@@ -15,43 +15,47 @@ namespace IatDteBridge
     {
 
 
+        //TO DO
+        // Falta agregar los nodos xml para los impuestos y otros de documentos mas complejos
+        // Resolver el tema del detalle
+
         public void doc_to_xmlSii(Documento doc) //recibir parametro de tipo documento
         {
             String dte = "<DTE version=\"1.0\"> " +
-	                     "<Documento ID=\"F1T33\"> ";
+	                     "<Documento ID=\"F"+doc.Folio+"T"+doc.TipoDte+"\"> ";
 		    
             String encabezado = "<Encabezado> "+
 			    "<IdDoc> "+
-				    "<TipoDTE>33</TipoDTE> "+
-				    "<Folio>1</Folio> "+
-				    "<FchEmis>2014-05-28</FchEmis> "+
+				    "<TipoDTE>"+doc.TipoDte+"</TipoDTE> "+
+				    "<Folio>"+ doc.Folio+"</Folio> "+
+				    "<FchEmis>"+doc.FchEmis+"</FchEmis> "+
 			    "</IdDoc> ";
 			
             String emisor = "<Emisor> "+
-				    "<RUTEmisor>10207640-0</RUTEmisor> "+
-				    "<RznSoc>JUAN CARLOS AGUIRRE RODRIGUEZ</RznSoc> "+
-				    "<GiroEmis>Insumos de Computacion</GiroEmis> "+
-				    "<Acteco>31341</Acteco> "+
-				    "<CdgSIISucur>1234</CdgSIISucur> "+
-				    "<DirOrigen>Teatinos 120, Piso 4</DirOrigen> "+
-				    "<CmnaOrigen>Santiago</CmnaOrigen> "+
-				    "<CiudadOrigen>Santiago</CiudadOrigen> "+
+				    "<RUTEmisor>"+doc.RUTEmisor+"</RUTEmisor> "+
+				    "<RznSoc>"+doc.RznSoc+"</RznSoc> "+
+				    "<GiroEmis>"+doc.GiroEmis+"</GiroEmis> "+
+				    "<Acteco>"+doc.Acteco+"</Acteco> "+
+				    "<CdgSIISucur>"+doc.CdgSIISucur+"</CdgSIISucur> "+
+				    "<DirOrigen>"+doc.DirOrigen+"</DirOrigen> "+
+				    "<CmnaOrigen>"+doc.CmnaOrigen+"</CmnaOrigen> "+
+				    "<CiudadOrigen>"+doc.CiudadOrigen+"</CiudadOrigen> "+
 			    "</Emisor> ";
 			    
             String receptor="<Receptor> "+
-				    "<RUTRecep>77777777-7</RUTRecep> "+
-				    "<RznSocRecep>EMPRESA  LTDA</RznSocRecep> "+
-				    "<GiroRecep>COMPUTACION</GiroRecep> "+
-				    "<DirRecep>SAN DIEGO 2222</DirRecep> "+
-				    "<CmnaRecep>LA FLORIDA</CmnaRecep> "+
-				    "<CiudadRecep>SANTIAGO</CiudadRecep> "+
+				    "<RUTRecep>"+doc.RUTRecep+"</RUTRecep> "+
+				    "<RznSocRecep>"+doc.RznSocRecep+"</RznSocRecep> "+
+				    "<GiroRecep>"+doc.GiroRecep+"</GiroRecep> "+
+				    "<DirRecep>"+doc.DirRecep+"</DirRecep> "+
+				    "<CmnaRecep>"+doc.CmnaRecep+"</CmnaRecep> "+
+				    "<CiudadRecep>"+doc.CiudadRecep+"</CiudadRecep> "+
 			    "</Receptor> ";
 			    
             String totales = "<Totales> "+
-				    "<MntNeto>100000</MntNeto> "+
-				    "<TasaIVA>19</TasaIVA> "+
-				    "<IVA>19000</IVA> "+
-				    "<MntTotal>119000</MntTotal> "+
+				    "<MntNeto>"+doc.MntNeto+"</MntNeto> "+
+				    "<TasaIVA>"+doc.TasaIVA+"</TasaIVA> "+
+				    "<IVA>"+doc.IVA+"</IVA> "+
+				    "<MntTotal>"+doc.MntTotal+"</MntTotal> "+
 			     "</Totales> ";
 		    String finencabezado="</Encabezado>";
 
@@ -62,9 +66,12 @@ namespace IatDteBridge
             // for para crear detalles y agregarlos al documento
             
             String detalle;
-            
+
+            det_documento det = new det_documento();
+            det = doc.detalle[1];
+
             detalle = "<Detalle> "+
-			    "<NroLinDet>1</NroLinDet> "+
+			    "<NroLinDet>"+"</NroLinDet> "+
 			    "<CdgItem> "+
 				    "<TpoCodigo>INT1</TpoCodigo> "+
 				    "<VlrCodigo>011</VlrCodigo> "+
@@ -82,14 +89,18 @@ namespace IatDteBridge
             // nodo DD
             String dd = "<TED version=\"1.0\"> " +
                 "<DD> " +
-                    "<RE>97975000-5</RE> " +
-                    "<TD>33</TD> " +
-                    "<F>1</F> " +
-                    "<FE>2014-05-28</FE> " +
-                    "<RR>77777777-7</RR> " +
-                    "<RSR>EMPRESA  LTDA</RSR> " +
-                    "<MNT>119000</MNT> " +
+                    "<RE>"+doc.RUTEmisor+"</RE> " +
+                    "<TD>"+doc.TipoDte+"</TD> " +
+                    "<F>"+doc.Folio+"</F> " +
+                    "<FE>"+doc.FchEmis+"</FE> " +
+                    "<RR>"+doc.RUTRecep+"</RR> " +
+                    "<RSR>"+doc.RznSocRecep+"</RSR> " +
+                    "<MNT>"+doc.MntTotal+"</MNT> " +
+
+                    
+                    // acá agregar el promer detalla
                     "<IT1>Parlantes Multimedia 180W.</IT1> " +
+
 
                     // Agregar caf leido desde archivo    
                     "<CAF version=\"1.0\"> " +
