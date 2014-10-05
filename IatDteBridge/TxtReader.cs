@@ -59,7 +59,21 @@ namespace IatDteBridge
         {
             // si el archivo es el ultimo
  
-            StreamReader objReader = new StreamReader("c://file/test.txt");
+            StreamReader objReader = new StreamReader("c://file/tes"+".txt");
+
+            ArrayList arrText = new ArrayList();
+            string sLine = "";
+            while (sLine != null)
+            {
+                sLine = objReader.ReadLine();
+                if (sLine != null)
+                    arrText.Add(sLine);
+            }
+            objReader.Close();
+
+            foreach (string sOutput in arrText)
+                Console.WriteLine(sOutput);
+            Console.ReadLine();
  
             // si el archivo comienza por '33'
             
