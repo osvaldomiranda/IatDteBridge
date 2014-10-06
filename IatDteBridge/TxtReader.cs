@@ -52,12 +52,11 @@ namespace IatDteBridge
 
         public Documento lectura()
         {
-            // si el archivo es el ultimo
  
             StreamReader objReader = new StreamReader("c://file/test"+".txt");
             
             Documento doc = new Documento();
-            doc.
+
 
 
             return doc;
