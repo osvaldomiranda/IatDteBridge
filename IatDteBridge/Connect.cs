@@ -42,6 +42,33 @@ namespace IatDteBridge
           
         }
         
+        public string sendXml(String xml)
+        {
+            try
+            {
+                string HtmlResult = String.Empty;
+                string postUri = string.Format("{0}{1}/iat_doc.json",
+                                    server,
+                                    version);
+
+               String parameters = string.Format("docxml={2}&auth_token={3}",xml,auth_token);
+
+                Console.WriteLine("Url = {0}.", postUri);
+
+                using (WebClient wc = new WebClient())
+                {
+                    wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
+                    HtmlResult = wc.UploadString(postUri, parameters);
+                }
+
+                return HtmlResult;
+
+            }
+            catch (Exception err)
+            {
+                return err.Message;
+            }
+        }
         
 
     }
