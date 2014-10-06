@@ -66,7 +66,7 @@ namespace IatDteBridge
 
             xmlAdmin a = new xmlAdmin();
 
-            a.PruebaTimbreDD();
+          //  a.PruebaTimbreDD();
             
 
         }
