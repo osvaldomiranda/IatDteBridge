@@ -47,11 +47,6 @@ namespace IatDteBridge
             // estos son los valore del detalle no cache como hacerlo ayuda pliss???
             //1;2077;BEB ANDINA COCA COLA MINI  BT 250CC;100;167.4242;10;1674;0;0;0;15068.18;INT1;C/U;BEB ANDINA COCA COLA MINI  BT 250CC;
 
-
-
-
-
-
             return factura;
         }
 
@@ -59,29 +54,13 @@ namespace IatDteBridge
         {
             // si el archivo es el ultimo
  
-            StreamReader objReader = new StreamReader("c://file/tes"+".txt");
-
-            ArrayList arrText = new ArrayList();
-            string sLine = "";
-            while (sLine != null)
-            {
-                sLine = objReader.ReadLine();
-                if (sLine != null)
-                    arrText.Add(sLine);
-            }
-            objReader.Close();
-
-            foreach (string sOutput in arrText)
-                Console.WriteLine(sOutput);
-            Console.ReadLine();
- 
-            // si el archivo comienza por '33'
+            StreamReader objReader = new StreamReader("c://file/test"+".txt");
             
-            Documento factura = new Documento();
+            Documento doc = new Documento();
+            doc.
 
 
-
-            return factura;
+            return doc;
             
 
         }
