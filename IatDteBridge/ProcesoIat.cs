@@ -17,18 +17,13 @@ namespace IatDteBridge
                 Console.WriteLine("ProcessIat thread: working...");
                 Thread.Sleep(5000);
 
-                /*
-                 * Implementar el siguiente ciclo en un Thread con un ciclo iterativo
-                 */
 
                 // Instancia txt_reader
-
                 TxtReader lec = new TxtReader();
 
                 Documento docLectura = new Documento();
 
                 // Ejecuta metodo de txt_reader que llena y obtienen Clase Documento
-
                 docLectura = lec.lecturaEnDuro();
                 Console.WriteLine("Folio = {0}", docLectura.Folio);
 
@@ -56,7 +51,6 @@ namespace IatDteBridge
                 
                 // ejecuta metodo de Connect que recibe el xml y lo envía al Core
                 conn.sendXml(docXmlSign);
-
 
 
                 // Continuar con siguiente documento

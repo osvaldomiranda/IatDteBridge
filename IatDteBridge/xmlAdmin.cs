@@ -18,14 +18,6 @@ namespace IatDteBridge
         public String doc_to_xmlSii(Documento doc) 
         {
 
-
-
-
-
-
-
-
-
             String dte = "<DTE version=\"1.0\"> " +
 	                     "<Documento ID=\"F"+doc.Folio+"T"+doc.TipoDte+"\"> ";
 		    
@@ -72,7 +64,10 @@ namespace IatDteBridge
             String detalle;
             foreach (var det in doc.detalles)
             {
-             
+
+                //Console.WriteLine("Detalle: {0},{1},{2},{3},{4},{5},{6}", det.NroLinDet, det.TpoCodigo, det.VlrCodigo, det.NmbItem, det.QtyItem, det.PrcItem, det.MontoItem);
+              
+
                 detalle = "<Detalle> " +
                 "<NroLinDet>" + det.NroLinDet + "</NroLinDet> " +
                 "<CdgItem> " +
