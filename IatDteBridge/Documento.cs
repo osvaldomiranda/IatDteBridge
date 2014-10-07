@@ -174,6 +174,9 @@ namespace IatDteBridge
         public string CodImpAdic { get; set; } //Indica el código según tabla de códigos (Ver en Índice 4.- Codificación Tipos de Impuesto).
         public int MontoItem { get; set; } //(Precio Unitario * Cantidad ) – Monto Descuento + Monto Recargo
 
+        public List<imp_adicional> impuestos = new List<imp_adicional>();
+        
+
         public det_documento(
                             int NroLinDet, 
                             string TpoCodigo, 
@@ -230,9 +233,17 @@ namespace IatDteBridge
 //######################################## Sub Totales Informativos ###########################################################################
     class imp_adicional
     {
-        string TipoImp { get; set; } //Código del impuesto o retención de acuerdo a la codificación detallada en tabla de códigos (ver Punto 4 del índice). Incluye Retención de Cambio sujeto de Construcción
-        int TasaImp { get; set; } //Se debe indicar la tasa de Impuesto adicional o retención. En el caso de impuesto específicos se puede omitir
-        int MontoImp { get; set; } // Valor del impuesto o retención asociado al código indicado anteriormente
+        public string TipoImp { get; set; } //Código del impuesto o retención de acuerdo a la codificación detallada en tabla de códigos (ver Punto 4 del índice). Incluye Retención de Cambio sujeto de Construcción
+        public int TasaImp { get; set; } //Se debe indicar la tasa de Impuesto adicional o retención. En el caso de impuesto específicos se puede omitir
+        public int MontoImp { get; set; } // Valor del impuesto o retención asociado al código indicado anteriormente
+
+        public imp_adicional(String TipoImp, int TasaImp, int MontoImp)
+        {
+            this.TipoImp  = TipoImp;
+            this.TasaImp  = TasaImp;
+            this.MontoImp = MontoImp;
+
+        }
     }
 
 

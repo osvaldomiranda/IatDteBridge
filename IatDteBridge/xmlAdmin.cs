@@ -59,7 +59,10 @@ namespace IatDteBridge
             //arma encabezado en documento
             String documento = dte + encabezado + emisor + receptor + totales + finencabezado;
 
-            
+        //    Documento d = new Documento();
+        //    d.detalles.Add(new det_documento(1, "", "", "", "", "", 0, 0, 0, "", "", 0, "", 0, 0, "", "", "", 0, 0, 0, "", 0));
+        //    d.detalles.Last().impuestos.Add(new imp_adicional("", 0, 0));
+
             // for para crear detalles y agregarlos al documento
             String detalle;
             foreach (var det in doc.detalles)
@@ -82,6 +85,10 @@ namespace IatDteBridge
                 "</Detalle> ";
 
                 documento = documento + detalle;
+
+
+
+                
 
             }
 
