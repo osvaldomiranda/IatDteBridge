@@ -17,14 +17,17 @@ namespace IatDteBridge
                 Console.WriteLine("ProcessIat thread: working...");
                 Thread.Sleep(5000);
 
-                /*
-                 * Implementar el siguiente ciclo en un Thread con un ciclo iterativo
-                 */
 
                 // Instancia txt_reader
+                TxtReader lec = new TxtReader();
+
+                Documento docLectura = new Documento();
 
                 // Ejecuta metodo de txt_reader que llena y obtienen Clase Documento
+                docLectura = lec.lecturaEnDuro();
+                Console.WriteLine("Folio = {0}", docLectura.Folio);
 
+                
                 // intancia objeto de la clase PDF_admin
 
                 // ejecutar metodo de PDF_admin que recibe objeto de la clase Documento
@@ -36,19 +39,21 @@ namespace IatDteBridge
 
 
                 // instancia XML_admin
-
+                xmlAdmin xml = new xmlAdmin();
+                
                 // Ejecuta metodo de XML_admin que recibe objeto de la clase documento 
                 // que llena el xml lo firma, lo timbra y devuelve la factura xml lista
+                String docXmlSign = xml.doc_to_xmlSii(docLectura);
 
 
                 // instancia objeto de tipo Connect
-
+                Connect conn = new Connect();
+                
                 // ejecuta metodo de Connect que recibe el xml y lo envía al Core
+                conn.sendXml(docXmlSign);
 
 
                 // Continuar con siguiente documento
-
-
                 Console.WriteLine("Iteracion = {0}", i);
                 i++;
 

@@ -28,7 +28,7 @@ namespace IatDteBridge
             Console.ReadLine();
         }
 
-        Documento lecturaEnDuro()
+        public Documento lecturaEnDuro()
         {
             Documento factura = new Documento();
             factura.TipoDte = 33;

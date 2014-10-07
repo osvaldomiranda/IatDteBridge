@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Documento.cs" />
+    <Compile Include="FuncionesComunes.cs" />
     <Compile Include="PingProcess.cs" />
     <Compile Include="Connect.cs" />
     <Compile Include="File.cs" />
