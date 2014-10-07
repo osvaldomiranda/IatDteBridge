@@ -17,6 +17,7 @@ namespace IatDteBridge
 
         public String doc_to_xmlSii(Documento doc) 
         {
+
             String dte = "<DTE version=\"1.0\"> " +
 	                     "<Documento ID=\"F"+doc.Folio+"T"+doc.TipoDte+"\"> ";
 		    
@@ -58,29 +59,40 @@ namespace IatDteBridge
             //arma encabezado en documento
             String documento = dte + encabezado + emisor + receptor + totales + finencabezado;
 
-            
+        //    Documento d = new Documento();
+        //    d.detalles.Add(new det_documento(1, "", "", "", "", "", 0, 0, 0, "", "", 0, "", 0, 0, "", "", "", 0, 0, 0, "", 0));
+        //    d.detalles.Last().impuestos.Add(new imp_adicional("", 0, 0));
+
             // for para crear detalles y agregarlos al documento
-            
             String detalle;
+            foreach (var det in doc.detalles)
+            {
 
-            det_documento det = new det_documento();
-            det = doc.detalle[1];
+                //Console.WriteLine("Detalle: {0},{1},{2},{3},{4},{5},{6}", det.NroLinDet, det.TpoCodigo, det.VlrCodigo, det.NmbItem, det.QtyItem, det.PrcItem, det.MontoItem);
+              
 
-            detalle = "<Detalle> "+
-			    "<NroLinDet>"+"</NroLinDet> "+
-			    "<CdgItem> "+
-				    "<TpoCodigo>INT1</TpoCodigo> "+
-				    "<VlrCodigo>011</VlrCodigo> "+
-			    "</CdgItem> "+
-			    "<NmbItem>Parlantes Multimedia 180W.</NmbItem> "+
-			    "<DscItem/> "+
-			    "<QtyItem>20</QtyItem> "+
-			    "<PrcItem>4500</PrcItem> "+
-			    "<MontoItem>90000</MontoItem> "+
-		    "</Detalle> ";
-		    
-            documento = documento + detalle;
+                detalle = "<Detalle> " +
+                "<NroLinDet>" + det.NroLinDet + "</NroLinDet> " +
+                "<CdgItem> " +
+                    "<TpoCodigo>"+ det.TpoCodigo +"</TpoCodigo> " +
+                    "<VlrCodigo>"+ det.VlrCodigo +"</VlrCodigo> " +
+                "</CdgItem> " +
+                "<NmbItem>"+ det.NmbItem +"</NmbItem> " +
+                "<DscItem/> " +
+                "<QtyItem>"+ det.QtyItem +"</QtyItem> " +
+                "<PrcItem>"+ det.PrcItem +"</PrcItem> " +
+                "<MontoItem>"+ det.MontoItem +"</MontoItem> " +
+                "</Detalle> ";
 
+                documento = documento + detalle;
+
+
+
+                
+
+            }
+
+            
 
             // nodo DD
             String dd = "<TED version=\"1.0\"> " +

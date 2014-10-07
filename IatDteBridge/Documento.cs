@@ -134,50 +134,117 @@ namespace IatDteBridge
 
 
  //############################## Area Detalle #################################################################################
-        public det_documento[] detalle { set; get; }
-
+     
+        public List<det_documento> detalles = new List<det_documento>();
         
     }
 
+
+
     class det_documento
     {
-        int NroLinDet { get; set; } //Número del ítem. Desde 1 a 60
-        string TpoCodigo { get; set; } //Tipo de codificación utilizada para el ítem Standard: EAN, PLU, DUN o Interna (Hasta 5 tipos de códigos).... este puede ser una clase...
-        string VlrCodigo { get; set; } // Código del producto de acuerdo a tipo de codificación indicada en campo anterior (Hasta 5 códigos)
-        string TpoDocLiq { get; set; } // Para liquidaciones se debe registrar el código del docto. que se liquida. (Ej: :30, 33, 35, 39, 56,etc.) 
-        string IndExe { get; set; } // Indica si el producto o servicio es exento o no afecto a impuesto o si ya ha sido facturado. 
+
+        public int NroLinDet { get; set; } //Número del ítem. Desde 1 a 60
+        public string TpoCodigo { get; set; } //Tipo de codificación utilizada para el ítem Standard: EAN, PLU, DUN o Interna (Hasta 5 tipos de códigos).... este puede ser una clase...
+        public string VlrCodigo { get; set; } // Código del producto de acuerdo a tipo de codificación indicada en campo anterior (Hasta 5 códigos)
+        public string TpoDocLiq { get; set; } // Para liquidaciones se debe registrar el código del docto. que se liquida. (Ej: :30, 33, 35, 39, 56,etc.) 
+        public string IndExe { get; set; } // Indica si el producto o servicio es exento o no afecto a impuesto o si ya ha sido facturado. 
                        //(También se utiliza para indicar garantía de depósito por envases. Art.28,Inc3 Reglamento DL 825) 
                        //(Cervezas, Jugos, Aguas Minerales, Bebidas Analcohólicas u otros autorizados por Resolución especial) 
                        //Si todos los ítems de una factura tienen valor 1 en este indicador la factura no puede ser factura electrónica (código 33),
                        //debería serfactura exenta (código 34) . Sólo en caso de Liquidación-Factura
                        // que tenga ítems no facturables negativos, se debe señalar el indicador 2, e informar el valor con signo negativo
-        string IndAgente { get; set; } //Obligatorio para agentes retenedores, indica para cada transacción si es agente retenedor del producto que está vendiendo
-        int MntBaseFaena { get; set; } //Sólo para transacciones realizadas por Agentes Retenedores, según códigos de retención 17
-        int MntMargComer { get; set; } // Sólo para transacciones realizadas por Agentes Retenedores, según códigos de retención 14 y 50
-        int PrcConsFinal { get; set; } // Sólo para transacciones realizadas por Agentes Retenedores, según códigos de retención 14, 17 y 50
-        string NmbItem { get; set; } //Nombre del producto o servicio
-        string DscItem { get; set; } // Descripción Adicional del producto o servicio. Se utiliza para pack, servicios con detalle
-        int QtyRef { get; set; } // Cantidad para la unidad de medida de referencia (no se usa para el cálculo del valor neto) en 12 enteros y 6 decimales.
+        public string IndAgente { get; set; } //Obligatorio para agentes retenedores, indica para cada transacción si es agente retenedor del producto que está vendiendo
+        public int MntBaseFaena { get; set; } //Sólo para transacciones realizadas por Agentes Retenedores, según códigos de retención 17
+        public int MntMargComer { get; set; } // Sólo para transacciones realizadas por Agentes Retenedores, según códigos de retención 14 y 50
+        public int PrcConsFinal { get; set; } // Sólo para transacciones realizadas por Agentes Retenedores, según códigos de retención 14, 17 y 50
+        public string NmbItem { get; set; } //Nombre del producto o servicio
+        public string DscItem { get; set; } // Descripción Adicional del producto o servicio. Se utiliza para pack, servicios con detalle
+        public int QtyRef { get; set; } // Cantidad para la unidad de medida de referencia (no se usa para el cálculo del valor neto) en 12 enteros y 6 decimales.
                     // Obligatorio para facturas de venta o compra que indican emisor opera como Agente Retenedor
-        string UnmdRef { get; set; } //Glosa con unidad de medida de referencia Obligatorio para facturas de venta, compra o notas que indican emisor opera como Agente Retenedor
-        float PrcRef { get; set; } // Precio unitario para la unidad de medida de referencia (no se usa para el cálculo del valor neto) 12 enteros, 6 decimales. Obligatorio para facturas de venta, compra o notas que indican emisor opera como Agente Retenedor 
-        float QtyItem { get; set; } // Cantidad del ítem en 12 enteros y 6 decimales Obligatorio para facturas de venta, compra o notas que indican emisor opera como Agente Retenedor
-        string FchElabor { get; set; } // del item
-        string FchVencim { get; set; } // del item
-        string UnmdItem { get; set; } // unidad de medidas
-        float PrcItem { get; set; } // Precio
-        float DescuentoPct { get; set; } // Descuento (%) en 3 enteros y 2 decimales
-        int DescuentoMonto { get; set; } //Correspondiente al anterior. Totaliza todos los descuentos otorgados al ítem
-        string CodImpAdic { get; set; } //Indica el código según tabla de códigos (Ver en Índice 4.- Codificación Tipos de Impuesto).
-        int MontoItem { get; set; } //(Precio Unitario * Cantidad ) – Monto Descuento + Monto Recargo
+        public string UnmdRef { get; set; } //Glosa con unidad de medida de referencia Obligatorio para facturas de venta, compra o notas que indican emisor opera como Agente Retenedor
+        public float PrcRef { get; set; } // Precio unitario para la unidad de medida de referencia (no se usa para el cálculo del valor neto) 12 enteros, 6 decimales. Obligatorio para facturas de venta, compra o notas que indican emisor opera como Agente Retenedor 
+        public float QtyItem { get; set; } // Cantidad del ítem en 12 enteros y 6 decimales Obligatorio para facturas de venta, compra o notas que indican emisor opera como Agente Retenedor
+        public string FchElabor { get; set; } // del item
+        public string FchVencim { get; set; } // del item
+        public string UnmdItem { get; set; } // unidad de medidas
+        public float PrcItem { get; set; } // Precio
+        public float DescuentoPct { get; set; } // Descuento (%) en 3 enteros y 2 decimales
+        public int DescuentoMonto { get; set; } //Correspondiente al anterior. Totaliza todos los descuentos otorgados al ítem
+        public string CodImpAdic { get; set; } //Indica el código según tabla de códigos (Ver en Índice 4.- Codificación Tipos de Impuesto).
+        public int MontoItem { get; set; } //(Precio Unitario * Cantidad ) – Monto Descuento + Monto Recargo
+
+        public List<imp_adicional> impuestos = new List<imp_adicional>();
+        
+
+        public det_documento(
+                            int NroLinDet, 
+                            string TpoCodigo, 
+                            string VlrCodigo,
+                            string TpoDocLiq, 
+                            string IndExe, 
+                            string IndAgente, 
+                            int MntBaseFaena, 
+                            int MntMargComer, 
+                            int PrcConsFinal, 
+                            string NmbItem, 
+                            string DscItem, 
+                            int QtyRef,  
+                            string UnmdRef, 
+                            float PrcRef,
+                            float QtyItem,  
+                            string FchElabor, 
+                            string FchVencim, 
+                            string UnmdItem, 
+                            float PrcItem, 
+                            float DescuentoPct, 
+                            int DescuentoMonto, 
+                            string CodImpAdic,
+                            int MontoItem 
+                            )
+        {
+            this.NroLinDet      = NroLinDet; 
+            this.TpoCodigo      = TpoCodigo;
+            this.VlrCodigo      = VlrCodigo;
+            this.TpoDocLiq      = TpoDocLiq; 
+            this.IndExe         = IndExe;
+            this.IndAgente      = IndAgente; 
+            this.MntBaseFaena   = MntBaseFaena; 
+            this.MntMargComer   = MntMargComer; 
+            this.PrcConsFinal   = PrcConsFinal; 
+            this.NmbItem        = NmbItem; 
+            this.DscItem        = DscItem;     
+            this.QtyRef         = QtyRef; 
+            this.UnmdRef        = UnmdRef;
+            this.PrcRef         = PrcRef; 
+            this.QtyItem        = QtyItem;  
+            this.FchElabor      = FchElabor; 
+            this.FchVencim      = FchVencim;
+            this.UnmdItem       = UnmdItem;  
+            this.PrcItem        = PrcItem; 
+            this.DescuentoPct   = DescuentoPct;
+            this.DescuentoMonto = DescuentoMonto; 
+            this.CodImpAdic     = CodImpAdic;
+            this.MontoItem      = MontoItem;  
+        }
 
     }
 
 //######################################## Sub Totales Informativos ###########################################################################
     class imp_adicional
     {
-        string TipoImp { get; set; } //Código del impuesto o retención de acuerdo a la codificación detallada en tabla de códigos (ver Punto 4 del índice). Incluye Retención de Cambio sujeto de Construcción
-        int TasaImp { get; set; } //Se debe indicar la tasa de Impuesto adicional o retención. En el caso de impuesto específicos se puede omitir
-        int MontoImp { get; set; } // Valor del impuesto o retención asociado al código indicado anteriormente
+        public string TipoImp { get; set; } //Código del impuesto o retención de acuerdo a la codificación detallada en tabla de códigos (ver Punto 4 del índice). Incluye Retención de Cambio sujeto de Construcción
+        public int TasaImp { get; set; } //Se debe indicar la tasa de Impuesto adicional o retención. En el caso de impuesto específicos se puede omitir
+        public int MontoImp { get; set; } // Valor del impuesto o retención asociado al código indicado anteriormente
+
+        public imp_adicional(String TipoImp, int TasaImp, int MontoImp)
+        {
+            this.TipoImp  = TipoImp;
+            this.TasaImp  = TasaImp;
+            this.MontoImp = MontoImp;
+
+        }
     }
+
+
 }
