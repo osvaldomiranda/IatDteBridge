@@ -17,6 +17,15 @@ namespace IatDteBridge
 
         public String doc_to_xmlSii(Documento doc) 
         {
+
+
+
+
+
+
+
+
+
             String dte = "<DTE version=\"1.0\"> " +
 	                     "<Documento ID=\"F"+doc.Folio+"T"+doc.TipoDte+"\"> ";
 		    
@@ -60,27 +69,28 @@ namespace IatDteBridge
 
             
             // for para crear detalles y agregarlos al documento
-            
             String detalle;
+            foreach (var det in doc.detalles)
+            {
+             
+                detalle = "<Detalle> " +
+                "<NroLinDet>" + det.NroLinDet + "</NroLinDet> " +
+                "<CdgItem> " +
+                    "<TpoCodigo>"+ det.TpoCodigo +"</TpoCodigo> " +
+                    "<VlrCodigo>"+ det.VlrCodigo +"</VlrCodigo> " +
+                "</CdgItem> " +
+                "<NmbItem>"+ det.NmbItem +"</NmbItem> " +
+                "<DscItem/> " +
+                "<QtyItem>"+ det.QtyItem +"</QtyItem> " +
+                "<PrcItem>"+ det.PrcItem +"</PrcItem> " +
+                "<MontoItem>"+ det.MontoItem +"</MontoItem> " +
+                "</Detalle> ";
 
-            det_documento det = new det_documento();
-            det = doc.detalle[1];
+                documento = documento + detalle;
 
-            detalle = "<Detalle> "+
-			    "<NroLinDet>"+"</NroLinDet> "+
-			    "<CdgItem> "+
-				    "<TpoCodigo>INT1</TpoCodigo> "+
-				    "<VlrCodigo>011</VlrCodigo> "+
-			    "</CdgItem> "+
-			    "<NmbItem>Parlantes Multimedia 180W.</NmbItem> "+
-			    "<DscItem/> "+
-			    "<QtyItem>20</QtyItem> "+
-			    "<PrcItem>4500</PrcItem> "+
-			    "<MontoItem>90000</MontoItem> "+
-		    "</Detalle> ";
-		    
-            documento = documento + detalle;
+            }
 
+            
 
             // nodo DD
             String dd = "<TED version=\"1.0\"> " +
