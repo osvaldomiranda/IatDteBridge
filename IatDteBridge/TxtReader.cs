@@ -46,16 +46,22 @@ namespace IatDteBridge
             factura.MntTotal = 19890;
             // estos son los valore del detalle no cache como hacerlo ayuda pliss???
             //1;2077;BEB ANDINA COCA COLA MINI  BT 250CC;100;167.4242;10;1674;0;0;0;15068.18;INT1;C/U;BEB ANDINA COCA COLA MINI  BT 250CC;
-
+            factura.detalles.Add(new det_documento(1, "", "", "", "", "", 0, 0, 0, "", "", 0, "", 0, 0, "", "", "", 0, 0, 0, "", 0));
             return factura;
         }
 
         public Documento lectura()
         {
- 
-            StreamReader objReader = new StreamReader("c://file/test"+".txt");
-            
+            //Paso la ruta del fichero al constructor 
+            StreamReader objReader = new StreamReader("c://file/Fact_1"+".txt");
+           
+            string line = "";
+            // 
             Documento doc = new Documento();
+           
+           
+            
+
 
 
 
