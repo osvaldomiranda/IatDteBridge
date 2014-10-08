@@ -24,7 +24,7 @@ namespace IatDteBridge
                 Documento docLectura = new Documento();
 
                 // Ejecuta metodo de txt_reader que llena y obtienen Clase Documento
-                docLectura = lec.lecturaEnDuro();
+                docLectura = lec.lectura();
                 Console.WriteLine("Folio = {0}", docLectura.Folio);
 
                 
@@ -45,12 +45,14 @@ namespace IatDteBridge
                 // que llena el xml lo firma, lo timbra y devuelve la factura xml lista
                 String docXmlSign = xml.doc_to_xmlSii(docLectura);
 
+                Console.WriteLine(docXmlSign);
+
 
                 // instancia objeto de tipo Connect
                 Connect conn = new Connect();
                 
                 // ejecuta metodo de Connect que recibe el xml y lo envía al Core
-                conn.sendXml(docXmlSign);
+                //conn.sendXml(docXmlSign);
 
 
                 // Continuar con siguiente documento
