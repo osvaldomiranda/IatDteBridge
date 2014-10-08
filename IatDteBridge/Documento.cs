@@ -177,55 +177,88 @@ namespace IatDteBridge
         public List<imp_adicional> impuestos = new List<imp_adicional>();
         
 
-        public det_documento(
-                            int NroLinDet, 
-                            string TpoCodigo, 
-                            string VlrCodigo,
-                            string TpoDocLiq, 
-                            string IndExe, 
-                            string IndAgente, 
-                            int MntBaseFaena, 
-                            int MntMargComer, 
-                            int PrcConsFinal, 
-                            string NmbItem, 
-                            string DscItem, 
-                            int QtyRef,  
-                            string UnmdRef, 
-                            float PrcRef,
-                            float QtyItem,  
-                            string FchElabor, 
-                            string FchVencim, 
-                            string UnmdItem, 
-                            float PrcItem, 
-                            float DescuentoPct, 
-                            int DescuentoMonto, 
-                            string CodImpAdic,
-                            int MontoItem 
-                            )
+        public det_documento(string det)
         {
-            this.NroLinDet      = NroLinDet; 
-            this.TpoCodigo      = TpoCodigo;
-            this.VlrCodigo      = VlrCodigo;
-            this.TpoDocLiq      = TpoDocLiq; 
-            this.IndExe         = IndExe;
-            this.IndAgente      = IndAgente; 
-            this.MntBaseFaena   = MntBaseFaena; 
-            this.MntMargComer   = MntMargComer; 
-            this.PrcConsFinal   = PrcConsFinal; 
-            this.NmbItem        = NmbItem; 
-            this.DscItem        = DscItem;     
-            this.QtyRef         = QtyRef; 
-            this.UnmdRef        = UnmdRef;
-            this.PrcRef         = PrcRef; 
-            this.QtyItem        = QtyItem;  
-            this.FchElabor      = FchElabor; 
-            this.FchVencim      = FchVencim;
-            this.UnmdItem       = UnmdItem;  
-            this.PrcItem        = PrcItem; 
-            this.DescuentoPct   = DescuentoPct;
-            this.DescuentoMonto = DescuentoMonto; 
-            this.CodImpAdic     = CodImpAdic;
-            this.MontoItem      = MontoItem;  
+
+            List<string> d = det.Split(';').ToList();
+
+            int i=0;
+            foreach (var item in d)
+            {
+                switch (i)
+                {
+                    case 1:
+                        this.NroLinDet = Convert.ToInt32(item);
+                        break;
+                    case 2:
+                        this.TpoCodigo = item;
+                        break;
+                    case 10:
+                        //this.VlrCodigo = item;
+                        break;
+                    case 14:
+                       // this.TpoDocLiq = item;
+                        break;
+                    case 19:
+                        this.IndExe = item;
+                        break;
+                    case 6:
+                        //this.IndAgente = item;
+                        break;
+                    case 7:
+                        //this.MntBaseFaena = Convert.ToInt32(item);
+                        break;
+                    case 8:
+                        //this.MntMargComer = Convert.ToInt32(item);
+                        break;
+                    case 9:
+                        //this.PrcConsFinal = Convert.ToInt32(item);
+                        break;
+                    case 3:
+                        this.NmbItem = item;
+                        break;
+                    case 23:
+                        this.DscItem = item;
+                        break;
+                    case 12:
+                        this.QtyRef = Convert.ToInt32(item);
+                        break;
+                    case 18:
+                        this.PrcRef = Convert.ToInt32(item);
+                        break;
+                    case 4:
+                        this.QtyItem = Convert.ToInt32(item);
+                        break;
+                    case 15:
+                        this.UnmdRef = item;
+                        break;
+                    case 16:
+                        this.FchElabor = item;
+                        break;
+                    case 17:
+                        this.FchVencim = item;
+                        break;
+                    case 13:
+                        this.UnmdItem = item;
+                        break;
+                    case 5:
+                        this.PrcItem = Convert.ToInt32(item);
+                        break;
+                    case 20:
+                        this.DescuentoPct = Convert.ToInt32(item);
+                        break;
+                    case 21:
+                        this.DescuentoMonto = Convert.ToInt32(item);
+                        break;
+                    case 22:
+                        this.CodImpAdic = item;
+                        break;
+                    case 11:
+                        this.MontoItem = Convert.ToInt32(item);
+                        break; 
+     
+                }
+            }
         }
 
     }

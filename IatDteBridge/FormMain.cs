@@ -62,9 +62,9 @@ namespace IatDteBridge
         {
             
             //ping.StartPing();
-           // proc.StartProcessIat();
+            proc.StartProcessIat();
 
-            xmlAdmin a = new xmlAdmin();
+           // xmlAdmin a = new xmlAdmin();
 
           //  a.PruebaTimbreDD();
             
