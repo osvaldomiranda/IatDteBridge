@@ -102,14 +102,56 @@ namespace IatDteBridge
        
         public Documento lectura()
         {
+            Documento doc = new Documento();
 
-            String fileName = nextFile();
-                
+            // Datos del Emisor
+            String lineEmisor = String.Empty;
+            try
+            {
+                using (StreamReader sr = new StreamReader("c://file/empresa" + ".txt"))
+                {
+                    int i = 1;
+                    while ((lineEmisor = sr.ReadLine()) != null)
+                    {
+                        switch (i)
+                        {
+                            case 1: doc.RUTEmisor = lineEmisor;
+                            break;
+                            case 2: doc.RznSoc = lineEmisor;
+                            break;
+                            case 3: doc.GiroEmis = lineEmisor;
+                            break;
+                            case 4: doc.Telefono = lineEmisor;
+                            break;
+                            case 5: doc.CorreoEmisor = lineEmisor;
+                            break;
+                            case 6: doc.DirOrigen = lineEmisor;
+                            break;
+                            case 7: doc.CmnaOrigen = lineEmisor;
+                            break;
+                            case 8: doc.CiudadOrigen = lineEmisor;
+                            break;
+
+                        }
+                         
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("The file could not be read:");
+                Console.WriteLine(e.Message);
+            }
+
+
+
+            String fileName = nextFile();  
             //Paso la ruta del fichero al constructor 
             StreamReader objReader = new StreamReader(fileName);
 
             string line = string.Empty;
-            Documento doc = new Documento();
+           
             
             while ((line = objReader.ReadLine()) != null)
             {
