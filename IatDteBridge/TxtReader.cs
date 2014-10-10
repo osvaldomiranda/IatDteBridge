@@ -36,7 +36,7 @@ namespace IatDteBridge
         public Documento lectura()
         {
             //Paso la ruta del fichero al constructor 
-            StreamReader objReader = new StreamReader("c://file/Fac_1" + ".txt");
+             StreamReader objReader = new StreamReader("c://file/Fac_1" + ".txt");
 
             string line = string.Empty;
             Documento doc = new Documento();

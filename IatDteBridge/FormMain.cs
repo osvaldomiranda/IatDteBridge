@@ -77,6 +77,17 @@ namespace IatDteBridge
             proc.StopProcessIat();
         }
 
+        private void datosEmpresaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void empresaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormEmisor emisor = new FormEmisor();
+            emisor.Show();
+        }
+
 
 
   

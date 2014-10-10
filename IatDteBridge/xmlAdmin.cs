@@ -68,7 +68,7 @@ namespace IatDteBridge
             foreach (var det in doc.detalles)
             {
 
-                //Console.WriteLine("Detalle: {0},{1},{2},{3},{4},{5},{6}", det.NroLinDet, det.TpoCodigo, det.VlrCodigo, det.NmbItem, det.QtyItem, det.PrcItem, det.MontoItem);
+                Console.WriteLine("Detalle: {0},{1},{2},{3},{4},{5},{6}", det.NroLinDet, det.TpoCodigo, det.VlrCodigo, det.NmbItem, det.QtyItem, det.PrcItem, det.MontoItem);
               
 
                 detalle = "<Detalle> " +
