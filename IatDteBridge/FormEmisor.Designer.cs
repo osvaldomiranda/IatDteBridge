@@ -146,8 +146,9 @@
             this.button_guardar.Name = "button_guardar";
             this.button_guardar.Size = new System.Drawing.Size(75, 23);
             this.button_guardar.TabIndex = 12;
-            this.button_guardar.Text = "Guradar";
+            this.button_guardar.Text = "Guarda";
             this.button_guardar.UseVisualStyleBackColor = true;
+            this.button_guardar.Click += new System.EventHandler(this.button_guardar_Click);
             // 
             // FormEmisor
             // 

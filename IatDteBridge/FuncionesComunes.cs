@@ -115,7 +115,7 @@ namespace IatDteBridge
                     RSA.ImportParameters(RSAparams);
                     return RSA;
                 }
-                catch (Exception ex)
+                catch (Exception e)
                 {
                     return null;
                 }
