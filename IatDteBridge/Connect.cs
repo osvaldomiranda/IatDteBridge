@@ -13,9 +13,12 @@ namespace IatDteBridge
         public static string version = "/api/v1";
         public static string auth_token = "tokenprueba";
 
+        //TO DO: falta definir el mecanismo de Token
+
         public Connect() {
         }
-        
+
+        //TO DO : falta definir el ID del iat, debe estar definido en una variable global (ver parameters en el método ping)
         public string ping ()
         {
             try
@@ -42,6 +45,7 @@ namespace IatDteBridge
           
         }
         
+        //TO DO : falta definir el ID del iat, debe estar definido en una variable global (ver parameters en el método sendXml)
         public string sendXml(String xml)
         {
             try
@@ -51,7 +55,7 @@ namespace IatDteBridge
                                     server,
                                     version);
 
-               String parameters = string.Format("docxml={2}&auth_token={3}",xml,auth_token);
+               String parameters = string.Format("id={0}&docxml={1}&auth_token={1}","1",xml,auth_token);
 
                 Console.WriteLine("Url = {0}.", postUri);
 
