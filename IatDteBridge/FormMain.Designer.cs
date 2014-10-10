@@ -92,7 +92,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(15, 196);
+            this.button2.Location = new System.Drawing.Point(15, 198);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 6;
@@ -102,7 +102,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(15, 254);
+            this.button3.Location = new System.Drawing.Point(15, 257);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 7;
@@ -112,7 +112,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(15, 225);
+            this.button4.Location = new System.Drawing.Point(15, 228);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 8;
@@ -132,7 +132,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(154, 195);
+            this.button7.Location = new System.Drawing.Point(154, 197);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(75, 23);
             this.button7.TabIndex = 11;
@@ -159,7 +159,7 @@
             this.datosEmpresaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(570, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(472, 24);
             this.menuStrip1.TabIndex = 13;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -175,7 +175,7 @@
             // empresaToolStripMenuItem
             // 
             this.empresaToolStripMenuItem.Name = "empresaToolStripMenuItem";
-            this.empresaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.empresaToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.empresaToolStripMenuItem.Text = "Empresa";
             this.empresaToolStripMenuItem.Click += new System.EventHandler(this.empresaToolStripMenuItem_Click);
             // 
@@ -183,7 +183,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(570, 388);
+            this.ClientSize = new System.Drawing.Size(472, 302);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);

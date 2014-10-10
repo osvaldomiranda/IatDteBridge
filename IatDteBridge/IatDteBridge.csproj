@@ -57,11 +57,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Documento.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="FormEmisor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FormEmisor.Designer.cs">
+      <DependentUpon>FormEmisor.cs</DependentUpon>
     </Compile>
     <Compile Include="FuncionesComunes.cs" />
     <Compile Include="PingProcess.cs" />
@@ -80,8 +80,8 @@
     <Compile Include="Timbre.cs" />
     <Compile Include="xmlAdmin.cs" />
     <Compile Include="TxtReader.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FormEmisor.resx">
+      <DependentUpon>FormEmisor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
