@@ -12,10 +12,10 @@ namespace IatDteBridge
         public void DoProcessIat()
         {
             int i = 0;
-            while (!_shouldStop)
-            {
-                Console.WriteLine("ProcessIat thread: working...");
-                Thread.Sleep(5000);
+          //  while (!_shouldStop)
+          //  {
+           //     Console.WriteLine("ProcessIat thread: working...");
+           //     Thread.Sleep(5000);
 
 
                 // Instancia txt_reader
@@ -52,7 +52,7 @@ namespace IatDteBridge
                 Connect conn = new Connect();
                 
                 // ejecuta metodo de Connect que recibe el xml y lo envía al Core
-                //conn.sendXml(docXmlSign);
+                conn.sendXml(docXmlSign);
 
 
                 // Continuar con siguiente documento
@@ -60,7 +60,7 @@ namespace IatDteBridge
                 i++;
 
 
-            }
+           // }
             Console.WriteLine("ProcessIat thread: terminating gracefully.");
         }
         public void RequestStop()

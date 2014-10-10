@@ -33,6 +33,7 @@ namespace IatDteBridge
             return factura;
         }
 
+        //TO DO: falta agregar algorimo para ir marcando los archivos procesados
         public Documento lectura()
         {
             //Paso la ruta del fichero al constructor 
@@ -40,7 +41,7 @@ namespace IatDteBridge
 
             string line = string.Empty;
             Documento doc = new Documento();
-
+            
             while ((line = objReader.ReadLine()) != null)
             {
 
@@ -98,7 +99,7 @@ namespace IatDteBridge
                 {
                     line = objReader.ReadLine();
                     List<String> lineEncabezado = line.Split(';').ToList();
-                    int i = 0;
+                    int i = 1;
                     foreach (var itemEncabezado in lineEncabezado)
                     {
                         switch (i)
@@ -127,6 +128,7 @@ namespace IatDteBridge
                                 break;
 
                         }
+                        i++;
                     }
                 }
 
@@ -138,9 +140,6 @@ namespace IatDteBridge
                         doc.detalles.Add(new det_documento(line));
 
                     }
-
-
-
 
                 
             }

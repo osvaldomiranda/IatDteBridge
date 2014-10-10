@@ -18,138 +18,128 @@ namespace IatDteBridge
         public String doc_to_xmlSii(Documento doc) 
         {
 
-            String dte = "<DTE version=\"1.0\"> " +
-	                     "<Documento ID=\"F"+doc.Folio+"T"+doc.TipoDte+"\"> ";
-		    
-            String encabezado = "<Encabezado> "+
-			    "<IdDoc> "+
-				    "<TipoDTE>"+doc.TipoDte+"</TipoDTE> "+
-				    "<Folio>"+ doc.Folio+"</Folio> "+
-				    "<FchEmis>"+doc.FchEmis+"</FchEmis> "+
-			    "</IdDoc> ";
-			
-            String emisor = "<Emisor> "+
-				    "<RUTEmisor>"+doc.RUTEmisor+"</RUTEmisor> "+
-				    "<RznSoc>"+doc.RznSoc+"</RznSoc> "+
-				    "<GiroEmis>"+doc.GiroEmis+"</GiroEmis> "+
-				    "<Acteco>"+doc.Acteco+"</Acteco> "+
-				    "<CdgSIISucur>"+doc.CdgSIISucur+"</CdgSIISucur> "+
-				    "<DirOrigen>"+doc.DirOrigen+"</DirOrigen> "+
-				    "<CmnaOrigen>"+doc.CmnaOrigen+"</CmnaOrigen> "+
-				    "<CiudadOrigen>"+doc.CiudadOrigen+"</CiudadOrigen> "+
-			    "</Emisor> ";
-			    
-            String receptor="<Receptor> "+
-				    "<RUTRecep>"+doc.RUTRecep+"</RUTRecep> "+
-				    "<RznSocRecep>"+doc.RznSocRecep+"</RznSocRecep> "+
-				    "<GiroRecep>"+doc.GiroRecep+"</GiroRecep> "+
-				    "<DirRecep>"+doc.DirRecep+"</DirRecep> "+
-				    "<CmnaRecep>"+doc.CmnaRecep+"</CmnaRecep> "+
-				    "<CiudadRecep>"+doc.CiudadRecep+"</CiudadRecep> "+
-			    "</Receptor> ";
-			    
-            String totales = "<Totales> "+
-				    "<MntNeto>"+doc.MntNeto+"</MntNeto> "+
-				    "<TasaIVA>"+doc.TasaIVA+"</TasaIVA> "+
-				    "<IVA>"+doc.IVA+"</IVA> "+
-				    "<MntTotal>"+doc.MntTotal+"</MntTotal> "+
-			     "</Totales> ";
-		    String finencabezado="</Encabezado>";
+            String dte = "<DTE version=\"1.0\"> \n" +
+                         "<Documento ID=\"F" + doc.Folio + "T" + doc.TipoDte + "\"> \n";
+
+            String encabezado = "<Encabezado> \n" +
+                "<IdDoc> \n" +
+                    "<TipoDTE>" + doc.TipoDte + "</TipoDTE> \n" +
+                    "<Folio>" + doc.Folio + "</Folio> \n" +
+                    "<FchEmis>" + doc.FchEmis + "</FchEmis> \n" +
+                "</IdDoc> \n";
+
+            String emisor = "<Emisor> \n" +
+                    "<RUTEmisor>" + doc.RUTEmisor + "</RUTEmisor> \n" +
+                    "<RznSoc>" + doc.RznSoc + "</RznSoc> \n" +
+                    "<GiroEmis>" + doc.GiroEmis + "</GiroEmis> \n" +
+                    "<Acteco>" + doc.Acteco + "</Acteco> \n" +
+                    "<CdgSIISucur>" + doc.CdgSIISucur + "</CdgSIISucur> \n" +
+                    "<DirOrigen>" + doc.DirOrigen + "</DirOrigen> \n" +
+                    "<CmnaOrigen>" + doc.CmnaOrigen + "</CmnaOrigen> \n" +
+                    "<CiudadOrigen>" + doc.CiudadOrigen + "</CiudadOrigen> \n" +
+                "</Emisor> \n";
+
+            String receptor = "<Receptor> \n" +
+                    "<RUTRecep>" + doc.RUTRecep + "</RUTRecep> \n" +
+                    "<RznSocRecep>" + doc.RznSocRecep + "</RznSocRecep> \n" +
+                    "<GiroRecep>" + doc.GiroRecep + "</GiroRecep> \n" +
+                    "<DirRecep>" + doc.DirRecep + "</DirRecep> \n" +
+                    "<CmnaRecep>" + doc.CmnaRecep + "</CmnaRecep> \n" +
+                    "<CiudadRecep>" + doc.CiudadRecep + "</CiudadRecep> \n" +
+                "</Receptor> \n";
+
+            String totales = "<Totales> \n" +
+                    "<MntNeto>" + doc.MntNeto + "</MntNeto> \n" +
+                    "<TasaIVA>" + doc.TasaIVA + "</TasaIVA> \n" +
+                    "<IVA>" + doc.IVA + "</IVA> \n" +
+                    "<MntTotal>" + doc.MntTotal + "</MntTotal> \n" +
+                 "</Totales> \n";
+            String finencabezado = "</Encabezado> \n";
 
             //arma encabezado en documento
             String documento = dte + encabezado + emisor + receptor + totales + finencabezado;
 
-        //    Documento d = new Documento();
-        //    d.detalles.Add(new det_documento(1, "", "", "", "", "", 0, 0, 0, "", "", 0, "", 0, 0, "", "", "", 0, 0, 0, "", 0));
-        //    d.detalles.Last().impuestos.Add(new imp_adicional("", 0, 0));
 
             // for para crear detalles y agregarlos al documento
             String detalle;
+            String firstNmbItem = String.Empty;
+            int i = 0;
             foreach (var det in doc.detalles)
             {
 
-                //Console.WriteLine("Detalle: {0},{1},{2},{3},{4},{5},{6}", det.NroLinDet, det.TpoCodigo, det.VlrCodigo, det.NmbItem, det.QtyItem, det.PrcItem, det.MontoItem);
-              
-
-                detalle = "<Detalle> " +
-                "<NroLinDet>" + det.NroLinDet + "</NroLinDet> " +
-                "<CdgItem> " +
-                    "<TpoCodigo>"+ det.TpoCodigo +"</TpoCodigo> " +
-                    "<VlrCodigo>"+ det.VlrCodigo +"</VlrCodigo> " +
-                "</CdgItem> " +
-                "<NmbItem>"+ det.NmbItem +"</NmbItem> " +
-                "<DscItem/> " +
-                "<QtyItem>"+ det.QtyItem +"</QtyItem> " +
-                "<PrcItem>"+ det.PrcItem +"</PrcItem> " +
-                "<MontoItem>"+ det.MontoItem +"</MontoItem> " +
-                "</Detalle> ";
+                detalle = "<Detalle> \n" +
+                "<NroLinDet>" + det.NroLinDet + "</NroLinDet> \n" +
+                "<CdgItem> \n" +
+                "  <TpoCodigo>" + det.TpoCodigo + "</TpoCodigo> \n" +
+                "  <VlrCodigo>" + det.VlrCodigo + "</VlrCodigo> \n" +
+                "</CdgItem> \n" +
+                "<NmbItem>" + det.NmbItem + "</NmbItem> \n" +
+                "<DscItem><DscItem/> \n" +
+                "<QtyItem>" + det.QtyItem + "</QtyItem> \n" +
+                "<PrcItem>" + det.PrcItem + "</PrcItem> \n" +
+                "<MontoItem>" + det.MontoItem + "</MontoItem> \n" +
+                "</Detalle> \n";
 
                 documento = documento + detalle;
-
-
-
-                
-
+                if (i == 0) firstNmbItem = det.NmbItem; 
+                i++;
             }
 
+
             
-
             // nodo DD
-            String dd = "<TED version=\"1.0\"> " +
+            String dd = "<TED version=\"1.0\"> \n" +
                 "<DD> " +
-                    "<RE>"+doc.RUTEmisor+"</RE> " +
-                    "<TD>"+doc.TipoDte+"</TD> " +
-                    "<F>"+doc.Folio+"</F> " +
-                    "<FE>"+doc.FchEmis+"</FE> " +
-                    "<RR>"+doc.RUTRecep+"</RR> " +
-                    "<RSR>"+doc.RznSocRecep+"</RSR> " +
-                    "<MNT>"+doc.MntTotal+"</MNT> " +
-
+                    "<RE>" + doc.RUTEmisor + "</RE> \n" +
+                    "<TD>" + doc.TipoDte + "</TD> \n" +
+                    "<F>" + doc.Folio + "</F> \n" +
+                    "<FE>" + doc.FchEmis + "</FE> \n" +
+                    "<RR>" + doc.RUTRecep + "</RR> \n" +
+                    "<RSR>" + doc.RznSocRecep + "</RSR> \n" +
+                    "<MNT>" + doc.MntTotal + "</MNT> \n" +
                     
-                    // acá agregar el promer detalla
-                    "<IT1>Parlantes Multimedia 180W.</IT1> " +
+                    // acá agregar el primer detalle
+                    "<IT1>" + firstNmbItem + "</IT1> \n" +
 
+                    getXmlFolio("CAF") +
 
-                    getCaf() + 
-
-                    "<TSTED>2014-05-28T09:33:20</TSTED> " +
+                    "<TSTED>2014-05-28T09:33:20</TSTED> \n" +
                 "</DD> ";
 
-            String firma = "<FRMT algoritmo=\"SHA1withRSA\">" + firmaNodoDD(dd) +"\n</FRMT> ";    
-            String finTed = "</TED>";
-        
-            String fechaFirma="<TmstFirma>2003-10-13T09:33:20</TmstFirma>";
-            String findocumenro = "</Documento>";
+            String firma = "<FRMT algoritmo=\"SHA1withRSA\">" + firmaNodoDD(dd) + "\n</FRMT> \n";
+            String finTed = "</TED>\n";
 
-            String plantillaFirma= "<Signature xmlns=\"http://www.w3.org/2000/09/xmldsig#\"> "+
+            String fechaFirma = "<TmstFirma>2003-10-13T09:33:20</TmstFirma>\n";
+            String findocumenro = "</Documento>\n";
+
+            String plantillaFirma = "<Signature xmlns=\"http://www.w3.org/2000/09/xmldsig#\"> \n" +
                                " <SignedInfo> "+
-                               " <CanonicalizationMethod Algorithm=\"http://www.w3.org/TR/2001/REC-xml-c14n-20010315\"/> "+
-                               " <SignatureMethod Algorithm=\"http://www.w3.org/2000/09/xmldsig#rsa-sha1\"/> "+
-                               "  <Reference URI=\"\"> "+
-                               "   <Transforms> "+
-                               "    <Transform Algorithm=\"http://www.w3.org/2000/09/xmldsig#enveloped-signature\"/> "+
-                               "   </Transforms> "+
-                               "    <DigestMethod Algorithm=\"http://www.w3.org/2000/09/xmldsig#sha1\"/> "+
-                               "     <DigestValue/> "+
-                               "  </Reference> "+
-                               "</SignedInfo> "+
-                               "<SignatureValue/> "+
-                               "<KeyInfo> "+
-                               " <KeyValue/> "+
-                               " <X509Data > "+
-                               "  <X509SubjectName/> "+
-                               "  <X509IssuerSerial/> "+
-                               "  <X509Certificate/> "+
-                               " </X509Data> "+
-                               "</KeyInfo> "+
-                               "</Signature> ";
+                               " <CanonicalizationMethod Algorithm=\"http://www.w3.org/TR/2001/REC-xml-c14n-20010315\"/> \n" +
+                               " <SignatureMethod Algorithm=\"http://www.w3.org/2000/09/xmldsig#rsa-sha1\"/> \n" +
+                               "  <Reference URI=\"\"> \n" +
+                               "   <Transforms> \n" +
+                               "    <Transform Algorithm=\"http://www.w3.org/2000/09/xmldsig#enveloped-signature\"/> \n" +
+                               "   </Transforms> \n" +
+                               "    <DigestMethod Algorithm=\"http://www.w3.org/2000/09/xmldsig#sha1\"/> \n" +
+                               "     <DigestValue/> \n" +
+                               "  </Reference> \n" +
+                               "</SignedInfo> \n" +
+                               "<SignatureValue/> \n" +
+                               "<KeyInfo> \n" +
+                               " <KeyValue/> \n" +
+                               " <X509Data > \n" +
+                               "  <X509SubjectName/> \n" +
+                               "  <X509IssuerSerial/> \n" +
+                               "  <X509Certificate/> \n" +
+                               " </X509Data> \n" +
+                               "</KeyInfo> \n" +
+                               "</Signature> \n";
 
-            String findte = "</DTE>";
+            String findte = "</DTE> \n";
 
             documento = documento + dd +firma + finTed + fechaFirma + findocumenro + plantillaFirma + findte;
 
             return documento;
-        
 
         }
 
@@ -157,7 +147,7 @@ namespace IatDteBridge
         public String firmaNodoDD(String DD)
         {
 
-            string pk = getPkCaf();
+            string pk = getXmlFolio("RSA");
             
             ASCIIEncoding ByteConverter = new ASCIIEncoding();
             byte[] bytesStrDD = ByteConverter.GetBytes(DD);
@@ -172,57 +162,43 @@ namespace IatDteBridge
 
         }
 
-        public String getPkCaf()
+
+        public String getXmlFolio(String nodo)
         {
 
-            // obtener desde la clave privade del CAF entregado por SII
-
-
-            string pk = string.Empty;
-            //TO DO : Agregar algoritmo para extraer solo la PK del CAF 
-            /* 
-      
-              try
-              {
-                  using (StreamReader sr = new StreamReader("TestFile.txt"))
-                  {
-                      pk = sr.ReadToEnd();
-                      Console.WriteLine(line);
-                  }
-              }
-              catch (Exception e)
-              {
-                  Console.WriteLine("The file could not be read:");
-                  Console.WriteLine(e.Message);
-              }
-              */
-            
-            pk += "MIIBOwIBAAJBANGuDuim8fEI9yuIlkj+MOyp3mWHifoP6a4oWLSBKJSrd3MpEsZd";
-            pk += "czvL0l7t/e0IU5rF+0gRLnU1Mfvtsw1wYWcCAQMCQQCLyV9FxKFLW09yWw7bVCCd";
-            pk += "xpRDr7FRX/EexZB4VhsNxm/vtJfDZyYle0Lfy42LlcsXxPm1w6Q6NnjuW+AeBy67";
-            pk += "AiEA7iMi5q5xjswqq+49RP55o//jqdZL/pC9rdnUKxsNRMMCIQDhaHdIctErN2hC";
-            pk += "IP9knS3+9zra4R+5jSXOvI+3xVhWjQIhAJ7CF0R0S7SIHHKe04NUURf/7RvkMqm1";
-            pk += "08k74sdnXi3XAiEAlkWk2vc2HM+a1sCqQxNz/098ketqe7NuidMKeoOQObMCIQCk";
-            pk += "FAMS9IcPcMjk7zI2r/4EEW63PSXyN7MFAX7TYe25mw==";
-
-            return pk;
-        }
-
-
-        public String getCaf()
-        {
-
-            // obtener desde el CAF entregado por SII
-
+            string nodoValue = string.Empty;
+          
             string caf = string.Empty;
-            //TO DO : Agregar algoritmo para extraer solo el encabezado del CAF 
-            /* 
-              try
+            string rsa = string.Empty;
+            string line = string.Empty;
+            bool cafline = false;
+            bool rsaline = false;
+            try
               {
-                  using (StreamReader sr = new StreamReader("TestFile.txt"))
+                //TO DO : falta tomar el nombre del archivo de una variable global
+                  using (StreamReader sr = new StreamReader("c://file/FoliosSII7739857033120141081332" + ".xml"))
                   {
-                      pk = sr.ReadToEnd();
-                      Console.WriteLine(line);
+           
+                      while ((line = sr.ReadLine()) != null)
+                      {
+                          if (line == "<CAF version=\"1.0\">") cafline = true;
+                          if (line == "</CAF>") 
+                          {
+                              caf += line;
+                              cafline = false; 
+                          }
+
+                          if (line == "<RSASK>-----BEGIN RSA PRIVATE KEY-----") 
+                          { 
+                              rsaline = true;
+                              line = sr.ReadLine();
+                          }
+                          if (line == "-----END RSA PRIVATE KEY-----") rsaline = false;
+
+                          if (cafline) caf += line;
+                          if (rsaline) rsa += line;  
+                      }
+                      
                   }
               }
               catch (Exception e)
@@ -230,22 +206,9 @@ namespace IatDteBridge
                   Console.WriteLine("The file could not be read:");
                   Console.WriteLine(e.Message);
               }
-              */
 
-            caf = "<CAF version=\"1.0\"> " +
-                    "<DA> " +
-                        "<RE>10207640-0</RE> " +
-                        "<RS>JUAN CARLOS AGUIRRE RODRIGUEZ</RS> " +
-                        "<TD>33</TD> " +
-                        "<RNG><D>1</D><H>50</H></RNG> " +
-                        "<FA>2014-05-26</FA> " +
-                        "<RSAPK><M>uJ+OZ5qO9diB/c9MoZuwPs9ltKGAS1IbEymF7W3X3ZTq6ElExVkrlfp7uDoGR0DiBndor6Vyc+X4MRbsk6KC9w==</M><E>Aw==</E></RSAPK> " +
-                        "<IDK>100</IDK> " +
-                    "</DA> " +
-                    "<FRMA algoritmo=\"SHA1withRSA\">SGKR9otZoN8/5sIaKFJIbo08Jbt95UBh76fcFv21lfNsgauAcyzUF0FARrMyphMagJ0zzChJzU7R/Q0mrDvYvQ==</FRMA> " +
-                    "</CAF> ";
-
-            return caf;
+              if (nodo == "CAF") { nodoValue = caf; } else { nodoValue = rsa; }
+              return nodoValue;
         }
 
 

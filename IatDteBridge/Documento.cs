@@ -182,25 +182,27 @@ namespace IatDteBridge
 
             List<string> d = det.Split(';').ToList();
 
-            int i=0;
+            int i=1;
             foreach (var item in d)
             {
+
+                Console.WriteLine("Detalle *************** {0} {1}",i, item);
                 switch (i)
                 {
                     case 1:
                         this.NroLinDet = Convert.ToInt32(item);
                         break;
                     case 2:
-                        this.TpoCodigo = item;
+                        //  this.QtyRef = Convert.ToInt32(item);
                         break;
-                    case 10:
-                        //this.VlrCodigo = item;
+                    case 3:
+                        this.NmbItem = item;
                         break;
-                    case 14:
-                       // this.TpoDocLiq = item;
+                    case 4:
+                        this.QtyItem = Convert.ToInt32(item);
                         break;
-                    case 19:
-                        this.IndExe = item;
+                    case 5:
+                        this.PrcItem = Convert.ToInt32(item);
                         break;
                     case 6:
                         //this.IndAgente = item;
@@ -214,20 +216,20 @@ namespace IatDteBridge
                     case 9:
                         //this.PrcConsFinal = Convert.ToInt32(item);
                         break;
-                    case 3:
-                        this.NmbItem = item;
+                    case 10:
+                        //this.VlrCodigo = item;
                         break;
-                    case 23:
-                        this.DscItem = item;
+                    case 11:
+                        this.MontoItem = Convert.ToInt32(item);
                         break;
                     case 12:
-                        this.QtyRef = Convert.ToInt32(item);
+                        this.TpoCodigo = item;
                         break;
-                    case 18:
-                        this.PrcRef = Convert.ToInt32(item);
+                    case 13:
+                        this.UnmdItem = item;
                         break;
-                    case 4:
-                        this.QtyItem = Convert.ToInt32(item);
+                    case 14:
+                        // this.TpoDocLiq = item;
                         break;
                     case 15:
                         this.UnmdRef = item;
@@ -238,11 +240,11 @@ namespace IatDteBridge
                     case 17:
                         this.FchVencim = item;
                         break;
-                    case 13:
-                        this.UnmdItem = item;
+                    case 18:
+                        this.PrcRef = Convert.ToInt32(item);
                         break;
-                    case 5:
-                        this.PrcItem = Convert.ToInt32(item);
+                    case 19:
+                        this.IndExe = item;
                         break;
                     case 20:
                         this.DescuentoPct = Convert.ToInt32(item);
@@ -253,11 +255,13 @@ namespace IatDteBridge
                     case 22:
                         this.CodImpAdic = item;
                         break;
-                    case 11:
-                        this.MontoItem = Convert.ToInt32(item);
-                        break; 
+                    case 23:
+                        this.DscItem = item;
+                        break;
      
                 }
+
+                i++;
             }
         }
 
