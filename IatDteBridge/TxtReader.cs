@@ -106,7 +106,11 @@ namespace IatDteBridge
             String fileName = nextFile();
                 
             //Paso la ruta del fichero al constructor 
+<<<<<<< HEAD
             StreamReader objReader = new StreamReader(fileName);
+=======
+             StreamReader objReader = new StreamReader("c://file/Fac_1" + ".txt");
+>>>>>>> Mauricio
 
             string line = string.Empty;
             Documento doc = new Documento();

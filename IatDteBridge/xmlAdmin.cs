@@ -67,6 +67,7 @@ namespace IatDteBridge
             foreach (var det in doc.detalles)
             {
 
+<<<<<<< HEAD
                 detalle = "<Detalle> \n" +
                 "<NroLinDet>" + det.NroLinDet + "</NroLinDet> \n" +
                 "<CdgItem> \n" +
@@ -79,6 +80,23 @@ namespace IatDteBridge
                 "<PrcItem>" + det.PrcItem + "</PrcItem> \n" +
                 "<MontoItem>" + det.MontoItem + "</MontoItem> \n" +
                 "</Detalle> \n";
+=======
+                Console.WriteLine("Detalle: {0},{1},{2},{3},{4},{5},{6}", det.NroLinDet, det.TpoCodigo, det.VlrCodigo, det.NmbItem, det.QtyItem, det.PrcItem, det.MontoItem);
+              
+
+                detalle = "<Detalle> " +
+                "<NroLinDet>" + det.NroLinDet + "</NroLinDet> " +
+                "<CdgItem> " +
+                    "<TpoCodigo>"+ det.TpoCodigo +"</TpoCodigo> " +
+                    "<VlrCodigo>"+ det.VlrCodigo +"</VlrCodigo> " +
+                "</CdgItem> " +
+                "<NmbItem>"+ det.NmbItem +"</NmbItem> " +
+                "<DscItem/> " +
+                "<QtyItem>"+ det.QtyItem +"</QtyItem> " +
+                "<PrcItem>"+ det.PrcItem +"</PrcItem> " +
+                "<MontoItem>"+ det.MontoItem +"</MontoItem> " +
+                "</Detalle> ";
+>>>>>>> Mauricio
 
                 documento = documento + detalle;
                 if (i == 0) firstNmbItem = det.NmbItem; 
