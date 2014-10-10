@@ -29,10 +29,10 @@ namespace IatDteBridge
             FileStream empresa = new FileStream("c://tool/empresa.txt",FileMode.OpenOrCreate,FileAccess.Write);
             string datos = "";
 
-            while ((datos = empresa.ReadLine()) != null){
+           // while ((datos = empresa.ReadLine()) != null){
 
 
-            }
+        //}
         }
     }
 }
