@@ -11,71 +11,7 @@ namespace IatDteBridge
 {
     class TxtReader
     {
-        public String nextFile()
-        {
-            String fileName = String.Empty;
-
-            string currentDirName = System.IO.Directory.GetCurrentDirectory();
-            Console.WriteLine(currentDirName);
-
-            if (!System.IO.Directory.Exists(@"C:\file\"))
-            {
-                System.IO.Directory.CreateDirectory(@"C:\file\");
-            }
-
-            System.IO.Directory.SetCurrentDirectory(@"C:\file\");
-
-            currentDirName = System.IO.Directory.GetCurrentDirectory();
-            
-            string[] files = System.IO.Directory.GetFiles(currentDirName, "*.txt");
-
-            string s = files.First();
-            
-            System.IO.FileInfo fi = null;
-            try
-            {
-               fi = new System.IO.FileInfo(s);
-            }
-            catch (System.IO.FileNotFoundException e)
-            {
-                    Console.WriteLine(e.Message);
-            }
-
-            fileName = fi.Name;
-            Console.WriteLine("{0} : {1}", fi.Name, fi.Directory);
-            
-            return fileName;
-        }
-
-
-        public void mvFile(String fileName)
-        {
-
-            string path = @"c:\file\"+fileName;
-            string path2 = @"c:\fileProcess\"+fileName;
-            try
-            {
-                if (!System.IO.File.Exists(path))
-                {
-                    using (FileStream fs = System.IO.File.Create(path)) { }
-                }
-
-             
-                if (System.IO.File.Exists(path2))
-                    System.IO.File.Delete(path2);
-
-                System.IO.File.Move(path, path2);
-                Console.WriteLine("{0} was moved to {1}.", path, path2);
-
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("The process failed: {0}", e.ToString());
-            }
-
-
-        }
-
+  
 
         public Documento lecturaEnDuro()
         {
@@ -108,7 +44,7 @@ namespace IatDteBridge
             String lineEmisor = String.Empty;
             try
             {
-                using (StreamReader sr = new StreamReader("c://file/empresa" + ".txt"))
+                using (StreamReader sr = new StreamReader(@"c:\IatFiles\config\empresa" + ".txt"))
                 {
                     int i = 1;
                     while ((lineEmisor = sr.ReadLine()) != null)
@@ -136,7 +72,9 @@ namespace IatDteBridge
                          
                     }
 
+                    sr.Close();
                 }
+                
             }
             catch (Exception e)
             {
@@ -145,8 +83,8 @@ namespace IatDteBridge
             }
 
 
-
-            String fileName = nextFile();  
+            fileAdmin file = new fileAdmin();
+            String fileName = file.nextFile(@"c:\IatFiles\file\","*.txt");  
             //Paso la ruta del fichero al constructor 
             StreamReader objReader = new StreamReader(fileName);
 
@@ -255,7 +193,9 @@ namespace IatDteBridge
                 
             }
 
-            mvFile(fileName);
+            objReader.Close();
+
+            file.mvFile(fileName, @"c:\IatFiles\file\",@"c:\IatFiles\fileProcess\");
             return doc;
         }
 

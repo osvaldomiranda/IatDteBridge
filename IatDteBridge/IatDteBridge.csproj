@@ -57,6 +57,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Documento.cs" />
+    <Compile Include="fileAdmin.cs" />
+    <Compile Include="Service References\FormAdminCaf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Service References\FormAdminCaf.Designer.cs">
+      <DependentUpon>FormAdminCaf.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormEmisor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +87,9 @@
     <Compile Include="Timbre.cs" />
     <Compile Include="xmlAdmin.cs" />
     <Compile Include="TxtReader.cs" />
+    <EmbeddedResource Include="Service References\FormAdminCaf.resx">
+      <DependentUpon>FormAdminCaf.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEmisor.resx">
       <DependentUpon>FormEmisor.cs</DependentUpon>
     </EmbeddedResource>
@@ -94,6 +104,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -107,6 +118,12 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dteBritge.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DteBrigeImg.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

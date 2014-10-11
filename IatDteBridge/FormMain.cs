@@ -88,6 +88,12 @@ namespace IatDteBridge
             emisor.Show();
         }
 
+        private void adminCAFToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormAdminCaf adminCaf = new FormAdminCaf();
+            adminCaf.Show();
+        }
+
 
 
   

@@ -178,7 +178,7 @@ namespace IatDteBridge
             try
               {
                 //TO DO : falta tomar el nombre del archivo de una variable global
-                  using (StreamReader sr = new StreamReader("c://file/FoliosSII7739857033120141081332" + ".xml"))
+                  using (StreamReader sr = new StreamReader(@"c:\IatFiles\file\FoliosSII7739857033120141081332.xml"))
                   {
            
                       while ((line = sr.ReadLine()) != null)
@@ -200,7 +200,7 @@ namespace IatDteBridge
                           if (cafline) caf += line;
                           if (rsaline) rsa += line;  
                       }
-                      
+                      sr.Close();   
                   }
               }
               catch (Exception e)
