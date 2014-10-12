@@ -76,38 +76,18 @@ namespace IatDteBridge
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"c://file/empresa" + ".txt"))
             {
 
-                int i = 1;
-                while (i<=5)
-                {
-                    
-                    switch (i)
-                    {
-                        case 1: file.WriteLine(textBox_rutempresa.Text);
-                            break;
-                        case 2: file.WriteLine(textBox_razonsocial.Text);
-                            break;
-                        case 3: file.WriteLine(textBox_giro.Text);
-                            break;
-                        case 4: file.WriteLine(textBox_telefono.Text);
-                            break;
-                        case 5: file.WriteLine(textBoxcorreoemisor.Text);
-                            break;
-                        /* case 6: doc.DirOrigen = lineEmisor;
-                             break;
-                         case 7: doc.CmnaOrigen = lineEmisor;
-                             break;
-                         case 8: doc.CiudadOrigen = lineEmisor;
-                             break;*/
-
-                    }
-
-                    i++;
-
-                }
-
+                         file.WriteLine(textBox_rutempresa.Text);
+                         file.WriteLine(textBox_razonsocial.Text);
+                         file.WriteLine(textBox_giro.Text);
+                         file.WriteLine(textBox_telefono.Text);
+                         file.WriteLine(textBoxcorreoemisor.Text);
+                         
+                  
             }
 
+         }
 
-        }
-    }
+
+     }
 }
+
