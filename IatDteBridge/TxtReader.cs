@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Collections;
+using System.Runtime.Serialization.Json;
 
 
 
@@ -40,7 +41,7 @@ namespace IatDteBridge
         {
             Documento doc = new Documento();
 
-            // Datos del Emisor
+          /*  // Datos del Emisor
             String lineEmisor = String.Empty;
             try
             {
@@ -196,6 +197,29 @@ namespace IatDteBridge
             objReader.Close();
 
             file.mvFile(fileName, @"c:\IatFiles\file\",@"c:\IatFiles\fileProcess\");
+         */
+            
+            fileAdmin file = new fileAdmin();
+            String fileName = file.nextFile(@"c:\IatFiles\file\", "*.json");
+            //Paso la ruta del fichero al constructor 
+            StreamReader objReader = new StreamReader(fileName);
+
+            String data = objReader.ReadToEnd();
+
+
+            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(Documento));
+            MemoryStream ms = new MemoryStream(System.Text.ASCIIEncoding.ASCII.GetBytes(data));
+
+            doc = (Documento)js.ReadObject(ms);
+
+
+            Console.WriteLine("Documento");
+            Console.WriteLine("Rut Receptor: " + doc.RUTRecep);
+
+            objReader.Close();
+            ms.Close();
+            
+
             return doc;
         }
 

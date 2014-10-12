@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
+
 
 namespace IatDteBridge
 {
+    [DataContract]
     class Documento
     {
         public int TipoDte { get; set; } // 
@@ -54,7 +57,11 @@ namespace IatDteBridge
         public string IdAdicEmisor { get; set; } // adicional para uso libre
         public string RUTMandante { get; set; }
 //################################### Area Receptor ############################################################################
+        
+        [DataMember]
         public string RUTRecep { get; set; } // rut del cliente en la factura de compra se referencia al vendedor
+
+
         public string CdgIntRecep { get; set;  } // para identificacion interna de receptor
         public string RznSocRecep { get; set; } // Razon Social Receptor
         public string NumId { get; set; } // Numero o codigo de identificacion personal del receptor extrangero otorgado por la adm. tributaria
