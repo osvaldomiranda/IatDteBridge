@@ -29,7 +29,7 @@ namespace IatDteBridge
            
             try
             {
-                using (StreamReader sr = new StreamReader("c://file/empresa" + ".txt"))
+                using (StreamReader sr = new StreamReader(@"C:/IatFiles/config/empresa" + ".txt"))
                 {
                     int i = 1;
                     while ((lineEmisor = sr.ReadLine()) != null)
@@ -37,19 +37,25 @@ namespace IatDteBridge
                         Console.WriteLine(lineEmisor);
                         switch (i)
                         {
-                            case 1: textBox_rutempresa.Text = lineEmisor;
+                            case 1: textBox_RUTEmisor.Text = lineEmisor;
                                 break;
-                            case 2: textBox_razonsocial.Text = lineEmisor;
+                            case 2: textBox_RznSoc.Text = lineEmisor;
                                 break;
-                            case 3: textBox_giro.Text = lineEmisor;
+                            case 3: textBox_GiroEmis.Text = lineEmisor;
                                 break;
-                            case 4: textBox_telefono.Text = lineEmisor;
+                            case 4: textBox_Telefono.Text = lineEmisor;
                                 break;
-                            case 5: textBoxcorreoemisor.Text = lineEmisor;
+                            case 5: textBox_CorreoEmisor.Text = lineEmisor;
                                 break;
-                           /* case 6: doc.DirOrigen = lineEmisor;
+                            case 6: textBox_Acteco.Text = lineEmisor;
                                 break;
-                            case 7: doc.CmnaOrigen = lineEmisor;
+                            case 7: textBox_CdgSIISucur.Text = lineEmisor;
+                                break;
+                            case 8: textBox_DirOrigen.Text = lineEmisor;
+                                break;
+                            case 9: textBox_CmnaOrigen.Text = lineEmisor;
+                                break;
+                            /*case 7: doc.CmnaOrigen = lineEmisor;
                                 break;
                             case 8: doc.CiudadOrigen = lineEmisor;
                                 break;*/
@@ -73,41 +79,29 @@ namespace IatDteBridge
         {
             // guardar información del FormEmisor
 
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"c://file/empresa" + ".txt"))
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:/IatFiles/config/empresa" + ".txt"))
             {
 
-                int i = 1;
-                while (i<=5)
-                {
-                    
-                    switch (i)
-                    {
-                        case 1: file.WriteLine(textBox_rutempresa.Text);
-                            break;
-                        case 2: file.WriteLine(textBox_razonsocial.Text);
-                            break;
-                        case 3: file.WriteLine(textBox_giro.Text);
-                            break;
-                        case 4: file.WriteLine(textBox_telefono.Text);
-                            break;
-                        case 5: file.WriteLine(textBoxcorreoemisor.Text);
-                            break;
-                        /* case 6: doc.DirOrigen = lineEmisor;
-                             break;
-                         case 7: doc.CmnaOrigen = lineEmisor;
-                             break;
-                         case 8: doc.CiudadOrigen = lineEmisor;
-                             break;*/
+                         file.WriteLine(textBox_RUTEmisor.Text);
+                         file.WriteLine(textBox_RznSoc.Text);
+                         file.WriteLine(textBox_GiroEmis.Text);
+                         file.WriteLine(textBox_Telefono.Text);
+                         file.WriteLine(textBox_CorreoEmisor.Text);
+                         file.WriteLine(textBox_Acteco.Text);
+                         file.WriteLine(textBox_CdgSIISucur.Text);
+                         file.WriteLine(textBox_DirOrigen.Text);
+                         file.WriteLine(textBox_CmnaOrigen.Text);
 
-                    }
+                        
 
-                    i++;
-
-                }
-
+                         
+                         
+                  
             }
 
+         }
 
-        }
-    }
+
+     }
 }
+
