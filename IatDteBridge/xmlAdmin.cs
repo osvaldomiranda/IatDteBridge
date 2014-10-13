@@ -64,10 +64,8 @@ namespace IatDteBridge
             String detalle;
             String firstNmbItem = String.Empty;
             int i = 0;
-            foreach (var det in doc.detalles)
+            foreach (var det in doc.detalle)
             {
-
-
 
                 detalle = "<Detalle> \n" +
                 "<NroLinDet>" + det.NroLinDet + "</NroLinDet> \n" +
@@ -76,7 +74,7 @@ namespace IatDteBridge
                 "  <VlrCodigo>" + det.VlrCodigo + "</VlrCodigo> \n" +
                 "</CdgItem> \n" +
                 "<NmbItem>" + det.NmbItem + "</NmbItem> \n" +
-                "<DscItem><DscItem/> \n" +
+                "<DscItem>" + det.DscItem+"<DscItem/> \n" +
                 "<QtyItem>" + det.QtyItem + "</QtyItem> \n" +
                 "<PrcItem>" + det.PrcItem + "</PrcItem> \n" +
                 "<MontoItem>" + det.MontoItem + "</MontoItem> \n" +
@@ -88,6 +86,27 @@ namespace IatDteBridge
             }
 
 
+            // for para crear detalles y agregarlos al documento
+            String referencia;
+          
+            foreach (var refe in doc.referencia)
+            {
+
+                referencia = "<Referencia> \n" +
+                  "<NroLinRef>"+ refe.NroLinRef + "<NroLinRef> \n" + 
+                  "<TpoDocRef>" + refe.TpoDocRef +"<TpoDocRef> \n" +
+                  "<IndGlobal>"+ refe.IndGlobal +"<IndGlobal>\n" +
+                  "<FolioRef>"+ refe.FolioRef +"<FolioRef> \n" +
+                  "<RUTOtr>" + refe.RUTOtr + "<RUTOtr> \n" +
+                  "<IdAdicOtr>" + refe.IdAdicOtr +  "<IdAdicOtr> \n" +
+                  "<FchRef>" + refe.FchRef + "<FchRef>\n" +
+                  "<CodRef>" + refe.CodRef +  "<CodRef>\n" +
+                  "<RazonRef>" + refe.RazonRef+ "<RazonRef>\n" +
+
+                "</Referencia> \n";
+
+                documento = documento + referencia;
+            } 
             
             // nodo DD
             String dd = "<TED version=\"1.0\"> \n" +
