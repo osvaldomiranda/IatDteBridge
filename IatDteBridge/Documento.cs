@@ -30,41 +30,12 @@ namespace IatDteBridge
         public int MntBruto { get; set; }
         [DataMember]
         public int FmaPago { get; set; }
-        [DataMember] 
-        public int FmaPagoExp { get; set; }
-        [DataMember] 
-        public DateTime FchCancel { get; set; }
-        [DataMember] 
-        public int MntCancel { get; set; }
-        [DataMember] 
-        public int SaldoInsol { get; set; }
-        [DataMember] 
-        public DateTime FchPago { get; set; }
-        [DataMember] 
-        public int MntPago { get; set; }
-        [DataMember] 
-        public String GlosaPago { get; set; }
-        [DataMember] 
-        public DateTime PeriodoDesde { get; set; }
-        [DataMember] 
-        public DateTime PeriodoHasta { get; set; }
-        [DataMember] 
-        public String MedioPago { get; set; }
-        [DataMember] 
-        public String TipoCtaPago { get; set; }
-        [DataMember] 
-        public String NumCtaPago { get; set; }
-        [DataMember] 
-        public String BcoPago { get; set; }
-        [DataMember] 
-        public String TermPagoCdg { get; set; }
-        [DataMember] 
-        public String TermPagoGlosa { get; set; }
-        [DataMember] 
-        public int TermPagoDias { get; set; }
-
+        [DataMember]
+        public List<MntPagos> mntpagos = new List<MntPagos>();
         [DataMember]
         public string FchVenc { get; set; }
+
+
 //#################################### Area Emisor ####################################################################
         [DataMember] 
         public string RUTEmisor { get; set; }
@@ -100,17 +71,14 @@ namespace IatDteBridge
         public int CdgVendedor { get; set; } // Identificador del vendedor
         [DataMember] 
         public string IdAdicEmisor { get; set; } // adicional para uso libre
-
         [DataMember]
         public string RUTMandante { get; set; }
 //################################### Area Receptor ############################################################################
         
         [DataMember]
         public string RUTRecep { get; set; } // rut del cliente en la factura de compra se referencia al vendedor
-
         [DataMember] 
         public string CdgIntRecep { get; set;  } // para identificacion interna de receptor
-
         [DataMember]
         public string RznSocRecep { get; set; } // Razon Social Receptor
         [DataMember] 
@@ -125,7 +93,6 @@ namespace IatDteBridge
         public string Contacto { get; set;  } // Glosa con nombre o telefono del contacto de la empresa receptor "Atencion a:"
         [DataMember] 
         public string CorreoRecep { get; set; } // e-mail de contacto en empresa del receptor (para registrar el “Atención A:”)
-        
         [DataMember]
         public string DirRecep { get; set;  } // Dirección Legal del Receptor (registrada en el SII) En caso de documentos de exportación, corresponde a la dirección en el extranjero del Receptor
         [DataMember]
@@ -219,11 +186,9 @@ namespace IatDteBridge
         public int IVAProp { get; set; } //Las empresas que venden por cuenta de un mandatario, pueden opcional separar el IVA en propio y de terceros. En todos estos casos el campo “IVA” debe contener el IVA total de la Factura
         [DataMember] 
         public int IVATerc { get; set; } // Ídem al anterior
-
         // impuestos adicionales puede ser mas de uno por ese motivo se crea una clase
         [DataMember]
-        public List<det_documento> imptoReten = new List<det_documento>();
-
+        public List<ImptoReten> imptoReten = new List<ImptoReten>();
         [DataMember] 
         public int IVANoRet { get; set; } // Sólo en facturas de Compra en que hay retención de IVA por el emisor y Notas de Crédito o débito que referencian facturas de compra. No se registra si es igual a 0.
         [DataMember] 
@@ -240,34 +205,27 @@ namespace IatDteBridge
         public int MntTotal { get; set; } // Monto neto + Monto no afecto o  exento + IVA + Impuestos Adicionales + Impuestos Específicos + Iva Margen Comercialización +IVA Anticipado + Garantía por depósito de envases o embalajes - Crédito empresas constructoras- IVA Retenido productos (en caso de facturas de compra) -  Valor Neto Comisiones y Otros Cargos- IVA Comisiones y Otros Cargos - Valor Comisiones y Otros Cargos No Afectos o Exentos. (Los Impuestos Adicionales y el IVA Anticipado están detallados en la TABLA de Impuestos Adicionales y Retenciones)
         [DataMember] 
         public int MontoNF { get; set; } //Suma de montos de bienes o servicios con Indicador de facturación/ exención = 2 menos Suma de montos de bienes o servicios con Indicador de facturación/ exención = 6
-        [DataMember] 
-        public int MontoPeriodo { get; set; } // Monto Total + Monto no Facturable
-        [DataMember] 
-        public int SaldoAnterior { get; set; } // Saldo Anterior. Se incluye sólo con fines de ilustrar con claridad el cobro.
-        [DataMember] 
-        public int VlrPagar { get; set; } // valor cobrado
-
-// ################################# Area Otra Moneda ##########################################################################
-        [DataMember] 
-        public string TpoMonedas { get; set; } // Moneda alternativa en que se expresan los Montos Totales.
-        [DataMember] 
-        public int TpoCambio { get; set; } // 1. Factor de conversión utilizado de pesos a Otra moneda 2. 6 enteros y 4 decimales 3. En documentos de Exportación corresponde al tipo de cambio de la fecha de emisión del documento, publicado por
-
-       // Faltan campos pero en esta etapa no es importante
-
-
 
  //############################## Area Detalle #################################################################################
         [DataMember]
-        public List<det_documento> detalle = new List<det_documento>();
+        public List<Detalle> detalle = new List<Detalle>();
+
+        [DataMember]
+        public List<DscRcgGlobal> dscRcgGlobal = new List<DscRcgGlobal>();
 
         [DataMember]
         public List<Referencia>  referencia = new List<Referencia>();
+
+        [DataMember]
+        public List<Comisiones> comisiones = new List<Comisiones>();
         
     }
 
+//############################## Area Clases #################################################################################
+
+
     [DataContract]
-    class det_documento
+    class Detalle
     {
         [DataMember]
         public int NroLinDet { get; set; } //Número del ítem. Desde 1 a 60
@@ -326,10 +284,18 @@ namespace IatDteBridge
     }
 
 //######################################## Sub Totales Informativos ###########################################################################
+     [DataContract]
+    class MntPagos
+    {
+        [DataMember]
+        public string FchPago { get; set; } //
+        [DataMember]
+        public int MntPago { get; set; } //           
+    }
 
 
      [DataContract]
-    class imp_reten
+     class ImptoReten
     {
         [DataMember]
         public string TipoImp { get; set; } //Código del impuesto o retención de acuerdo a la codificación detallada en tabla de códigos (ver Punto 4 del índice). Incluye Retención de Cambio sujeto de Construcción
@@ -338,6 +304,25 @@ namespace IatDteBridge
         [DataMember]
         public int MontoImp { get; set; } // Valor del impuesto o retención asociado al código indicado anteriormente
     }
+
+     [DataContract]
+     class DscRcgGlobal
+     {
+         [DataMember]
+         public int NroLinDR { get; set; }
+         [DataMember]
+         public string TpoMov { get; set; }
+         [DataMember]
+         public string GlosaDR { get; set; }
+         [DataMember]
+         public string TpoValor { get; set; }
+         [DataMember]
+         public int ValorDR { get; set; }
+         [DataMember]
+         public int IndExeDR { get; set; }
+
+     }
+
 
      [DataContract]
      class Referencia
@@ -360,6 +345,25 @@ namespace IatDteBridge
          public int CodRef { get; set; }
          [DataMember]
          public string RazonRef { get; set; }
+     }
+
+
+     [DataContract]
+     class Comisiones
+     {
+         [DataMember]
+         public int NroLinCom { get; set; }
+         [DataMember]
+         public string TipoMovim { get; set; }
+         [DataMember]
+         public string Glosa { get; set; }
+         [DataMember]
+         public int ValComNeto { get; set; }
+         [DataMember]
+         public int ValComExe { get; set; }
+         [DataMember]
+         public int ValComIVA { get; set; }
+
      }
 
 }
