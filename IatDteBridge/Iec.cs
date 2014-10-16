@@ -4,21 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Runtime.Serialization;
 
+
 namespace IatDteBridge
 {
     [DataContract]
-    class Iev
+    class Iec
     {
         [DataMember]
-        public CaratulaIev caratulaIev;
+        public CaratulaIec caratulaIec;
         [DataMember]
-        public TotalPeriodoIev totalPeriodoIev;
+        public TotalPeriodoIec totalPeriodoIec;
         [DataMember]
-        public DetalleIev detalleIev;
-
+        public DetalleIec detalleIec;
     }
     [DataContract]
-    class CaratulaIev
+    class CaratulaIec
     {
         [DataMember]
         public string RutEmisorLibro { get; set; }
@@ -39,17 +39,17 @@ namespace IatDteBridge
         [DataMember]
         public int NroSegmento { get; set; }
         [DataMember]
-        public string FolioNotificacion { get; set; }
+        public int FolioNotificacion { get; set; }
         [DataMember]
         public string CodAutRec { get; set; }
-
     }
-
     [DataContract]
-    class TotalPeriodoIev
+    class TotalPeriodoIec
     {
         [DataMember]
         public int TpoDoc { get; set; }
+        [DataMember]
+        public int TpoImp { get; set; }
         [DataMember]
         public int TotDoc { get; set; }
         [DataMember]
@@ -61,48 +61,46 @@ namespace IatDteBridge
         [DataMember]
         public int TotMntNeto { get; set; }
         [DataMember]
+        public int TotOpIVARec { get; set; }
+        [DataMember]
         public int TotMntIVA { get; set; }
         [DataMember]
-        public int TotIVAFueraPlazo { get; set; }
+        public int TotOpActivoFijo { get; set; }
         [DataMember]
-        public int TotIVAPropio { get; set; }
+        public int TotMntActivoFijo { get; set; }
         [DataMember]
-        public int TotIVATerceros { get; set; }
+        public int TotMntIVAActivoFijo { get; set; }
+        //TotIVANoRec
         [DataMember]
-        public int TotLey18211 { get; set; }
+        public List<TotIVANoRec> totIVANoRec = new List<TotIVANoRec>();
         [DataMember]
-        public List<TotOtroImp> totOtroImp = new List<TotOtroImp>();
+        public int TotOpIVAUsoComun { get; set; }
         [DataMember]
-        public int TotOpIVARetTotal { get; set; }
+        public int TotIVAUsoComun { get; set; }
         [DataMember]
-        public int TotIVARetTotal { get; set; }
+        public int FctProp { get; set; }
         [DataMember]
-        public int TotOpIVARetParcial { get; set; }
+        public int TotCredIVAUsoComun { get; set; }
+        //TotOtrosImp
         [DataMember]
-        public int TotIVARetParcial { get; set; }
+        public List<TotOtroImpIec> totOtroImp = new List<TotOtroImpIec>(); 
         [DataMember]
-        public int TotCredEC { get; set; }
-        [DataMember]
-        public int TotDepEnvase { get; set; }
-        [DataMember]
-        public List<TotLiquidaciones> totLiquidaciones = new List<TotLiquidaciones>();
+        public int TotImpSinCredito { get; set; }
         [DataMember]
         public int TotMntTotal { get; set; }
         [DataMember]
-        public int TotOpIVANoRetenido { get; set; }
-        [DataMember]
         public int TotIVANoRetenido { get; set; }
         [DataMember]
-        public int TotMntNoFact { get; set; }
+        public int TotTabPuros { get; set; }
         [DataMember]
-        public int TotMntPeriodo { get; set; }
+        public int TotTabCigarrillos { get; set; }
         [DataMember]
-        public int TotPsjNac { get; set; }
+        public int TotTabElaborado { get; set; }
         [DataMember]
-        public int TotPsjInt { get; set; }
+        public int TotImpVehiculo { get; set; }
     }
     [DataContract]
-    class DetalleIev
+    class DetalleIec
     {
         [DataMember]
         public int TpoDoc { get; set; }
@@ -115,29 +113,19 @@ namespace IatDteBridge
         [DataMember]
         public int Operacion { get; set; }
         [DataMember]
+        public int TpoImp { get; set; }
+        [DataMember]
         public int TasaImp { get; set; }
         [DataMember]
         public int NumInt { get; set; }
         [DataMember]
-        public int IndServicio { get; set; }
-        [DataMember]
-        public int IndSinCosto { get; set; }
-        [DataMember]
-        public string FchDoc { get; set; }
+        public int FchDoc { get; set; }
         [DataMember]
         public int CdgSIISucur { get; set; }
         [DataMember]
-        public string RUTDoc { get; set; }
+        public int RUTDoc { get; set; }
         [DataMember]
         public string RznSoc { get; set; }
-        [DataMember]
-        public int NumId { get; set; }
-        [DataMember]
-        public int Nacionalidad { get; set; }
-        [DataMember]
-        public int TpoDocRef { get; set; }
-        [DataMember]
-        public int FolioDocRef { get; set; }
         [DataMember]
         public int MntExe { get; set; }
         [DataMember]
@@ -145,58 +133,65 @@ namespace IatDteBridge
         [DataMember]
         public int MntIVA { get; set; }
         [DataMember]
-        public int IVAFueraPlazo { get; set; }
+        public int MntActivoFijo { get; set; }
         [DataMember]
-        public int IVAPropio { get; set; }
+        public int MntIVAActivoFijo { get; set; }
+        //IVANoRec
         [DataMember]
-        public int IVATerceros { get; set; }
+        public List<IVANoRec> ivaNoRec = new List<IVANoRec>();
         [DataMember]
-        public int Ley18211 { get; set; }
+        public int IVAUsoComun { get; set; }
+        //OtrosImp
         [DataMember]
-        public List<OtrosImp> otrosImp = new List<OtrosImp>();
+        public List<OtrosImpIec> otrosImp = new List<OtrosImpIec>();
         [DataMember]
-        public int IVARetTotal { get; set; }
-        [DataMember]
-        public int IVARetParcial { get; set; }
-        [DataMember]
-        public int CredEC { get; set; }
-        [DataMember]
-        public int DepEnvase { get; set; }
-        [DataMember]
-        public List<Liquidaciones> liquidaciones = new List<Liquidaciones>();
+        public int MntSinCred { get; set; }
         [DataMember]
         public int MntTotal { get; set; }
         [DataMember]
         public int IVANoRetenido { get; set; }
         [DataMember]
-        public int MntNoFact { get; set; }
+        public int TabPuros { get; set; }
         [DataMember]
-        public int MntPeriodo { get; set; }
+        public int TabCigarrillos { get; set; }
         [DataMember]
-        public int PsjNac { get; set; }
+        public int TabElaborado { get; set; }
         [DataMember]
-        public int PsjInt { get; set; }
+        public int ImpVehiculo { get; set; }
+
     }
     [DataContract]
-    class TotOtroImp
+    class TotIVANoRec
+    {
+        [DataMember]
+        public int CodIVANoRec { get; set; }
+        [DataMember]
+        public int TotOpIVANoRec { get; set; }
+        [DataMember]
+        public int TotMntIVANoRec { get; set; }
+    }
+    [DataContract]
+    class TotOtroImpIec
     {
         [DataMember]
         public int CodImp { get; set; }
         [DataMember]
         public int TotMntImp { get; set; }
+        [DataMember]
+        public int FctImpAdic { get; set; }
+        [DataMember]
+        public int TotCredImp { get; set; }
     }
     [DataContract]
-    class TotLiquidaciones
+    class IVANoRec
     {
         [DataMember]
-        public int TotValComNeto { get; set; }
+        public int CodIVANoRec { get; set; }
         [DataMember]
-        public int TotValComExe { get; set; }
-        [DataMember]
-        public int TotValComIVA { get; set; }        
+        public int MntIVANoRec { get; set; }
     }
     [DataContract]
-    class OtrosImp
+    class OtrosImpIec
     {
         [DataMember]
         public int CodImp { get; set; }
@@ -204,18 +199,7 @@ namespace IatDteBridge
         public int TasaImp { get; set; }
         [DataMember]
         public int MntImp { get; set; }
-    
     }
-   [DataContract]
-    class Liquidaciones
-    {
-        [DataMember]
-        public int RutEmisor { get; set; }
-        [DataMember]
-        public int ValComNeto { get; set; }
-        [DataMember]
-        public int ValComExe { get; set; }
-        [DataMember]
-        public int ValComIVA { get; set; }    
-    }
+
+     
 }

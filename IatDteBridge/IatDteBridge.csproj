@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Documento.cs" />
     <Compile Include="fileAdmin.cs" />
+    <Compile Include="Iec.cs" />
     <Compile Include="Iev.cs" />
     <Compile Include="Service References\FormAdminCaf.cs">
       <SubType>Form</SubType>
