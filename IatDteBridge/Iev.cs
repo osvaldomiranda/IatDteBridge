@@ -14,7 +14,7 @@ namespace IatDteBridge
         [DataMember]
         public TotalPeriodo totalesperiodo;
         [DataMember]
-        public Detalle detalle;
+        public DetalleIev detalle;
 
     }
     [DataContract]
@@ -102,7 +102,7 @@ namespace IatDteBridge
         public int TotPsjInt { get; set; }
     }
     [DataContract]
-    class Detalle
+    class DetalleIev
     {
         [DataMember]
         public int TpoDoc { get; set; }
