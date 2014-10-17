@@ -19,11 +19,11 @@ namespace IatDteBridge
         {
 
             String dte = "<DTE version=\"1.0\"> \n" +
-                         "<Documento ID=\"F" + doc.Folio + "T" + doc.TipoDte + "\"> \n";
+                         "<Documento ID=\"F" + doc.Folio + "T" + doc.TipoDTE + "\"> \n";
 
             String encabezado = "<Encabezado> \n" +
                 "<IdDoc> \n" +
-                    "<TipoDTE>" + doc.TipoDte + "</TipoDTE> \n" +
+                    "<TipoDTE>" + doc.TipoDTE + "</TipoDTE> \n" +
                     "<Folio>" + doc.Folio + "</Folio> \n" +
                     "<FchEmis>" + doc.FchEmis + "</FchEmis> \n" +
                 "</IdDoc> \n";
@@ -89,7 +89,7 @@ namespace IatDteBridge
             // for para crear detalles y agregarlos al documento
             String referencia;
           
-            foreach (var refe in doc.referencia)
+            foreach (var refe in doc.Referencia)
             {
 
                 referencia = "<Referencia> \n" +
@@ -112,7 +112,7 @@ namespace IatDteBridge
             String dd = "<TED version=\"1.0\"> \n" +
                 "<DD> " +
                     "<RE>" + doc.RUTEmisor + "</RE> \n" +
-                    "<TD>" + doc.TipoDte + "</TD> \n" +
+                    "<TD>" + doc.TipoDTE + "</TD> \n" +
                     "<F>" + doc.Folio + "</F> \n" +
                     "<FE>" + doc.FchEmis + "</FE> \n" +
                     "<RR>" + doc.RUTRecep + "</RR> \n" +
@@ -197,7 +197,7 @@ namespace IatDteBridge
             try
               {
                 //TO DO : falta tomar el nombre del archivo de una variable global
-                  using (StreamReader sr = new StreamReader(@"c:\IatFiles\file\FoliosSII7739857033120141081332.xml"))
+                  using (StreamReader sr = new StreamReader(@"c:\IatFiles\cafs\Factura\FoliosSII7739857033120141081332.xml"))
                   {
            
                       while ((line = sr.ReadLine()) != null)

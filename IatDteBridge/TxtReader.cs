@@ -17,7 +17,7 @@ namespace IatDteBridge
         public Documento lecturaEnDuro()
         {
             Documento factura = new Documento();
-            factura.TipoDte = 33;
+            factura.TipoDTE = 33;
             factura.Folio = 1;
             factura.RUTRecep = "14193259-4";
             factura.FchEmis = "2014-10-01 00:00:00";
@@ -41,6 +41,20 @@ namespace IatDteBridge
         {
             Documento doc = new Documento();
 
+
+            fileAdmin file = new fileAdmin();
+            String fileName = file.nextFile(@"c:\IatFiles\file\", "*.json");
+            //Paso la ruta del fichero al constructor 
+            StreamReader objReader = new StreamReader(fileName);
+            String data = objReader.ReadToEnd();
+
+
+            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(Documento));
+            MemoryStream ms = new MemoryStream(System.Text.ASCIIEncoding.ASCII.GetBytes(data));
+
+            doc = (Documento)js.ReadObject(ms);
+
+
             // Datos del Emisor
             String lineEmisor = String.Empty;
             try
@@ -50,6 +64,8 @@ namespace IatDteBridge
                     int i = 1;
                     while ((lineEmisor = sr.ReadLine()) != null)
                     {
+
+                        Console.WriteLine(lineEmisor);
                         switch (i)
                         {
                             case 1: doc.RUTEmisor = lineEmisor;
@@ -62,15 +78,19 @@ namespace IatDteBridge
                             break;
                             case 5: doc.CorreoEmisor = lineEmisor;
                             break;
-                            case 6: doc.DirOrigen = lineEmisor;
+                            case 6: doc.Acteco = Convert.ToInt32(lineEmisor);
                             break;
-                            case 7: doc.CmnaOrigen = lineEmisor;
+                            case 7: doc.CdgSIISucur = Convert.ToInt32(lineEmisor);
                             break;
-                            case 8: doc.CiudadOrigen = lineEmisor;
+                            case 8: doc.DirOrigen = lineEmisor;
+                            break;
+                            case 9: doc.CmnaOrigen = lineEmisor;
+                            break;
+                            case 10: doc.CiudadOrigen = lineEmisor;
                             break;
 
                         }
-                         
+                        i++;
                     }
 
                     sr.Close();
@@ -84,17 +104,7 @@ namespace IatDteBridge
             }
 
             
-            fileAdmin file = new fileAdmin();
-            String fileName = file.nextFile(@"c:\IatFiles\file\", "*.json");
-            //Paso la ruta del fichero al constructor 
-            StreamReader objReader = new StreamReader(fileName);
-            String data = objReader.ReadToEnd();
-
-
-            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(Documento));
-            MemoryStream ms = new MemoryStream(System.Text.ASCIIEncoding.ASCII.GetBytes(data));
-
-            doc = (Documento)js.ReadObject(ms);
+    
 
             objReader.Close();
             ms.Close();

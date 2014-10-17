@@ -11,7 +11,7 @@ namespace IatDteBridge
     class Documento
     {
         [DataMember]
-        public int TipoDte { get; set; } //
+        public int TipoDTE { get; set; } //
         [DataMember] 
         public int Folio{get;set;}
         [DataMember]
@@ -214,7 +214,7 @@ namespace IatDteBridge
         public List<DscRcgGlobal> dscRcgGlobal = new List<DscRcgGlobal>();
 
         [DataMember]
-        public List<Referencia>  referencia = new List<Referencia>();
+        public List<ReferenciaDoc>  Referencia = new List<ReferenciaDoc>();
 
         [DataMember]
         public List<Comisiones> comisiones = new List<Comisiones>();
@@ -325,7 +325,7 @@ namespace IatDteBridge
 
 
      [DataContract]
-     class Referencia
+     class ReferenciaDoc
      {
          [DataMember]
          public int NroLinRef { get; set; }
