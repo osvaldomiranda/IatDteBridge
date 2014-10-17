@@ -74,7 +74,7 @@ namespace IatDteBridge
                 "  <VlrCodigo>" + det.VlrCodigo + "</VlrCodigo> \n" +
                 "</CdgItem> \n" +
                 "<NmbItem>" + det.NmbItem + "</NmbItem> \n" +
-                "<DscItem>" + det.DscItem+"<DscItem/> \n" +
+                "<DscItem>" + det.DscItem+"</DscItem> \n" +
                 "<QtyItem>" + det.QtyItem + "</QtyItem> \n" +
                 "<PrcItem>" + det.PrcItem + "</PrcItem> \n" +
                 "<MontoItem>" + det.MontoItem + "</MontoItem> \n" +
@@ -93,21 +93,25 @@ namespace IatDteBridge
             {
 
                 referencia = "<Referencia> \n" +
-                  "<NroLinRef>"+ refe.NroLinRef + "<NroLinRef> \n" + 
-                  "<TpoDocRef>" + refe.TpoDocRef +"<TpoDocRef> \n" +
-                  "<IndGlobal>"+ refe.IndGlobal +"<IndGlobal>\n" +
-                  "<FolioRef>"+ refe.FolioRef +"<FolioRef> \n" +
-                  "<RUTOtr>" + refe.RUTOtr + "<RUTOtr> \n" +
-                  "<IdAdicOtr>" + refe.IdAdicOtr +  "<IdAdicOtr> \n" +
-                  "<FchRef>" + refe.FchRef + "<FchRef>\n" +
-                  "<CodRef>" + refe.CodRef +  "<CodRef>\n" +
-                  "<RazonRef>" + refe.RazonRef+ "<RazonRef>\n" +
+                  "<NroLinRef>"+ refe.NroLinRef + "</NroLinRef> \n" + 
+                  "<TpoDocRef>" + refe.TpoDocRef +"</TpoDocRef> \n" +
+                  "<IndGlobal>"+ refe.IndGlobal +"</IndGlobal>\n" +
+                  "<FolioRef>"+ refe.FolioRef +"</FolioRef> \n" +
+                  "<RUTOtr>" + refe.RUTOtr + "</RUTOtr> \n" +
+                  "<IdAdicOtr>" + refe.IdAdicOtr +  "</IdAdicOtr> \n" +
+                  "<FchRef>" + refe.FchRef + "</FchRef>\n" +
+                  "<CodRef>" + refe.CodRef +  "</CodRef>\n" +
+                  "<RazonRef>" + refe.RazonRef+ "</RazonRef>\n" +
 
                 "</Referencia> \n";
 
                 documento = documento + referencia;
-            } 
-            
+            }
+
+
+            DateTime thisDay = DateTime.Today;
+            String fch = String.Format("{0:yyyy-M-dTHH:mm:ss}", thisDay);
+
             // nodo DD
             String dd = "<TED version=\"1.0\"> \n" +
                 "<DD> " +
@@ -124,13 +128,13 @@ namespace IatDteBridge
 
                     getXmlFolio("CAF") +
 
-                    "<TSTED>2014-05-28T09:33:20</TSTED> \n" +
+                    "<TSTED>"+fch+"</TSTED> \n" +
                 "</DD> ";
 
             String firma = "<FRMT algoritmo=\"SHA1withRSA\">" + firmaNodoDD(dd) + "\n</FRMT> \n";
             String finTed = "</TED>\n";
 
-            String fechaFirma = "<TmstFirma>2003-10-13T09:33:20</TmstFirma>\n";
+            String fechaFirma = "<TmstFirma>"+fch+"</TmstFirma>\n";
             String findocumenro = "</Documento>\n";
 
             String plantillaFirma = "<Signature xmlns=\"http://www.w3.org/2000/09/xmldsig#\"> \n" +
@@ -158,7 +162,9 @@ namespace IatDteBridge
 
             String findte = "</DTE> \n";
 
-            documento = documento + dd +firma + finTed + fechaFirma + findocumenro + plantillaFirma + findte;
+            documento = documento + dd +firma + finTed + fechaFirma + findocumenro + 
+                //plantillaFirma + 
+                findte;
 
             return documento;
 
