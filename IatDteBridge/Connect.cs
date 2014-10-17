@@ -46,7 +46,7 @@ namespace IatDteBridge
         }
         
         //TO DO : falta definir el ID del iat, debe estar definido en una variable global (ver parameters en el método sendXml)
-        public string sendXml(String xml)
+        public string sendXml(String xml, String filename)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace IatDteBridge
                                     server,
                                     version);
 
-               String parameters = string.Format("id={0}&docxml={1}&auth_token={1}","1",xml,auth_token);
+               String parameters = string.Format("id={0}&docxml={1}&filename={2}&auth_token={3}","1",xml,filename,auth_token);
 
                 Console.WriteLine("Url = {0}.", postUri);
 
@@ -65,6 +65,7 @@ namespace IatDteBridge
                     HtmlResult = wc.UploadString(postUri, parameters);
                 }
 
+                Console.WriteLine("Resultado = {0}.", HtmlResult);
                 return HtmlResult;
 
             }

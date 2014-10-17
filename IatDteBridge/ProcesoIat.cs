@@ -53,7 +53,7 @@ namespace IatDteBridge
                 Connect conn = new Connect();
                 
                 // ejecuta metodo de Connect que recibe el xml y lo envía al Core
-               // conn.sendXml(docXmlSign);
+                conn.sendXml(docXmlSign, "Fact1.xml");
 
 
                 // Continuar con siguiente documento
