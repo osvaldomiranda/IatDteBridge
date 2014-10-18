@@ -35,7 +35,7 @@ namespace IatDteBridge
 
         pdf.Open();
 
-        iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(@"c:\\file\logo.jpg");
+        iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(@"C:\IatFiles\config\logo.jpg");
         logo.ScaleAbsolute(100f, 50f);
         logo.Alignment = iTextSharp.text.Image.ALIGN_LEFT;
         
