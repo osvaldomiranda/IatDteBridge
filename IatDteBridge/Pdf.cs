@@ -6,32 +6,34 @@ using iTextSharp;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
+using System.Drawing.Printing;
 
 namespace IatDteBridge
 {
     class Pdf
     {
-        private string ruta = "prueba.pdf";
-        private string razonSocialEmisor = "COMERCIAL LUBBA LIMITADA";
-        private string giroEmisor ="Comercializadora de confites, galletas, helados, bebidas, alimentos, cigarrillos, supermercado,deposito de licores, carniceria, articulos de bazar, ";
-        private string direccionEmisor = "Casa Matriz: Abel Gonzalez # 44 - La Cisterna ";
-        private string sucursalesEmisor = "Sucursales:\nDomingo Correa 25, Monumento 1963";
+
+        private string sucursalesEmisor = "";
         private string datosSii = "S.I.I - SANTIAGO SUR";
-        private string fechaDoc = "Santiago, 26 de Agosto de 2014";
         private String[] headerDetalle = { "Item", "Codigo", "Descripción", "Cantidad", "Unidad", "P Unit.", "Dscto.", "Valor" };
-        private String[] datosDetalle = { "1", "7890231234", "AAAAAAAAA AAAAAAAAA AAAAAAAAA ", "2", "UNID", "1200", "0", "2400", "2", "7890231234", "FANTA", "2", "UNID", "1200", "0", "2400", "3", "7890231234", "FANTA", "2", "UNID", "1200", "0", "2400", "4", "7890231234", "FANTA", "2", "UNID", "1200", "0", "2400", "5", "7890231234", "FANTA", "2", "UNID", "1200", "0", "2400" };
+        private String[] datosDetalle = new String[200];
         private String[] datosHeaderReferencia = { "Tipo de Documento", "Folio", "Fecha", "Razón Referancia" };
         iTextSharp.text.Font fuenteNegra = new Font(iTextSharp.text.Font.FontFamily.HELVETICA,8,iTextSharp.text.Font.NORMAL);
         iTextSharp.text.Font fuenteRoja = new Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font.NORMAL, BaseColor.RED);
-        public void OpenPdf()
+       // iTextSharp.text.Font fuenteNegrita = new Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font., BaseColor.RED);
+   
+
+        public Document OpenPdf(String dd, Documento doc)//OpenPdf(Documento doc, String dd)
         {
 
+
          Timbre timbre1 = new Timbre();
-         timbre1.CreaTimbre();
+         timbre1.CreaTimbre(dd);
          Console.WriteLine("Timbre creado!!");
         
         Document pdf = new Document(PageSize.LETTER);
-        PdfWriter.GetInstance(pdf, new FileStream(ruta, FileMode.OpenOrCreate));
+        PdfWriter.GetInstance(pdf, new FileStream(@"C:\IatFiles\file\pdf\" + doc.TipoDTE + "_" + doc.Folio+".pdf", FileMode.OpenOrCreate));
+
 
         pdf.Open();
 
@@ -61,11 +63,11 @@ namespace IatDteBridge
         celdaLogo.VerticalAlignment = 0;
         cabecera.AddCell(celdaLogo);
 
-        PdfPCell celdaDatosEmisor = new PdfPCell(new Paragraph(razonSocialEmisor + "\n" + giroEmisor + "\n" + direccionEmisor,fuenteNegra));
+        PdfPCell celdaDatosEmisor = new PdfPCell(new Paragraph(doc.RznSoc + "\n" + doc.GiroEmis + "\n" + doc.DirOrigen, fuenteNegra));
         celdaDatosEmisor.BorderWidth = 0;
         cabecera.AddCell(celdaDatosEmisor);
        
-        PdfPCell celdaFolio = new PdfPCell(new Paragraph("R.U.T 77.888.630-8 \n\nFACTURA ELECTRÓNICA \n\nNº1000",fuenteRoja));
+        PdfPCell celdaFolio = new PdfPCell(new Paragraph("R.U.T "+ doc.RUTEmisor +" \n\nFACTURA ELECTRÓNICA \n\nNº " + doc.Folio,fuenteRoja));
         celdaFolio.BorderColor = BaseColor.RED;
         celdaFolio.HorizontalAlignment = 1; 
         celdaFolio.BorderWidth = 2;
@@ -87,7 +89,16 @@ namespace IatDteBridge
         celdaDatosSii.BorderWidth = 0;
         cabecera.AddCell(celdaDatosSii);
 
-        PdfPCell celdaFechaDoc = new PdfPCell(new Paragraph(fechaDoc, fuenteRoja));
+            // convierte fecha
+            DateTime fechaemis = Convert.ToDateTime(doc.FchEmis);
+            int dia = fechaemis.Day;
+            string mesletra = fechaemis.ToString("MMMMM");
+            int ano = fechaemis.Year;
+
+
+
+
+        PdfPCell celdaFechaDoc = new PdfPCell(new Paragraph("Santiago, " + dia +" de "+ mesletra + " de "+ano, fuenteRoja));
         celdaFechaDoc.Colspan = 3;
         celdaFechaDoc.HorizontalAlignment = 2;
         celdaFechaDoc.BorderWidth = 0;
@@ -107,7 +118,7 @@ namespace IatDteBridge
         celdaEtiquetaSenor.BorderWidth = 0;
         datosReceptor.AddCell(celdaEtiquetaSenor);
 
-        PdfPCell celdaSenior = new PdfPCell(new Paragraph("MAURICIO JIMENEZ YAÑEZ", fuenteNegra));
+        PdfPCell celdaSenior = new PdfPCell(new Paragraph(doc.RznSocRecep, fuenteNegra));
         celdaSenior.HorizontalAlignment = 0;
         celdaSenior.BorderWidth= 0;
         datosReceptor.AddCell(celdaSenior);
@@ -117,7 +128,7 @@ namespace IatDteBridge
         celdaEtiquetaRut.BorderWidth = 0;
         datosReceptor.AddCell(celdaEtiquetaRut);
 
-        PdfPCell celdaRutRecep = new PdfPCell(new Paragraph("12.891.016-6", fuenteNegra));
+        PdfPCell celdaRutRecep = new PdfPCell(new Paragraph(doc.RUTRecep, fuenteNegra));
         celdaRutRecep.HorizontalAlignment = 0;
         celdaRutRecep.BorderWidth = 0;
         datosReceptor.AddCell(celdaRutRecep);
@@ -130,7 +141,7 @@ namespace IatDteBridge
         celdaEtiquetaDireccion.BorderWidth = 0;
         datosReceptor.AddCell(celdaEtiquetaDireccion);
 
-        PdfPCell celdaDireccionRecep = new PdfPCell(new Paragraph("LAGUNA BLANCA # 1641  ", fuenteNegra));
+        PdfPCell celdaDireccionRecep = new PdfPCell(new Paragraph(doc.DirRecep, fuenteNegra));
         celdaDireccionRecep.HorizontalAlignment = 0;
         celdaDireccionRecep.BorderWidth = 0;
         datosReceptor.AddCell(celdaDireccionRecep);
@@ -140,7 +151,7 @@ namespace IatDteBridge
         celdaEtiquetaComuna.BorderWidth = 0;
         datosReceptor.AddCell(celdaEtiquetaComuna);
 
-        PdfPCell celdaComunaRecep = new PdfPCell(new Paragraph("PEÑALOLEN", fuenteNegra));
+        PdfPCell celdaComunaRecep = new PdfPCell(new Paragraph(doc.CmnaRecep, fuenteNegra));
         celdaComunaRecep.HorizontalAlignment = 0;
         celdaComunaRecep.BorderWidth = 0;
         datosReceptor.AddCell(celdaComunaRecep);
@@ -153,7 +164,7 @@ namespace IatDteBridge
         celdaEtiquetaGiroRecep.BorderWidth = 0;
         datosReceptor.AddCell(celdaEtiquetaGiroRecep);
 
-        PdfPCell celdaGiroRecep = new PdfPCell(new Paragraph("ADMINISTRACIÓN PARA SISTEMAS DE INFORMACIÓN", fuenteNegra));
+        PdfPCell celdaGiroRecep = new PdfPCell(new Paragraph(doc.GiroRecep, fuenteNegra));
         celdaGiroRecep.HorizontalAlignment = 0;
         celdaGiroRecep.BorderWidth = 0;
         datosReceptor.AddCell(celdaGiroRecep);
@@ -163,7 +174,7 @@ namespace IatDteBridge
         celdaEtiquetaTelefono.BorderWidth = 0;
         datosReceptor.AddCell(celdaEtiquetaTelefono);
 
-        PdfPCell celdaTelefonoRecep = new PdfPCell(new Paragraph("2 2278 5567", fuenteNegra));
+        PdfPCell celdaTelefonoRecep = new PdfPCell(new Paragraph("", fuenteNegra));
         celdaTelefonoRecep.HorizontalAlignment = 0;
         celdaTelefonoRecep.BorderWidth = 0;
         datosReceptor.AddCell(celdaTelefonoRecep);
@@ -190,8 +201,31 @@ namespace IatDteBridge
             detalle.AddCell(celda);
  
         }
+       int puntero = 0;
+       foreach (var det in doc.detalle)
+       {
 
-       foreach (string a in datosDetalle)
+           datosDetalle[puntero] = Convert.ToString(det.NroLinDet);
+           puntero = puntero + 1;
+           datosDetalle[puntero] = Convert.ToString(det.VlrCodigo);
+           puntero = puntero + 1;
+           datosDetalle[puntero] = Convert.ToString(det.NmbItem);
+           puntero = puntero + 1;
+           datosDetalle[puntero] = Convert.ToString(det.QtyItem);
+           puntero = puntero + 1;
+           datosDetalle[puntero] = Convert.ToString(det.UnmdItem);
+           puntero = puntero + 1;
+           datosDetalle[puntero] = Convert.ToString(det.PrcItem);
+           puntero = puntero + 1;
+           datosDetalle[puntero] = Convert.ToString(det.DescuentoMonto);
+           puntero = puntero + 1;
+           datosDetalle[puntero] = Convert.ToString(det.MontoItem);
+           puntero = puntero + 1;
+
+       } 
+       
+                
+       foreach (String a in datosDetalle)
        {
            PdfPCell celda = new PdfPCell(new Paragraph(a, fuenteNegra)); ;
            celda.HorizontalAlignment = 1;
@@ -241,7 +275,7 @@ namespace IatDteBridge
        celdaEtiquetaDescuento.BorderWidth = 0;
        totales.AddCell(celdaEtiquetaDescuento);
 
-       PdfPCell celdaDescuento = new PdfPCell(new Paragraph("$ 00000000", fuenteNegra));
+       PdfPCell celdaDescuento = new PdfPCell(new Paragraph("$ 0", fuenteNegra));
        celdaDescuento.BorderWidth = 0;
        totales.AddCell(celdaDescuento); 
  
@@ -249,7 +283,7 @@ namespace IatDteBridge
        celdaEtiquetaSubTotal.BorderWidth = 0;
        totales.AddCell(celdaEtiquetaSubTotal);
 
-       PdfPCell celdaSubTotal = new PdfPCell(new Paragraph("$ 00000000", fuenteNegra));
+       PdfPCell celdaSubTotal = new PdfPCell(new Paragraph("$ " + doc.MntNeto, fuenteNegra));
        celdaSubTotal.BorderWidth = 0;
        totales.AddCell(celdaSubTotal);
 
@@ -257,15 +291,15 @@ namespace IatDteBridge
        celdaEtiquetaMontoExento.BorderWidth = 0;
        totales.AddCell(celdaEtiquetaMontoExento);
 
-       PdfPCell celdaMontoExento = new PdfPCell(new Paragraph("$ 00000000", fuenteNegra));
+       PdfPCell celdaMontoExento = new PdfPCell(new Paragraph("$ 0", fuenteNegra));
        celdaMontoExento.BorderWidth = 0;
        totales.AddCell(celdaMontoExento);
  
-       PdfPCell celdaEtiquetaIva = new PdfPCell(new Paragraph("IVA (19%):  ", fuenteNegra));
+       PdfPCell celdaEtiquetaIva = new PdfPCell(new Paragraph("IVA ("+doc.TasaIVA+"%):  ", fuenteNegra));
        celdaEtiquetaIva.BorderWidth = 0;
        totales.AddCell(celdaEtiquetaIva);
 
-       PdfPCell celdaIva = new PdfPCell(new Paragraph("$ 00000000", fuenteNegra));
+       PdfPCell celdaIva = new PdfPCell(new Paragraph("$ " + doc.IVA, fuenteNegra));
        celdaIva.BorderWidth = 0;
        totales.AddCell(celdaIva);
  
@@ -273,7 +307,7 @@ namespace IatDteBridge
        celdaEtiquetaMontoTotal.BorderWidth = 0;
        totales.AddCell(celdaEtiquetaMontoTotal);
 
-       PdfPCell celdaMontoTotal = new PdfPCell(new Paragraph("$ 00000000", fuenteNegra));
+       PdfPCell celdaMontoTotal = new PdfPCell(new Paragraph("$ " + doc.MntTotal, fuenteNegra));
        celdaMontoTotal.BorderWidth = 0;
        totales.AddCell(celdaMontoTotal);
       
@@ -292,11 +326,22 @@ namespace IatDteBridge
         pdf.Add(footer);
         pdf.NewPage();
         pdf.Close();
+        
 
-        Console.WriteLine("Pdf creado!!");
-        System.Diagnostics.Process.Start("prueba.pdf");
+
+        Console.WriteLine("Pdf Cerrado!!");
+        System.Diagnostics.Process.Start(@"C:\IatFiles\file\pdf\" + doc.TipoDTE + "_" + doc.Folio+".pdf");
+
+  
+        return pdf;
+
+
+    
+
 
         }
 
+        // crear un metodo que un Documento
+       
     }
 }

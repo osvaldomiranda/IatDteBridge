@@ -43,19 +43,7 @@ namespace IatDteBridge
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            Pdf pdf = new Pdf();
-            pdf.OpenPdf();
-        }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            Timbre timbre = new Timbre();
-            timbre.CreaTimbre();
-
-            Console.WriteLine("Timbre creado!!");
-        }
 
 
         private void button6_Click(object sender, EventArgs e)
