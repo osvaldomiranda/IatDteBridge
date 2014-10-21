@@ -71,7 +71,10 @@ namespace IatDteBridge
 
                 if (System.IO.File.Exists(path2 + fileName)) System.IO.File.Delete(path2 + fileName);
 
-                System.IO.File.Move(path + fileName, path2 + fileName);
+               System.IO.File.Move(path +"/"+ fileName, path2+"/" + fileName);
+
+
+
 
             }
             catch (Exception e)
@@ -80,6 +83,12 @@ namespace IatDteBridge
             }
 
 
+        }
+
+        public void printPdf() 
+        {
+
+        
         }
 
     }

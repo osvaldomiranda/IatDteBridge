@@ -5,6 +5,7 @@ using System.Text;
 using System.IO;
 using System.Collections;
 using System.Runtime.Serialization.Json;
+using System.Windows.Forms;
 
 
 
@@ -51,9 +52,18 @@ namespace IatDteBridge
 
             DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(Documento));
             MemoryStream ms = new MemoryStream(System.Text.ASCIIEncoding.ASCII.GetBytes(data));
+            try
+            {
+                doc = (Documento)js.ReadObject(ms);
+            }
+            catch(Exception e) {
 
-            doc = (Documento)js.ReadObject(ms);
-
+                Console.WriteLine("No hay mas archivos a procesar:");
+                Console.WriteLine(e.Message);
+                MessageBox.Show("No hay mas archivos a procesar:");
+                
+            
+            }
 
             // Datos del Emisor
             String lineEmisor = String.Empty;
@@ -108,9 +118,11 @@ namespace IatDteBridge
 
             objReader.Close();
             ms.Close();
-            
+            file.mvFile(fileName, "C:/IatFiles/file/", "C:/IatFiles/fileProcess/");
 
             return doc;
+
+
         }
 
     }
