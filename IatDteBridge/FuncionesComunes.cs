@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Security.Cryptography;
 using System.IO;
+using System.Security.Cryptography.X509Certificates;
 
 
 
@@ -170,6 +171,44 @@ namespace IatDteBridge
                 }
                 Console.WriteLine("\n\n");
             }
+
+
+
+            public static X509Certificate2 obtenerCertificado(string CN)
+            {
+
+                X509Certificate2 certificado = null;
+
+                if (string.IsNullOrEmpty(CN) || CN.Length == 0)
+                    return certificado;
+
+                try
+                {
+
+                    X509Store store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
+                    store.Open(OpenFlags.ReadOnly);
+                    X509Certificate2Collection Certificados1 = (X509Certificate2Collection)store.Certificates;
+                    X509Certificate2Collection Certificados2 = Certificados1.Find(X509FindType.FindByTimeValid, DateTime.Now, false);
+                    X509Certificate2Collection Certificados3 = Certificados2.Find(X509FindType.FindBySubjectName, CN, false);
+
+                    ////
+                    //// Si hay certificado disponible envíe el primero
+                    if (Certificados3 != null && Certificados3.Count != 0)
+                        certificado = Certificados3[0];
+
+                    store.Close();
+
+
+                }
+                catch (Exception)
+                {
+                    certificado = null;
+                }
+
+                return certificado;
+
+            }
+
 
         }
     
