@@ -29,22 +29,29 @@ namespace IatDteBridge
 
             string[] files = System.IO.Directory.GetFiles(currentDirName, fileType);
 
-            string s = files.First();
-
-            System.IO.FileInfo fi = null;
-            try
+            if (files.Count() > 0)
             {
-                fi = new System.IO.FileInfo(s);
+                string s = files.First();
+
+                System.IO.FileInfo fi = null;
+                try
+                {
+                    fi = new System.IO.FileInfo(s);
+                }
+                catch (System.IO.FileNotFoundException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+                fileName = fi.Name;
+                Console.WriteLine("NextFile   {0} : {1}", fi.Name, fi.Directory);
+
+                return fileName;
             }
-            catch (System.IO.FileNotFoundException e)
+            else
             {
-                Console.WriteLine(e.Message);
+                return null;
             }
-
-            fileName = fi.Name;
-            Console.WriteLine("NextFile   {0} : {1}", fi.Name, fi.Directory);
-
-            return fileName;
         }
 
 
