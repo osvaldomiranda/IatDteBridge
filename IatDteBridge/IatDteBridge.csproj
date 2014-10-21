@@ -61,7 +61,6 @@
     <Compile Include="fileAdmin.cs" />
     <Compile Include="Iec.cs" />
     <Compile Include="Iev.cs" />
-    <Compile Include="Impresora.cs" />
     <Compile Include="Service References\FormAdminCaf.cs">
       <SubType>Form</SubType>
     </Compile>

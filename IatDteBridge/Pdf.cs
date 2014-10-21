@@ -7,6 +7,8 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
 using System.Drawing.Printing;
+using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace IatDteBridge
 {
@@ -330,9 +332,22 @@ namespace IatDteBridge
 
 
         Console.WriteLine("Pdf Cerrado!!");
-        System.Diagnostics.Process.Start(@"C:\IatFiles\file\pdf\" + doc.TipoDTE + "_" + doc.Folio+".pdf");
+//        System.Diagnostics.Process.Start(@"C:\IatFiles\file\pdf\" + doc.TipoDTE + "_" + doc.Folio+".pdf");
+        ProcessStartInfo info = new ProcessStartInfo();
+        info.Verb = "print";
+        info.FileName = "C://IatFiles/file/pdf/" + doc.TipoDTE + "_" + doc.Folio+".pdf";
+        info.CreateNoWindow = true;
+        info.WindowStyle = ProcessWindowStyle.Hidden;
 
-  
+        Process p = new Process();
+        p.StartInfo = info;
+        p.Start();
+
+         p.WaitForInputIdle();
+        System.Threading.Thread.Sleep(10000);
+        if (false == p.CloseMainWindow())
+            p.Kill();
+           
         return pdf;
 
 
