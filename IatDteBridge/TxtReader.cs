@@ -45,82 +45,91 @@ namespace IatDteBridge
 
             fileAdmin file = new fileAdmin();
             String fileName = file.nextFile(@"c:\IatFiles\file\", "*.json");
-            //Paso la ruta del fichero al constructor 
-            StreamReader objReader = new StreamReader(fileName);
-            String data = objReader.ReadToEnd();
 
-
-            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(Documento));
-            MemoryStream ms = new MemoryStream(System.Text.ASCIIEncoding.ASCII.GetBytes(data));
-            try
+            if (fileName != null)
             {
-                doc = (Documento)js.ReadObject(ms);
-            }
-            catch(Exception e) {
+                //Paso la ruta del fichero al constructor 
+                StreamReader objReader = new StreamReader(fileName);
+                String data = objReader.ReadToEnd();
 
-                Console.WriteLine("No hay mas archivos a procesar:");
-                Console.WriteLine(e.Message);
-                MessageBox.Show("No hay mas archivos a procesar:");
-                
-            
-            }
 
-            // Datos del Emisor
-            String lineEmisor = String.Empty;
-            try
-            {
-                using (StreamReader sr = new StreamReader(@"c:\IatFiles\config\empresa" + ".txt"))
+                DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(Documento));
+                MemoryStream ms = new MemoryStream(System.Text.ASCIIEncoding.ASCII.GetBytes(data));
+                try
                 {
-                    int i = 1;
-                    while ((lineEmisor = sr.ReadLine()) != null)
+                    doc = (Documento)js.ReadObject(ms);
+                }
+                catch (Exception e)
+                {
+
+                    Console.WriteLine("No hay mas archivos a procesar:");
+                    Console.WriteLine(e.Message);
+                    MessageBox.Show("No hay mas archivos a procesar:");
+
+
+                }
+
+                // Datos del Emisor
+                String lineEmisor = String.Empty;
+                try
+                {
+                    using (StreamReader sr = new StreamReader(@"c:\IatFiles\config\empresa" + ".txt"))
                     {
-
-                        Console.WriteLine(lineEmisor);
-                        switch (i)
+                        int i = 1;
+                        while ((lineEmisor = sr.ReadLine()) != null)
                         {
-                            case 1: doc.RUTEmisor = lineEmisor;
-                            break;
-                            case 2: doc.RznSoc = lineEmisor;
-                            break;
-                            case 3: doc.GiroEmis = lineEmisor;
-                            break;
-                            case 4: doc.Telefono = lineEmisor;
-                            break;
-                            case 5: doc.CorreoEmisor = lineEmisor;
-                            break;
-                            case 6: doc.Acteco = Convert.ToInt32(lineEmisor);
-                            break;
-                            case 7: doc.CdgSIISucur = Convert.ToInt32(lineEmisor);
-                            break;
-                            case 8: doc.DirOrigen = lineEmisor;
-                            break;
-                            case 9: doc.CmnaOrigen = lineEmisor;
-                            break;
-                            case 10: doc.CiudadOrigen = lineEmisor;
-                            break;
 
+                            Console.WriteLine(lineEmisor);
+                            switch (i)
+                            {
+                                case 1: doc.RUTEmisor = lineEmisor;
+                                    break;
+                                case 2: doc.RznSoc = lineEmisor;
+                                    break;
+                                case 3: doc.GiroEmis = lineEmisor;
+                                    break;
+                                case 4: doc.Telefono = lineEmisor;
+                                    break;
+                                case 5: doc.CorreoEmisor = lineEmisor;
+                                    break;
+                                case 6: doc.Acteco = Convert.ToInt32(lineEmisor);
+                                    break;
+                                case 7: doc.CdgSIISucur = Convert.ToInt32(lineEmisor);
+                                    break;
+                                case 8: doc.DirOrigen = lineEmisor;
+                                    break;
+                                case 9: doc.CmnaOrigen = lineEmisor;
+                                    break;
+                                case 10: doc.CiudadOrigen = lineEmisor;
+                                    break;
+
+                            }
+                            i++;
                         }
-                        i++;
+
+                        sr.Close();
                     }
 
-                    sr.Close();
                 }
-                
+                catch (Exception e)
+                {
+                    Console.WriteLine("The file could not be read:");
+                    Console.WriteLine(e.Message);
+                }
+
+
+
+
+                objReader.Close();
+                ms.Close();
+                file.mvFile(fileName, "C:/IatFiles/file/", "C:/IatFiles/fileProcess/");
+                return doc;
             }
-            catch (Exception e)
+            else
             {
-                Console.WriteLine("The file could not be read:");
-                Console.WriteLine(e.Message);
+                return null;
             }
-
             
-    
-
-            objReader.Close();
-            ms.Close();
-            file.mvFile(fileName, "C:/IatFiles/file/", "C:/IatFiles/fileProcess/");
-
-            return doc;
 
 
         }

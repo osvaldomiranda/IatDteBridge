@@ -26,42 +26,42 @@ namespace IatDteBridge
                 // Ejecuta metodo de txt_reader que llena y obtienen Clase Documento
                 docLectura = lec.lectura();
               //  Console.WriteLine("Folio = {0}", docLectura.Folio);
+                if (docLectura != null)
+                {
 
-                 
-
-                // intancia objeto de la clase PDF_admin
-
-
+                    // intancia objeto de la clase PDF_admin
 
 
-                // ejecutar metodo de PDF_admin que recibe objeto de la clase Documento
-                // que genera el archivo pdf
-                Pdf docpdf = new Pdf();
-
-                docpdf.OpenPdf("sdffffsdfsdfsdfsd", docLectura);
-
-                //instancia Clase de tipo Impresora
-
-                // Ejecuta metodo que recibe archivo pdf y lo imprime
 
 
-                // instancia XML_admin
-                xmlAdmin xml = new xmlAdmin();
-                
-                // Ejecuta metodo de XML_admin que recibe objeto de la clase documento 
-                // que llena el xml lo firma, lo timbra y devuelve la factura xml lista
-                String docXmlSign = xml.doc_to_xmlSii(docLectura);
+                    // ejecutar metodo de PDF_admin que recibe objeto de la clase Documento
+                    // que genera el archivo pdf
+                    Pdf docpdf = new Pdf();
 
-                Console.WriteLine(docXmlSign);
+                    docpdf.OpenPdf("sdffffsdfsdfsdfsd", docLectura);
 
+                    //instancia Clase de tipo Impresora
 
-                // instancia objeto de tipo Connect
-                Connect conn = new Connect();
-                
-                // ejecuta metodo de Connect que recibe el xml y lo envía al Core
-                //conn.sendXml(docXmlSign, "Fact1.xml");
+                    // Ejecuta metodo que recibe archivo pdf y lo imprime
 
 
+                    // instancia XML_admin
+                    xmlAdmin xml = new xmlAdmin();
+
+                    // Ejecuta metodo de XML_admin que recibe objeto de la clase documento 
+                    // que llena el xml lo firma, lo timbra y devuelve la factura xml lista
+                    String docXmlSign = xml.doc_to_xmlSii(docLectura);
+
+                    Console.WriteLine(docXmlSign);
+
+
+                    // instancia objeto de tipo Connect
+                    Connect conn = new Connect();
+
+                    // ejecuta metodo de Connect que recibe el xml y lo envía al Core
+                    //conn.sendXml(docXmlSign, "Fact1.xml");
+
+                }
                 // Continuar con siguiente documento
                 Console.WriteLine("Iteracion = {0}", i);
                 i++;
