@@ -38,7 +38,7 @@ namespace IatDteBridge
                     // que genera el archivo pdf
                     Pdf docpdf = new Pdf();
 
-                    docpdf.OpenPdf("sdffffsdfsdfsdfsd", docLectura);
+//                    docpdf.OpenPdf("sdffffsdfsdfsdfsd", docLectura);
 
                     //instancia Clase de tipo Impresora
 
