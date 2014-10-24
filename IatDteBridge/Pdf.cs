@@ -18,10 +18,10 @@ namespace IatDteBridge
         private string sucursalesEmisor = "";
         private string datosSii = "S.I.I - SANTIAGO SUR";
         private String[] headerDetalle = { "Item", "Codigo", "Descripción", "Cantidad", "Unidad", "P Unit.", "Dscto.", "Valor" };
-        private String[] datosDetalle = new String[200];
+        private String[] datosDetalle = new String[300];
         private String[] datosHeaderReferencia = { "Tipo de Documento", "Folio", "Fecha", "Razón Referancia" };
-        iTextSharp.text.Font fuenteNegra = new Font(iTextSharp.text.Font.FontFamily.HELVETICA,8,iTextSharp.text.Font.NORMAL);
-        iTextSharp.text.Font fuenteRoja = new Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font.NORMAL, BaseColor.RED);
+        iTextSharp.text.Font fuenteNegra = new Font(iTextSharp.text.Font.FontFamily.HELVETICA,8, iTextSharp.text.Font.NORMAL);
+        iTextSharp.text.Font fuenteRoja = new Font(iTextSharp.text.Font.FontFamily.HELVETICA, 9, iTextSharp.text.Font.NORMAL, BaseColor.RED);
        // iTextSharp.text.Font fuenteNegrita = new Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font., BaseColor.RED);
    
 
@@ -47,7 +47,7 @@ namespace IatDteBridge
         timbre.SetAbsolutePosition(10,10);
         timbre.ScaleAbsolute(200f,100f);
 
-        float[] anchosCabecera = new float[] { 210f, 500f, 250f };
+        float[] anchosCabecera = new float[] { 210f, 500f, 300f };
 
 
         PdfPTable cabecera = new PdfPTable(3);
@@ -65,11 +65,11 @@ namespace IatDteBridge
         celdaLogo.VerticalAlignment = 0;
         cabecera.AddCell(celdaLogo);
 
-        PdfPCell celdaDatosEmisor = new PdfPCell(new Paragraph(doc.RznSoc + "\n" + doc.GiroEmis + "\n" + doc.DirOrigen, fuenteNegra));
+        PdfPCell celdaDatosEmisor = new PdfPCell(new Paragraph(doc.RznSoc + "\n" + doc.GiroEmis + "\n" +"FONOS: "+ doc.Telefono +"\n" + "CASA MATRIZ: :"+ doc.DirOrigen, fuenteNegra));
         celdaDatosEmisor.BorderWidth = 0;
         cabecera.AddCell(celdaDatosEmisor);
        
-        PdfPCell celdaFolio = new PdfPCell(new Paragraph("R.U.T "+ doc.RUTEmisor +" \n\nFACTURA ELECTRÓNICA \n\nNº " + doc.Folio,fuenteRoja));
+        PdfPCell celdaFolio = new PdfPCell(new Paragraph("R.U.T "+ doc.RUTEmisor +" \n\nFACTURA ELECTRÓNICA \n\nNº " + doc.Folio + "\n\n",fuenteRoja));
         celdaFolio.BorderColor = BaseColor.RED;
         celdaFolio.HorizontalAlignment = 1; 
         celdaFolio.BorderWidth = 2;
@@ -129,6 +129,12 @@ namespace IatDteBridge
         celdaEtiquetaRut.HorizontalAlignment = 0;
         celdaEtiquetaRut.BorderWidth = 0;
         datosReceptor.AddCell(celdaEtiquetaRut);
+            
+            // Agraga separadores al rut
+        String rutreceptor =doc.RUTRecep;
+        string rutsindigito = rutreceptor.Substring(0, 8);
+        string digitoverificador = rutreceptor.Substring(8, 2);
+        
 
         PdfPCell celdaRutRecep = new PdfPCell(new Paragraph(doc.RUTRecep, fuenteNegra));
         celdaRutRecep.HorizontalAlignment = 0;
@@ -271,46 +277,57 @@ namespace IatDteBridge
        footer.AddCell(celdaTimbre);
 
        PdfPTable totales = new PdfPTable(2);
+       totales.HorizontalAlignment = 0;
        totales.WidthPercentage = 100;
 
        PdfPCell celdaEtiquetaDescuento = new PdfPCell(new Paragraph("Descuento: ", fuenteNegra));
        celdaEtiquetaDescuento.BorderWidth = 0;
+       celdaEtiquetaDescuento.HorizontalAlignment = 2;
        totales.AddCell(celdaEtiquetaDescuento);
 
        PdfPCell celdaDescuento = new PdfPCell(new Paragraph("$ 0", fuenteNegra));
        celdaDescuento.BorderWidth = 0;
+       celdaDescuento.HorizontalAlignment = 2;
        totales.AddCell(celdaDescuento); 
  
        PdfPCell celdaEtiquetaSubTotal = new PdfPCell(new Paragraph("Sub Total: ",fuenteNegra));
        celdaEtiquetaSubTotal.BorderWidth = 0;
+       celdaEtiquetaSubTotal.HorizontalAlignment = 2;
        totales.AddCell(celdaEtiquetaSubTotal);
 
        PdfPCell celdaSubTotal = new PdfPCell(new Paragraph("$ " + doc.MntNeto, fuenteNegra));
        celdaSubTotal.BorderWidth = 0;
+       celdaSubTotal.HorizontalAlignment = 2;
        totales.AddCell(celdaSubTotal);
 
        PdfPCell celdaEtiquetaMontoExento = new PdfPCell(new Paragraph("Monto Exento:  ", fuenteNegra));
        celdaEtiquetaMontoExento.BorderWidth = 0;
+       celdaEtiquetaMontoExento.HorizontalAlignment = 2;
        totales.AddCell(celdaEtiquetaMontoExento);
 
        PdfPCell celdaMontoExento = new PdfPCell(new Paragraph("$ 0", fuenteNegra));
+       celdaMontoExento.HorizontalAlignment = 2;
        celdaMontoExento.BorderWidth = 0;
        totales.AddCell(celdaMontoExento);
  
        PdfPCell celdaEtiquetaIva = new PdfPCell(new Paragraph("IVA ("+doc.TasaIVA+"%):  ", fuenteNegra));
        celdaEtiquetaIva.BorderWidth = 0;
+       celdaEtiquetaIva.HorizontalAlignment = 2;
        totales.AddCell(celdaEtiquetaIva);
 
        PdfPCell celdaIva = new PdfPCell(new Paragraph("$ " + doc.IVA, fuenteNegra));
        celdaIva.BorderWidth = 0;
+       celdaIva.HorizontalAlignment = 2;
        totales.AddCell(celdaIva);
  
        PdfPCell celdaEtiquetaMontoTotal = new PdfPCell(new Paragraph("Monto Total:  ", fuenteNegra));
        celdaEtiquetaMontoTotal.BorderWidth = 0;
+       celdaEtiquetaMontoTotal.HorizontalAlignment = 2;
        totales.AddCell(celdaEtiquetaMontoTotal);
 
        PdfPCell celdaMontoTotal = new PdfPCell(new Paragraph("$ " + doc.MntTotal, fuenteNegra));
        celdaMontoTotal.BorderWidth = 0;
+       celdaMontoTotal.HorizontalAlignment = 2;
        totales.AddCell(celdaMontoTotal);
       
        PdfPCell celdaTotales = new PdfPCell(totales);
@@ -332,8 +349,8 @@ namespace IatDteBridge
 
 
         Console.WriteLine("Pdf Cerrado!!");
-//        System.Diagnostics.Process.Start(@"C:\IatFiles\file\pdf\" + doc.TipoDTE + "_" + doc.Folio+".pdf");
-        ProcessStartInfo info = new ProcessStartInfo();
+        System.Diagnostics.Process.Start(@"C:\IatFiles\file\pdf\" + doc.TipoDTE + "_" + doc.Folio+".pdf");
+ /*       ProcessStartInfo info = new ProcessStartInfo();
         info.Verb = "print";
         info.FileName = "C://IatFiles/file/pdf/" + doc.TipoDTE + "_" + doc.Folio+".pdf";
         info.CreateNoWindow = true;
@@ -346,7 +363,7 @@ namespace IatDteBridge
          p.WaitForInputIdle();
         System.Threading.Thread.Sleep(10000);
         if (false == p.CloseMainWindow())
-            p.Kill();
+            p.Kill();*/
            
         return pdf;
 

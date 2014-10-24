@@ -36,12 +36,7 @@ namespace IatDteBridge
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            TxtReader lee = new TxtReader();
-            lee.lectura();
 
-        }
 
 
 
