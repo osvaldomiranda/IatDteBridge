@@ -90,9 +90,6 @@
     <Compile Include="Timbre.cs" />
     <Compile Include="xmlAdmin.cs" />
     <Compile Include="TxtReader.cs" />
-    <EmbeddedResource Include="SequenceDiagram1.sequencediagram.layout">
-      <DependentUpon>SequenceDiagram1.sequencediagram</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Service References\FormAdminCaf.resx">
       <DependentUpon>FormAdminCaf.cs</DependentUpon>
     </EmbeddedResource>
@@ -121,7 +118,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="SequenceDiagram1.sequencediagram" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
