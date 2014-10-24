@@ -98,7 +98,7 @@ namespace IatDteBridge
                   "<IndGlobal>"+ refe.IndGlobal +"</IndGlobal>\n" +
                   "<FolioRef>"+ refe.FolioRef +"</FolioRef> \n" +
                   "<RUTOtr>" + refe.RUTOtr + "</RUTOtr> \n" +
-                  "<IdAdicOtr>" + refe.IdAdicOtr +  "</IdAdicOtr> \n" +
+                 // "<IdAdicOtr>" + refe.IdAdicOtr +  "</IdAdicOtr> \n" +
                   "<FchRef>" + refe.FchRef + "</FchRef>\n" +
                   "<CodRef>" + refe.CodRef +  "</CodRef>\n" +
                   "<RazonRef>" + refe.RazonRef+ "</RazonRef>\n" +
@@ -137,39 +137,64 @@ namespace IatDteBridge
             String fechaFirma = "<TmstFirma>"+fch+"</TmstFirma>\n";
             String findocumenro = "</Documento>\n";
 
-            String plantillaFirma = "<Signature xmlns=\"http://www.w3.org/2000/09/xmldsig#\"> \n" +
-                               " <SignedInfo> "+
-                               " <CanonicalizationMethod Algorithm=\"http://www.w3.org/TR/2001/REC-xml-c14n-20010315\"/> \n" +
-                               " <SignatureMethod Algorithm=\"http://www.w3.org/2000/09/xmldsig#rsa-sha1\"/> \n" +
-                               "  <Reference URI=\"\"> \n" +
-                               "   <Transforms> \n" +
-                               "    <Transform Algorithm=\"http://www.w3.org/2000/09/xmldsig#enveloped-signature\"/> \n" +
-                               "   </Transforms> \n" +
-                               "    <DigestMethod Algorithm=\"http://www.w3.org/2000/09/xmldsig#sha1\"/> \n" +
-                               "     <DigestValue/> \n" +
-                               "  </Reference> \n" +
-                               "</SignedInfo> \n" +
-                               "<SignatureValue/> \n" +
-                               "<KeyInfo> \n" +
-                               " <KeyValue/> \n" +
-                               " <X509Data > \n" +
-                               "  <X509SubjectName/> \n" +
-                               "  <X509IssuerSerial/> \n" +
-                               "  <X509Certificate/> \n" +
-                               " </X509Data> \n" +
-                               "</KeyInfo> \n" +
-                               "</Signature> \n";
-
             String findte = "</DTE> \n";
 
             documento = documento + dd +firma + finTed + fechaFirma + findocumenro + 
                 //plantillaFirma + 
                 findte;
 
-            return documento;
+            X509Certificate2 cert = FuncionesComunes.obtenerCertificado("LUIS BARAHONA MENDOZA");
+
+
+            String signDte = firmarDocumento(documento, cert);
+
+
+            String envio = creaEnvio(signDte, doc.RUTEmisor, doc.RUTRecep, doc.TipoDTE.ToString());
+
+            String enviox509 = firmarDocumento(envio, cert);
+
+            enviox509 = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + enviox509;
+
+            return enviox509;
 
         }
 
+
+
+        public String creaEnvio(String dte, String rutEmisor, String RutReceptor, String tipo)
+        { 
+            
+
+            String envio_xml = "<EnvioDTE xmlns=\"http://www.sii.cl/SiiDte\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sii.cl/SiiDte EnvioDTE_v10.xsd\" version=\"1.0\">\r\n";
+            envio_xml += "<SetDTE ID=\"SetDoc\">\r\n";
+            envio_xml += "<Caratula version=\"1.0\">\r\n";
+            envio_xml += "<RutEmisor>"+rutEmisor+"</RutEmisor>\r\n";
+            //TO DO: Rutenvia, obtener desde certificado
+            envio_xml += "<RutEnvia>"+"5682509-6"+"</RutEnvia>\r\n";
+            envio_xml += "<RutReceptor>"+RutReceptor+"</RutReceptor>\r\n";
+
+            //TO DO: cambiar fecha de resolución
+            envio_xml += "<FchResol>2012-07-19</FchResol>\r\n"; 
+            envio_xml += "<NroResol>80</NroResol>\r\n";
+            //***********************
+
+
+            envio_xml += "<TmstFirmaEnv>2014-10-22T22:25:00</TmstFirmaEnv>\r\n";
+            envio_xml += "<SubTotDTE>\r\n";
+            envio_xml += "<TpoDTE>"+tipo+"</TpoDTE>\r\n";
+            envio_xml += "<NroDTE>1</NroDTE>\r\n";
+            envio_xml += "</SubTotDTE>\r\n";
+            envio_xml += "</Caratula>\r\n";
+
+            envio_xml += dte;
+
+            envio_xml += "</SetDTE>\r\n";
+            envio_xml += "</EnvioDTE>\r\n";
+
+            return envio_xml;
+
+        }
+       
  
         public String firmaNodoDD(String DD)
         {
@@ -239,10 +264,6 @@ namespace IatDteBridge
         }
 
 
-        String armaEnvio(String dte)
-        {
-            return "";
-        }
 
 
         public static string firmarDocumento(string documento, X509Certificate2 certificado)

@@ -34,7 +34,7 @@ namespace IatDteBridge
          Console.WriteLine("Timbre creado!!");
         
         Document pdf = new Document(PageSize.LETTER);
-        PdfWriter.GetInstance(pdf, new FileStream(@"C:\IatFiles\file\pdf\" + doc.TipoDTE + "_" + doc.Folio+".pdf", FileMode.OpenOrCreate));
+       // PdfWriter.GetInstance(pdf, new FileStream(@"C:\IatFiles\file\pdf\" + doc.TipoDTE + "_" + doc.Folio+".pdf", FileMode.OpenOrCreate));
 
 
         pdf.Open();
