@@ -113,26 +113,26 @@ namespace IatDteBridge
             String fch = String.Format("{0:yyyy-M-dTHH:mm:ss}", thisDay);
 
             // nodo DD
-            String dd = "<TED version=\"1.0\"> \n" +
-                "<DD> " +
-                    "<RE>" + doc.RUTEmisor + "</RE> \n" +
-                    "<TD>" + doc.TipoDTE + "</TD> \n" +
-                    "<F>" + doc.Folio + "</F> \n" +
-                    "<FE>" + doc.FchEmis + "</FE> \n" +
-                    "<RR>" + doc.RUTRecep + "</RR> \n" +
-                    "<RSR>" + doc.RznSocRecep + "</RSR> \n" +
-                    "<MNT>" + doc.MntTotal + "</MNT> \n" +
+            String dd = "<TED version=\"1.0\">" +
+                    "<DD>" +
+                    "<RE>" + doc.RUTEmisor + "</RE>" +
+                    "<TD>" + doc.TipoDTE + "</TD>" +
+                    "<F>" + doc.Folio + "</F>" +
+                    "<FE>" + doc.FchEmis + "</FE>" +
+                    "<RR>" + doc.RUTRecep + "</RR>" +
+                    "<RSR>" + doc.RznSocRecep + "</RSR>" +
+                    "<MNT>" + doc.MntTotal + "</MNT>" +
                     
                     // acá agregar el primer detalle
-                    "<IT1>" + firstNmbItem + "</IT1> \n" +
+                    "<IT1>" + firstNmbItem + "</IT1>" +
 
                     getXmlFolio("CAF") +
 
-                    "<TSTED>"+fch+"</TSTED> \n" +
-                "</DD> ";
+                    "<TSTED>"+fch+"</TSTED>" +
+                "</DD>";
 
-            String firma = "<FRMT algoritmo=\"SHA1withRSA\">" + firmaNodoDD(dd) + "\n</FRMT> \n";
-            String finTed = "</TED>\n";
+            String firma = "<FRMT algoritmo=\"SHA1withRSA\">" + firmaNodoDD(dd) + "</FRMT>";
+            String finTed = "</TED>";
 
             String fechaFirma = "<TmstFirma>"+fch+"</TmstFirma>\n";
             String findocumenro = "</Documento>\n";
@@ -174,7 +174,7 @@ namespace IatDteBridge
             envio_xml += "<RutReceptor>"+RutReceptor+"</RutReceptor>\r\n";
 
             //TO DO: cambiar fecha de resolución
-            envio_xml += "<FchResol>2012-07-19</FchResol>\r\n"; 
+            envio_xml += "<FchResol>2014-10-22</FchResol>\r\n"; 
             envio_xml += "<NroResol>80</NroResol>\r\n";
             //***********************
 
