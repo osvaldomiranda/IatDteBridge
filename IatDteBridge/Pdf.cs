@@ -349,7 +349,7 @@ namespace IatDteBridge
 
 
         Console.WriteLine("Pdf Cerrado!!");
-        System.Diagnostics.Process.Start(@"C:\IatFiles\file\pdf\" + doc.TipoDTE + "_" + doc.Folio+".pdf");
+       // System.Diagnostics.Process.Start(@"C:\IatFiles\file\pdf\" + doc.TipoDTE + "_" + doc.Folio+".pdf");
  /*       ProcessStartInfo info = new ProcessStartInfo();
         info.Verb = "print";
         info.FileName = "C://IatFiles/file/pdf/" + doc.TipoDTE + "_" + doc.Folio+".pdf";
