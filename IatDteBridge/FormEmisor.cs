@@ -91,11 +91,7 @@ namespace IatDteBridge
                          file.WriteLine(textBox_CdgSIISucur.Text);
                          file.WriteLine(textBox_DirOrigen.Text);
                          file.WriteLine(textBox_CmnaOrigen.Text);
-
-                        
-
-                         
-                         
+         
                   
             }
 

@@ -18,6 +18,9 @@ namespace IatDteBridge
             public static RSACryptoServiceProvider crearRsaDesdePEM(string base64)
             {
 
+
+                System.Console.WriteLine(base64);
+
                 ////
                 //// Extraiga de la cadena los header y footer
                 base64 = base64.Replace("-----BEGIN RSA PRIVATE KEY-----", string.Empty);

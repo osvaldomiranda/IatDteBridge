@@ -18,43 +18,43 @@ namespace IatDteBridge
         public String doc_to_xmlSii(Documento doc) 
         {
 
-            String dte = "<DTE version=\"1.0\"> \n" +
-                         "<Documento ID=\"F" + doc.Folio + "T" + doc.TipoDTE + "\"> \n";
+            String dte = "<DTE version=\"1.0\">\n" +
+                         "<Documento ID=\"F" + doc.Folio + "T" + doc.TipoDTE + "\">\n";
 
-            String encabezado = "<Encabezado> \n" +
+            String encabezado = "<Encabezado>\n" +
                 "<IdDoc> \n" +
-                    "<TipoDTE>" + doc.TipoDTE + "</TipoDTE> \n" +
+                    "<TipoDTE>" + doc.TipoDTE + "</TipoDTE>\n" +
                     "<Folio>" + doc.Folio + "</Folio> \n" +
-                    "<FchEmis>" + doc.FchEmis + "</FchEmis> \n" +
-                "</IdDoc> \n";
+                    "<FchEmis>" + doc.FchEmis + "</FchEmis>\n" +
+                "</IdDoc>\n";
 
-            String emisor = "<Emisor> \n" +
-                    "<RUTEmisor>" + doc.RUTEmisor + "</RUTEmisor> \n" +
-                    "<RznSoc>" + doc.RznSoc + "</RznSoc> \n" +
-                    "<GiroEmis>" + doc.GiroEmis + "</GiroEmis> \n" +
-                    "<Acteco>" + doc.Acteco + "</Acteco> \n" +
-                    "<CdgSIISucur>" + doc.CdgSIISucur + "</CdgSIISucur> \n" +
-                    "<DirOrigen>" + doc.DirOrigen + "</DirOrigen> \n" +
-                    "<CmnaOrigen>" + doc.CmnaOrigen + "</CmnaOrigen> \n" +
-                    "<CiudadOrigen>" + doc.CiudadOrigen + "</CiudadOrigen> \n" +
-                "</Emisor> \n";
+            String emisor = "<Emisor>\n" +
+                    "<RUTEmisor>" + doc.RUTEmisor + "</RUTEmisor>\n" +
+                    "<RznSoc>" + doc.RznSoc + "</RznSoc>\n" +
+                    "<GiroEmis>" + doc.GiroEmis + "</GiroEmis>\n" +
+                    "<Acteco>" + doc.Acteco + "</Acteco>\n" +
+                    "<CdgSIISucur>" + doc.CdgSIISucur + "</CdgSIISucur>\n" +
+                    "<DirOrigen>" + doc.DirOrigen + "</DirOrigen>\n" +
+                    "<CmnaOrigen>" + doc.CmnaOrigen + "</CmnaOrigen>\n" +
+                    "<CiudadOrigen>" + doc.CiudadOrigen + "</CiudadOrigen>\n" +
+                    "</Emisor>\n";
 
-            String receptor = "<Receptor> \n" +
-                    "<RUTRecep>" + doc.RUTRecep + "</RUTRecep> \n" +
-                    "<RznSocRecep>" + doc.RznSocRecep + "</RznSocRecep> \n" +
-                    "<GiroRecep>" + doc.GiroRecep + "</GiroRecep> \n" +
-                    "<DirRecep>" + doc.DirRecep + "</DirRecep> \n" +
-                    "<CmnaRecep>" + doc.CmnaRecep + "</CmnaRecep> \n" +
-                    "<CiudadRecep>" + doc.CiudadRecep + "</CiudadRecep> \n" +
-                "</Receptor> \n";
+            String receptor = "<Receptor>\n" +
+                    "<RUTRecep>" + doc.RUTRecep + "</RUTRecep>\n" +
+                    "<RznSocRecep>" + doc.RznSocRecep + "</RznSocRecep>\n" +
+                    "<GiroRecep>" + doc.GiroRecep + "</GiroRecep>\n" +
+                    "<DirRecep>" + doc.DirRecep + "</DirRecep>\n" +
+                    "<CmnaRecep>" + doc.CmnaRecep + "</CmnaRecep>\n" +
+                    "<CiudadRecep>" + doc.CiudadRecep + "</CiudadRecep>\n" +
+                "</Receptor>\n";
 
-            String totales = "<Totales> \n" +
-                    "<MntNeto>" + doc.MntNeto + "</MntNeto> \n" +
-                    "<TasaIVA>" + doc.TasaIVA + "</TasaIVA> \n" +
-                    "<IVA>" + doc.IVA + "</IVA> \n" +
-                    "<MntTotal>" + doc.MntTotal + "</MntTotal> \n" +
-                 "</Totales> \n";
-            String finencabezado = "</Encabezado> \n";
+            String totales = "<Totales>\n" +
+                    "<MntNeto>" + doc.MntNeto + "</MntNeto>\n" +
+                    "<TasaIVA>" + doc.TasaIVA + "</TasaIVA>\n" +
+                    "<IVA>" + doc.IVA + "</IVA>\n" +
+                    "<MntTotal>" + doc.MntTotal + "</MntTotal>\n" +
+                 "</Totales>\n";
+            String finencabezado = "</Encabezado>\n";
 
             //arma encabezado en documento
             String documento = dte + encabezado + emisor + receptor + totales + finencabezado;
@@ -67,18 +67,18 @@ namespace IatDteBridge
             foreach (var det in doc.detalle)
             {
 
-                detalle = "<Detalle> \n" +
-                "<NroLinDet>" + det.NroLinDet + "</NroLinDet> \n" +
-                "<CdgItem> \n" +
-                "  <TpoCodigo>" + det.TpoCodigo + "</TpoCodigo> \n" +
-                "  <VlrCodigo>" + det.VlrCodigo + "</VlrCodigo> \n" +
-                "</CdgItem> \n" +
-                "<NmbItem>" + det.NmbItem + "</NmbItem> \n" +
-                "<DscItem>" + det.DscItem+"</DscItem> \n" +
-                "<QtyItem>" + det.QtyItem + "</QtyItem> \n" +
-                "<PrcItem>" + det.PrcItem + "</PrcItem> \n" +
-                "<MontoItem>" + det.MontoItem + "</MontoItem> \n" +
-                "</Detalle> \n";
+                detalle = "<Detalle>\n" +
+                "<NroLinDet>" + det.NroLinDet + "</NroLinDet>\n" +
+                "<CdgItem>\n" +
+                "<TpoCodigo>" + det.TpoCodigo + "</TpoCodigo>\n" +
+                "<VlrCodigo>" + det.VlrCodigo + "</VlrCodigo>\n" +
+                "</CdgItem>\n" +
+                "<NmbItem>" + det.NmbItem + "</NmbItem>\n" +
+                "<DscItem>" + det.DscItem+"</DscItem>\n" +
+                "<QtyItem>" + det.QtyItem + "</QtyItem>\n" +
+                "<PrcItem>" + det.PrcItem + "</PrcItem>\n" +
+                "<MontoItem>" + det.MontoItem + "</MontoItem>\n" +
+                "</Detalle>\n";
 
                 documento = documento + detalle;
                 if (i == 0) firstNmbItem = det.NmbItem; 
@@ -92,18 +92,18 @@ namespace IatDteBridge
             foreach (var refe in doc.Referencia)
             {
 
-                referencia = "<Referencia> \n" +
-                  "<NroLinRef>"+ refe.NroLinRef + "</NroLinRef> \n" + 
-                  "<TpoDocRef>" + refe.TpoDocRef +"</TpoDocRef> \n" +
+                referencia = "<Referencia>\n" +
+                  "<NroLinRef>"+ refe.NroLinRef + "</NroLinRef>\n" + 
+                  "<TpoDocRef>" + refe.TpoDocRef +"</TpoDocRef>\n" +
                   "<IndGlobal>"+ refe.IndGlobal +"</IndGlobal>\n" +
-                  "<FolioRef>"+ refe.FolioRef +"</FolioRef> \n" +
-                  "<RUTOtr>" + refe.RUTOtr + "</RUTOtr> \n" +
+                  "<FolioRef>"+ refe.FolioRef +"</FolioRef>\n" +
+                  "<RUTOtr>" + refe.RUTOtr + "</RUTOtr>\n" +
                  // "<IdAdicOtr>" + refe.IdAdicOtr +  "</IdAdicOtr> \n" +
-                  "<FchRef>" + refe.FchRef + "</FchRef>\n" +
-                  "<CodRef>" + refe.CodRef +  "</CodRef>\n" +
+                  "<FchRef>"   + refe.FchRef + "</FchRef>\n" +
+                  "<CodRef>"   + refe.CodRef +  "</CodRef>\n" +
                   "<RazonRef>" + refe.RazonRef+ "</RazonRef>\n" +
 
-                "</Referencia> \n";
+                "</Referencia>\n";
 
                 documento = documento + referencia;
             }
@@ -113,7 +113,7 @@ namespace IatDteBridge
             String fch = String.Format("{0:yyyy-M-dTHH:mm:ss}", thisDay);
 
             // nodo DD
-            String dd = "<TED version=\"1.0\">" +
+            String dd = "<TED version=\"1.0\">\r\n" +
                     "<DD>\r\n" +
                     "<RE>" + doc.RUTEmisor + "</RE>\r\n" +
                     "<TD>" + doc.TipoDTE + "</TD>\r\n" +
@@ -122,8 +122,7 @@ namespace IatDteBridge
                     "<RR>" + doc.RUTRecep + "</RR>\r\n" +
                     "<RSR>" + doc.RznSocRecep + "</RSR>\r\n" +
                     "<MNT>" + doc.MntTotal + "</MNT>\r\n" +
-                    
-                    // acá agregar el primer detalle
+                   
                     "<IT1>" + firstNmbItem + "</IT1>\r\n" +
 
                     getXmlFolio("CAF") + "\r\n"+
@@ -131,17 +130,18 @@ namespace IatDteBridge
                     "<TSTED>" + fch + "</TSTED>\r\n" +
                 "</DD>\r\n";
 
-            String firma = "<FRMT algoritmo=\"SHA1withRSA\">\r\n" + firmaNodoDD(dd) + "\r\n</FRMT>\r\n";
-            String finTed = "</TED>";
 
-            String fechaFirma = "<TmstFirma>"+fch+"</TmstFirma>";
-            String findocumenro = "</Documento>";
 
-            String findte = "</DTE>";
 
-            documento = documento + dd +firma + finTed + fechaFirma + findocumenro + 
-                //plantillaFirma + 
-                findte;
+            String firma = "<FRMT algoritmo=\"SHA1withRSA\">" + firmaNodoDD(dd) + "</FRMT>\r\n";
+            String finTed = "</TED>\r\n";
+
+            String fechaFirma = "<TmstFirma>" + fch + "</TmstFirma>\r\n";
+            String findocumenro = "</Documento>\r\n";
+
+            String findte = "</DTE>\r\n";
+
+            documento = documento + dd +firma + finTed + fechaFirma + findocumenro + findte;
 
             X509Certificate2 cert = FuncionesComunes.obtenerCertificado("LUIS BARAHONA MENDOZA");
 
@@ -154,6 +154,12 @@ namespace IatDteBridge
             String enviox509 = firmarDocumento(envio, cert);
 
             enviox509 = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + enviox509;
+
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:/IatFiles/file/xml/folio5" + ".xml"))
+            {
+                file.WriteLine(enviox509);
+            }
+          
 
             return enviox509;
 
@@ -260,6 +266,9 @@ namespace IatDteBridge
               }
 
               if (nodo == "CAF") { nodoValue = caf; } else { nodoValue = rsa; }
+
+                
+
               return nodoValue;
         }
 
@@ -269,7 +278,7 @@ namespace IatDteBridge
         public static string firmarDocumento(string documento, X509Certificate2 certificado)
         {
             XmlDocument doc = new XmlDocument();
-            doc.PreserveWhitespace = false;
+            doc.PreserveWhitespace = true;
             doc.LoadXml(documento);
  
             SignedXml signedXml = new SignedXml(doc);
