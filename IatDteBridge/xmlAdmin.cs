@@ -134,10 +134,10 @@ namespace IatDteBridge
             String firma = "<FRMT algoritmo=\"SHA1withRSA\">" + firmaNodoDD(dd) + "</FRMT>";
             String finTed = "</TED>";
 
-            String fechaFirma = "<TmstFirma>"+fch+"</TmstFirma>\n";
-            String findocumenro = "</Documento>\n";
+            String fechaFirma = "<TmstFirma>"+fch+"</TmstFirma>";
+            String findocumenro = "</Documento>";
 
-            String findte = "</DTE> \n";
+            String findte = "</DTE>";
 
             documento = documento + dd +firma + finTed + fechaFirma + findocumenro + 
                 //plantillaFirma + 
