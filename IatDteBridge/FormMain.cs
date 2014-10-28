@@ -45,7 +45,7 @@ namespace IatDteBridge
         {
             
             //ping.StartPing();
-            proc.StartProcessIat();
+
 
            // xmlAdmin a = new xmlAdmin();
 
@@ -75,6 +75,12 @@ namespace IatDteBridge
         {
             FormAdminCaf adminCaf = new FormAdminCaf();
             adminCaf.Show();
+        }
+
+        private void FormMain_Load_1(object sender, EventArgs e)
+        {
+
+            proc.StartProcessIat();
         }
 
 

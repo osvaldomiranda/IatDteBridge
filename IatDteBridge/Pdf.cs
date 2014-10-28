@@ -34,7 +34,7 @@ namespace IatDteBridge
          Console.WriteLine("Timbre creado!!");
         
         Document pdf = new Document(PageSize.LETTER);
-       // PdfWriter.GetInstance(pdf, new FileStream(@"C:\IatFiles\file\pdf\" + doc.TipoDTE + "_" + doc.Folio+".pdf", FileMode.OpenOrCreate));
+        PdfWriter.GetInstance(pdf, new FileStream(@"C:\IatFiles\file\pdf\" + doc.TipoDTE + "_" + doc.Folio+".pdf", FileMode.OpenOrCreate));
 
 
         pdf.Open();
@@ -68,8 +68,14 @@ namespace IatDteBridge
         PdfPCell celdaDatosEmisor = new PdfPCell(new Paragraph(doc.RznSoc + "\n" + doc.GiroEmis + "\n" +"FONOS: "+ doc.Telefono +"\n" + "CASA MATRIZ: :"+ doc.DirOrigen, fuenteNegra));
         celdaDatosEmisor.BorderWidth = 0;
         cabecera.AddCell(celdaDatosEmisor);
+
+        // Agraga separadores al rut
+
+        String rutemisor = doc.RUTEmisor;
+        rutemisor = rutemisor.Insert(2, ".");
+        rutemisor = rutemisor.Insert(6, ".");
        
-        PdfPCell celdaFolio = new PdfPCell(new Paragraph("R.U.T "+ doc.RUTEmisor +" \n\nFACTURA ELECTRÓNICA \n\nNº " + doc.Folio + "\n\n",fuenteRoja));
+        PdfPCell celdaFolio = new PdfPCell(new Paragraph("R.U.T "+ rutemisor +" \n\nFACTURA ELECTRÓNICA \n\nNº " + doc.Folio + "\n\n",fuenteRoja));
         celdaFolio.BorderColor = BaseColor.RED;
         celdaFolio.HorizontalAlignment = 1; 
         celdaFolio.BorderWidth = 2;
@@ -131,12 +137,12 @@ namespace IatDteBridge
         datosReceptor.AddCell(celdaEtiquetaRut);
             
             // Agraga separadores al rut
-        String rutreceptor =doc.RUTRecep;
-        string rutsindigito = rutreceptor.Substring(0, 8);
-        string digitoverificador = rutreceptor.Substring(8, 2);
-        
 
-        PdfPCell celdaRutRecep = new PdfPCell(new Paragraph(doc.RUTRecep, fuenteNegra));
+        String rutrecep = doc.RUTRecep;
+       rutrecep =  rutrecep.Insert(2,".");
+       rutrecep =  rutrecep.Insert(6, ".");
+
+        PdfPCell celdaRutRecep = new PdfPCell(new Paragraph(rutrecep, fuenteNegra));
         celdaRutRecep.HorizontalAlignment = 0;
         celdaRutRecep.BorderWidth = 0;
         datosReceptor.AddCell(celdaRutRecep);
@@ -349,7 +355,7 @@ namespace IatDteBridge
 
 
         Console.WriteLine("Pdf Cerrado!!");
-       // System.Diagnostics.Process.Start(@"C:\IatFiles\file\pdf\" + doc.TipoDTE + "_" + doc.Folio+".pdf");
+       System.Diagnostics.Process.Start(@"C:\IatFiles\file\pdf\" + doc.TipoDTE + "_" + doc.Folio+".pdf");
  /*       ProcessStartInfo info = new ProcessStartInfo();
         info.Verb = "print";
         info.FileName = "C://IatFiles/file/pdf/" + doc.TipoDTE + "_" + doc.Folio+".pdf";

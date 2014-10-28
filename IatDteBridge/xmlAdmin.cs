@@ -155,7 +155,7 @@ namespace IatDteBridge
 
             enviox509 = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + enviox509;
 
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:/IatFiles/file/xml/folio5" + ".xml"))
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:/IatFiles/file/xml/folio6" + ".xml"))
             {
                 file.WriteLine(enviox509);
             }
