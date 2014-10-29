@@ -109,26 +109,26 @@ namespace IatDteBridge
             }
 
 
-            DateTime thisDay = DateTime.Today;
+            DateTime thisDay = DateTime.Now;
             String fch = String.Format("{0:yyyy-M-dTHH:mm:ss}", thisDay);
 
+            String inicioTed = "<TED version=\"1.0\">\r\n";
             // nodo DD
-            String dd = "<TED version=\"1.0\">\r\n" +
-                    "<DD>\r\n" +
-                    "<RE>" + doc.RUTEmisor + "</RE>\r\n" +
-                    "<TD>" + doc.TipoDTE + "</TD>\r\n" +
-                    "<F>" + doc.Folio + "</F>\r\n" +
-                    "<FE>" + doc.FchEmis + "</FE>\r\n" +
-                    "<RR>" + doc.RUTRecep + "</RR>\r\n" +
-                    "<RSR>" + doc.RznSocRecep + "</RSR>\r\n" +
-                    "<MNT>" + doc.MntTotal + "</MNT>\r\n" +
+            String dd = "<DD>" +
+                    "<RE>" + doc.RUTEmisor + "</RE>" +
+                    "<TD>" + doc.TipoDTE + "</TD>" +
+                    "<F>" + doc.Folio + "</F>" +
+                    "<FE>" + doc.FchEmis + "</FE>" +
+                    "<RR>" + doc.RUTRecep + "</RR>" +
+                    "<RSR>" + doc.RznSocRecep + "</RSR>" +
+                    "<MNT>" + doc.MntTotal + "</MNT>" +
                    
-                    "<IT1>" + firstNmbItem + "</IT1>\r\n" +
+                    "<IT1>" + firstNmbItem + "</IT1>" +
 
-                    getXmlFolio("CAF") + "\r\n"+
+                    getXmlFolio("CAF") +
 
-                    "<TSTED>" + fch + "</TSTED>\r\n" +
-                "</DD>\r\n";
+                    "<TSTED>" + fch + "</TSTED>" +
+                "</DD>";
 
 
 
@@ -141,7 +141,7 @@ namespace IatDteBridge
 
             String findte = "</DTE>\r\n";
 
-            documento = documento + dd +firma + finTed + fechaFirma + findocumenro + findte;
+            documento = documento + inicioTed + dd +firma + finTed + fechaFirma + findocumenro + findte;
 
             X509Certificate2 cert = FuncionesComunes.obtenerCertificado("LUIS BARAHONA MENDOZA");
 
@@ -155,7 +155,7 @@ namespace IatDteBridge
 
             enviox509 = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + enviox509;
 
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:/IatFiles/file/xml/folio5" + ".xml"))
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:/IatFiles/file/xml/folio10" + ".xml"))
             {
                 file.WriteLine(enviox509);
             }
@@ -177,7 +177,9 @@ namespace IatDteBridge
             envio_xml += "<RutEmisor>"+rutEmisor+"</RutEmisor>\r\n";
             //TO DO: Rutenvia, obtener desde certificado
             envio_xml += "<RutEnvia>"+"5682509-6"+"</RutEnvia>\r\n";
-            envio_xml += "<RutReceptor>"+RutReceptor+"</RutReceptor>\r\n";
+
+            //TO DO: rut receptor SII
+            envio_xml += "<RutReceptor>60803000-K</RutReceptor>\r\n";
 
             //TO DO: cambiar fecha de resolución
             envio_xml += "<FchResol>2014-09-10</FchResol>\r\n"; 
@@ -267,11 +269,10 @@ namespace IatDteBridge
 
               if (nodo == "CAF") { nodoValue = caf; } else { nodoValue = rsa; }
 
-                
+              System.Console.WriteLine(nodoValue);  
 
               return nodoValue;
         }
-
 
 
 
@@ -315,6 +316,5 @@ namespace IatDteBridge
             return doc.InnerXml;
  
        }
-
     }
 }
