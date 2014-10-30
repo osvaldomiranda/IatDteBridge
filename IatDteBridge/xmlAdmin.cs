@@ -50,6 +50,7 @@ namespace IatDteBridge
 
             String totales = "<Totales>\n" +
                     "<MntNeto>" + doc.MntNeto + "</MntNeto>\n" +
+                    "<MntExe>" + doc.MntExe + "</MntExe>\n" +
                     "<TasaIVA>" + doc.TasaIVA + "</TasaIVA>\n" +
                     "<IVA>" + doc.IVA + "</IVA>\n" +
                     "<MntTotal>" + doc.MntTotal + "</MntTotal>\n" +
@@ -64,19 +65,28 @@ namespace IatDteBridge
             String detalle;
             String firstNmbItem = String.Empty;
             int i = 0;
+
+            // FACTURA NORMAL
             foreach (var det in doc.detalle)
             {
+                String indexe = "<IndExe>" + det.IndExe + "</IndExe>\n";
+                if (det.IndExe == "0")
+                indexe = "";
 
+               // String conpunto = det.DescuentoPct.ToString("N1"); SOLO CUANDO ES DESCUENTO
                 detalle = "<Detalle>\n" +
                 "<NroLinDet>" + det.NroLinDet + "</NroLinDet>\n" +
                 "<CdgItem>\n" +
                 "<TpoCodigo>" + det.TpoCodigo + "</TpoCodigo>\n" +
                 "<VlrCodigo>" + det.VlrCodigo + "</VlrCodigo>\n" +
-                "</CdgItem>\n" +
+                "</CdgItem>\n" +                
+                indexe + // SOLO CUANDO ES EXENTO Y EL VALOR ES DISTINTO DE CERO
                 "<NmbItem>" + det.NmbItem + "</NmbItem>\n" +
                 "<DscItem>" + det.DscItem+"</DscItem>\n" +
                 "<QtyItem>" + det.QtyItem + "</QtyItem>\n" +
                 "<PrcItem>" + det.PrcItem + "</PrcItem>\n" +
+               // "<DescuentoPct>" + conpunto +"</DescuentoPct>\n" + SOLO CUANDO ES DESCUENTO
+               // "<DescuentoMonto>" + det.DescuentoMonto + "</DescuentoMonto>\n" + SOLO CUANDO ES DESCUENTO
                 "<MontoItem>" + det.MontoItem + "</MontoItem>\n" +
                 "</Detalle>\n";
 
@@ -86,7 +96,7 @@ namespace IatDteBridge
             }
 
 
-            // for para crear detalles y agregarlos al documento
+            // for para crear referencias y agregarlas al documento
             String referencia;
           
             foreach (var refe in doc.Referencia)
@@ -155,7 +165,7 @@ namespace IatDteBridge
 
             enviox509 = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + enviox509;
 
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:/IatFiles/file/xml/folio10" + ".xml"))
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:/IatFiles/file/xml/"+ doc.TipoDTE +"_"+ doc.Folio + ".xml"))
             {
                 file.WriteLine(enviox509);
             }

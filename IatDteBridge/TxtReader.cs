@@ -14,29 +14,6 @@ namespace IatDteBridge
     class TxtReader
     {
   
-
-        public Documento lecturaEnDuro()
-        {
-            Documento factura = new Documento();
-            factura.TipoDTE = 33;
-            factura.Folio = 1;
-            factura.RUTRecep = "14193259-4";
-            factura.FchEmis = "2014-10-01 00:00:00";
-            factura.RznSocRecep = "FABIAN ARNOLDO";
-            factura.GiroRecep = "ALMACEN";
-            factura.DirRecep = "LEBRELE #03572";
-            factura.CmnaRecep = "LO ESPEJO";
-            factura.CiudadRecep = "SANTIAGO";
-            factura.MntNeto = 15068;
-            factura.TasaIVA = 19;
-            factura.IVA = 2863;
-            factura.MntTotal = 19890;
-            // estos son los valore del detalle no cache como hacerlo ayuda pliss???
-            //1;2077;BEB ANDINA COCA COLA MINI  BT 250CC;100;167.4242;10;1674;0;0;0;15068.18;INT1;C/U;BEB ANDINA COCA COLA MINI  BT 250CC;
-          //  factura.detalle.Last().impuestos.Add(new imp_adicional("", 0, 0));
-            return factura;
-        }
-
        
         public Documento lectura()
         {
@@ -54,7 +31,7 @@ namespace IatDteBridge
 
 
                 DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(Documento));
-                MemoryStream ms = new MemoryStream(System.Text.ASCIIEncoding.ASCII.GetBytes(data));
+                MemoryStream ms = new MemoryStream(System.Text.ASCIIEncoding.ASCII.GetBytes(data)); // new MemoryStream(Encoding.UTF8.GetBytes(data)) ESTE CODIGO OCUPE
                 try
                 {
                     doc = (Documento)js.ReadObject(ms);
@@ -62,9 +39,8 @@ namespace IatDteBridge
                 catch (Exception e)
                 {
 
-                    Console.WriteLine("No hay mas archivos a procesar:");
                     Console.WriteLine(e.Message);
-                    MessageBox.Show("No hay mas archivos a procesar:");
+                    MessageBox.Show("Error de lectura JSON"+ e.Message);
 
 
                 }
