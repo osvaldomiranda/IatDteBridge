@@ -66,7 +66,6 @@ namespace IatDteBridge
             String firstNmbItem = String.Empty;
             int i = 0;
 
-            // FACTURA NORMAL
             foreach (var det in doc.detalle)
             {
                 String indexe = "<IndExe>" + det.IndExe + "</IndExe>\n";
@@ -95,6 +94,23 @@ namespace IatDteBridge
                 i++;
             }
 
+            // for para crear descuento global y agregarlas al documento
+
+         /*    String descuentoglobal;
+
+            foreach (var desglo in doc.dscRcgGlobal)
+            {
+                descuentoglobal = "<DscRcgGlobal>\n" +
+                    "<NroLinDR>" + desglo.NroLinDR + "</NroLinDR>" +
+                    "<TpoMov>" + desglo.TpoMov + "</TpoMov>" +
+                    "<GlosaDR>" + desglo.GlosaDR + "</GlosaDR>" +
+                     "<TpoValor>" + desglo.TpoValor + "</TpoValor>" +
+                    "<ValorDR>" + desglo.ValorDR + "</ValorDR>" +
+                    "</DscRcgGlobal>\n";
+
+                documento = documento + descuentoglobal;
+            }
+           */ 
 
             // for para crear referencias y agregarlas al documento
             String referencia;
