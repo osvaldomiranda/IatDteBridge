@@ -69,10 +69,23 @@ namespace IatDteBridge
             foreach (var det in doc.detalle)
             {
                 String indexe = "<IndExe>" + det.IndExe + "</IndExe>\n";
-                if (det.IndExe == "0")
-                indexe = "";
+                    if (det.IndExe == "0")
+                    indexe = "";
+                String qtyitem = "<QtyItem>" + det.QtyItem + "</QtyItem>\n";
+                    if (det.QtyItem == 0) 
+                         qtyitem = "";
+                String prcitem = "<PrcItem>" + det.PrcItem + "</PrcItem>\n";
+                    if(det.PrcItem == 0)
+                        prcitem = "";
+                //agrego el punto de float
+                String conpunto = det.DescuentoPct.ToString("N1");
 
-               // String conpunto = det.DescuentoPct.ToString("N1"); SOLO CUANDO ES DESCUENTO
+                String descuentopct = "<DescuentoPct>" + conpunto +"</DescuentoPct>\n";
+                    if(det.DescuentoPct == 0)
+                        descuentopct = "";
+                String descuentomonto = "<DescuentoMonto>" + det.DescuentoMonto + "</DescuentoMonto>\n";
+                    if(det.DescuentoMonto == 0)
+                        descuentomonto = "";
                 detalle = "<Detalle>\n" +
                 "<NroLinDet>" + det.NroLinDet + "</NroLinDet>\n" +
                 "<CdgItem>\n" +
@@ -82,10 +95,10 @@ namespace IatDteBridge
                 indexe + // SOLO CUANDO ES EXENTO Y EL VALOR ES DISTINTO DE CERO
                 "<NmbItem>" + det.NmbItem + "</NmbItem>\n" +
                 "<DscItem>" + det.DscItem+"</DscItem>\n" +
-                "<QtyItem>" + det.QtyItem + "</QtyItem>\n" +
-                "<PrcItem>" + det.PrcItem + "</PrcItem>\n" +
-               // "<DescuentoPct>" + conpunto +"</DescuentoPct>\n" + SOLO CUANDO ES DESCUENTO
-               // "<DescuentoMonto>" + det.DescuentoMonto + "</DescuentoMonto>\n" + SOLO CUANDO ES DESCUENTO
+                 qtyitem +
+                 prcitem +
+                 descuentopct +//SOLO CUANDO ES DESCUENTO
+                 descuentomonto +//SOLO CUANDO ES DESCUENTO
                 "<MontoItem>" + det.MontoItem + "</MontoItem>\n" +
                 "</Detalle>\n";
 
@@ -96,21 +109,24 @@ namespace IatDteBridge
 
             // for para crear descuento global y agregarlas al documento
 
-         /*    String descuentoglobal;
+            String descuentoglobal;
+            if (doc.dscRcgGlobal == null)
+                descuentoglobal = "";
+            else
 
-            foreach (var desglo in doc.dscRcgGlobal)
-            {
-                descuentoglobal = "<DscRcgGlobal>\n" +
-                    "<NroLinDR>" + desglo.NroLinDR + "</NroLinDR>" +
-                    "<TpoMov>" + desglo.TpoMov + "</TpoMov>" +
-                    "<GlosaDR>" + desglo.GlosaDR + "</GlosaDR>" +
-                     "<TpoValor>" + desglo.TpoValor + "</TpoValor>" +
-                    "<ValorDR>" + desglo.ValorDR + "</ValorDR>" +
-                    "</DscRcgGlobal>\n";
+                foreach (var desglo in doc.dscRcgGlobal)
+                {
+                    descuentoglobal = "<DscRcgGlobal>\n" +
+                        "<NroLinDR>" + desglo.NroLinDR + "</NroLinDR>\n" +
+                        "<TpoMov>" + desglo.TpoMov + "</TpoMov>\n" +
+                        "<GlosaDR>" + desglo.GlosaDR + "</GlosaDR>\n" +
+                         "<TpoValor>" + desglo.TpoValor + "</TpoValor>\n" +
+                        "<ValorDR>" + desglo.ValorDR + "</ValorDR>\n" +
+                        "</DscRcgGlobal>\n";
 
-                documento = documento + descuentoglobal;
-            }
-           */ 
+                    documento = documento + descuentoglobal;
+                }
+           
 
             // for para crear referencias y agregarlas al documento
             String referencia;
@@ -136,7 +152,7 @@ namespace IatDteBridge
 
 
             DateTime thisDay = DateTime.Now;
-            String fch = String.Format("{0:yyyy-M-dTHH:mm:ss}", thisDay);
+            String fch = String.Format("{0:yyyy-MM-ddTHH:mm:ss}", thisDay);
 
             String inicioTed = "<TED version=\"1.0\">\r\n";
             // nodo DD
@@ -262,7 +278,7 @@ namespace IatDteBridge
             try
               {
                 //TO DO : falta tomar el nombre del archivo de una variable global
-                  using (StreamReader sr = new StreamReader(@"c:\IatFiles\cafs\Factura\FoliosSII7739857033120141081332.xml"))
+                  using (StreamReader sr = new StreamReader(@"C:\IatFiles\cafs\NotaCredito\FoliosSII7739857061120141014158.xml")) //LO CAMBIE DIRECTO POR EL SET DE PRUEBAS
                   {
            
                       while ((line = sr.ReadLine()) != null)
