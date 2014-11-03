@@ -31,7 +31,12 @@ namespace IatDteBridge
 
 
                 DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(Documento));
-                MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(data)); //new MemoryStream(System.Text.ASCIIEncoding.ASCII.GetBytes(data)); // ESTE CODIGO OCUPE
+              //  MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(data));
+               // MemoryStream ms = new MemoryStream(System.Text.ASCIIEncoding.ASCII.GetBytes(data)); // ESTE CODIGO OCUPE
+           
+                Encoding iso = Encoding.GetEncoding("iso8859-1");
+                MemoryStream ms = new MemoryStream(iso.GetBytes(data));
+
                 try
                 {
                     doc = (Documento)js.ReadObject(ms);

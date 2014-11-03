@@ -268,7 +268,12 @@ namespace IatDteBridge
 
             string pk = getXmlFolio("RSA");
 
-            UTF8Encoding /*ASCIIEncoding*/ ByteConverter = new UTF8Encoding();// new ASCIIEncoding();
+           // UTF8Encoding /*ASCIIEncoding*/ ByteConverter = new UTF8Encoding();// new ASCIIEncoding();
+
+            Encoding ByteConverter = Encoding.GetEncoding("iso8859-1");
+
+          //  ASCIIEncoding ByteConverter =  new ASCIIEncoding();
+          
             byte[] bytesStrDD = ByteConverter.GetBytes(DD);
             byte[] HashValue = new SHA1CryptoServiceProvider().ComputeHash(bytesStrDD);
 
