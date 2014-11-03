@@ -71,39 +71,48 @@ namespace IatDteBridge
                 String indexe = "<IndExe>" + det.IndExe + "</IndExe>\n";
                     if (det.IndExe == "0")
                     indexe = "";
+                String dscitem = "<DscItem>" + det.DscItem + "</DscItem>\n";
+                    if (det.DscItem == "")
+                        dscitem = "";
                 String qtyitem = "<QtyItem>" + det.QtyItem + "</QtyItem>\n";
                     if (det.QtyItem == 0) 
                          qtyitem = "";
                 String prcitem = "<PrcItem>" + det.PrcItem + "</PrcItem>\n";
                     if(det.PrcItem == 0)
                         prcitem = "";
+
                 //agrego el punto de float
+                
                 String conpunto = det.DescuentoPct.ToString("N1");
+           
 
                 String descuentopct = "<DescuentoPct>" + conpunto +"</DescuentoPct>\n";
                     if(det.DescuentoPct == 0)
                         descuentopct = "";
+
                 String descuentomonto = "<DescuentoMonto>" + det.DescuentoMonto + "</DescuentoMonto>\n";
                     if(det.DescuentoMonto == 0)
                         descuentomonto = "";
+              
+
                 detalle = "<Detalle>\n" +
                 "<NroLinDet>" + det.NroLinDet + "</NroLinDet>\n" +
                 "<CdgItem>\n" +
                 "<TpoCodigo>" + det.TpoCodigo + "</TpoCodigo>\n" +
                 "<VlrCodigo>" + det.VlrCodigo + "</VlrCodigo>\n" +
                 "</CdgItem>\n" +                
-                indexe + // SOLO CUANDO ES EXENTO Y EL VALOR ES DISTINTO DE CERO
+                indexe +
                 "<NmbItem>" + det.NmbItem + "</NmbItem>\n" +
-                "<DscItem>" + det.DscItem+"</DscItem>\n" +
+                 dscitem +
                  qtyitem +
                  prcitem +
-                 descuentopct +//SOLO CUANDO ES DESCUENTO
-                 descuentomonto +//SOLO CUANDO ES DESCUENTO
+                 descuentopct +
+                 descuentomonto +
                 "<MontoItem>" + det.MontoItem + "</MontoItem>\n" +
                 "</Detalle>\n";
 
                 documento = documento + detalle;
-                if (i == 0) firstNmbItem = det.NmbItem; 
+                if (i == 0) firstNmbItem =det.NmbItem; 
                 i++;
             }
 
@@ -133,18 +142,26 @@ namespace IatDteBridge
           
             foreach (var refe in doc.Referencia)
             {
+                String indglobal = "<IndGlobal>" + refe.IndGlobal + "</IndGlobal>\n";
+                    if (refe.IndGlobal == 0)
+                        indglobal = "";
+                String rutotr = "<RUTOtr>" + refe.RUTOtr + "</RUTOtr>\n";
+                    if (refe.RUTOtr == "")
+                        rutotr = "";
+                String codref = "<CodRef>" + refe.CodRef + "</CodRef>\n";
+                    if (refe.CodRef == 0)
+                        codref = "";
 
                 referencia = "<Referencia>\n" +
-                  "<NroLinRef>"+ refe.NroLinRef + "</NroLinRef>\n" + 
-                  "<TpoDocRef>" + refe.TpoDocRef +"</TpoDocRef>\n" +
-                  "<IndGlobal>"+ refe.IndGlobal +"</IndGlobal>\n" +
-                  "<FolioRef>"+ refe.FolioRef +"</FolioRef>\n" +
-                  "<RUTOtr>" + refe.RUTOtr + "</RUTOtr>\n" +
+                  "<NroLinRef>" + refe.NroLinRef + "</NroLinRef>\n" +
+                  "<TpoDocRef>" + refe.TpoDocRef + "</TpoDocRef>\n" +
+                  indglobal +
+                  "<FolioRef>" + refe.FolioRef + "</FolioRef>\n" +
+                   rutotr +
                  // "<IdAdicOtr>" + refe.IdAdicOtr +  "</IdAdicOtr> \n" +
                   "<FchRef>"   + refe.FchRef + "</FchRef>\n" +
-                  "<CodRef>"   + refe.CodRef +  "</CodRef>\n" +
+                    codref +
                   "<RazonRef>" + refe.RazonRef+ "</RazonRef>\n" +
-
                 "</Referencia>\n";
 
                 documento = documento + referencia;
@@ -227,16 +244,16 @@ namespace IatDteBridge
             envio_xml += "<FchResol>2014-09-10</FchResol>\r\n"; 
             envio_xml += "<NroResol>0</NroResol>\r\n";
             //***********************
-
-
+           
             envio_xml += "<TmstFirmaEnv>2014-10-22T22:25:00</TmstFirmaEnv>\r\n";
             envio_xml += "<SubTotDTE>\r\n";
-            envio_xml += "<TpoDTE>"+tipo+"</TpoDTE>\r\n";
+            envio_xml += "<TpoDTE>" + tipo + "</TpoDTE>\r\n";
             envio_xml += "<NroDTE>1</NroDTE>\r\n";
             envio_xml += "</SubTotDTE>\r\n";
             envio_xml += "</Caratula>\r\n";
 
-            envio_xml += dte;
+            envio_xml += dte; 
+            
 
             envio_xml += "</SetDTE>\r\n";
             envio_xml += "</EnvioDTE>\r\n";
@@ -250,8 +267,8 @@ namespace IatDteBridge
         {
 
             string pk = getXmlFolio("RSA");
-            
-            ASCIIEncoding ByteConverter = new ASCIIEncoding();
+
+            UTF8Encoding /*ASCIIEncoding*/ ByteConverter = new UTF8Encoding();// new ASCIIEncoding();
             byte[] bytesStrDD = ByteConverter.GetBytes(DD);
             byte[] HashValue = new SHA1CryptoServiceProvider().ComputeHash(bytesStrDD);
 
@@ -278,7 +295,7 @@ namespace IatDteBridge
             try
               {
                 //TO DO : falta tomar el nombre del archivo de una variable global
-                  using (StreamReader sr = new StreamReader(@"C:\IatFiles\cafs\NotaCredito\FoliosSII7739857061120141014158.xml")) //LO CAMBIE DIRECTO POR EL SET DE PRUEBAS
+                  using (StreamReader sr = new StreamReader(@"C:\IatFiles\cafs\factura\FoliosSII7739857033120141081332.xml")) 
                   {
            
                       while ((line = sr.ReadLine()) != null)
