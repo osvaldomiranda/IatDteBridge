@@ -218,7 +218,334 @@ namespace IatDteBridge
 
         [DataMember]
         public List<Comisiones> comisiones = new List<Comisiones>();
-        
+
+
+        public Documento(String Data)
+        {
+
+            if (Data.Length == 0) return;
+
+            TipoDTE      = Convert.ToInt32(extraeValorJson(Data, "TipoDTE",3, 3));
+            Folio        = Convert.ToInt32(extraeValorJson(Data, "Folio",3, 3));
+            FchEmis      = extraeValorJson(Data, "FchEmis",4, 10);
+            IndNoRebaja  = Convert.ToInt32(extraeValorJson(Data, "IndNoRebaja", 3, 3));
+            TipoDespacho = Convert.ToInt32(extraeValorJson(Data, "TipoDespacho", 3, 3));
+            IndTraslado  = Convert.ToInt32(extraeValorJson(Data, "IndTraslado", 3, 3));
+            TpoImpresion = extraeValorJson(Data, "TpoImpresion", 4, 3);
+            IndServicio  = Convert.ToInt32(extraeValorJson(Data, "IndServicio", 3, 3));
+            MntBruto     = Convert.ToInt32(extraeValorJson(Data, "MntBruto", 3, 3));
+            FmaPago      = Convert.ToInt32(extraeValorJson(Data, "FmaPago", 3, 3));
+    
+           
+            FchVenc = extraeValorJson(Data, "FchVenc", 4, 10);
+
+
+            // EMISOR
+            /*
+            RUTEmisor     = extraeValorJson(Data, "RUTEmisor", 3);
+            RznSoc        = extraeValorJson(Data, "RznSoc", 3);
+            GiroEmis      = extraeValorJson(Data, "GiroEmis", 3);
+            Telefono      = extraeValorJson(Data, "Telefono", 3);
+            CorreoEmisor  = extraeValorJson(Data, "CorreoEmisor", 3);
+            Acteco        = Convert.ToInt32(extraeValorJson(Data, "Acteco", 3));
+            CdgTraslado   = Convert.ToInt32(extraeValorJson(Data, "CdgTraslado", 3));
+            FolioAut      = Convert.ToInt32(extraeValorJson(Data, "FolioAut", 3));
+            FchAut        = extraeValorJson(Data, "FchAut", 3);
+            Sucursal      = extraeValorJson(Data, "Sucursal", 3);
+            CdgSIISucur   = Convert.ToInt32(extraeValorJson(Data, "CdgSIISucur", 3));
+            CodAdicSucur  = extraeValorJson(Data, "CodAdicSucur", 3);
+            DirOrigen     = extraeValorJson(Data, "DirOrigen", 3);
+            CmnaOrigen    = extraeValorJson(Data, "CmnaOrigen", 3);
+            CiudadOrigen  = extraeValorJson(Data, "CiudadOrigen", 3);
+            CdgVendedor   = Convert.ToInt32(extraeValorJson(Data, "CdgVendedor", 3));
+            IdAdicEmisor  = extraeValorJson(Data, "IdAdicEmisor", 3);
+            RUTMandante   = extraeValorJson(Data, "RUTMandante", 3);
+            */
+
+           // Area Receptor 
+            RUTRecep        = extraeValorJson(Data, "RUTRecep", 4, 10);
+            CdgIntRecep     = extraeValorJson(Data, "CdgIntRecep",4, 3);
+            RznSocRecep     = extraeValorJson(Data, "RznSocRecep", 4, 3);
+            NumId           = extraeValorJson(Data, "NumId", 4, 3);
+            Nacionalidad    = extraeValorJson(Data, "Nacionalidad", 4, 3);
+            IdAdicRecep     = extraeValorJson(Data, "IdAdicRecep", 4, 3);
+            GiroRecep       = extraeValorJson(Data, "GiroRecep", 4, 3);
+            Contacto        = extraeValorJson(Data, "Contacto", 4, 3);
+            CorreoRecep     = extraeValorJson(Data, "CorreoRecep", 4, 3);
+            DirRecep        = extraeValorJson(Data, "DirRecep", 4, 3);
+            CmnaRecep       = extraeValorJson(Data, "CmnaRecep", 4, 3);
+            CiudadRecep     = extraeValorJson(Data, "CiudadRecep", 4, 3);
+            DirPostal       = extraeValorJson(Data, "DirPostal", 4, 3);
+            CmnaPostal      = extraeValorJson(Data, "CmnaPostal", 4, 3);
+            CiudadPostal    = extraeValorJson(Data, "CiudadPostal", 4, 3);
+            RUTSolicita     = extraeValorJson(Data, "RUTSolicita", 4, 3);
+
+            //Area Transporte      
+             Patente        = extraeValorJson(Data, "Patente", 4, 3);
+             RUTTrans       = extraeValorJson(Data, "RUTTrans", 4, 3); 
+             RUTChofer      = extraeValorJson(Data, "RUTChofer", 4, 3); 
+             NombreChofer   = extraeValorJson(Data, "NombreChofer", 4, 3); 
+             DirDest        = extraeValorJson(Data, "DirDest", 4, 3); 
+             CmnaDest       = extraeValorJson(Data, "CmnaDest", 4, 3); 
+             CiudadDest     = extraeValorJson(Data, "CiudadDest", 4, 3);
+             CodModVenta    = Convert.ToInt32(extraeValorJson(Data,"CodModVenta", 3, 3));
+             CodClauVenta   = Convert.ToInt32(extraeValorJson(Data, "CodClauVenta", 3, 3)); 
+             TotClauVenta   = Convert.ToInt32(extraeValorJson(Data, "TotClauVenta", 3, 3));
+             CodViaTransp   = Convert.ToInt32(extraeValorJson(Data, "CodViaTransp", 3, 3)); 
+             NombreTransp   = extraeValorJson(Data, "NombreTransp", 4, 3);
+             RUTCiaTransp   = extraeValorJson(Data, "RUTCiaTransp", 4, 3); 
+             NomCiaTransp   = extraeValorJson(Data, "NomCiaTransp", 4, 3);  
+             IdAdicTransp   = extraeValorJson(Data, "IdAdicTransp", 4, 3);  
+             Booking        = extraeValorJson(Data, "Booking", 4, 3);
+             Operador       = extraeValorJson(Data, "Operador", 4, 3); 
+             CodPtoEmbarque = Convert.ToInt32(extraeValorJson(Data, "CodPtoEmbarque", 3, 3));
+             IdAdicPtoEmb   = extraeValorJson(Data, "IdAdicPtoEmb", 4, 3);
+             CodPtoDesemb   = extraeValorJson(Data, "RUTSolicita", 4, 3); 
+             IdAdicPtoDesemb= extraeValorJson(Data, "CodPtoDesemb", 4, 3); 
+             Tara           = Convert.ToInt32(extraeValorJson(Data, "Tara", 3, 3)); 
+             CodUnidMedTara = Convert.ToInt32(extraeValorJson(Data, "CodUnidMedTara", 3, 3)); 
+             PesoBruto      = Convert.ToInt32(extraeValorJson(Data, "PesoBruto", 3, 3)); 
+             CodUnidPesoBruto = Convert.ToInt32(extraeValorJson(Data, "CodUnidPesoBruto", 3, 3)); 
+             PesoNeto       = Convert.ToInt32(extraeValorJson(Data, "PesoNeto", 3, 3));
+             CodUnidPesoNeto= Convert.ToInt32(extraeValorJson(Data, "CodUnidPesoNeto", 3, 3)); 
+             TotItems       = Convert.ToInt32(extraeValorJson(Data, "TotItems", 3, 3));
+             TotBultos      = Convert.ToInt32(extraeValorJson(Data, "TotBultos", 3, 3));
+
+            // Area Totales 
+             TpoMoneda      = extraeValorJson(Data, "TpoMoneda", 4, 3);
+             MntNeto        = Convert.ToInt32(extraeValorJson(Data, "MntNeto", 3, 3));
+             MntExe         = Convert.ToInt32(extraeValorJson(Data, "MntExe", 3, 3));
+             MntBase        = Convert.ToInt32(extraeValorJson(Data, "MntBase", 3, 3));
+             MntMargenCom   = Convert.ToInt32(extraeValorJson(Data, "MntMargenCom", 3, 3));
+             TasaIVA        = Convert.ToInt32(extraeValorJson(Data, "MntMargenCom", 3, 3));
+             IVA            = Convert.ToInt32(extraeValorJson(Data, "IVA", 3, 3));
+             IVAProp        = Convert.ToInt32(extraeValorJson(Data, "IVAProp", 3, 3));
+             IVATerc        = Convert.ToInt32(extraeValorJson(Data, "IVATerc", 3, 3));      
+             IVANoRet       = Convert.ToInt32(extraeValorJson(Data, "IVANoRet", 3, 3));
+             CredEC         = Convert.ToInt32(extraeValorJson(Data, "CredEC", 3, 3));
+             GrntDep        = Convert.ToInt32(extraeValorJson(Data, "GrntDep", 3, 3));
+             ValComNeto     = Convert.ToInt32(extraeValorJson(Data, "ValComNeto", 3, 3));
+             ValComExe      = Convert.ToInt32(extraeValorJson(Data, "ValComExe", 3, 3));
+             ValComIVA      = Convert.ToInt32(extraeValorJson(Data, "ValComIVA", 3, 3));
+             MntTotal       = Convert.ToInt32(extraeValorJson(Data, "MntTotal", 3, 3));
+             MontoNF        = Convert.ToInt32(extraeValorJson(Data, "MontoNF", 3, 3));
+
+            //public List<ImptoReten> imptoReten = new List<ImptoReten>();
+            
+            
+
+             mntpagos   = extraeMntPagos(Data);
+             imptoReten = extraeImptoReten(Data);
+
+            }
+
+        public List<Detalle> extraeImptoDetalle(String data)
+        {
+
+            List<Detalle> deta = new List<Detalle>();
+
+            String Lin = String.Empty;
+
+            String L = extraeLista(data, "detalle");
+
+            if (L.Length == 0) return null;
+
+            int n = occurs(data, '{');
+            int i = 0;
+            while (i < n)
+            {
+                Lin = sgteLineaLista(L, i);
+                Detalle det = new Detalle();
+
+
+                det.NroLinDet = Convert.ToInt32(extraeValorLista(Lin, "NroLinDet", 3));
+                det.TpoCodigo = extraeValorLista(Lin, "TpoCodigo", 4);
+                det.VlrCodigo = extraeValorLista(Lin, "VlrCodigo", 4);
+                det.TpoDocLiq = extraeValorLista(Lin, "TpoDocLiq", 4);
+                det.IndExe = extraeValorLista(Lin, "IndExe", 4);
+                det.IndAgente = extraeValorLista(Lin, "IndAgente", 4);
+                det.MntBaseFaena = Convert.ToInt32(extraeValorLista(Lin, "MntBaseFaena", 3));
+                det.MntMargComer = Convert.ToInt32(extraeValorLista(Lin, "MntMargComer", 3));
+                det.PrcConsFinal = Convert.ToInt32(extraeValorLista(Lin, "PrcConsFinal", 3));
+                det.NmbItem = extraeValorLista(Lin, "NmbItem", 4);
+                det.DscItem = extraeValorLista(Lin, "DscItem", 4);
+                det.QtyRef = Convert.ToInt32(extraeValorLista(Lin, "QtyRef", 3));
+                det.UnmdRef = extraeValorLista(Lin, "UnmdRef", 4);
+                det.PrcRef = Convert.ToInt32(extraeValorLista(Lin, "PrcRef", 3));
+                det.QtyItem = Convert.ToInt32(extraeValorLista(Lin, "QtyItem", 3));
+                det.FchElabor = extraeValorLista(Lin, "FchElabor", 4);
+                det.FchVencim = extraeValorLista(Lin, "FchVencim", 4);
+                det.UnmdItem = extraeValorLista(Lin, "UnmdItem", 4);
+                det.PrcItem = Convert.ToInt32(extraeValorLista(Lin, "PrcItem", 3));
+                det.DescuentoPct = Convert.ToInt32(extraeValorLista(Lin, "DescuentoPct", 3));
+                det.DescuentoMonto = Convert.ToInt32(extraeValorLista(Lin, "DescuentoMonto", 3));
+                det.CodImpAdic = extraeValorLista(Lin, "CodImpAdic", 4);
+                det.MontoItem = Convert.ToInt32(extraeValorLista(Lin, "MontoItem", 3));
+
+                deta.Add(det);
+            }
+
+            return deta;
+        }
+
+
+        public List<ImptoReten> extraeImptoReten(String data)
+        {
+
+            List<ImptoReten> impt = new List<ImptoReten>();
+
+            String Lin = String.Empty;
+
+            String L = extraeLista(data, "ImptoReten");
+
+            if (L.Length == 0) return null;
+
+            int n = occurs(data, '{');
+            int i = 0;
+            while (i < n)
+            {
+                Lin = sgteLineaLista(L, i);
+                ImptoReten imp = new ImptoReten();
+
+                imp.MontoImp = Convert.ToInt32(extraeValorLista(Lin, "MontoImp", 3));
+                imp.TasaImp  = Convert.ToInt32(extraeValorLista(Lin, "TasaImp", 3));
+                imp.TipoImp  = extraeValorLista(Lin, "TipoImp", 4);
+                
+                impt.Add(imp);
+            }
+
+            return impt;
+        }
+
+
+
+
+        public List<MntPagos> extraeMntPagos(String data)
+        {
+            
+            List<MntPagos> mnts = new List<MntPagos>();
+            
+            String Lin = String.Empty;
+
+            String L = extraeLista(data, "MntPagos");
+
+            if (L.Length == 0) return null;
+
+            int n = occurs(data, '{');
+            int i = 0;
+            while( i < n)
+            {
+                Lin = sgteLineaLista(L, i);
+                MntPagos pago = new MntPagos();
+                pago.MntPago = Convert.ToInt32(extraeValorLista(Lin,"MntPago",3));
+                pago.FchPago = extraeValorLista(Lin, "FchPago", 4);
+
+                mnts.Add(pago);
+            }
+
+
+            return mnts;
+        }
+
+        public String extraeLista(String data, String nombLista)
+        {
+            String lista = String.Empty;
+            int pos = data.IndexOf(nombLista);
+
+            lista = data.Substring(pos + nombLista.Length + 8, posSgteCharJson(data.Substring(pos + nombLista.Length, data.Length - (pos + nombLista.Length)), ']'));
+
+            return lista;
+        }
+
+        public String sgteLineaLista(String lista, int pos)
+        {
+            String linea = String.Empty;
+            linea = lista.Substring(pos, posSgteCharJson(lista.Substring(pos , lista.Length - pos), '}'));
+            return linea;
+        }
+
+        public String extraeValorLista(String data, String Campo, int start)
+        {
+            String resultado = String.Empty;
+            int pos = data.IndexOf(Campo);
+
+            if (pos == -1)
+            {
+                if (start == 4)
+                    return resultado;
+                else
+                    return "0";
+            }
+
+            if (start == 4)
+                resultado = data.Substring(pos + Campo.Length + start, posSgteCharJson(data.Substring(pos + Campo.Length + start, data.Length - (pos + Campo.Length + start)), ',') - 1);
+            else
+            {
+                resultado = data.Substring(pos + Campo.Length + start, posSgteCharJson(data.Substring(pos + Campo.Length + start, data.Length - (pos + Campo.Length + start)), ','));
+            }
+
+            if (resultado.StartsWith("\"")) resultado = String.Empty;
+            return resultado;
+        }
+
+        public String extraeValorJson(String data, String Campo, int start, int largo)
+        {
+            String resultado = String.Empty;
+            int pos = data.IndexOf(Campo);
+
+            if (pos == -1)
+            {
+                if (start == 4)
+                    return resultado;
+                else
+                    return "0";
+            }
+
+            if (start == 4)
+                resultado = data.Substring(pos + Campo.Length + start, posSgteCharJson(data.Substring(pos + Campo.Length + start, data.Length - (pos + Campo.Length + start)), '\r') - 1);
+            else
+            {
+                resultado = data.Substring(pos + Campo.Length + start, posSgteCharJson(data.Substring(pos + Campo.Length + start, data.Length - (pos + Campo.Length + start)), '\r'));
+            }
+
+            if (resultado.StartsWith("\"")) resultado = String.Empty;
+            return resultado;
+        }
+
+        public int posSgteCharJson(String Data, char busca)
+        {
+            int i = 0;
+            while (Data[i] != busca)
+            {
+                i++;
+            }
+            return i - 1;
+        }
+
+        public int occurs(String Data, char busca)
+        {
+            int c = 0;
+            for (int i = 0; i == Data.Length; i++)
+            {
+                if (Data[i] == busca) c++;
+            }
+
+            return c;
+        }
+
+        public int posOccurn(String Data, char busca, int occu)
+        {
+            int c = 0;
+            int i = 0;
+            while(c < occu)
+            {
+                if (Data[i] == busca) c++;
+                i++;
+            }
+
+            return i;
+        }
+
     }
 
 //############################## Area Clases #################################################################################
@@ -280,7 +607,6 @@ namespace IatDteBridge
         [DataMember]
         public int MontoItem { get; set; } //(Precio Unitario * Cantidad ) – Monto Descuento + Monto Recargo
 
-      
     }
 
 //######################################## Sub Totales Informativos ###########################################################################
@@ -290,7 +616,9 @@ namespace IatDteBridge
         [DataMember]
         public string FchPago { get; set; } //
         [DataMember]
-        public int MntPago { get; set; } //           
+        public int MntPago { get; set; } //    
+
+
     }
 
 
@@ -365,5 +693,8 @@ namespace IatDteBridge
          public int ValComIVA { get; set; }
 
      }
+
+
+
 
 }

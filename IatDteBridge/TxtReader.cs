@@ -9,33 +9,36 @@ using System.Windows.Forms;
 
 
 
+
 namespace IatDteBridge
 {
     class TxtReader
     {
-  
        
         public Documento lectura()
         {
-            Documento doc = new Documento();
-
+           
 
             fileAdmin file = new fileAdmin();
             String fileName = file.nextFile(@"c:\IatFiles\file\", "*.json");
 
+
+
             if (fileName != null)
             {
+                
                 //Paso la ruta del fichero al constructor 
-                StreamReader objReader = new StreamReader(fileName);
+                StreamReader objReader = new StreamReader(fileName, Encoding.GetEncoding("ISO-8859-1"), true);
                 String data = objReader.ReadToEnd();
+                
+                Encoding enc = objReader.CurrentEncoding;
 
+                Documento doc = new Documento(data);
 
+                /*  **************** Dejar este código para evaluar una solución a futuro
                 DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(Documento));
-              //  MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(data));
-               // MemoryStream ms = new MemoryStream(System.Text.ASCIIEncoding.ASCII.GetBytes(data)); // ESTE CODIGO OCUPE
-           
-                Encoding iso = Encoding.GetEncoding("iso8859-1");
-                MemoryStream ms = new MemoryStream(iso.GetBytes(data));
+            
+                MemoryStream ms = new MemoryStream( Encoding.UTF8.GetBytes(data));
 
                 try
                 {
@@ -47,8 +50,8 @@ namespace IatDteBridge
                     Console.WriteLine(e.Message);
                     MessageBox.Show("Error de lectura JSON"+ e.Message);
 
-
                 }
+                */
 
                 // Datos del Emisor
                 String lineEmisor = String.Empty;
@@ -99,21 +102,21 @@ namespace IatDteBridge
                 }
 
 
-
-
-                objReader.Close();
-                ms.Close();
+                objReader.Close();  
                 file.mvFile(fileName, "C:/IatFiles/file/", "C:/IatFiles/fileProcess/");
+
                 return doc;
             }
             else
             {
                 return null;
             }
-            
+
 
 
         }
+
+
 
     }
 

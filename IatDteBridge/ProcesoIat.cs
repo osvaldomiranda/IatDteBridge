@@ -21,10 +21,11 @@ namespace IatDteBridge
                 // Instancia txt_reader
                 TxtReader lec = new TxtReader();
 
-                Documento docLectura = new Documento();
+                Documento docLectura = new Documento("");
 
                 // Ejecuta metodo de txt_reader que llena y obtienen Clase Documento
                 docLectura = lec.lectura();
+
               //  Console.WriteLine("Folio = {0}", docLectura.Folio);
                 if (docLectura != null)
                 {

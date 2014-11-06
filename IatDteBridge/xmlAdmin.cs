@@ -28,6 +28,8 @@ namespace IatDteBridge
                     "<FchEmis>" + doc.FchEmis + "</FchEmis>\n" +
                 "</IdDoc>\n";
 
+         
+
             String emisor = "<Emisor>\n" +
                     "<RUTEmisor>" + doc.RUTEmisor + "</RUTEmisor>\n" +
                     "<RznSoc>" + doc.RznSoc + "</RznSoc>\n" +
@@ -93,8 +95,11 @@ namespace IatDteBridge
                 String descuentomonto = "<DescuentoMonto>" + det.DescuentoMonto + "</DescuentoMonto>\n";
                     if(det.DescuentoMonto == 0)
                         descuentomonto = "";
-              
 
+
+
+                String nmbItem = det.NmbItem.Replace("&", "&amp;"); 
+              
                 detalle = "<Detalle>\n" +
                 "<NroLinDet>" + det.NroLinDet + "</NroLinDet>\n" +
                 "<CdgItem>\n" +
@@ -102,7 +107,7 @@ namespace IatDteBridge
                 "<VlrCodigo>" + det.VlrCodigo + "</VlrCodigo>\n" +
                 "</CdgItem>\n" +                
                 indexe +
-                "<NmbItem>" + det.NmbItem + "</NmbItem>\n" +
+                "<NmbItem>"+ nmbItem + "</NmbItem>\n" +
                  dscitem +
                  qtyitem +
                  prcitem +
@@ -112,7 +117,7 @@ namespace IatDteBridge
                 "</Detalle>\n";
 
                 documento = documento + detalle;
-                if (i == 0) firstNmbItem =det.NmbItem; 
+                if (i == 0) firstNmbItem = nmbItem;
                 i++;
             }
 
@@ -192,6 +197,9 @@ namespace IatDteBridge
 
 
 
+
+
+
             String firma = "<FRMT algoritmo=\"SHA1withRSA\">" + firmaNodoDD(dd) + "</FRMT>\r\n";
             String finTed = "</TED>\r\n";
 
@@ -205,6 +213,8 @@ namespace IatDteBridge
             X509Certificate2 cert = FuncionesComunes.obtenerCertificado("LUIS BARAHONA MENDOZA");
 
 
+
+
             String signDte = firmarDocumento(documento, cert);
 
 
@@ -212,9 +222,16 @@ namespace IatDteBridge
 
             String enviox509 = firmarDocumento(envio, cert);
 
+ 
+
             enviox509 = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + enviox509;
 
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:/IatFiles/file/xml/"+ doc.TipoDTE +"_"+ doc.Folio + ".xml"))
+
+            Console.WriteLine(enviox509);
+
+            StreamWriter file = new StreamWriter(@"C:/IatFiles/file/xml/" + doc.TipoDTE + "_" + doc.Folio + ".xml");
+
+            using (file)
             {
                 file.WriteLine(enviox509);
             }
@@ -268,13 +285,12 @@ namespace IatDteBridge
 
             string pk = getXmlFolio("RSA");
 
-           // UTF8Encoding /*ASCIIEncoding*/ ByteConverter = new UTF8Encoding();// new ASCIIEncoding();
-
-            Encoding ByteConverter = Encoding.GetEncoding("iso8859-1");
+            UTF8Encoding  ByteConverter = new UTF8Encoding();// new ASCIIEncoding();
 
           //  ASCIIEncoding ByteConverter =  new ASCIIEncoding();
           
             byte[] bytesStrDD = ByteConverter.GetBytes(DD);
+
             byte[] HashValue = new SHA1CryptoServiceProvider().ComputeHash(bytesStrDD);
 
             RSACryptoServiceProvider rsa = FuncionesComunes.crearRsaDesdePEM(pk);

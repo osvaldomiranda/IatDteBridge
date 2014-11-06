@@ -13,6 +13,10 @@ namespace IatDteBridge
     public class FuncionesComunes
     {
       
+           
+
+
+
             static bool verbose = false;
 
             public static RSACryptoServiceProvider crearRsaDesdePEM(string base64)
