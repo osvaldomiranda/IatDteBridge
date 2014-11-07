@@ -317,7 +317,7 @@ namespace IatDteBridge
              MntExe         = Convert.ToInt32(extraeValorJson(Data, "MntExe", 3, 3));
              MntBase        = Convert.ToInt32(extraeValorJson(Data, "MntBase", 3, 3));
              MntMargenCom   = Convert.ToInt32(extraeValorJson(Data, "MntMargenCom", 3, 3));
-             TasaIVA        = Convert.ToInt32(extraeValorJson(Data, "MntMargenCom", 3, 3));
+             TasaIVA        = Convert.ToInt32(extraeValorJson(Data, "TasaIVA", 3, 3));
              IVA            = Convert.ToInt32(extraeValorJson(Data, "IVA", 3, 3));
              IVAProp        = Convert.ToInt32(extraeValorJson(Data, "IVAProp", 3, 3));
              IVATerc        = Convert.ToInt32(extraeValorJson(Data, "IVATerc", 3, 3));      
@@ -330,15 +330,112 @@ namespace IatDteBridge
              MntTotal       = Convert.ToInt32(extraeValorJson(Data, "MntTotal", 3, 3));
              MontoNF        = Convert.ToInt32(extraeValorJson(Data, "MontoNF", 3, 3));
 
-            //public List<ImptoReten> imptoReten = new List<ImptoReten>();
+          
 
 
-             detalle = extraeDetalle(Data);
-           //  mntpagos   = extraeMntPagos(Data);
-           //  imptoReten = extraeImptoReten(Data);
-            
+             detalle      = extraeDetalle(Data);
+             mntpagos     = extraeMntPagos(Data);
+             imptoReten   = extraeImptoReten(Data);
+             dscRcgGlobal = extraeDscRcgGlobal(Data);
+             Referencia   = extraeReferenciaDoc(Data);
+             comisiones   = extraeComisiones(Data);
+
 
             }
+
+        public List<Comisiones> extraeComisiones(String data)
+        {
+            List<Comisiones> DscR = new List<Comisiones>();
+
+            String Lin = String.Empty;
+
+            String L = extraeLista(data, "ReferenciaDoc");
+
+            if (L.Length == 0) return null;
+
+            int n = occurs(data, '{');
+            int i = 0;
+            while (i < n)
+            {
+                Lin = sgteLineaLista(L, i);
+                Comisiones clase = new Comisiones();
+                clase.Glosa = extraeValorLista(Lin, "Glosa", 4, 0);
+                clase.NroLinCom = Convert.ToInt32(extraeValorLista(Lin, "NroLinCom", 3, 0));
+                clase.TipoMovim = extraeValorLista(Lin, "TipoMovim", 4, 0);
+                clase.ValComExe = Convert.ToInt32(extraeValorLista(Lin, "ValComExe", 3, 0));
+                clase.ValComIVA = Convert.ToInt32(extraeValorLista(Lin, "ValComIVA", 3, 0));
+                clase.ValComNeto = Convert.ToInt32(extraeValorLista(Lin, "ValComNeto", 3, 1));
+                
+
+                DscR.Add(clase);
+                i++;
+            }
+
+            return DscR;
+        }
+
+        public List<ReferenciaDoc> extraeReferenciaDoc(String data)
+        {
+            List<ReferenciaDoc> DscR = new List<ReferenciaDoc>();
+
+            String Lin = String.Empty;
+
+            String L = extraeLista(data, "ReferenciaDoc");
+
+            if (L.Length == 0) return null;
+
+            int n = occurs(data, '{');
+            int i = 0;
+            while (i < n)
+            {
+                Lin = sgteLineaLista(L, i);
+                ReferenciaDoc clase = new ReferenciaDoc();
+                clase.CodRef = Convert.ToInt32(extraeValorLista(Lin, "CodRef", 3, 0));
+                clase.FchRef = extraeValorLista(Lin, "FchRef", 4, 0);
+                clase.FolioRef = extraeValorLista(Lin, "FolioRef", 4, 0);
+                clase.IdAdicOtr = extraeValorLista(Lin, "IdAdicOtr", 4, 0);
+                clase.IndGlobal = Convert.ToInt32(extraeValorLista(Lin, "IndGlobal", 3, 0));
+                clase.NroLinRef = Convert.ToInt32(extraeValorLista(Lin, "NroLinRef", 3, 0));
+                clase.RazonRef = extraeValorLista(Lin, "RazonRef", 4, 0);
+                clase.RUTOtr = extraeValorLista(Lin, "RUTOtr", 4, 0);
+                clase.TpoDocRef = extraeValorLista(Lin, "TpoDocRef", 4, 1);
+                
+                DscR.Add(clase);
+                i++;
+            }
+
+            return DscR;
+        }
+
+
+        public List<DscRcgGlobal> extraeDscRcgGlobal(String data)
+        {
+            List<DscRcgGlobal> DscR = new List<DscRcgGlobal>();
+
+            String Lin = String.Empty;
+
+            String L = extraeLista(data, "DscRcgGlobal");
+
+            if (L.Length == 0) return null;
+
+            int n = occurs(data, '{');
+            int i = 0;
+            while (i < n)
+            {
+                Lin = sgteLineaLista(L, i);
+                DscRcgGlobal clase = new DscRcgGlobal();
+                clase.GlosaDR  = extraeValorLista(Lin, "GlosaDR", 4, 0);
+                clase.NroLinDR = Convert.ToInt32(extraeValorLista(Lin, "NroLinDR", 3, 0));
+                clase.TpoMov   = extraeValorLista(Lin, "TpoMov", 4, 0);
+                clase.TpoValor = extraeValorLista(Lin, "TpoValor", 4, 0);
+                clase.ValorDR  = Convert.ToInt32(extraeValorLista(Lin, "ValorDR", 3, 0));
+                clase.IndExeDR = Convert.ToInt32(extraeValorLista(Lin, "IndExeDR", 3, 1));
+                DscR.Add(clase);
+                i++;
+            }
+
+            return DscR;
+        }
 
         public List<Detalle> extraeDetalle(String data)
         {
@@ -355,33 +452,33 @@ namespace IatDteBridge
             int i = 0;
             while (i < n)
             {
-                Lin = sgteLineaLista(L, i);
+                Lin = sgteLineaLista(L, posOccurn(L,'{',i));
                 Detalle det = new Detalle();
 
 
-                det.NroLinDet = Convert.ToInt32(extraeValorLista(Lin, "NroLinDet", 3));
-                det.TpoCodigo = extraeValorLista(Lin, "TpoCodigo", 4);
-                det.VlrCodigo = extraeValorLista(Lin, "VlrCodigo", 4);
-                det.TpoDocLiq = extraeValorLista(Lin, "TpoDocLiq", 4);
-                det.IndExe = extraeValorLista(Lin, "IndExe", 4);
-                det.IndAgente = extraeValorLista(Lin, "IndAgente", 4);
-                det.MntBaseFaena = Convert.ToInt32(extraeValorLista(Lin, "MntBaseFaena", 3));
-                det.MntMargComer = Convert.ToInt32(extraeValorLista(Lin, "MntMargComer", 3));
-                det.PrcConsFinal = Convert.ToInt32(extraeValorLista(Lin, "PrcConsFinal", 3));
-                det.NmbItem = extraeValorLista(Lin, "NmbItem", 4);
-                det.DscItem = extraeValorLista(Lin, "DscItem", 4);
-                det.QtyRef = Convert.ToInt32(extraeValorLista(Lin, "QtyRef", 3));
-                det.UnmdRef = extraeValorLista(Lin, "UnmdRef", 4);
-                det.PrcRef = Convert.ToInt32(extraeValorLista(Lin, "PrcRef", 3));
-                det.QtyItem = Convert.ToInt32(extraeValorLista(Lin, "QtyItem", 3));
-                det.FchElabor = extraeValorLista(Lin, "FchElabor", 4);
-                det.FchVencim = extraeValorLista(Lin, "FchVencim", 4);
-                det.UnmdItem = extraeValorLista(Lin, "UnmdItem", 4);
-                det.PrcItem = Convert.ToInt32(extraeValorLista(Lin, "PrcItem", 3));
-                det.DescuentoPct = Convert.ToInt32(extraeValorLista(Lin, "DescuentoPct", 3));
-                det.DescuentoMonto = Convert.ToInt32(extraeValorLista(Lin, "DescuentoMonto", 3));
-                det.CodImpAdic = extraeValorLista(Lin, "CodImpAdic", 4);
-                det.MontoItem = Convert.ToInt32(extraeValorLista(Lin, "MontoItem", 3));
+                det.NroLinDet = Convert.ToInt32(extraeValorLista(Lin, "NroLinDet", 3, 0));
+                det.TpoCodigo = extraeValorLista(Lin, "TpoCodigo", 4, 0);
+                det.VlrCodigo = extraeValorLista(Lin, "VlrCodigo", 4, 0);
+                det.TpoDocLiq = extraeValorLista(Lin, "TpoDocLiq", 4, 0);
+                det.IndExe = extraeValorLista(Lin, "IndExe", 4, 0);
+                det.IndAgente = extraeValorLista(Lin, "IndAgente", 4, 0);
+                det.MntBaseFaena = Convert.ToInt32(extraeValorLista(Lin, "MntBaseFaena", 3, 0));
+                det.MntMargComer = Convert.ToInt32(extraeValorLista(Lin, "MntMargComer", 3, 0));
+                det.PrcConsFinal = Convert.ToInt32(extraeValorLista(Lin, "PrcConsFinal", 3, 0));
+                det.NmbItem = extraeValorLista(Lin, "NmbItem", 4, 0);
+                det.DscItem = extraeValorLista(Lin, "DscItem", 4, 0);
+                det.QtyRef = Convert.ToInt32(extraeValorLista(Lin, "QtyRef", 3, 0));
+                det.UnmdRef = extraeValorLista(Lin, "UnmdRef", 4, 0);
+                det.PrcRef = Convert.ToInt32(extraeValorLista(Lin, "PrcRef", 3, 0));
+                det.QtyItem = Convert.ToInt32(extraeValorLista(Lin, "QtyItem", 3, 0));
+                det.FchElabor = extraeValorLista(Lin, "FchElabor", 4, 0);
+                det.FchVencim = extraeValorLista(Lin, "FchVencim", 4, 0);
+                det.UnmdItem = extraeValorLista(Lin, "UnmdItem", 4, 0);
+                det.PrcItem = Convert.ToInt32(extraeValorLista(Lin, "PrcItem", 3, 0));
+                det.DescuentoPct = Convert.ToInt32(extraeValorLista(Lin, "DescuentoPct", 3, 0));
+                det.DescuentoMonto = Convert.ToInt32(extraeValorLista(Lin, "DescuentoMonto", 3, 0));
+                det.CodImpAdic = extraeValorLista(Lin, "CodImpAdic", 4, 0);
+                det.MontoItem = Convert.ToInt32(extraeValorLista(Lin, "MontoItem", 3, 1));
 
                 deta.Add(det);
                 i++;
@@ -409,11 +506,12 @@ namespace IatDteBridge
                 Lin = sgteLineaLista(L, i);
                 ImptoReten imp = new ImptoReten();
 
-                imp.MontoImp = Convert.ToInt32(extraeValorLista(Lin, "MontoImp", 3));
-                imp.TasaImp  = Convert.ToInt32(extraeValorLista(Lin, "TasaImp", 3));
-                imp.TipoImp  = extraeValorLista(Lin, "TipoImp", 4);
+                imp.MontoImp = Convert.ToInt32(extraeValorLista(Lin, "MontoImp", 3, 0));
+                imp.TasaImp = Convert.ToInt32(extraeValorLista(Lin, "TasaImp", 3, 0));
+                imp.TipoImp = extraeValorLista(Lin, "TipoImp", 4, 1);
                 
                 impt.Add(imp);
+                i++;
             }
 
             return impt;
@@ -439,10 +537,11 @@ namespace IatDteBridge
             {
                 Lin = sgteLineaLista(L, i);
                 MntPagos pago = new MntPagos();
-                pago.MntPago = Convert.ToInt32(extraeValorLista(Lin,"MntPago",3));
-                pago.FchPago = extraeValorLista(Lin, "FchPago", 4);
+                pago.MntPago = Convert.ToInt32(extraeValorLista(Lin,"MntPago",3,0));
+                pago.FchPago = extraeValorLista(Lin, "FchPago", 4, 1);
 
                 mnts.Add(pago);
+                i++;
             }
 
 
@@ -466,10 +565,11 @@ namespace IatDteBridge
             return linea;
         }
 
-        public String extraeValorLista(String data, String Campo, int start)
+        public String extraeValorLista(String data, String Campo, int start, int ultimo)
         {
             String resultado = String.Empty;
             int pos = data.IndexOf(Campo);
+
 
             if (pos == -1)
             {
@@ -480,10 +580,14 @@ namespace IatDteBridge
             }
 
             if (start == 4)
-                resultado = data.Substring(pos + Campo.Length + start, posSgteCharJson(data.Substring(pos + Campo.Length + start, data.Length - (pos + Campo.Length + start)), ',') );
+            {
+                resultado = data.Substring(pos + Campo.Length + start, posSgteCharJson(data.Substring(pos + Campo.Length + start, data.Length - (pos + Campo.Length + start)), ',') + ultimo);
+                if(resultado.Length>0) resultado = resultado.Substring(0, resultado.Length - 1);
+            }
             else
             {
-                resultado = data.Substring(pos + Campo.Length + start, posSgteCharJson(data.Substring(pos + Campo.Length + start, data.Length - (pos + Campo.Length + start)), ','));
+                resultado = data.Substring(pos + Campo.Length + start, posSgteCharJson(data.Substring(pos + Campo.Length + start, data.Length - (pos + Campo.Length + start)), ',') + ultimo);
+                if (resultado == "") resultado = "0" ;
             }
 
             if (resultado.StartsWith("\"")) resultado = String.Empty;
@@ -516,6 +620,8 @@ namespace IatDteBridge
 
         public int posSgteCharJson(String Data, char busca)
         {
+            if (Data.Length == 0) return 0; 
+
             int i = 0;
             while ((Data[i] != busca) && (i < Data.Length-1))
             {
@@ -541,7 +647,7 @@ namespace IatDteBridge
         {
             int c = 0;
             int i = 0;
-            while(c < occu)
+            while(c <= occu)
             {
                 if (Data[i] == busca) c++;
                 i++;
