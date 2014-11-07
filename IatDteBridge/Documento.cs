@@ -331,15 +331,16 @@ namespace IatDteBridge
              MontoNF        = Convert.ToInt32(extraeValorJson(Data, "MontoNF", 3, 3));
 
             //public List<ImptoReten> imptoReten = new List<ImptoReten>();
-            
-            
 
-             mntpagos   = extraeMntPagos(Data);
-             imptoReten = extraeImptoReten(Data);
+
+             detalle = extraeDetalle(Data);
+           //  mntpagos   = extraeMntPagos(Data);
+           //  imptoReten = extraeImptoReten(Data);
+            
 
             }
 
-        public List<Detalle> extraeImptoDetalle(String data)
+        public List<Detalle> extraeDetalle(String data)
         {
 
             List<Detalle> deta = new List<Detalle>();
@@ -350,7 +351,7 @@ namespace IatDteBridge
 
             if (L.Length == 0) return null;
 
-            int n = occurs(data, '{');
+            int n = occurs(L, '{');
             int i = 0;
             while (i < n)
             {
@@ -383,6 +384,7 @@ namespace IatDteBridge
                 det.MontoItem = Convert.ToInt32(extraeValorLista(Lin, "MontoItem", 3));
 
                 deta.Add(det);
+                i++;
             }
 
             return deta;
@@ -478,7 +480,7 @@ namespace IatDteBridge
             }
 
             if (start == 4)
-                resultado = data.Substring(pos + Campo.Length + start, posSgteCharJson(data.Substring(pos + Campo.Length + start, data.Length - (pos + Campo.Length + start)), ',') - 1);
+                resultado = data.Substring(pos + Campo.Length + start, posSgteCharJson(data.Substring(pos + Campo.Length + start, data.Length - (pos + Campo.Length + start)), ',') );
             else
             {
                 resultado = data.Substring(pos + Campo.Length + start, posSgteCharJson(data.Substring(pos + Campo.Length + start, data.Length - (pos + Campo.Length + start)), ','));
@@ -502,10 +504,10 @@ namespace IatDteBridge
             }
 
             if (start == 4)
-                resultado = data.Substring(pos + Campo.Length + start, posSgteCharJson(data.Substring(pos + Campo.Length + start, data.Length - (pos + Campo.Length + start)), '\r') - 1);
+                resultado = data.Substring(pos + Campo.Length + start, posSgteCharJson(data.Substring(pos + Campo.Length + start, data.Length - (pos + Campo.Length + start)), '\r') - 2);
             else
             {
-                resultado = data.Substring(pos + Campo.Length + start, posSgteCharJson(data.Substring(pos + Campo.Length + start, data.Length - (pos + Campo.Length + start)), '\r'));
+                resultado = data.Substring(pos + Campo.Length + start, posSgteCharJson(data.Substring(pos + Campo.Length + start, data.Length - (pos + Campo.Length + start)), '\r')-1);
             }
 
             if (resultado.StartsWith("\"")) resultado = String.Empty;
@@ -515,19 +517,21 @@ namespace IatDteBridge
         public int posSgteCharJson(String Data, char busca)
         {
             int i = 0;
-            while (Data[i] != busca)
+            while ((Data[i] != busca) && (i < Data.Length-1))
             {
                 i++;
+                
             }
-            return i - 1;
+            return i;
         }
 
         public int occurs(String Data, char busca)
         {
             int c = 0;
-            for (int i = 0; i == Data.Length; i++)
+            for (int i = 0; i < Data.Length; i++)
             {
-                if (Data[i] == busca) c++;
+                char n = Data[i];
+                if (n == busca) c++;
             }
 
             return c;

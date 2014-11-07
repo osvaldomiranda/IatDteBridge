@@ -213,8 +213,6 @@ namespace IatDteBridge
             X509Certificate2 cert = FuncionesComunes.obtenerCertificado("LUIS BARAHONA MENDOZA");
 
 
-
-
             String signDte = firmarDocumento(documento, cert);
 
 
@@ -229,13 +227,9 @@ namespace IatDteBridge
 
             Console.WriteLine(enviox509);
 
-            StreamWriter file = new StreamWriter(@"C:/IatFiles/file/xml/" + doc.TipoDTE + "_" + doc.Folio + ".xml");
 
-            using (file)
-            {
-                file.WriteLine(enviox509);
-            }
-          
+            System.IO.File.WriteAllText(@"C:/IatFiles/file/xml/" + doc.TipoDTE + "_" + doc.Folio + ".xml", enviox509, Encoding.GetEncoding("ISO-8859-1"));
+
 
             return enviox509;
 
