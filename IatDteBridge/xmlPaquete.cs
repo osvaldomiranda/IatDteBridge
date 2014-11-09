@@ -8,11 +8,9 @@ using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography;
 using System.IO;
 
-
-
 namespace IatDteBridge
 {
-    class xmlAdmin
+    class xmlPaquete
     {
 
         public String doc_to_xmlSii(Documento doc) 
@@ -217,28 +215,13 @@ namespace IatDteBridge
             String signDte = firmarDocumento(documento, cert);
 
 
-            String envio = creaEnvio(signDte, doc.RUTEmisor, doc.RUTRecep, doc.TipoDTE.ToString());
-
-
-            String enviox509 = firmarDocumento(envio, cert);
-
-
-            enviox509 = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + enviox509;
-
-
-            Console.WriteLine(enviox509);
-
-
-            System.IO.File.WriteAllText(@"C:/IatFiles/file/xml/" + doc.TipoDTE + "_" + doc.Folio + ".xml", enviox509, Encoding.GetEncoding("ISO-8859-1"));
-
-
-            return enviox509;
+            return signDte;
 
         }
 
 
 
-        public String creaEnvio(String dte, String rutEmisor, String RutReceptor, String tipo)
+        public String creaEnvio(String dte, String rutEmisor, String RutReceptor, String tipo, int n)
         { 
             
 
@@ -260,7 +243,7 @@ namespace IatDteBridge
             envio_xml += "<TmstFirmaEnv>2014-10-22T22:25:00</TmstFirmaEnv>\r\n";
             envio_xml += "<SubTotDTE>\r\n";
             envio_xml += "<TpoDTE>" + tipo + "</TpoDTE>\r\n";
-            envio_xml += "<NroDTE>1</NroDTE>\r\n";
+            envio_xml += "<NroDTE>"+ n +"</NroDTE>\r\n";
             envio_xml += "</SubTotDTE>\r\n";
             envio_xml += "</Caratula>\r\n";
 
@@ -351,7 +334,7 @@ namespace IatDteBridge
 
 
 
-        public static string firmarDocumento(string documento, X509Certificate2 certificado)
+        public  string firmarDocumento(string documento, X509Certificate2 certificado)
         {
             XmlDocument doc = new XmlDocument();
             doc.PreserveWhitespace = true;
@@ -392,4 +375,6 @@ namespace IatDteBridge
  
        }
     }
+
+    
 }
