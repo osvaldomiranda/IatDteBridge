@@ -14,6 +14,7 @@ namespace IatDteBridge
 
         PingProcess ping = new PingProcess();
         ProcesoIat proc = new ProcesoIat();
+        ProcesoPaquete propack = new ProcesoPaquete();
 
         public FormMain()
         {
@@ -80,6 +81,16 @@ namespace IatDteBridge
         private void FormMain_Load_1(object sender, EventArgs e)
         {
 
+           // proc.StartProcessIat();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            propack.procesoPaquete();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
             proc.StartProcessIat();
         }
 

@@ -300,7 +300,7 @@ namespace IatDteBridge
         [DataMember]
         public string TipoImp { get; set; } //Código del impuesto o retención de acuerdo a la codificación detallada en tabla de códigos (ver Punto 4 del índice). Incluye Retención de Cambio sujeto de Construcción
         [DataMember]
-        public int TasaImp { get; set; } //Se debe indicar la tasa de Impuesto adicional o retención. En el caso de impuesto específicos se puede omitir
+        public float TasaImp { get; set; } //Se debe indicar la tasa de Impuesto adicional o retención. En el caso de impuesto específicos se puede omitir
         [DataMember]
         public int MontoImp { get; set; } // Valor del impuesto o retención asociado al código indicado anteriormente
     }

@@ -15,7 +15,7 @@ namespace IatDteBridge
             while (!_shouldStop)
             {
                 Console.WriteLine("ProcessIat thread: working...");
-                Thread.Sleep(6000);
+                Thread.Sleep(5000);
 
 
                 // Instancia txt_reader

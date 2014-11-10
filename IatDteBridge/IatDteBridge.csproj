@@ -61,6 +61,7 @@
     <Compile Include="fileAdmin.cs" />
     <Compile Include="Iec.cs" />
     <Compile Include="Iev.cs" />
+    <Compile Include="ProcesoPaquete.cs" />
     <Compile Include="Service References\FormAdminCaf.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,14 +91,18 @@
     <Compile Include="Timbre.cs" />
     <Compile Include="xmlAdmin.cs" />
     <Compile Include="TxtReader.cs" />
+    <Compile Include="xmlPaquete.cs" />
     <EmbeddedResource Include="Service References\FormAdminCaf.resx">
       <DependentUpon>FormAdminCaf.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmisor.resx">
       <DependentUpon>FormEmisor.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

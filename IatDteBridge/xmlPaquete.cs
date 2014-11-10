@@ -8,11 +8,9 @@ using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography;
 using System.IO;
 
-
-
 namespace IatDteBridge
 {
-    class xmlAdmin
+    class xmlPaquete
     {
 
         public String doc_to_xmlSii(Documento doc)
@@ -21,17 +19,14 @@ namespace IatDteBridge
             String dte = "<DTE version=\"1.0\">\n" +
                          "<Documento ID=\"F" + doc.Folio + "T" + doc.TipoDTE + "\">\n";
 
-            String indtraslado = "<IndTraslado>" + doc.IndTraslado + "</IndTraslado>\n";
-            if (doc.IndTraslado == 0)
-                indtraslado = "";
-
             String encabezado = "<Encabezado>\n" +
                 "<IdDoc> \n" +
                     "<TipoDTE>" + doc.TipoDTE + "</TipoDTE>\n" +
                     "<Folio>" + doc.Folio + "</Folio> \n" +
                     "<FchEmis>" + doc.FchEmis + "</FchEmis>\n" +
-                    indtraslado +
                 "</IdDoc>\n";
+
+
 
             String emisor = "<Emisor>\n" +
                     "<RUTEmisor>" + doc.RUTEmisor + "</RUTEmisor>\n" +
@@ -53,42 +48,11 @@ namespace IatDteBridge
                     "<CiudadRecep>" + doc.CiudadRecep + "</CiudadRecep>\n" +
                 "</Receptor>\n";
 
-            String impreten = String.Empty;
-            String etimpr1 = "<ImptoReten>\n";
-            String etimpr2 = "</ImptoReten>\n";
-            if (doc.imptoReten != null)
-            {
-
-
-                foreach (var imp in doc.imptoReten)
-                {
-
-                    impreten =
-                    "<TipoImp>" + imp.TipoImp + "</TipoImp>\n" +
-                    "<TasaImp>" + imp.TasaImp + "</TasaImp>\n" +
-                    "<MontoImp>" + imp.MontoImp + "</MontoImp>\n";
-                }
-            }
-            else
-            {
-                impreten = "";
-                etimpr1 = "";
-                etimpr2 = "";
-
-            }
-
-            String tasaiva = "<TasaIVA>" + doc.TasaIVA + "</TasaIVA>\n";
-            if (doc.TasaIVA == 0)
-                tasaiva = "";
-
             String totales = "<Totales>\n" +
                     "<MntNeto>" + doc.MntNeto + "</MntNeto>\n" +
                     "<MntExe>" + doc.MntExe + "</MntExe>\n" +
-                     tasaiva +
+                    "<TasaIVA>" + doc.TasaIVA + "</TasaIVA>\n" +
                     "<IVA>" + doc.IVA + "</IVA>\n" +
-                    etimpr1 +
-                    impreten +
-                    etimpr2 +
                     "<MntTotal>" + doc.MntTotal + "</MntTotal>\n" +
                  "</Totales>\n";
             String finencabezado = "</Encabezado>\n";
@@ -129,7 +93,8 @@ namespace IatDteBridge
                 String descuentomonto = "<DescuentoMonto>" + det.DescuentoMonto + "</DescuentoMonto>\n";
                 if (det.DescuentoMonto == 0)
                     descuentomonto = "";
-                String codimpadic = "<CodImpAdic>" + det.CodImpAdic + "</CodImpAdic>\n";
+
+                String codimpadic = "<CodImpAdic>" + det.CodImpAdic + "</CodImpAdic>";
                 if (det.CodImpAdic == "")
                     codimpadic = "";
 
@@ -142,7 +107,7 @@ namespace IatDteBridge
                 "<VlrCodigo>" + det.VlrCodigo + "</VlrCodigo>\n" +
                 "</CdgItem>\n" +
                 indexe +
-                "<NmbItem>" + det.NmbItem + "</NmbItem>\n" +
+                "<NmbItem>" + nmbItem + "</NmbItem>\n" +
                  dscitem +
                  qtyitem +
                  prcitem +
@@ -153,7 +118,7 @@ namespace IatDteBridge
                 "</Detalle>\n";
 
                 documento = documento + detalle;
-                if (i == 0) firstNmbItem = det.NmbItem;
+                if (i == 0) firstNmbItem = nmbItem;
                 i++;
             }
 
@@ -214,7 +179,6 @@ namespace IatDteBridge
 
             String inicioTed = "<TED version=\"1.0\">\r\n";
             // nodo DD
-            String ampersan = firstNmbItem.Replace("&","&amp;");
             String dd = "<DD>" +
                     "<RE>" + doc.RUTEmisor + "</RE>" +
                     "<TD>" + doc.TipoDTE + "</TD>" +
@@ -224,12 +188,15 @@ namespace IatDteBridge
                     "<RSR>" + doc.RznSocRecep + "</RSR>" +
                     "<MNT>" + doc.MntTotal + "</MNT>" +
 
-                    "<IT1>" + ampersan + "</IT1>" +
+                    "<IT1>" + firstNmbItem + "</IT1>" +
 
-                    getXmlFolio("CAF") +
+                    getXmlFolio("CAF",doc.TipoDTE) +
 
                     "<TSTED>" + fch + "</TSTED>" +
                 "</DD>";
+
+
+
 
 
 
@@ -247,30 +214,17 @@ namespace IatDteBridge
             X509Certificate2 cert = FuncionesComunes.obtenerCertificado("LUIS BARAHONA MENDOZA");
 
 
+
             String signDte = firmarDocumento(documento, cert);
 
 
-            String envio = creaEnvio(signDte, doc.RUTEmisor, doc.RUTRecep, doc.TipoDTE.ToString());
-
-            String enviox509 = firmarDocumento(envio, cert);
-
-            enviox509 = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + enviox509;
-
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:/IatFiles/file/xml/" + doc.TipoDTE + "_" + doc.Folio + ".xml", false,Encoding.GetEncoding("ISO-8859-1")))
-
-            
-            {
-                file.WriteLine(enviox509);
-            }
-
-
-            return enviox509;
+            return signDte;
 
         }
 
 
 
-        public String creaEnvio(String dte, String rutEmisor, String RutReceptor, String tipo)
+        public String creaEnvio(String dte, String rutEmisor, String RutReceptor, String tipo, int n)
         {
 
 
@@ -290,9 +244,22 @@ namespace IatDteBridge
             //***********************
 
             envio_xml += "<TmstFirmaEnv>2014-10-22T22:25:00</TmstFirmaEnv>\r\n";
-            envio_xml += "<SubTotDTE>\r\n";
-            envio_xml += "<TpoDTE>" + tipo + "</TpoDTE>\r\n";
+                //envio_xml += "<SubTotDTE>\r\n";
+                //envio_xml += "<TpoDTE>" + tipo + "</TpoDTE>\r\n";
+//******************************************ESTOS DATOS ESTAN EN DURO ******************************************************
+            /*envio_xml += "<SubTotDTE>\r\n";
+            envio_xml += "<TpoDTE>56</TpoDTE>\r\n";
             envio_xml += "<NroDTE>1</NroDTE>\r\n";
+            envio_xml += "</SubTotDTE>\r\n";*/
+            envio_xml += "<SubTotDTE>\r\n";
+            envio_xml += "<TpoDTE>33</TpoDTE>\r\n";
+            envio_xml += "<NroDTE>1</NroDTE>\r\n";
+          // envio_xml += "</SubTotDTE>\r\n";
+          //  envio_xml += "<SubTotDTE>\r\n";
+          //envio_xml += "<TpoDTE>33</TpoDTE>\r\n";
+          //  envio_xml += "<NroDTE>4</NroDTE>\r\n";
+//*************************************************************************************************************************
+            //envio_xml += "<NroDTE>"+ n +"</NroDTE>\r\n";
             envio_xml += "</SubTotDTE>\r\n";
             envio_xml += "</Caratula>\r\n";
 
@@ -310,8 +277,8 @@ namespace IatDteBridge
         public String firmaNodoDD(String DD)
         {
 
-          
-            string pk = getXmlFolio("RSA");
+
+            string pk = getXmlFolio("RSA",0);
 
             Encoding ByteConverter = Encoding.GetEncoding("ISO-8859-1");
 
@@ -328,7 +295,7 @@ namespace IatDteBridge
         }
 
 
-        public String getXmlFolio(String nodo)
+        public String getXmlFolio(String nodo, int tipo)
         {
 
             string nodoValue = string.Empty;
@@ -338,24 +305,21 @@ namespace IatDteBridge
             string line = string.Empty;
             bool cafline = false;
             bool rsaline = false;
-         /*   Documento docu = new Documento();
-            int tipo = Convert.ToInt32(docu.TipoDTE);
-            string xmlCaf = String.Empty;*/
-
             try
             {
                 //TO DO : falta tomar el nombre del archivo de una variable global
-                /*    switch (tipo)
-                    {
-                        case 33: xmlCaf = @"C:\IatFiles\cafs\factura\FoliosSII7739857033120141081332.xml";
-                            break;
-                        case 61: xmlCaf = @"C:\IatFiles\cafs\NotaCredito\FoliosSII7739857061120141014158.xml";
-                            break;
-                        case 56: xmlCaf = @"C:\IatFiles\cafs\NotaDebito\FoliosSII77398570561201410141944.xml";
-                            break;
-                        case 52: xmlCaf = @"C:\IatFiles\cafs\Guia\FoliosSII7739857052120141110175.xml";
-                    }*/
-
+//********************************************************** FALTA PROBAR ********************************************************
+              /*  switch (tipo)
+                {
+                    case 33: xmlCaf = @"C:\IatFiles\cafs\factura\FoliosSII7739857033120141081332.xml";
+                        break;
+                    case 61: xmlCaf = @"C:\IatFiles\cafs\NotaCredito\FoliosSII7739857061120141014158.xml";
+                        break;
+                    case 56: xmlCaf = @"C:\IatFiles\cafs\NotaDebito\FoliosSII77398570561201410141944.xml";
+                        break;
+                }*/
+                
+ //***********************************************************************************************************************************               
 
                 using (StreamReader sr = new StreamReader(@"C:\IatFiles\cafs\factura\FoliosSII7739857033120141081332.xml"))
                 {
@@ -397,18 +361,12 @@ namespace IatDteBridge
 
 
 
-        public static string firmarDocumento(string documento, X509Certificate2 certificado)
+        public string firmarDocumento(string documento, X509Certificate2 certificado)
         {
             XmlDocument doc = new XmlDocument();
             doc.PreserveWhitespace = true;
-            String documento2 = documento;
-           /* int s1 = documento.IndexOf("&amp;");
-            if (s1 == -1)
-            {
-                documento2 = documento.Replace("&", "&amp;");
-                Console.WriteLine(s1);
-            }*/
             doc.LoadXml(documento);
+
             SignedXml signedXml = new SignedXml(doc);
 
             signedXml.SigningKey = certificado.PrivateKey;
@@ -444,4 +402,6 @@ namespace IatDteBridge
 
         }
     }
+
+
 }

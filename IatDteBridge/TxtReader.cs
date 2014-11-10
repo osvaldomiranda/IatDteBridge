@@ -26,16 +26,19 @@ namespace IatDteBridge
             if (fileName != null)
             {
                 //Paso la ruta del fichero al constructor 
-                StreamReader objReader = new StreamReader(fileName);
+                StreamReader objReader = new StreamReader(fileName,System.Text.Encoding.Default,true);
+                objReader.ToString();
                 String data = objReader.ReadToEnd();
-
-
+        
                 DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(Documento));
-              //  MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(data));
-               // MemoryStream ms = new MemoryStream(System.Text.ASCIIEncoding.ASCII.GetBytes(data)); // ESTE CODIGO OCUPE
-           
-                Encoding iso = Encoding.GetEncoding("iso8859-1");
-                MemoryStream ms = new MemoryStream(iso.GetBytes(data));
+                
+               //MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(data));
+                MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(data));
+                // MemoryStream ms = new MemoryStream(System.Text.ASCIIEncoding.ASCII.GetBytes(data)); // ESTE CODIGO OCUPE
+
+
+                //Encoding iso = Encoding.GetEncoding("ISO-8859-1"); 
+               //MemoryStream ms = new MemoryStream(iso.GetBytes(data));
 
                 try
                 {
