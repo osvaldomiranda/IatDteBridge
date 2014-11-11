@@ -201,7 +201,7 @@ namespace IatDteBridge
 
 
 
-            String firma = "<FRMT algoritmo=\"SHA1withRSA\">" + firmaNodoDD(dd) + "</FRMT>\r\n";
+            String firma = "<FRMT algoritmo=\"SHA1withRSA\">" + firmaNodoDD(dd, doc.TipoDTE) + "</FRMT>\r\n";
             String finTed = "</TED>\r\n";
 
             String fechaFirma = "<TmstFirma>" + fch + "</TmstFirma>\r\n";
@@ -274,11 +274,11 @@ namespace IatDteBridge
         }
 
 
-        public String firmaNodoDD(String DD)
+        public String firmaNodoDD(String DD, int tipoDte)
         {
 
 
-            string pk = getXmlFolio("RSA",0);
+            string pk = getXmlFolio("RSA",tipoDte);
 
             Encoding ByteConverter = Encoding.GetEncoding("ISO-8859-1");
 
@@ -301,6 +301,7 @@ namespace IatDteBridge
             string nodoValue = string.Empty;
 
             string caf = string.Empty;
+            string xmlCaf = string.Empty;
             string rsa = string.Empty;
             string line = string.Empty;
             bool cafline = false;
@@ -309,7 +310,7 @@ namespace IatDteBridge
             {
                 //TO DO : falta tomar el nombre del archivo de una variable global
 //********************************************************** FALTA PROBAR ********************************************************
-              /*  switch (tipo)
+                switch (tipo)
                 {
                     case 33: xmlCaf = @"C:\IatFiles\cafs\factura\FoliosSII7739857033120141081332.xml";
                         break;
@@ -317,7 +318,7 @@ namespace IatDteBridge
                         break;
                     case 56: xmlCaf = @"C:\IatFiles\cafs\NotaDebito\FoliosSII77398570561201410141944.xml";
                         break;
-                }*/
+                }
                 
  //***********************************************************************************************************************************               
 
