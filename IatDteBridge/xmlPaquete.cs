@@ -19,7 +19,7 @@ namespace IatDteBridge
             String dte = "<DTE version=\"1.0\">\n" +
                          "<Documento ID=\"F" + doc.Folio + "T" + doc.TipoDTE + "\">\n";
 
-            String tipodespacho = "<IndTraslado>" + doc.TipoDespacho + "</IndTraslado>\n";
+            String tipodespacho = "<TipoDespacho>" + doc.TipoDespacho + "</TipoDespacho>\n";
             if (doc.TipoDespacho == 0)
                 tipodespacho = "";
 
@@ -57,13 +57,53 @@ namespace IatDteBridge
                     "<CmnaRecep>" + doc.CmnaRecep + "</CmnaRecep>\n" +
                     "<CiudadRecep>" + doc.CiudadRecep + "</CiudadRecep>\n" +
                 "</Receptor>\n";
+            
+            String impreten = String.Empty;
+            String etimpr1 = "<ImptoReten>\n";
+            String etimpr2 = "</ImptoReten>\n";
+            if (doc.imptoReten != null)
+            {
+
+
+                foreach (var imp in doc.imptoReten)
+                {
+
+                    impreten =
+                    "<TipoImp>" + imp.TipoImp + "</TipoImp>\n" +
+                    "<TasaImp>" + imp.TasaImp + "</TasaImp>\n" +
+                    "<MontoImp>" + imp.MontoImp + "</MontoImp>\n";
+                }
+            }
+            else
+            {
+                impreten = "";
+                etimpr1 = "";
+                etimpr2 = "";
+
+            }
+
+            String mntneto = "<MntNeto>" + doc.MntNeto + "</MntNeto>\n";
+            if (doc.MntNeto == 0)
+                mntneto = "";
+            String mntexe = "<MntExe>" + doc.MntExe + "</MntExe>\n";
+            if (doc.MntExe == 0)
+                mntexe = "";
+            String tasaiva = "<TasaIVA>" + doc.TasaIVA + "</TasaIVA>\n";
+            if (doc.TasaIVA == 0)
+                tasaiva = "";
+            String iva = "<IVA>" + doc.IVA + "</IVA>\n";
+            if (doc.IVA == 0)
+                iva = "";
 
             String totales = "<Totales>\n" +
-                    "<MntNeto>" + doc.MntNeto + "</MntNeto>\n" +
-                    "<MntExe>" + doc.MntExe + "</MntExe>\n" +
-                    "<TasaIVA>" + doc.TasaIVA + "</TasaIVA>\n" +
-                    "<IVA>" + doc.IVA + "</IVA>\n" +
-                    "<MntTotal>" + doc.MntTotal + "</MntTotal>\n" +
+                     mntneto +
+                     mntexe +
+                     tasaiva+
+                     iva +
+                     etimpr1 +
+                    impreten +
+                    etimpr2 +
+                     "<MntTotal>" + doc.MntTotal + "</MntTotal>\n"+
                  "</Totales>\n";
             String finencabezado = "</Encabezado>\n";
 
@@ -104,7 +144,7 @@ namespace IatDteBridge
                 if (det.DescuentoMonto == 0)
                     descuentomonto = "";
 
-                String codimpadic = "<CodImpAdic>" + det.CodImpAdic + "</CodImpAdic>";
+                String codimpadic = "<CodImpAdic>" + det.CodImpAdic + "</CodImpAdic>\n";
                 if (det.CodImpAdic == "")
                     codimpadic = "";
 
@@ -258,6 +298,7 @@ namespace IatDteBridge
                 //envio_xml += "<SubTotDTE>\r\n";
                 //envio_xml += "<TpoDTE>" + tipo + "</TpoDTE>\r\n";
 //******************************************ESTOS DATOS ESTAN EN DURO ******************************************************
+<<<<<<< HEAD
 
             int tipo56 = 0,
             tipo33 = 0,
@@ -326,6 +367,22 @@ namespace IatDteBridge
             }
 
             
+=======
+            envio_xml += "<SubTotDTE>\r\n";
+            envio_xml += "<TpoDTE>33</TpoDTE>\r\n";
+            envio_xml += "<NroDTE>1</NroDTE>\r\n";
+           /* envio_xml += "</SubTotDTE>\r\n";
+            envio_xml += "<SubTotDTE>\r\n";
+            envio_xml += "<TpoDTE>33</TpoDTE>\r\n";
+            envio_xml += "<NroDTE>4</NroDTE>\r\n";
+            envio_xml += "</SubTotDTE>\r\n";
+            envio_xml += "<SubTotDTE>\r\n";
+           envio_xml += "<TpoDTE>61</TpoDTE>\r\n";
+           envio_xml += "<NroDTE>3</NroDTE>\r\n";*/
+//*************************************************************************************************************************
+            //envio_xml += "<NroDTE>"+ n +"</NroDTE>\r\n";
+            envio_xml += "</SubTotDTE>\r\n";
+>>>>>>> Mauricio
             envio_xml += "</Caratula>\r\n";
 
             envio_xml += dte;
@@ -382,6 +439,10 @@ namespace IatDteBridge
                     case 61: xmlCaf = @"C:\IatFiles\cafs\NotaCredito\FoliosSII7739857061120141014158.xml";
                         break;
                     case 56: xmlCaf = @"C:\IatFiles\cafs\NotaDebito\FoliosSII77398570561201410141944.xml";
+                        break;
+                    case 52: xmlCaf = @"C:\IatFiles\cafs\Guia\FoliosSII7739857052120141110175.xml";
+                        break;
+                    case 34: xmlCaf = @"C:\IatFiles\cafs\FacturaExenta\FoliosSII77398570341201411111345.xml";
                         break;
                 }
                 
