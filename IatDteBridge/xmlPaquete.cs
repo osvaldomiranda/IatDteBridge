@@ -234,8 +234,9 @@ namespace IatDteBridge
 
 
 
-        public String creaEnvio(String dte, String rutEmisor, String RutReceptor, String tipo, int n)
+        public String creaEnvio(String dte, String rutEmisor, String RutReceptor, List<int> tipos)
         {
+
 
 
             String envio_xml = "<EnvioDTE xmlns=\"http://www.sii.cl/SiiDte\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sii.cl/SiiDte EnvioDTE_v10.xsd\" version=\"1.0\">\r\n";
@@ -257,20 +258,60 @@ namespace IatDteBridge
                 //envio_xml += "<SubTotDTE>\r\n";
                 //envio_xml += "<TpoDTE>" + tipo + "</TpoDTE>\r\n";
 //******************************************ESTOS DATOS ESTAN EN DURO ******************************************************
-            envio_xml += "<SubTotDTE>\r\n";
-            envio_xml += "<TpoDTE>56</TpoDTE>\r\n";
-            envio_xml += "<NroDTE>1</NroDTE>\r\n";
-            envio_xml += "</SubTotDTE>\r\n";
-            envio_xml += "<SubTotDTE>\r\n";
-            envio_xml += "<TpoDTE>33</TpoDTE>\r\n";
-            envio_xml += "<NroDTE>4</NroDTE>\r\n";
-            envio_xml += "</SubTotDTE>\r\n";
-            envio_xml += "<SubTotDTE>\r\n";
-           envio_xml += "<TpoDTE>61</TpoDTE>\r\n";
-           envio_xml += "<NroDTE>3</NroDTE>\r\n";
-//*************************************************************************************************************************
-            //envio_xml += "<NroDTE>"+ n +"</NroDTE>\r\n";
-            envio_xml += "</SubTotDTE>\r\n";
+
+            int tipo56 = 0,
+            tipo33 = 0,
+            tipo61 = 0,
+            tipo52 = 0,
+            tipo34 = 0;
+
+            foreach (int tipo in tipos)
+            {
+            }
+
+
+
+            if (tipo56 > 0)
+            {
+                envio_xml += "<SubTotDTE>\r\n";
+                envio_xml += "<TpoDTE>56</TpoDTE>\r\n";
+                envio_xml += "<NroDTE>" + tipo56 + "</NroDTE>\r\n";
+                envio_xml += "</SubTotDTE>\r\n";
+            }
+
+            if (tipo52 > 0)
+            {
+                envio_xml += "<SubTotDTE>\r\n";
+                envio_xml += "<TpoDTE>56</TpoDTE>\r\n";
+                envio_xml += "<NroDTE>" + tipo56 + "</NroDTE>\r\n";
+                envio_xml += "</SubTotDTE>\r\n";
+            }
+
+            if (tipo61 > 0)
+            {
+                envio_xml += "<SubTotDTE>\r\n";
+                envio_xml += "<TpoDTE>61</TpoDTE>\r\n";
+                envio_xml += "<NroDTE>" + tipo61 + "</NroDTE>\r\n";
+                envio_xml += "</SubTotDTE>\r\n";
+            }
+
+            if (tipo33 > 0)
+            {
+                envio_xml += "<SubTotDTE>\r\n";
+                envio_xml += "<TpoDTE>33</TpoDTE>\r\n";
+                envio_xml += "<NroDTE>" + tipo33 + "</NroDTE>\r\n";
+                envio_xml += "</SubTotDTE>\r\n";
+            }
+
+            if (tipo34 > 0)
+            {
+                envio_xml += "<SubTotDTE>\r\n";
+                envio_xml += "<TpoDTE>33</TpoDTE>\r\n";
+                envio_xml += "<NroDTE>" + tipo33 + "</NroDTE>\r\n";
+                envio_xml += "</SubTotDTE>\r\n";
+            }
+
+            
             envio_xml += "</Caratula>\r\n";
 
             envio_xml += dte;

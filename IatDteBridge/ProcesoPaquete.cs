@@ -12,7 +12,7 @@ namespace IatDteBridge
     {
         public void procesoPaquete()
         {
-                int i=0;
+                
                 String paquete = String.Empty;
 
                 // inatancia txt_reader
@@ -25,10 +25,14 @@ namespace IatDteBridge
                 // instancia XML_admin
                 xmlPaquete xml = new xmlPaquete();
 
+                List<int> tipos = new List<int>();
+
                 while (docLectura != null)
                 {
 
-                    
+
+                    tipos.Add(docLectura.TipoDTE);
+
                     String docXmlSign = xml.doc_to_xmlSii(docLectura);
 
                     // Agrega el DTE timbrado al paquete
@@ -36,13 +40,13 @@ namespace IatDteBridge
 
                     //Sgte Documento
                     docLectura = lec.lectura();
-                    i++;
+                    
                 }
                 
 
 
                 // Firma POaquete    
-                String envio = xml.creaEnvio(paquete, "77398570-7", "", "33",i);
+                String envio = xml.creaEnvio(paquete, "77398570-7", "", tipos);
 
 
                 X509Certificate2 cert = FuncionesComunes.obtenerCertificado("LUIS BARAHONA MENDOZA");
