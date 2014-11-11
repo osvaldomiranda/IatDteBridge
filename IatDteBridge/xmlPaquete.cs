@@ -267,6 +267,20 @@ namespace IatDteBridge
 
             foreach (int tipo in tipos)
             {
+                switch (tipo)
+                {
+                    case 56: tipo33++;
+                    break;
+                    case 33: tipo33++;
+                    break;
+                    case 61: tipo61++;
+                    break;
+                    case 52: tipo52++;
+                    break;
+                    case 34: tipo34++;
+                    break;
+                   
+                }
             }
 
 
