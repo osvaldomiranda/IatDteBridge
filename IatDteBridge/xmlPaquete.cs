@@ -19,11 +19,21 @@ namespace IatDteBridge
             String dte = "<DTE version=\"1.0\">\n" +
                          "<Documento ID=\"F" + doc.Folio + "T" + doc.TipoDTE + "\">\n";
 
+            String tipodespacho = "<IndTraslado>" + doc.TipoDespacho + "</IndTraslado>\n";
+            if (doc.TipoDespacho == 0)
+                tipodespacho = "";
+
+            String indtraslado = "<IndTraslado>" + doc.IndTraslado + "</IndTraslado>\n";
+            if (doc.IndTraslado == 0)
+                indtraslado = "";
+
             String encabezado = "<Encabezado>\n" +
                 "<IdDoc> \n" +
                     "<TipoDTE>" + doc.TipoDTE + "</TipoDTE>\n" +
                     "<Folio>" + doc.Folio + "</Folio> \n" +
                     "<FchEmis>" + doc.FchEmis + "</FchEmis>\n" +
+                    tipodespacho +
+                    indtraslado +
                 "</IdDoc>\n";
 
 
@@ -247,17 +257,17 @@ namespace IatDteBridge
                 //envio_xml += "<SubTotDTE>\r\n";
                 //envio_xml += "<TpoDTE>" + tipo + "</TpoDTE>\r\n";
 //******************************************ESTOS DATOS ESTAN EN DURO ******************************************************
-            /*envio_xml += "<SubTotDTE>\r\n";
+            envio_xml += "<SubTotDTE>\r\n";
             envio_xml += "<TpoDTE>56</TpoDTE>\r\n";
             envio_xml += "<NroDTE>1</NroDTE>\r\n";
-            envio_xml += "</SubTotDTE>\r\n";*/
+            envio_xml += "</SubTotDTE>\r\n";
             envio_xml += "<SubTotDTE>\r\n";
             envio_xml += "<TpoDTE>33</TpoDTE>\r\n";
-            envio_xml += "<NroDTE>1</NroDTE>\r\n";
-          // envio_xml += "</SubTotDTE>\r\n";
-          //  envio_xml += "<SubTotDTE>\r\n";
-          //envio_xml += "<TpoDTE>33</TpoDTE>\r\n";
-          //  envio_xml += "<NroDTE>4</NroDTE>\r\n";
+            envio_xml += "<NroDTE>4</NroDTE>\r\n";
+            envio_xml += "</SubTotDTE>\r\n";
+            envio_xml += "<SubTotDTE>\r\n";
+           envio_xml += "<TpoDTE>61</TpoDTE>\r\n";
+           envio_xml += "<NroDTE>3</NroDTE>\r\n";
 //*************************************************************************************************************************
             //envio_xml += "<NroDTE>"+ n +"</NroDTE>\r\n";
             envio_xml += "</SubTotDTE>\r\n";
@@ -322,7 +332,7 @@ namespace IatDteBridge
                 
  //***********************************************************************************************************************************               
 
-                using (StreamReader sr = new StreamReader(@"C:\IatFiles\cafs\factura\FoliosSII7739857033120141081332.xml"))
+                using (StreamReader sr = new StreamReader(xmlCaf))
                 {
 
                     while ((line = sr.ReadLine()) != null)
