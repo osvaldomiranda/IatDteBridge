@@ -121,12 +121,15 @@ namespace IatDteBridge
                 String indexe = "<IndExe>" + det.IndExe + "</IndExe>\n";
                 if (det.IndExe == "0")
                     indexe = "";
-                String dscitem = "<DscItem>" + det.DscItem + "</DscItem>\n";
-                if (det.DscItem == "")
-                    dscitem = "";
+
                 String qtyitem = "<QtyItem>" + det.QtyItem + "</QtyItem>\n";
                 if (det.QtyItem == 0)
                     qtyitem = "";
+
+                String unmditem = "<UnmdItem>" + det.UnmdItem + "</UnmdItem>\n";
+                if (det.UnmdItem == "")
+                    unmditem = "";
+
                 String prcitem = "<PrcItem>" + det.PrcItem + "</PrcItem>\n";
                 if (det.PrcItem == 0)
                     prcitem = "";
@@ -150,6 +153,8 @@ namespace IatDteBridge
 
                 String nmbItem = det.NmbItem.Replace("&", "&amp;");
 
+ 
+
                 detalle = "<Detalle>\n" +
                 "<NroLinDet>" + det.NroLinDet + "</NroLinDet>\n" +
                 "<CdgItem>\n" +
@@ -158,8 +163,8 @@ namespace IatDteBridge
                 "</CdgItem>\n" +
                 indexe +
                 "<NmbItem>" + nmbItem + "</NmbItem>\n" +
-                 dscitem +
                  qtyitem +
+                 unmditem +
                  prcitem +
                  descuentopct +
                  descuentomonto +
@@ -298,7 +303,7 @@ namespace IatDteBridge
                 //envio_xml += "<SubTotDTE>\r\n";
                 //envio_xml += "<TpoDTE>" + tipo + "</TpoDTE>\r\n";
 //******************************************ESTOS DATOS ESTAN EN DURO ******************************************************
-<<<<<<< HEAD
+
 
             int tipo56 = 0,
             tipo33 = 0,
@@ -337,7 +342,7 @@ namespace IatDteBridge
             if (tipo52 > 0)
             {
                 envio_xml += "<SubTotDTE>\r\n";
-                envio_xml += "<TpoDTE>56</TpoDTE>\r\n";
+                envio_xml += "<TpoDTE>52</TpoDTE>\r\n";
                 envio_xml += "<NroDTE>" + tipo52 + "</NroDTE>\r\n";
                 envio_xml += "</SubTotDTE>\r\n";
             }
@@ -361,28 +366,13 @@ namespace IatDteBridge
             if (tipo34 > 0)
             {
                 envio_xml += "<SubTotDTE>\r\n";
-                envio_xml += "<TpoDTE>33</TpoDTE>\r\n";
+                envio_xml += "<TpoDTE>34</TpoDTE>\r\n";
                 envio_xml += "<NroDTE>" + tipo34 + "</NroDTE>\r\n";
                 envio_xml += "</SubTotDTE>\r\n";
             }
 
             
-=======
-            envio_xml += "<SubTotDTE>\r\n";
-            envio_xml += "<TpoDTE>33</TpoDTE>\r\n";
-            envio_xml += "<NroDTE>1</NroDTE>\r\n";
-           /* envio_xml += "</SubTotDTE>\r\n";
-            envio_xml += "<SubTotDTE>\r\n";
-            envio_xml += "<TpoDTE>33</TpoDTE>\r\n";
-            envio_xml += "<NroDTE>4</NroDTE>\r\n";
-            envio_xml += "</SubTotDTE>\r\n";
-            envio_xml += "<SubTotDTE>\r\n";
-           envio_xml += "<TpoDTE>61</TpoDTE>\r\n";
-           envio_xml += "<NroDTE>3</NroDTE>\r\n";*/
-//*************************************************************************************************************************
-            //envio_xml += "<NroDTE>"+ n +"</NroDTE>\r\n";
-            envio_xml += "</SubTotDTE>\r\n";
->>>>>>> Mauricio
+
             envio_xml += "</Caratula>\r\n";
 
             envio_xml += dte;
