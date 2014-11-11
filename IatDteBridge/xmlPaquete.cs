@@ -297,7 +297,7 @@ namespace IatDteBridge
             {
                 envio_xml += "<SubTotDTE>\r\n";
                 envio_xml += "<TpoDTE>56</TpoDTE>\r\n";
-                envio_xml += "<NroDTE>" + tipo56 + "</NroDTE>\r\n";
+                envio_xml += "<NroDTE>" + tipo52 + "</NroDTE>\r\n";
                 envio_xml += "</SubTotDTE>\r\n";
             }
 
@@ -321,7 +321,7 @@ namespace IatDteBridge
             {
                 envio_xml += "<SubTotDTE>\r\n";
                 envio_xml += "<TpoDTE>33</TpoDTE>\r\n";
-                envio_xml += "<NroDTE>" + tipo33 + "</NroDTE>\r\n";
+                envio_xml += "<NroDTE>" + tipo34 + "</NroDTE>\r\n";
                 envio_xml += "</SubTotDTE>\r\n";
             }
 
