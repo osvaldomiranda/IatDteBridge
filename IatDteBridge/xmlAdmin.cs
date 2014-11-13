@@ -166,12 +166,28 @@ namespace IatDteBridge
 
                 foreach (var desglo in doc.dscRcgGlobal)
                 {
+                    String nrolindr = "<NroLinDR>" + desglo.NroLinDR + "</NroLinDR>\n";
+                    if (desglo.NroLinDR == 0)
+                        nrolindr = "";
+                    String tpomov = "<TpoMov>" + desglo.TpoMov + "</TpoMov>\n";
+                    if (desglo.TpoMov == "")
+                        tpomov = "";
+                    String glosadr = "<GlosaDR>" + desglo.GlosaDR + "</GlosaDR>\n";
+                    if (desglo.GlosaDR == "")
+                        glosadr = "";
+                    String tpovalor = "<TpoValor>" + desglo.TpoValor + "</TpoValor>\n";
+                    if (desglo.TpoValor == "")
+                        tpovalor = "";
+                    String valordr = "<ValorDR>" + desglo.ValorDR + "</ValorDR>\n";
+                    if (desglo.ValorDR == 0)
+                        valordr = "";
+
                     descuentoglobal = "<DscRcgGlobal>\n" +
-                        "<NroLinDR>" + desglo.NroLinDR + "</NroLinDR>\n" +
-                        "<TpoMov>" + desglo.TpoMov + "</TpoMov>\n" +
-                        "<GlosaDR>" + desglo.GlosaDR + "</GlosaDR>\n" +
-                         "<TpoValor>" + desglo.TpoValor + "</TpoValor>\n" +
-                        "<ValorDR>" + desglo.ValorDR + "</ValorDR>\n" +
+                        nrolindr +
+                        tpomov +
+                        glosadr +
+                        tpovalor +
+                        valordr +
                         "</DscRcgGlobal>\n";
 
                     documento = documento + descuentoglobal;
@@ -214,7 +230,7 @@ namespace IatDteBridge
 
             String inicioTed = "<TED version=\"1.0\">\r\n";
             // nodo DD
-            String ampersan = firstNmbItem.Replace("&","&amp;");
+            String ampersan = firstNmbItem.Replace("&", "&amp;");
             String dd = "<DD>" +
                     "<RE>" + doc.RUTEmisor + "</RE>" +
                     "<TD>" + doc.TipoDTE + "</TD>" +
@@ -256,9 +272,7 @@ namespace IatDteBridge
 
             enviox509 = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + enviox509;
 
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:/IatFiles/file/xml/" + doc.TipoDTE + "_" + doc.Folio + ".xml", false,Encoding.GetEncoding("ISO-8859-1")))
-
-            
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:/IatFiles/file/xml/" + doc.TipoDTE + "_" + doc.Folio + ".xml", false, Encoding.GetEncoding("ISO-8859-1")))
             {
                 file.WriteLine(enviox509);
             }
@@ -310,7 +324,7 @@ namespace IatDteBridge
         public String firmaNodoDD(String DD)
         {
 
-          
+
             string pk = getXmlFolio("RSA");
 
             Encoding ByteConverter = Encoding.GetEncoding("ISO-8859-1");
@@ -338,9 +352,9 @@ namespace IatDteBridge
             string line = string.Empty;
             bool cafline = false;
             bool rsaline = false;
-         /*   Documento docu = new Documento();
-            int tipo = Convert.ToInt32(docu.TipoDTE);
-            string xmlCaf = String.Empty;*/
+            /*   Documento docu = new Documento();
+               int tipo = Convert.ToInt32(docu.TipoDTE);
+               string xmlCaf = String.Empty;*/
 
             try
             {
@@ -402,12 +416,12 @@ namespace IatDteBridge
             XmlDocument doc = new XmlDocument();
             doc.PreserveWhitespace = true;
             String documento2 = documento;
-           /* int s1 = documento.IndexOf("&amp;");
-            if (s1 == -1)
-            {
-                documento2 = documento.Replace("&", "&amp;");
-                Console.WriteLine(s1);
-            }*/
+            /* int s1 = documento.IndexOf("&amp;");
+             if (s1 == -1)
+             {
+                 documento2 = documento.Replace("&", "&amp;");
+                 Console.WriteLine(s1);
+             }*/
             doc.LoadXml(documento);
             SignedXml signedXml = new SignedXml(doc);
 

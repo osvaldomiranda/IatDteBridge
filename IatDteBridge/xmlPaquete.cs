@@ -179,20 +179,36 @@ namespace IatDteBridge
 
             // for para crear descuento global y agregarlas al documento
 
-            String descuentoglobal;
-            if (doc.dscRcgGlobal == null)
-                descuentoglobal = "";
-            else
+            String descuentoglobal = String.Empty;
+
 
                 foreach (var desglo in doc.dscRcgGlobal)
                 {
+                    String nrolindr = "<NroLinDR>" + desglo.NroLinDR + "</NroLinDR>\n";
+                    if (desglo.NroLinDR == 0)
+                       nrolindr = "";
+                    String tpomov = "<TpoMov>" + desglo.TpoMov + "</TpoMov>\n";
+                    if (desglo.TpoMov == "")
+                        tpomov = "";
+                    String glosadr = "<GlosaDR>" + desglo.GlosaDR + "</GlosaDR>\n";
+                    if (desglo.GlosaDR == "")
+                        glosadr = "";
+                    String tpovalor = "<TpoValor>" + desglo.TpoValor + "</TpoValor>\n";
+                    if (desglo.TpoValor == "")
+                        tpovalor = "";
+                    String valordr = "<ValorDR>" + desglo.ValorDR + "</ValorDR>\n";
+                    if (desglo.ValorDR == 0)
+                        valordr = "";
+
                     descuentoglobal = "<DscRcgGlobal>\n" +
-                        "<NroLinDR>" + desglo.NroLinDR + "</NroLinDR>\n" +
-                        "<TpoMov>" + desglo.TpoMov + "</TpoMov>\n" +
-                        "<GlosaDR>" + desglo.GlosaDR + "</GlosaDR>\n" +
-                         "<TpoValor>" + desglo.TpoValor + "</TpoValor>\n" +
-                        "<ValorDR>" + desglo.ValorDR + "</ValorDR>\n" +
+                        nrolindr +
+                        tpomov +
+                        glosadr +
+                        tpovalor +
+                        valordr +
                         "</DscRcgGlobal>\n";
+                    if (desglo.NroLinDR == 0)
+                        descuentoglobal = "";
 
                     documento = documento + descuentoglobal;
                 }
@@ -315,7 +331,7 @@ namespace IatDteBridge
             {
                 switch (tipo)
                 {
-                    case 56: tipo33++;
+                    case 56: tipo56++;
                     break;
                     case 33: tipo33++;
                     break;
@@ -424,7 +440,7 @@ namespace IatDteBridge
 //********************************************************** FALTA PROBAR ********************************************************
                 switch (tipo)
                 {
-                    case 33: xmlCaf = @"C:\IatFiles\cafs\factura\FoliosSII7739857033120141081332.xml";
+                    case 33: xmlCaf = @"C:\IatFiles\cafs\factura\FoliosSII7739857033101201411121753.xml";
                         break;
                     case 61: xmlCaf = @"C:\IatFiles\cafs\NotaCredito\FoliosSII7739857061120141014158.xml";
                         break;
