@@ -67,10 +67,13 @@ namespace IatDteBridge
 
                 foreach (var imp in doc.imptoReten)
                 {
+                    String tasaimp = "<TasaImp>" + imp.TasaImp + "</TasaImp>\n";
+                    if (imp.TasaImp == 0)
+                        tasaimp = "";
 
                     impreten =
                     "<TipoImp>" + imp.TipoImp + "</TipoImp>\n" +
-                    "<TasaImp>" + imp.TasaImp + "</TasaImp>\n" +
+                    tasaimp +
                     "<MontoImp>" + imp.MontoImp + "</MontoImp>\n";
                 }
             }
@@ -437,8 +440,8 @@ namespace IatDteBridge
             try
             {
                 //TO DO : falta tomar el nombre del archivo de una variable global
-//********************************************************** FALTA PROBAR ********************************************************
-                switch (tipo)
+//********************************************************** SANTIAGO ********************************************************
+               switch (tipo)
                 {
                     case 33: xmlCaf = @"C:\IatFiles\cafs\factura\FoliosSII7739857033101201411121753.xml";
                         break;
@@ -452,7 +455,24 @@ namespace IatDteBridge
                         break;
                 }
                 
- //***********************************************************************************************************************************               
+ //***********************************************************************************************************************************     
+
+ //********************************************************** REGIONES ********************************************************
+                 /*  switch (tipo)
+                    {
+                        case 33: xmlCaf = @"C:\IatFiles\cafs\factura\FoliosSII77888630331201411132223.xml";
+                            break;
+                        case 61: xmlCaf = @"C:\IatFiles\cafs\NotaCredito\FoliosSII77888630611201411132228.xml";
+                            break;
+                        case 56: xmlCaf = @"C:\IatFiles\cafs\NotaDebito\FoliosSII77888630561201411132231.xml";
+                            break;
+                        case 52: xmlCaf = @"C:\IatFiles\cafs\Guia\FoliosSII77888630521201411132239.xml";
+                            break;
+                        case 34: xmlCaf = @"C:\IatFiles\cafs\FacturaExenta\FoliosSII77888630341201411132243.xml";
+                            break;
+                    }*/
+
+ //***********************************************************************************************************************************   
 
                 using (StreamReader sr = new StreamReader(xmlCaf))
                 {
