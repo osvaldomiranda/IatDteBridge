@@ -15,6 +15,7 @@ namespace IatDteBridge
         PingProcess ping = new PingProcess();
         ProcesoIat proc = new ProcesoIat();
         ProcesoPaquete propack = new ProcesoPaquete();
+        ProcesoLibroCompra procLibComp = new ProcesoLibroCompra();
 
         public FormMain()
         {
@@ -92,6 +93,11 @@ namespace IatDteBridge
         private void button3_Click(object sender, EventArgs e)
         {
             proc.StartProcessIat();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            procLibComp.doLibroCompra();
         }
 
 
