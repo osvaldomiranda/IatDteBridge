@@ -46,7 +46,7 @@ namespace IatDteBridge
 
 
                 // Firma POaquete    
-                String envio = xml.creaEnvio(paquete, "77398570-7", "", tipos);
+                String envio = xml.creaEnvio(paquete,"77398570-7", "", tipos);
 
 
                 X509Certificate2 cert = FuncionesComunes.obtenerCertificado("LUIS BARAHONA MENDOZA");
@@ -55,7 +55,11 @@ namespace IatDteBridge
        
                 enviox509 = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + enviox509;
 
+<<<<<<< HEAD
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:/IatFiles/file/xml/EnvioPAck_" + "1"  + ".xml", false, Encoding.GetEncoding("ISO-8859-1")))
+=======
+                            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:/IatFiles/file/xml/EnvioPAck_" + "santiago"  + ".xml", false, Encoding.GetEncoding("ISO-8859-1")))
+>>>>>>> Mauricio
             {
                 file.WriteLine(enviox509);
             }
