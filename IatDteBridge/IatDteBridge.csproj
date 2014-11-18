@@ -62,7 +62,9 @@
     <Compile Include="Iec.cs" />
     <Compile Include="Iev.cs" />
     <Compile Include="LibroCompra.cs" />
+    <Compile Include="LibroVenta.cs" />
     <Compile Include="ProcesoLibroCompra.cs" />
+    <Compile Include="procesoLibroVenta.cs" />
     <Compile Include="ProcesoPaquete.cs" />
     <Compile Include="Service References\FormAdminCaf.cs">
       <SubType>Form</SubType>
@@ -92,8 +94,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Timbre.cs" />
     <Compile Include="TxtLiborCompra.cs" />
+    <Compile Include="TxtLibroVenta.cs" />
     <Compile Include="xmlAdmin.cs" />
     <Compile Include="TxtReader.cs" />
+    <Compile Include="xmlLiborVenta.cs" />
     <Compile Include="xmlLibroCompra.cs" />
     <Compile Include="xmlPaquete.cs" />
     <EmbeddedResource Include="Service References\FormAdminCaf.resx">

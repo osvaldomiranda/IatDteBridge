@@ -55,11 +55,8 @@ namespace IatDteBridge
        
                 enviox509 = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + enviox509;
 
-<<<<<<< HEAD
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:/IatFiles/file/xml/EnvioPAck_" + "1"  + ".xml", false, Encoding.GetEncoding("ISO-8859-1")))
-=======
-                            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:/IatFiles/file/xml/EnvioPAck_" + "santiago"  + ".xml", false, Encoding.GetEncoding("ISO-8859-1")))
->>>>>>> Mauricio
+
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:/IatFiles/file/xml/EnvioPAck_" + "santiago"  + ".xml", false, Encoding.GetEncoding("ISO-8859-1")))
             {
                 file.WriteLine(enviox509);
             }

@@ -109,8 +109,11 @@ namespace IatDteBridge
                   "</Detalle>";
             }
 
+            DateTime thisDay = DateTime.Now;
+            String fch = String.Format("{0:yyyy-MM-ddTHH:mm:ss}", thisDay);
+
             String finLibro =
-              "<TmstFirma>2014-06-20T09:22:12</TmstFirma>" +
+              "<TmstFirma>"+fch+"</TmstFirma>" +
             "</EnvioLibro>" +
             "</LibroCompraVenta>";
 
