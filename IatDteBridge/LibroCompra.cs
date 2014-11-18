@@ -45,23 +45,23 @@ namespace IatDteBridge
         [DataMember]
         public int TotDoc { get; set; }
         [DataMember]
-        public float TotMntExe { get; set; }
+        public int TotMntExe { get; set; }
         [DataMember]
-        public float TotMntNeto { get; set; }
+        public int TotMntNeto { get; set; }
         [DataMember]
-		public float TotMntIVA {get;set;}
+		public int TotMntIVA {get;set;}
         [DataMember]
-		public float TotOpIVAUsoComun {get;set;}
+		public int TotOpIVAUsoComun {get;set;}
         [DataMember]
-		public float TotIVAUsoComun {get;set;}
+		public int TotIVAUsoComun {get;set;}
         [DataMember]
 		public float FctProp {get;set;}
         [DataMember]
-		public float TotCredIVAUsoComun {get;set;}
+		public int TotCredIVAUsoComun {get;set;}
         [DataMember]
-		public float TotIVAFueraPlazo {get;set;}
+		public int TotIVAFueraPlazo {get;set;}
         [DataMember]
-		public float TotMntTotal {get;set;}
+		public int TotMntTotal {get;set;}
 
         // Lista TotIVANoRec
         [DataMember]
@@ -75,19 +75,19 @@ namespace IatDteBridge
     [DataContract]
     class TotIVANo_Rec {
         [DataMember]
-        public String CodIVANoRec {get;set;}
+        public int CodIVANoRec {get;set;}
         [DataMember]
-	    public float TotOpIVANoRec {get;set;}
+	    public int TotOpIVANoRec {get;set;}
         [DataMember]
-        public float TotMntIVANoRec { get; set; }
+        public int TotMntIVANoRec { get; set; }
 	}
-
+    [DataContract]
     class TotOtros_Imp
 	{
         [DataMember]
         public int CodImp {get;set;}
         [DataMember]
-		public float TotMntImp {get;set;}
+		public int TotMntImp {get;set;}
     }
 	
 
@@ -102,7 +102,7 @@ namespace IatDteBridge
         [DataMember]
 		public int TpoImp {get;set;}
         [DataMember]
-		public float TasaImp {get;set;}
+		public int TasaImp {get;set;}
         [DataMember]
 		public String FchDoc {get;set;}
         [DataMember]
@@ -110,15 +110,15 @@ namespace IatDteBridge
         [DataMember]
 		public String RznSoc {get;set;}
         [DataMember]
-		public float MntExe {get;set;}
+		public int MntExe {get;set;}
         [DataMember]
-		public float MntNeto {get;set;}
+		public int MntNeto {get;set;}
         [DataMember]
-	    public float IVAUsoComun {get;set;}
+	    public int IVAUsoComun {get;set;}
         [DataMember]
-		public float MntIVA {get;set;}
+		public int MntIVA {get;set;}
         [DataMember]
-		public float MntTotal {get;set;}
+		public int MntTotal {get;set;}
 
         // Lista OtrosImp
         [DataMember]
@@ -135,9 +135,9 @@ namespace IatDteBridge
         [DataMember]
         public int CodImp {get;set;}
         [DataMember]
-		public float TasaImp {get;set;}
+		public int TasaImp {get;set;}
         [DataMember]
-		public float MntImp {get;set;}
+		public int MntImp {get;set;}
         
     }
 
@@ -147,7 +147,7 @@ namespace IatDteBridge
         [DataMember]
         public int CodIVANoRec {get;set;}
         [DataMember]
-        public float MntIVANoRec { get; set; }
+        public int MntIVANoRec { get; set; }
        
     }
     
