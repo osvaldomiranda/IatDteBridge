@@ -59,8 +59,6 @@
   <ItemGroup>
     <Compile Include="Documento.cs" />
     <Compile Include="fileAdmin.cs" />
-    <Compile Include="Iec.cs" />
-    <Compile Include="Iev.cs" />
     <Compile Include="LibroCompra.cs" />
     <Compile Include="LibroVenta.cs" />
     <Compile Include="ProcesoLibroCompra.cs" />

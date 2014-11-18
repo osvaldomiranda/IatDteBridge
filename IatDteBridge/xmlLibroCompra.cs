@@ -30,6 +30,7 @@ namespace IatDteBridge
                 + "<TipoEnvio>TOTAL</TipoEnvio>"
               + "</Caratula>";
 
+ 
 
             String resumen = "<ResumenPeriodo>";
 
