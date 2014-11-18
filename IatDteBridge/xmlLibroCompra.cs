@@ -171,15 +171,10 @@ namespace IatDteBridge
             String fch = String.Format("{0:yyyy-MM-ddTHH:mm:ss}", thisDay);
 
             String finLibro =
-<<<<<<< HEAD
+
               "<TmstFirma>"+fch+"</TmstFirma>" +
             "</EnvioLibro>" +
             "</LibroCompraVenta>";
-=======
-              "<TmstFirma>2014-06-20T09:22:12</TmstFirma>\n" +
-            "</EnvioLibro>\n" +
-            "</LibroCompraVenta>\n";
->>>>>>> Mauricio
 
             String LibroCom = cabeceraLibro + resumen  + TotalesP +  finResumen + detalleaux + finLibro;
 
