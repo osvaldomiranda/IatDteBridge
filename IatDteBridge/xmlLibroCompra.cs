@@ -17,6 +17,7 @@ namespace IatDteBridge
         {
 
             String cabeceraLibro =
+
              "<LibroCompraVenta xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sii.cl/SiiDte LibroCV_v10.xsd\" version=\"1.0\" xmlns=\"http://www.sii.cl/SiiDte\">\n"
             + "<EnvioLibro ID=\"IECV201406\">\n"
               + "<Caratula>\n"
@@ -32,6 +33,7 @@ namespace IatDteBridge
 
 
             String resumen = "<ResumenPeriodo>\n";
+
 
             String TotalesP = String.Empty;
 

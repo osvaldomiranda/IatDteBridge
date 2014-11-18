@@ -16,6 +16,7 @@ namespace IatDteBridge
         ProcesoIat proc = new ProcesoIat();
         ProcesoPaquete propack = new ProcesoPaquete();
         ProcesoLibroCompra procLibComp = new ProcesoLibroCompra();
+        procesoLibroVenta procLibVta = new procesoLibroVenta();
 
         public FormMain()
         {
@@ -98,6 +99,11 @@ namespace IatDteBridge
         private void button4_Click(object sender, EventArgs e)
         {
             procLibComp.doLibroCompra();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            procLibVta.doLibroVta();
         }
 
 
