@@ -37,9 +37,10 @@ namespace IatDteBridge
       
     }
 
+    [DataContract]
     class resumenPeriodo
     {
-       
+        [DataMember] 
         public int TotFolAnulado {get;set;}
         [DataMember]
         public int TotGuiaAnulada {get;set;}
@@ -55,6 +56,7 @@ namespace IatDteBridge
         
     }
 
+    [DataContract]
     class totTraslado
     {
         [DataMember]
@@ -66,6 +68,7 @@ namespace IatDteBridge
         
     }
 
+    [DataContract]
     class detalleGuia
     {
         [DataMember]
