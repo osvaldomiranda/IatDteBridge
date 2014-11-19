@@ -59,8 +59,13 @@ namespace IatDteBridge
 
                 foreach (var det in libro.Detalle)
                 {
+                    String anulado = "<Anulado>" + det.Anulado + "</Anulado>";
+                    if (det.Anulado == 0)
+                        anulado = "";
+
                     detall += "<Detalle>" +
                     "<Folio>" + det.Folio + "</Folio>" +
+                     anulado +
                     "<Operacion>" + det.Operacion + "</Operacion>" +
                     "<TpoOper>" + det.TpoOper + "</TpoOper>" +
                     "<FchDoc>" + det.FchDoc + "</FchDoc>" +
