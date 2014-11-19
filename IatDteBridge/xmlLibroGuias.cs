@@ -18,68 +18,68 @@ namespace IatDteBridge
             if (libro != null)
             {
                 String cabeceraLibro =
-                " <LibroGuia xmlns=\"http://www.sii.cl/SiiDte\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" version=\"1.0\" xsi:schemaLocation=\"http://www.sii.cl/SiiDte LibroGuia_v10.xsd\">\n"
-               + "<EnvioLibro ID=\"IECV201312\">\n"
-                 + "<Caratula>\n"
-                   + "<RutEmisorLibro>" + libro.RutEmisorLibro + "</RutEmisorLibro>\n"
-                   + "<RutEnvia>" + libro.RutEnvia + "</RutEnvia>\n"
-                   + "<PeriodoTributario>" + libro.PeriodoTributario + "</PeriodoTributario>\n"
-                   + "<FchResol>" + libro.FchResol + "</FchResol>\n"
-                   + "<NroResol>" + libro.NroResol + "</NroResol>\n"
-                   + "<TipoLibro>ESPECIAL</TipoLibro>\n"
-                   + "<TipoEnvio>TOTAL</TipoEnvio>\n"
-                   + "<FolioNotificacion>1</FolioNotificacion>\n"
-                   + "</Caratula>\n";
+                " <LibroGuia xmlns=\"http://www.sii.cl/SiiDte\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" version=\"1.0\" xsi:schemaLocation=\"http://www.sii.cl/SiiDte LibroGuia_v10.xsd\">"
+               + "<EnvioLibro ID=\"IECV201312\">"
+                 + "<Caratula>"
+                   + "<RutEmisorLibro>" + libro.RutEmisorLibro + "</RutEmisorLibro>"
+                   + "<RutEnvia>" + libro.RutEnvia + "</RutEnvia>"
+                   + "<PeriodoTributario>" + libro.PeriodoTributario + "</PeriodoTributario>"
+                   + "<FchResol>" + libro.FchResol + "</FchResol>"
+                   + "<NroResol>" + libro.NroResol + "</NroResol>"
+                   + "<TipoLibro>ESPECIAL</TipoLibro>"
+                   + "<TipoEnvio>TOTAL</TipoEnvio>"
+                   + "<FolioNotificacion>1</FolioNotificacion>"
+                   + "</Caratula>";
 
 
-                String resumen = "<ResumenPeriodo>\n";
+                String resumen = "<ResumenPeriodo>";
 
 
                 foreach (var totPer in libro.ResumenPeriodo)
                 {
-                    resumen += "<TotFolAnulado>" + totPer.TotFolAnulado + "</TotFolAnulado>\n" +
-                    "<TotGuiaAnulada>" + totPer.TotGuiaAnulada + "</TotGuiaAnulada>\n" +
-                    "<TotGuiaVenta>" + totPer.TotGuiaVenta + "</TotGuiaVenta>\n" +
-                    "<TotMntGuiaVta>" + totPer.TotMntGuiaVta + "</TotMntGuiaVta>\n" +
-                    "<TotMntModificado>" + totPer.TotMntModificado + "</TotMntModificado>\n";
+                    resumen += "<TotFolAnulado>" + totPer.TotFolAnulado + "</TotFolAnulado>" +
+                    "<TotGuiaAnulada>" + totPer.TotGuiaAnulada + "</TotGuiaAnulada>" +
+                    "<TotGuiaVenta>" + totPer.TotGuiaVenta + "</TotGuiaVenta>" +
+                    "<TotMntGuiaVta>" + totPer.TotMntGuiaVta + "</TotMntGuiaVta>" +
+                    "<TotMntModificado>" + totPer.TotMntModificado + "</TotMntModificado>";
 
                     foreach (var tras in totPer.TotTraslado)
                     {
-                        resumen += "<TotTraslado>\n" +
-                        "<TpoTraslado>" + tras.TpoTraslado + "</TpoTraslado>\n" +
-                        "<CantGuia>" + tras.CantGuia + "</CantGuia>\n" +
-                        "<MntGuia>" + tras.MntGuia + "</MntGuia>\n" +
-                        "</TotTraslado>\n";
+                        resumen += "<TotTraslado>" +
+                        "<TpoTraslado>" + tras.TpoTraslado + "</TpoTraslado>" +
+                        "<CantGuia>" + tras.CantGuia + "</CantGuia>" +
+                        "<MntGuia>" + tras.MntGuia + "</MntGuia>" +
+                        "</TotTraslado>";
                     }
                 }
 
-                String finResumen = "</ResumenPeriodo>\n";
+                String finResumen = "</ResumenPeriodo>";
 
                 String detall = String.Empty;
 
                 foreach (var det in libro.Detalle)
                 {
-                    detall += "<Detalle>\n" +
-                    "<Folio>" + det.Folio + "</Folio>\n" +
-                    "<Operacion>" + det.Operacion + "</Operacion>\n" +
-                    "<TpoOper>" + det.TpoOper + "</TpoOper>\n" +
-                    "<FchDoc>" + det.FchDoc + "</FchDoc>\n" +
-                    "<RUTDoc>" + det.RUTDoc + "</RUTDoc>\n" +
-                    "<RznSoc>" + det.RznSoc + "</RznSoc>\n" +
-                    "<MntNeto>" + det.MntNeto + "</MntNeto>\n" +
-                    "<TasaImp>" + det.TasaImp + "</TasaImp>\n" +
-                    "<IVA>" + det.IVA + "</IVA>\n" +
-                    "<MntTotal>" + det.MntTotal + "</MntTotal>\n" +
-                    "<MntModificado>" + det.MntModificado + "</MntModificado>\n" +
-                    "</Detalle>\n";
+                    detall += "<Detalle>" +
+                    "<Folio>" + det.Folio + "</Folio>" +
+                    "<Operacion>" + det.Operacion + "</Operacion>" +
+                    "<TpoOper>" + det.TpoOper + "</TpoOper>" +
+                    "<FchDoc>" + det.FchDoc + "</FchDoc>" +
+                    "<RUTDoc>" + det.RUTDoc + "</RUTDoc>" +
+                    "<RznSoc>" + det.RznSoc + "</RznSoc>" +
+                    "<MntNeto>" + det.MntNeto + "</MntNeto>" +
+                    "<TasaImp>" + det.TasaImp + "</TasaImp>" +
+                    "<IVA>" + det.IVA + "</IVA>" +
+                    "<MntTotal>" + det.MntTotal + "</MntTotal>" +
+                    "<MntModificado>" + det.MntModificado + "</MntModificado>" +
+                    "</Detalle>";
                 }
 
                 DateTime thisDay = DateTime.Now;
                 String fch = String.Format("{0:yyyy-MM-ddTHH:mm:ss}", thisDay);
 
                 String finLibro =
-                "<TmstFirma>" + fch + "</TmstFirma>\n" +
-                "</EnvioLibro>\n" +
+                "<TmstFirma>" + fch + "</TmstFirma>" +
+                "</EnvioLibro>" +
                 "</LibroGuia>";
 
                 String libroGuia = cabeceraLibro + resumen + finResumen + detall + finLibro;
