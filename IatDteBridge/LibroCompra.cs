@@ -26,6 +26,8 @@ namespace IatDteBridge
 	    public String TipoLibro {get;set;}
         [DataMember]
 	    public String TipoEnvio {get;set;}
+        [DataMember]
+        public int  FolioNotificacion{ get; set; }
 
 
         // Lista de Totales

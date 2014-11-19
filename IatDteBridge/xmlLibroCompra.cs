@@ -29,6 +29,7 @@ namespace IatDteBridge
                 + "<TipoOperacion>"+libro.TipoOperacion+"</TipoOperacion>\n"
                 + "<TipoLibro>"+libro.TipoLibro+"</TipoLibro>\n"
                 + "<TipoEnvio>"+libro.TipoEnvio+"</TipoEnvio>\n"
+                + "<FolioNotificacion>" + libro.FolioNotificacion + "</FolioNotificacion>\n"
               + "</Caratula>\n";
 
 
@@ -117,6 +118,10 @@ namespace IatDteBridge
             {   
                 if(detIvaNo == null)
                     detIvaNo ="";
+
+                String mntiva = "<MntIVA>" + det.MntIVA+ "</MntIVA>\n";
+                if(det.MntIVA == 0)
+                    mntiva = "";
                 detalle = "<Detalle>\n" +
                   "<TpoDoc>" + det.TpoDoc + "</TpoDoc>\n" +
                   "<NroDoc>" + det.NroDoc + "</NroDoc>\n" +
@@ -127,7 +132,7 @@ namespace IatDteBridge
                   "<RznSoc>" + det.RznSoc + "</RznSoc>\n" +
                   "<MntExe>" + det.MntExe + "</MntExe>\n" +
                   "<MntNeto>" + det.MntNeto + "</MntNeto>\n"+ 
-                  "<MntIVA>" + det.MntIVA+ "</MntIVA>\n";
+                  mntiva;
                  if (det.IVANoRec == null)
                  {
                      detIvaNo = "";
