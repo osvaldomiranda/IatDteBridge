@@ -15,94 +15,112 @@ namespace IatDteBridge
         public String do_libroVentas(LibroVenta libro)
         {
 
-             String cabeceraLibro =
-             "<LibroCompraVenta xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sii.cl/SiiDte LibroCV_v10.xsd\" version=\"1.0\" xmlns=\"http://www.sii.cl/SiiDte\">"
-            + "<EnvioLibro ID=\"ID201204\">"
-              + "<Caratula>"
-                + "<RutEmisorLibro>" + libro.RutEmisorLibro + "</RutEmisorLibro>"
-                + "<RutEnvia>"+libro.RutEnvia+"</RutEnvia>"
-                + "<PeriodoTributario>"+libro.PeriodoTributario+"</PeriodoTributario>"
-                + "<FchResol>"+libro.FchResol+"</FchResol>"
-                + "<NroResol>"+libro.NroResol+"</NroResol>"
-                + "<TipoOperacion>VENTA</TipoOperacion>"
-                + "<TipoLibro>MENSUAL</TipoLibro>"
-                + "<TipoEnvio>TOTAL</TipoEnvio>"
-                + "<FolioNotificacion>1</FolioNotificacion>"
-                + "</Caratula>";
+            String cabeceraLibro =
+            "<LibroCompraVenta xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sii.cl/SiiDte LibroCV_v10.xsd\" version=\"1.0\" xmlns=\"http://www.sii.cl/SiiDte\">\n"
+           + "<EnvioLibro ID=\"ID201204\">\n"
+             + "<Caratula>\n"
+               + "<RutEmisorLibro>" + libro.RutEmisorLibro + "</RutEmisorLibro>\n"
+               + "<RutEnvia>" + libro.RutEnvia + "</RutEnvia>\n"
+               + "<PeriodoTributario>" + libro.PeriodoTributario + "</PeriodoTributario>\n"
+               + "<FchResol>" + libro.FchResol + "</FchResol>\n"
+               + "<NroResol>" + libro.NroResol + "</NroResol>\n"
+               + "<TipoOperacion>" + libro.TipoOperacion + "</TipoOperacion>\n"
+               + "<TipoLibro>" + libro.TipoLibro + "</TipoLibro>\n"
+               + "<TipoEnvio>" + libro.TipoEnvio + "</TipoEnvio>\n"
+               + "<FolioNotificacion>" + libro.FolioNotificacion + "</FolioNotificacion>\n"
+               + "</Caratula>\n";
 
-            
-            String resumen = "<ResumenPeriodo>";
+
+            String resumen = "<ResumenPeriodo>\n";
 
             String TotalesP = String.Empty;
 
-            foreach(var total in libro.TotalesPeriodo)
+            foreach (var total in libro.TotalesPeriodo)
             {
 
-                String b=String.Empty;
-                String c=String.Empty;
-                String d=String.Empty;
-                String a = "<TotalesPeriodo>" +
-                "<TpoDoc>"+total.TotDoc+"</TpoDoc>" +
-                "<TotDoc>"+total.TotDoc+"</TotDoc>" +
-                "<TotMntExe>"+ total.TotMntExe +"</TotMntExe>" +
-                "<TotMntNeto>"+ total.TotMntNeto+"</TotMntNeto>" +
-                "<TotMntIVA>"+ total.TotMntIVA+"</TotMntIVA>";
+                String b = String.Empty;
+                String c = String.Empty;
+                String d = String.Empty;
+                String a = "<TotalesPeriodo>\n" +
+                "<TpoDoc>" + total.TpoDoc + "</TpoDoc>\n" +
+                "<TotDoc>" + total.TotDoc + "</TotDoc>\n" +
+                "<TotMntExe>" + total.TotMntExe + "</TotMntExe>\n" +
+                "<TotMntNeto>" + total.TotMntNeto + "</TotMntNeto>\n" +
+                "<TotMntIVA>" + total.TotMntIVA + "</TotMntIVA>\n";
 
 
-                foreach(var otrosimp in total.TotOtrosImp){
-                    c = "<TotOtrosImp>" +
-                      "<CodImp>" + otrosimp.CodImp + "</CodImp>" +
-                      "<TotMntImp>" + otrosimp.TotMntImp + "</TotMntImp>" +
-                    "</TotOtrosImp>";
+                foreach (var otrosimp in total.TotOtrosImp)
+                {
+                    if (otrosimp.CodImp == 0)
+                    {
+                        c = "";
+                    }
+                    else
+                    {
+                        c = "<TotOtrosImp>\n" +
+                          "<CodImp>" + otrosimp.CodImp + "</CodImp>\n" +
+                          "<TotMntImp>" + otrosimp.TotMntImp + "</TotMntImp>\n" +
+                        "</TotOtrosImp>\n";
+                    }
                 }
 
-                TotalesP = a+b+c+d+
-                "<TotIVAFueraPlazo>" + total.TotIVAFueraPlazo + "</TotIVAFueraPlazo>" +
-                "<TotMntTotal></TotMntTotal>" +
-              "</TotalesPeriodo>";
-             }
 
-            String finResumen = "</ResumenPeriodo>";
+                TotalesP += a + b + c + d +
+                "<TotIVAFueraPlazo>" + total.TotIVAFueraPlazo + "</TotIVAFueraPlazo>\n" +
+                "<TotMntTotal>" + total.TotMntTotal +"</TotMntTotal>\n" +
+              "</TotalesPeriodo>\n";
+            }
+
+            String finResumen = "</ResumenPeriodo>\n";
 
 
-             String detalle = String.Empty;
+            String detalle = String.Empty;
             String detIvaNo = String.Empty;
             String detOtrosImp = String.Empty;
 
-            foreach (var det in libro.Detalle)
+            if (libro.Detalle == null)
             {
-                 detalle = "<Detalle>" +
-                  "<TpoDoc>"+det.TpoDoc+"</TpoDoc>" +
-                  "<NroDoc>"+det.NroDoc+"</NroDoc>" +
-                  "<TasaImp>"+det.TasaImp+"</TasaImp>" +
-                  "<FchDoc>"+det.FchDoc+"</FchDoc>" +
-                  "<RUTDoc>"+det.RUTDoc+"</RUTDoc>" +
-                  "<RznSoc>"+det.RznSoc+"</RznSoc>" +
-                  "<MntExe>"+det.MntExe+"</MntExe>" +
-                  "<MntNeto>"+det.MntNeto+"</MntNeto>" ;
+                detalle = "";
+                detOtrosImp = "";
+            }
+            else
+            {
+                foreach (var det in libro.Detalle)
+                {
+                    detalle = "<Detalle>\n" +
+                     "<TpoDoc>" + det.TpoDoc + "</TpoDoc>\n" +
+                     "<NroDoc>" + det.NroDoc + "</NroDoc>\n" +
+                     "<TasaImp>" + det.TasaImp + "</TasaImp>\n" +
+                     "<FchDoc>" + det.FchDoc + "</FchDoc>\n" +
+                     "<RUTDoc>" + det.RUTDoc + "</RUTDoc>\n" +
+                     "<RznSoc>" + det.RznSoc + "</RznSoc>\n" +
+                     "<MntExe>" + det.MntExe + "</MntExe>\n" +
+                     "<MntNeto>" + det.MntNeto + "</MntNeto>\n";
 
-                  foreach(var otros in det.OtrosImp){
-                    detOtrosImp = "<OtrosImp>" +
-                    "<CodImp>"+otros.CodImp+"</CodImp>" +
-                    "<TasaImp>"+otros.TasaImp+"</TasaImp>" +
-                    "<MntImp>"+otros.MntImp+"</MntImp>" +
-                  "</OtrosImp>" ;
-                  }
+                    foreach (var otros in det.OtrosImp)
+                    {
+                        detOtrosImp = "<OtrosImp>\n" +
+                        "<CodImp>" + otros.CodImp + "</CodImp>\n" +
+                        "<TasaImp>" + otros.TasaImp + "</TasaImp>\n" +
+                        "<MntImp>" + otros.MntImp + "</MntImp>\n" +
+                      "</OtrosImp>\n";
+                    }
+                }
 
-                  detalle+= detIvaNo+ detOtrosImp +
-                  "<MntTotal></MntTotal>" +
-                  "</Detalle>";
+                detalle += detIvaNo + detOtrosImp +
+                "<MntTotal></MntTotal>\n" +
+                "</Detalle>\n";
             }
 
             DateTime thisDay = DateTime.Now;
             String fch = String.Format("{0:yyyy-MM-ddTHH:mm:ss}", thisDay);
 
             String finLibro =
-              "<TmstFirma>"+fch+"</TmstFirma>" +
-            "</EnvioLibro>" +
-            "</LibroCompraVenta>";
+              "<TmstFirma>" + fch + "</TmstFirma>\n" +
+            "</EnvioLibro>\n" +
+            "</LibroCompraVenta>\n";
 
-            String LibroCom = cabeceraLibro + resumen + finResumen + TotalesP + detalle + finLibro;
+            String LibroCom = cabeceraLibro + resumen + TotalesP + finResumen + detalle + finLibro;
 
             X509Certificate2 cert = FuncionesComunes.obtenerCertificado("LUIS BARAHONA MENDOZA");
 
@@ -150,7 +168,7 @@ namespace IatDteBridge
 
             return doc.InnerXml;
 
-    
+
         }
     }
 }

@@ -43,17 +43,17 @@ namespace IatDteBridge
         public List<detalle> Detalle = new List<detalle>();
 	 	       
         [DataMember]
-        public float MntTotal{get;set;}
+        public int MntTotal{get;set;}
         [DataMember]
-	    public float IVANoRetenido {get;set;}
+	    public int IVANoRetenido {get;set;}
         [DataMember]
-	    public float MntNoFact {get;set;}
+	    public int MntNoFact {get;set;}
         [DataMember]
-	    public float MntPeriodo{get;set;}
+	    public int MntPeriodo{get;set;}
         [DataMember]
-	    public float PsjNac {get;set;}
+	    public int PsjNac {get;set;}
         [DataMember]
-	    public float PsjInt{get;set;}
+	    public int PsjInt{get;set;}
         
     }
 
@@ -65,56 +65,56 @@ namespace IatDteBridge
         [DataMember]
         public int TotDoc{get;set;}
         [DataMember] 
-        public float TotAnulado{get;set;}
+        public int TotAnulado{get;set;}
         [DataMember]
-        public float TotMntExe{get;set;}
+        public int TotMntExe{get;set;}
         [DataMember]
-        public float TotMntNeto{get;set;}
+        public int TotMntNeto{get;set;}
         [DataMember]
-        public float TotMntIVA{get;set;}
+        public int TotMntIVA{get;set;}
         [DataMember]
-        public float TotIVAFueraPlazo{get;set;}
+        public int TotIVAFueraPlazo{get;set;}
         [DataMember]
-        public float TotIVAPropio{get;set;}
+        public int TotIVAPropio{get;set;}
         [DataMember]
-        public float TotIVATerceros{get;set;}
+        public int TotIVATerceros{get;set;}
         [DataMember]
-        public float TotLey18211{get;set;}
+        public int TotLey18211{get;set;}
         
 
         [DataMember]
         public List<totOtrosImp> TotOtrosImp = new List<totOtrosImp>();
         
         [DataMember]
-        public float TotOpIVARetTotal{get;set;}
+        public int TotOpIVARetTotal{get;set;}
         [DataMember]
-        public float TotIVARetTotal{get;set;}
+        public int TotIVARetTotal{get;set;}
         [DataMember]
-        public float TotOpIVARetParcial{get;set;}
+        public int TotOpIVARetParcial{get;set;}
         [DataMember]
-        public float TotIVARetParcial{get;set;}
+        public int TotIVARetParcial{get;set;}
         [DataMember]
-        public float TotCredEC{get;set;}
+        public int TotCredEC{get;set;}
         [DataMember]
-        public float TotDepEnvase{get;set;}
+        public int TotDepEnvase{get;set;}
        
         [DataMember]
         public List<totLiqui> TotLiquidaciones = new List<totLiqui>();
         
         [DataMember]
-        public float TotMntTotal{get;set;}
+        public int TotMntTotal{get;set;}
         [DataMember]
-        public float TotOpIVANoRetenido{get;set;}
+        public int TotOpIVANoRetenido{get;set;}
         [DataMember]
-        public float TotIVANoRetenido{get;set;}
+        public int TotIVANoRetenido{get;set;}
         [DataMember]
-        public float TotMntNoFact{get;set;}
+        public int TotMntNoFact{get;set;}
         [DataMember]
-        public float TotMntPeriodo{get;set;}
+        public int TotMntPeriodo{get;set;}
         [DataMember]
-        public float TotPsjNac{get;set;}
+        public int TotPsjNac{get;set;}
         [DataMember]
-        public float TotPsjInt{get;set;}
+        public int TotPsjInt{get;set;}
         
             
     }
@@ -125,7 +125,7 @@ namespace IatDteBridge
         [DataMember]
         public int   CodImp{get;set;}
         [DataMember]
-        public float TotMntImp{get;set;}
+        public int TotMntImp{get;set;}
         
     }
 
@@ -133,11 +133,11 @@ namespace IatDteBridge
     class totLiqui
     {
         [DataMember]
-        public float TotValComNeto{get;set;}
+        public int TotValComNeto{get;set;}
         [DataMember] 
-        public float TotValComExe{get;set;}
+        public int TotValComExe{get;set;}
         [DataMember] 
-        public float TotValComIVA{get;set;}
+        public int TotValComIVA{get;set;}
         
     }
 
@@ -149,58 +149,58 @@ namespace IatDteBridge
         [DataMember] 
         public int TotDoc{get;set;}
         [DataMember] 
-        public float TotAnulado{get;set;}
+        public int TotAnulado{get;set;}
         [DataMember] 
-        public float TotOpExe{get;set;}
+        public int TotOpExe{get;set;}
         [DataMember] 
-        public float TotMntExe{get;set;}
+        public int TotMntExe{get;set;}
         [DataMember] 
-        public float TotMntNeto{get;set;}
+        public int TotMntNeto{get;set;}
         [DataMember]  
-        public float TotMntIVA{get;set;}
+        public int TotMntIVA{get;set;}
         [DataMember] 
-        public float TotIVAFueraPlazo{get;set;}
+        public int TotIVAFueraPlazo{get;set;}
         [DataMember] 
-        public float TotIVAPropio{get;set;}
+        public int TotIVAPropio{get;set;}
         [DataMember] 
-        public float TotIVATerceros{get;set;}
+        public int TotIVATerceros{get;set;}
         [DataMember] 
-        public float TotLey18211{get;set;}
+        public int TotLey18211{get;set;}
         
         [DataMember]
         public List<totOtrosImp> TotOtrosImp = new List<totOtrosImp>();
      
 
         [DataMember] 
-        public float TotOpIVARetTotal{get;set;}
+        public int TotOpIVARetTotal{get;set;}
         [DataMember] 
-        public float TotIVARetTotal{get;set;}
+        public int TotIVARetTotal{get;set;}
         [DataMember] 
-        public float TotOpIVARetParcial{get;set;}
+        public int TotOpIVARetParcial{get;set;}
         [DataMember] 
-        public float TotIVARetParcial{get;set;}
+        public int TotIVARetParcial{get;set;}
         [DataMember] 
-        public float TotCredEC{get;set;}
+        public int TotCredEC{get;set;}
         [DataMember] 
-        public float TotDepEnvase {get;set;}
+        public int TotDepEnvase {get;set;}
     
         [DataMember]
         public List<totLiqui> TotLiquidaciones = new List<totLiqui>();
     
         [DataMember] 
-        public float TotMntTotal{get;set;}
+        public int TotMntTotal{get;set;}
         [DataMember] 
-        public float TotOpIVANoRetenido{get;set;}
+        public int TotOpIVANoRetenido{get;set;}
         [DataMember] 
-        public float TotIVANoRetenido{get;set;}
+        public int TotIVANoRetenido{get;set;}
         [DataMember] 
-        public float TotMntNoFact{get;set;}
+        public int TotMntNoFact{get;set;}
         [DataMember] 
-        public float TotMntPeriodo{get;set;}
+        public int TotMntPeriodo{get;set;}
         [DataMember] 
-        public float TotPsjNac{get;set;}
+        public int TotPsjNac{get;set;}
         [DataMember] 
-        public float TotPsjInt {get;set;}
+        public int TotPsjInt {get;set;}
         
 	        
     }
@@ -218,7 +218,7 @@ namespace IatDteBridge
         [DataMember] 
         public int   Operacion {get;set;}
         [DataMember] 
-        public float TasaImp{get;set;}
+        public int TasaImp{get;set;}
         [DataMember] 
         public int   NumInt{get;set;}
         [DataMember] 
@@ -242,30 +242,30 @@ namespace IatDteBridge
         [DataMember] 
         public int    FolioDocRef{get;set;}
         [DataMember] 
-        public float MntExe{get;set;}
+        public int MntExe{get;set;}
         [DataMember] 
-        public float MntNeto{get;set;}
+        public int MntNeto{get;set;}
         [DataMember] 
-        public float MntIVA{get;set;}
+        public int MntIVA{get;set;}
         [DataMember] 
-        public float IVAFueraPlazo {get;set;}
+        public int IVAFueraPlazo {get;set;}
         [DataMember] 
-        public float IVAPropio{get;set;}
+        public int IVAPropio{get;set;}
         [DataMember] 
-        public float IVATerceros{get;set;}
+        public int IVATerceros{get;set;}
         [DataMember] 
-        public float Ley18211{get;set;}
+        public int Ley18211{get;set;}
         
         [DataMember]
         public List<detOtrosImp> OtrosImp = new List<detOtrosImp>();
         
-        public float IVARetTotal{get;set;}
+        public int IVARetTotal{get;set;}
         [DataMember] 
-        public float IVARetParcial{get;set;}
+        public int IVARetParcial{get;set;}
         [DataMember] 
-        public float CredEC{get;set;}
+        public int CredEC{get;set;}
         [DataMember] 
-        public float DepEnvase{get;set;}
+        public int DepEnvase{get;set;}
          
         [DataMember]
         public List<detLiqui> Liquidaciones = new List<detLiqui>();
@@ -278,9 +278,9 @@ namespace IatDteBridge
         [DataMember] 
         public int CodImp {get;set;}
         [DataMember] 
-        public float TasaImp{get;set;}
+        public int TasaImp{get;set;}
         [DataMember] 
-        public float MntImp{get;set;}
+        public int MntImp{get;set;}
         
     }
 
@@ -290,11 +290,11 @@ namespace IatDteBridge
         [DataMember] 
         public String RutEmisor{get;set;}
         [DataMember]  
-        public float ValComNeto{get;set;}
+        public int ValComNeto{get;set;}
         [DataMember]  
-        public float ValComExe{get;set;}
+        public int ValComExe{get;set;}
         [DataMember]  
-        public float ValComIVA{get;set;}
+        public int ValComIVA{get;set;}
          
     }
 }

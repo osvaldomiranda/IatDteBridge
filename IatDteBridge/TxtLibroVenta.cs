@@ -17,7 +17,7 @@ namespace IatDteBridge
 
 
             fileAdmin file = new fileAdmin();
-            String fileName = file.nextFile(@"c:\IatFiles\file\Libroventa\", "*.json");
+            String fileName = file.nextFile(@"c:\IatFiles\file\", "*.json");
 
             if (fileName != null)
             {
