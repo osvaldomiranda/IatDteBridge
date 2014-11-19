@@ -109,7 +109,7 @@ namespace IatDteBridge
 
             Signature XMLSignature = signedXml.Signature;
 
-            Reference reference = new Reference("");
+            Reference reference = new Reference("http://www.sii.cl/SiiDte");
 
             XmlDsigEnvelopedSignatureTransform env = new XmlDsigEnvelopedSignatureTransform();
             reference.AddTransform(env);
