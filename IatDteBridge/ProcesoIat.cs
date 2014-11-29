@@ -43,9 +43,9 @@ namespace IatDteBridge
 
                     // Ejecuta metodo de XML_admin que recibe objeto de la clase documento 
                     // que llena el xml lo firma, lo timbra y devuelve la factura xml lista
-                    String TimbreElectr = xml.ted_to_xmlSii(docLectura, fch);
+                    String TimbreElectr = xml.ted_to_xmlSii(docLectura, "2014-11-16T22:33:55");
 
-                    String docXmlSign = xml.doc_to_xmlSii(docLectura, TimbreElectr, fch);
+                    String docXmlSign = xml.doc_to_xmlSii(docLectura, TimbreElectr, "2014-11-16T22:33:55");
 
 
                     // intancia objeto de la clase PDF_admin
