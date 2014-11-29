@@ -77,7 +77,8 @@ namespace IatDteBridge
         public string IdAdicEmisor { get; set; } // adicional para uso libre
         [DataMember]
         public string RUTMandante { get; set; }
-        [DataMember]
+        //este atributo es para cargar en pdf la zona de oficina SII por empresa
+        // debe ser llenado al momento de cargar la clase, ya que no es un atributo serializable
         public string DirRegionalSII { get; set; } //Direccion de las oficinas SII correspondiente
  
 //################################### Area Receptor ############################################################################
