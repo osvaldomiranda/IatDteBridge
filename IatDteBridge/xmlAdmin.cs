@@ -15,7 +15,7 @@ namespace IatDteBridge
     class xmlAdmin
     {
 
-        public String doc_to_xmlSii(Documento doc)
+        public String doc_to_xmlSii(Documento doc, String TED, String fch)
         {
 
             String dte = "<DTE version=\"1.0\">\n" +
@@ -225,40 +225,15 @@ namespace IatDteBridge
             }
 
 
-            DateTime thisDay = DateTime.Now;
-            String fch = String.Format("{0:yyyy-MM-ddTHH:mm:ss}", thisDay);
-
-            String inicioTed = "<TED version=\"1.0\">\r\n";
-            // nodo DD
-            String ampersan = firstNmbItem.Replace("&", "&amp;");
-            String dd = "<DD>" +
-                    "<RE>" + doc.RUTEmisor + "</RE>" +
-                    "<TD>" + doc.TipoDTE + "</TD>" +
-                    "<F>" + doc.Folio + "</F>" +
-                    "<FE>" + doc.FchEmis + "</FE>" +
-                    "<RR>" + doc.RUTRecep + "</RR>" +
-                    "<RSR>" + doc.RznSocRecep + "</RSR>" +
-                    "<MNT>" + doc.MntTotal + "</MNT>" +
-
-                    "<IT1>" + ampersan + "</IT1>" +
-
-                    getXmlFolio("CAF") +
-
-                    "<TSTED>" + fch + "</TSTED>" +
-                "</DD>";
-
-
-
-
-            String firma = "<FRMT algoritmo=\"SHA1withRSA\">" + firmaNodoDD(dd) + "</FRMT>\r\n";
-            String finTed = "</TED>\r\n";
+            
 
             String fechaFirma = "<TmstFirma>" + fch + "</TmstFirma>\r\n";
             String findocumenro = "</Documento>\r\n";
 
             String findte = "</DTE>\r\n";
 
-            documento = documento + inicioTed + dd + firma + finTed + fechaFirma + findocumenro + findte;
+            documento = TED + fechaFirma + findocumenro + findte;
+
 
             X509Certificate2 cert = FuncionesComunes.obtenerCertificado("LUIS BARAHONA MENDOZA");
 
@@ -279,6 +254,50 @@ namespace IatDteBridge
 
 
             return enviox509;
+
+        }
+
+
+        public String ted_to_xmlSii(Documento doc,String fch)
+        {
+
+
+            String firstNmbItem = String.Empty;
+            int i = 0;
+
+            foreach (var det in doc.detalle)
+            {
+                if (i == 0) firstNmbItem = det.NmbItem;
+                i++;
+            }
+
+
+            String inicioTed = "<TED version=\"1.0\">\r\n";
+            // nodo DD
+            String ampersan = firstNmbItem.Replace("&", "&amp;");
+            String dd = "<DD>" +
+                    "<RE>" + doc.RUTEmisor + "</RE>" +
+                    "<TD>" + doc.TipoDTE + "</TD>" +
+                    "<F>" + doc.Folio + "</F>" +
+                    "<FE>" + doc.FchEmis + "</FE>" +
+                    "<RR>" + doc.RUTRecep + "</RR>" +
+                    "<RSR>" + doc.RznSocRecep + "</RSR>" +
+                    "<MNT>" + doc.MntTotal + "</MNT>" +
+
+                    "<IT1>" + ampersan + "</IT1>" +
+
+                    getXmlFolio("CAF") +
+
+                    "<TSTED>" + fch + "</TSTED>" +
+                "</DD>";
+
+            String firma = "<FRMT algoritmo=\"SHA1withRSA\">" + firmaNodoDD(dd) + "</FRMT>\r\n";
+            String finTed = "</TED>\r\n";
+
+            String ted =  inicioTed + dd + firma + finTed;
+
+         
+            return ted;
 
         }
 
