@@ -232,7 +232,7 @@ namespace IatDteBridge
 
             String findte = "</DTE>\r\n";
 
-            documento = TED + fechaFirma + findocumenro + findte;
+            documento = documento + TED + fechaFirma + findocumenro + findte;
 
 
             X509Certificate2 cert = FuncionesComunes.obtenerCertificado("LUIS BARAHONA MENDOZA");
@@ -437,12 +437,7 @@ namespace IatDteBridge
             XmlDocument doc = new XmlDocument();
             doc.PreserveWhitespace = true;
             String documento2 = documento;
-            /* int s1 = documento.IndexOf("&amp;");
-             if (s1 == -1)
-             {
-                 documento2 = documento.Replace("&", "&amp;");
-                 Console.WriteLine(s1);
-             }*/
+
             doc.LoadXml(documento);
             SignedXml signedXml = new SignedXml(doc);
 
