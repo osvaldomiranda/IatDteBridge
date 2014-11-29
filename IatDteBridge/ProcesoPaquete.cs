@@ -82,8 +82,18 @@ namespace IatDteBridge
                     Pdf docpdf = new Pdf();
 
                     String fileNamePDF = @"C:/IatFiles/file/pdf/DTE_" +docLectura.RUTEmisor+ "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf";
-                    docpdf.OpenPdf(TimbreElec, docLectura,fileNamePDF);
+                    docpdf.OpenPdf(TimbreElec, docLectura,fileNamePDF, " ");
 
+                    if (docLectura.TipoDTE == 33 || docLectura.TipoDTE == 34)
+                    {
+                        docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDF, "CEDIBLE");
+                    }
+
+                    if (docLectura.TipoDTE == 52 )
+                    {
+                        docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDF, "CEDIBLE CON SU FACTURA");
+                    }
+                    
                   
 
                     // Agrega el DTE timbrado al paquete

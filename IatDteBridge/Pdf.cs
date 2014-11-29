@@ -21,11 +21,12 @@ namespace IatDteBridge
         private String[] datosDetalle = new String[300];
         private String[] datosHeaderReferencia = { "Tipo de Documento", "Folio", "Fecha", "Razón Referancia" };
         iTextSharp.text.Font fuenteNegra = new Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font.NORMAL);
+        iTextSharp.text.Font fuenteBold = new Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font.BOLD);
         iTextSharp.text.Font fuenteRoja = new Font(iTextSharp.text.Font.FontFamily.HELVETICA, 9, iTextSharp.text.Font.NORMAL, BaseColor.RED);
         // iTextSharp.text.Font fuenteNegrita = new Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font., BaseColor.RED);
 
 
-        public Document OpenPdf(String dd, Documento doc, String fileName)//OpenPdf(Documento doc, String dd)
+        public Document OpenPdf(String dd, Documento doc, String fileName, String tipoCopia)//OpenPdf(Documento doc, String dd)
         {
 
             String nombreDocumento = String.Empty;
@@ -304,7 +305,7 @@ namespace IatDteBridge
                     PdfPCell celda = new PdfPCell(new Paragraph(b, fuenteNegra)); ;
                     celda.BackgroundColor = BaseColor.GRAY;
                     celda.HorizontalAlignment = 1;
-                    celda.BorderWidth = 0;
+                    celda.BorderWidth = 1;
                     referencias.AddCell(celda);
 
                 }
@@ -314,28 +315,24 @@ namespace IatDteBridge
                
                 foreach (var b in doc.Referencia)
                 {
-                    PdfPCell celda0 = new PdfPCell(new Paragraph(b.TpoDocRef, fuenteNegra)); ;
-                    celda0.BackgroundColor = BaseColor.GRAY;
+                    PdfPCell celda0 = new PdfPCell(new Paragraph(b.TpoDocRef, fuenteNegra)); 
                     celda0.HorizontalAlignment = 1;
-                    celda0.BorderWidth = 0;
+                    celda0.BorderWidth = 1;
                     datosReferencias.AddCell(celda0);
 
-                    PdfPCell celda1 = new PdfPCell(new Paragraph(b.FolioRef, fuenteNegra)); ;
-                    celda1.BackgroundColor = BaseColor.GRAY;
+                    PdfPCell celda1 = new PdfPCell(new Paragraph(b.FolioRef, fuenteNegra)); 
                     celda1.HorizontalAlignment = 1;
-                    celda1.BorderWidth = 0;
+                    celda1.BorderWidth = 1;
                     datosReferencias.AddCell(celda1);
 
-                    PdfPCell celda2 = new PdfPCell(new Paragraph(b.FchRef, fuenteNegra)); ;
-                    celda2.BackgroundColor = BaseColor.GRAY;
+                    PdfPCell celda2 = new PdfPCell(new Paragraph(b.FchRef, fuenteNegra)); 
                     celda2.HorizontalAlignment = 1;
-                    celda2.BorderWidth = 0;
+                    celda2.BorderWidth = 1;
                     datosReferencias.AddCell(celda2);
 
-                    PdfPCell celda3 = new PdfPCell(new Paragraph(b.RazonRef, fuenteNegra)); ;
-                    celda3.BackgroundColor = BaseColor.GRAY;
+                    PdfPCell celda3 = new PdfPCell(new Paragraph(b.RazonRef, fuenteNegra)); 
                     celda3.HorizontalAlignment = 1;
-                    celda3.BorderWidth = 0;
+                    celda3.BorderWidth = 1;
                     datosReferencias.AddCell(celda3);
                     
                 }
@@ -345,37 +342,36 @@ namespace IatDteBridge
 
             
             //++++++++++++++++++++++++++++++++++++++++++++++++++ Pie de pagina ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-            PdfPTable footer = new PdfPTable(2);
-            footer.WidthPercentage = 100;
 
-            PdfPTable tablaTimbre = new PdfPTable(1);
-            tablaTimbre.WidthPercentage = 100;
+
+            PdfPTable tablaDTimbre = new PdfPTable(1);
+            tablaDTimbre.WidthPercentage = 100;
 
             PdfPCell celdaTimbre = new PdfPCell(timbre);
             celdaTimbre.BorderWidth = 0;
             celdaTimbre.MinimumHeight = 100;
             celdaTimbre.HorizontalAlignment = 1;
-            tablaTimbre.AddCell(celdaTimbre);
+            tablaDTimbre.AddCell(celdaTimbre);
 
             PdfPCell celdaTxtTimbre1 = new PdfPCell(new Paragraph("Timbre Electrónico S.I.I.", fuenteNegra));
             celdaTxtTimbre1.BorderWidth = 0;
             celdaTxtTimbre1.MinimumHeight = 12;
             celdaTxtTimbre1.HorizontalAlignment = 1;
-            tablaTimbre.AddCell(celdaTxtTimbre1);
+            tablaDTimbre.AddCell(celdaTxtTimbre1);
 
             PdfPCell celdaTxtTimbre2 = new PdfPCell(new Paragraph("Resolución Ex. SII Nº 0 del 2010 verifique documento:", fuenteNegra));
             celdaTxtTimbre2.BorderWidth = 0;
             celdaTxtTimbre2.MinimumHeight = 12;
             celdaTxtTimbre2.HorizontalAlignment = 1;
-            tablaTimbre.AddCell(celdaTxtTimbre2);
+            tablaDTimbre.AddCell(celdaTxtTimbre2);
 
             PdfPCell celdaTxtTimbre3 = new PdfPCell(new Paragraph("www.sii.cl", fuenteNegra));
             celdaTxtTimbre3.BorderWidth = 0;
             celdaTxtTimbre3.MinimumHeight = 12;
             celdaTxtTimbre3.HorizontalAlignment = 1;
-            tablaTimbre.AddCell(celdaTxtTimbre3);
+            tablaDTimbre.AddCell(celdaTxtTimbre3);
 
-            footer.AddCell(tablaTimbre);
+          //  footer.AddCell(tablaTimbre);
 
 
             PdfPTable totales = new PdfPTable(2);
@@ -383,42 +379,42 @@ namespace IatDteBridge
             totales.WidthPercentage = 100;
 
             PdfPCell celdaEtiquetaDescuento = new PdfPCell(new Paragraph("Descuento: ", fuenteNegra));
-            celdaEtiquetaDescuento.BorderWidth = 0;
+            celdaEtiquetaDescuento.BorderWidth = 1;
             celdaEtiquetaDescuento.HorizontalAlignment = 2;
             totales.AddCell(celdaEtiquetaDescuento);
 
             PdfPCell celdaDescuento = new PdfPCell(new Paragraph("$ 0", fuenteNegra));
-            celdaDescuento.BorderWidth = 0;
+            celdaDescuento.BorderWidth = 1;
             celdaDescuento.HorizontalAlignment = 2;
             totales.AddCell(celdaDescuento);
 
             PdfPCell celdaEtiquetaSubTotal = new PdfPCell(new Paragraph("Sub Total: ", fuenteNegra));
-            celdaEtiquetaSubTotal.BorderWidth = 0;
+            celdaEtiquetaSubTotal.BorderWidth = 1;
             celdaEtiquetaSubTotal.HorizontalAlignment = 2;
             totales.AddCell(celdaEtiquetaSubTotal);
 
             PdfPCell celdaSubTotal = new PdfPCell(new Paragraph("$ " + doc.MntNeto.ToString("N0", CultureInfo.CreateSpecificCulture("es-ES")), fuenteNegra));
-            celdaSubTotal.BorderWidth = 0;
+            celdaSubTotal.BorderWidth = 1;
             celdaSubTotal.HorizontalAlignment = 2;
             totales.AddCell(celdaSubTotal);
 
             PdfPCell celdaEtiquetaMontoExento = new PdfPCell(new Paragraph("Monto Exento:  ", fuenteNegra));
-            celdaEtiquetaMontoExento.BorderWidth = 0;
+            celdaEtiquetaMontoExento.BorderWidth = 1;
             celdaEtiquetaMontoExento.HorizontalAlignment = 2;
             totales.AddCell(celdaEtiquetaMontoExento);
 
             PdfPCell celdaMontoExento = new PdfPCell(new Paragraph("$ " + doc.MntExe.ToString("N0",CultureInfo.CreateSpecificCulture("es-ES")), fuenteNegra));
             celdaMontoExento.HorizontalAlignment = 2;
-            celdaMontoExento.BorderWidth = 0;
+            celdaMontoExento.BorderWidth = 1;
             totales.AddCell(celdaMontoExento);
 
             PdfPCell celdaEtiquetaIva = new PdfPCell(new Paragraph("IVA (" + doc.TasaIVA + "%):  ", fuenteNegra));
-            celdaEtiquetaIva.BorderWidth = 0;
+            celdaEtiquetaIva.BorderWidth = 1;
             celdaEtiquetaIva.HorizontalAlignment = 2;
             totales.AddCell(celdaEtiquetaIva);
 
             PdfPCell celdaIva = new PdfPCell(new Paragraph("$ " + doc.IVA, fuenteNegra));
-            celdaIva.BorderWidth = 0;
+            celdaIva.BorderWidth = 1;
             celdaIva.HorizontalAlignment = 2;
             totales.AddCell(celdaIva);
 
@@ -434,7 +430,7 @@ namespace IatDteBridge
                 
 
                 PdfPCell celdaEtiquetaIla = new PdfPCell(new Paragraph("Imp. Adic. (" + prcimpadic + "%):  ", fuenteNegra));
-                celdaEtiquetaIla.BorderWidth = 0;
+                celdaEtiquetaIla.BorderWidth = 1;
                 celdaEtiquetaIla.HorizontalAlignment = 2;
                 totales.AddCell(celdaEtiquetaIla);
                 
@@ -447,26 +443,26 @@ namespace IatDteBridge
 
 
                     PdfPCell celdaIla = new PdfPCell(new Paragraph("$ " + mtoimpadic, fuenteNegra));
-                celdaIla.BorderWidth = 0;
+                celdaIla.BorderWidth = 1;
                 celdaIla.HorizontalAlignment = 2;
                 totales.AddCell(celdaIla);
                 }
             }
-            PdfPCell celdaEtiquetaMontoTotal = new PdfPCell(new Paragraph("Monto Total:  ", fuenteNegra));
-            celdaEtiquetaMontoTotal.BorderWidth = 0;
+            PdfPCell celdaEtiquetaMontoTotal = new PdfPCell(new Paragraph("Monto Total:  ", fuenteBold));
+            celdaEtiquetaMontoTotal.BorderWidth = 1;
             celdaEtiquetaMontoTotal.HorizontalAlignment = 2;
             totales.AddCell(celdaEtiquetaMontoTotal);
 
 
-            PdfPCell celdaMontoTotal = new PdfPCell(new Paragraph("$ " + doc.MntTotal.ToString("N0",CultureInfo.CreateSpecificCulture("es-ES")), fuenteNegra));
-            celdaMontoTotal.BorderWidth = 0;
+            PdfPCell celdaMontoTotal = new PdfPCell(new Paragraph("$ " + doc.MntTotal.ToString("N0",CultureInfo.CreateSpecificCulture("es-ES")), fuenteBold));
+            celdaMontoTotal.BorderWidth = 1;
             celdaMontoTotal.HorizontalAlignment = 2;
             totales.AddCell(celdaMontoTotal);
 
             PdfPCell celdaTotales = new PdfPCell(totales);
-            celdaTotales.BorderWidth = 0;
+            celdaTotales.BorderWidth = 1;
             celdaTotales.MinimumHeight = 200;
-            footer.AddCell(celdaTotales);
+         //   footer.AddCell(celdaTotales);
 
             // ++++++++++++++++++ tabla recibi conforme +++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -497,20 +493,69 @@ namespace IatDteBridge
             celdaRecibido3.HorizontalAlignment = 0;
             tablaRecibido.AddCell(celdaRecibido3);
 
-            PdfPCell celdaCedible = new PdfPCell(new Paragraph("CEDIBLE", fuenteNegra));
+            PdfPCell celdaCedible = new PdfPCell(new Paragraph(tipoCopia, fuenteBold));
             celdaCedible.BorderWidth = 0;
             celdaCedible.MinimumHeight = 30;
-            celdaCedible.HorizontalAlignment = 0;
-            tablaRecibido.AddCell(celdaCedible);
+            celdaCedible.HorizontalAlignment = 2;
+         
 
-            PdfPCell celdaRecibido = new PdfPCell(tablaRecibido);
-            celdaRecibido.BorderWidth = 0;
-
-            totales.AddCell(celdaRecibido);
-
-
+   
           
             // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+            // A = tabla
+            PdfPTable tablaAfooter = new PdfPTable(2);
+            tablaAfooter.WidthPercentage = 100;
+
+            // D = Tabla
+            // esta tabla ya está creada tablaDtimbre
+
+            //B = Celda
+            PdfPCell celdaBTimbre = new PdfPCell(tablaDTimbre);
+            celdaBTimbre.BorderWidth = 0;
+            celdaBTimbre.MinimumHeight = 100;
+            celdaBTimbre.HorizontalAlignment = 1;
+
+            // E = Tabla
+            PdfPTable tablaETotalyRecibo = new PdfPTable(1);
+            tablaDTimbre.WidthPercentage = 100;
+
+
+            // C = Celda
+            PdfPCell celdaCTotalyRecibo = new PdfPCell(tablaETotalyRecibo);
+            celdaCTotalyRecibo.BorderWidth = 0;
+            celdaCTotalyRecibo.MinimumHeight = 100;
+            celdaCTotalyRecibo.HorizontalAlignment = 1;
+
+
+            // F = Celda
+            PdfPCell celdaFTotal = new PdfPCell(totales); // agregar la tabla totales
+            celdaFTotal.BorderWidth = 1;
+            celdaFTotal.MinimumHeight = 100;
+            celdaFTotal.HorizontalAlignment = 1;
+
+            // G = Celda
+            PdfPCell celdaGRecibo = new PdfPCell(tablaRecibido); // agregar tabla recibo 
+            celdaGRecibo.BorderWidth = 1;
+            celdaGRecibo.MinimumHeight = 70;
+            celdaGRecibo.HorizontalAlignment = 1;
+
+            // armamos el árbol
+            //Llenamos las celdas antes de agregarlas a la tabla footer
+            tablaETotalyRecibo.AddCell(celdaFTotal);
+            tablaETotalyRecibo.AddCell(new Paragraph(" "));
+
+            if (tipoCopia != " ")
+            {
+                tablaETotalyRecibo.AddCell(celdaGRecibo);
+            }
+            
+            tablaETotalyRecibo.AddCell(celdaCedible);
+
+
+            tablaAfooter.AddCell(celdaBTimbre);
+            tablaAfooter.AddCell(celdaCTotalyRecibo);
+
             
             
             pdf.Add(cabecera);
@@ -521,7 +566,7 @@ namespace IatDteBridge
             pdf.Add(referencias);
             pdf.Add(datosReferencias);
             pdf.Add(new Paragraph(" "));
-            pdf.Add(footer);
+            pdf.Add(tablaAfooter);
             pdf.NewPage();
             pdf.Close();
 
