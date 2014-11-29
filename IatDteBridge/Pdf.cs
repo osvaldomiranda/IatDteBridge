@@ -9,6 +9,7 @@ using System.IO;
 using System.Drawing.Printing;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace IatDteBridge
 {
@@ -234,11 +235,11 @@ namespace IatDteBridge
                 puntero = puntero + 1;
                 datosDetalle[puntero] = Convert.ToString(det.UnmdItem);
                 puntero = puntero + 1;
-                datosDetalle[puntero] = Convert.ToString(det.PrcItem);
+                datosDetalle[puntero] = Convert.ToString(det.PrcItem,CultureInfo.CreateSpecificCulture("es-ES"));
                 puntero = puntero + 1;
                 datosDetalle[puntero] = Convert.ToString(det.DescuentoMonto);
                 puntero = puntero + 1;
-                datosDetalle[puntero] = Convert.ToString(det.MontoItem);
+                datosDetalle[puntero] = Convert.ToString(det.MontoItem, CultureInfo.CreateSpecificCulture("es-ES"));
                 puntero = puntero + 1;
 
             }
@@ -305,7 +306,7 @@ namespace IatDteBridge
             celdaEtiquetaSubTotal.HorizontalAlignment = 2;
             totales.AddCell(celdaEtiquetaSubTotal);
 
-            PdfPCell celdaSubTotal = new PdfPCell(new Paragraph("$ " + doc.MntNeto, fuenteNegra));
+            PdfPCell celdaSubTotal = new PdfPCell(new Paragraph("$ " + doc.MntNeto.ToString("N0", CultureInfo.CreateSpecificCulture("es-ES")), fuenteNegra));
             celdaSubTotal.BorderWidth = 0;
             celdaSubTotal.HorizontalAlignment = 2;
             totales.AddCell(celdaSubTotal);
@@ -315,7 +316,7 @@ namespace IatDteBridge
             celdaEtiquetaMontoExento.HorizontalAlignment = 2;
             totales.AddCell(celdaEtiquetaMontoExento);
 
-            PdfPCell celdaMontoExento = new PdfPCell(new Paragraph("$ 0", fuenteNegra));
+            PdfPCell celdaMontoExento = new PdfPCell(new Paragraph("$ " + doc.MntExe.ToString("N0",CultureInfo.CreateSpecificCulture("es-ES")), fuenteNegra));
             celdaMontoExento.HorizontalAlignment = 2;
             celdaMontoExento.BorderWidth = 0;
             totales.AddCell(celdaMontoExento);
@@ -350,11 +351,11 @@ namespace IatDteBridge
 
                 String mtoimpadic = String.Empty;
 
-                
-                    mtoimpadic = Convert.ToString(prc.MontoImp);
-                
 
-                PdfPCell celdaIla = new PdfPCell(new Paragraph("$ " + mtoimpadic, fuenteNegra));
+                mtoimpadic = prc.MontoImp.ToString("N0", CultureInfo.CreateSpecificCulture("es-ES"));
+
+
+                    PdfPCell celdaIla = new PdfPCell(new Paragraph("$ " + mtoimpadic, fuenteNegra));
                 celdaIla.BorderWidth = 0;
                 celdaIla.HorizontalAlignment = 2;
                 totales.AddCell(celdaIla);
@@ -365,7 +366,8 @@ namespace IatDteBridge
             celdaEtiquetaMontoTotal.HorizontalAlignment = 2;
             totales.AddCell(celdaEtiquetaMontoTotal);
 
-            PdfPCell celdaMontoTotal = new PdfPCell(new Paragraph("$ " + Convert.ToDecimal(doc.MntTotal), fuenteNegra));
+
+            PdfPCell celdaMontoTotal = new PdfPCell(new Paragraph("$ " + doc.MntTotal.ToString("N0",CultureInfo.CreateSpecificCulture("es-ES")), fuenteNegra));
             celdaMontoTotal.BorderWidth = 0;
             celdaMontoTotal.HorizontalAlignment = 2;
             totales.AddCell(celdaMontoTotal);
@@ -390,7 +392,7 @@ namespace IatDteBridge
 
             Console.WriteLine("Pdf Cerrado!!");
 
-            System.Diagnostics.Process.Start(@"C:\IatFiles\file\pdf\" + doc.TipoDTE + "_" + doc.Folio + ".pdf");
+           // System.Diagnostics.Process.Start(@"C:\IatFiles\file\pdf\" + doc.TipoDTE + "_" + doc.Folio + ".pdf");
 
             /* ProcessStartInfo info = new ProcessStartInfo();
               info.Verb = "print";

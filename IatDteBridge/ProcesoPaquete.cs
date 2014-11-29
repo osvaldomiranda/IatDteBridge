@@ -46,7 +46,7 @@ namespace IatDteBridge
                     
                     // Guarda DTE xml
                     String DTE = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + docXmlSign;
-                    String fileNameXML = @"C:/IatFiles/file/xml/DTE_"+docLectura.RUTEmisor+"_"+ docLectura.TipoDTE+"_"+ docLectura.Folio  +"_"+docLectura.FchEmis + ".xml";
+                    String fileNameXML = @"C:/IatFiles/file/xml/DTE_"+docLectura.RUTEmisor+"_"+ docLectura.TipoDTE+"_"+ docLectura.Folio  +"_"+ fchName + ".xml";
                     using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileNameXML, false, Encoding.GetEncoding("ISO-8859-1")))
                     {
                         file.WriteLine(docXmlSign);
@@ -56,7 +56,7 @@ namespace IatDteBridge
                     //Generar PDF                   
                     Pdf docpdf = new Pdf();
 
-                    String fileNamePDF = @"C:/IatFiles/file/pdf/DTE_" +docLectura.RUTEmisor+ "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + docLectura.FchEmis + ".pdf";
+                    String fileNamePDF = @"C:/IatFiles/file/pdf/DTE_" +docLectura.RUTEmisor+ "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf";
                     docpdf.OpenPdf(TimbreElec, docLectura,fileNamePDF);
 
                   
@@ -72,15 +72,19 @@ namespace IatDteBridge
                     docLectura = lec.lectura();
 
                     // Verifica que el siguiente documento sea del mismo emisor
-                    while (docLectura.RUTEmisor != firsRut)
+                  /*  if (docLectura != null)
                     {
-                        // si no tiene el mismo rut
-                        // lo saca del directorio
-                        fileAdm.mvFile(docLectura.fileName, @"c:\IatFiles\file\", @"c:\IatFiles\file\noincluidos\");
-                       
-                        //Sgte Documento
-                        docLectura = lec.lectura();
+                        while (docLectura.RUTEmisor != firsRut)
+                        {
+                            // si no tiene el mismo rut
+                            // lo saca del directorio
+                            fileAdm.mvFile(docLectura.fileName, @"c:\IatFiles\file\", @"c:\IatFiles\file\noincluidos\");
+
+                            //Sgte Documento
+                            docLectura = lec.lectura();
+                        }
                     }
+                    */
                 }
                 
 
