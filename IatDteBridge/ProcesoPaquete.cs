@@ -27,13 +27,22 @@ namespace IatDteBridge
 
                 List<int> tipos = new List<int>();
 
+                DateTime thisDay = DateTime.Now;
+                String fch = String.Format("{0:yyyy-MM-ddTHH:mm:ss}", thisDay);
+
                 while (docLectura != null)
                 {
 
-
                     tipos.Add(docLectura.TipoDTE);
 
-                    String docXmlSign = xml.doc_to_xmlSii(docLectura);
+                    String TimbreElec = xml.ted_to_xmlSii(docLectura,fch);
+                    String docXmlSign = xml.doc_to_xmlSii(docLectura,TimbreElec,fch);
+
+
+                    //Generar PDF                   
+                    Pdf docpdf = new Pdf();
+                    docpdf.OpenPdf(TimbreElec, docLectura);
+
 
                     // Agrega el DTE timbrado al paquete
                     paquete = paquete + docXmlSign;

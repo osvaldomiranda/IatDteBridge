@@ -13,7 +13,7 @@ namespace IatDteBridge
     class xmlPaquete
     {
 
-        public String doc_to_xmlSii(Documento doc)
+        public String doc_to_xmlSii(Documento doc,String TED, String fch)
         {
 
             String dte = "<DTE version=\"1.0\">\n" +
@@ -248,9 +248,44 @@ namespace IatDteBridge
             }
 
 
-            DateTime thisDay = DateTime.Now;
-            String fch = String.Format("{0:yyyy-MM-ddTHH:mm:ss}", thisDay);
+            String fechaFirma = "<TmstFirma>" + fch + "</TmstFirma>\r\n";
+            String findocumenro = "</Documento>\r\n";
 
+            String findte = "</DTE>\r\n";
+
+
+
+            documento = documento+ TED + fechaFirma + findocumenro + findte;
+
+            X509Certificate2 cert = FuncionesComunes.obtenerCertificado("LUIS BARAHONA MENDOZA");
+
+
+
+            String signDte = firmarDocumento(documento, cert);
+
+
+            return signDte;
+
+        }
+
+        public String ted_to_xmlSii(Documento doc, String fch)
+        {
+
+            // for para crear detalles y agregarlos al documento
+            String ted;
+            String firstNmbItem = String.Empty;
+            int i = 0;
+
+            foreach (var det in doc.detalle)
+            {
+               
+                String nmbItem = det.NmbItem.Replace("&", "&amp;");
+
+                if (i == 0) firstNmbItem = nmbItem;
+                i++;
+            }
+
+           
             String inicioTed = "<TED version=\"1.0\">\r\n";
             // nodo DD
             String dd = "<DD>" +
@@ -264,39 +299,21 @@ namespace IatDteBridge
 
                     "<IT1>" + firstNmbItem + "</IT1>" +
 
-                    getXmlFolio("CAF",doc.TipoDTE) +
+                    getXmlFolio("CAF", doc.TipoDTE) +
 
                     "<TSTED>" + fch + "</TSTED>" +
                 "</DD>";
 
 
-
-
-
-
-
             String firma = "<FRMT algoritmo=\"SHA1withRSA\">" + firmaNodoDD(dd, doc.TipoDTE) + "</FRMT>\r\n";
             String finTed = "</TED>\r\n";
 
-            String fechaFirma = "<TmstFirma>" + fch + "</TmstFirma>\r\n";
-            String findocumenro = "</Documento>\r\n";
+            
+            ted =   inicioTed + dd + firma + finTed;
 
-            String findte = "</DTE>\r\n";
-
-            documento = documento + inicioTed + dd + firma + finTed + fechaFirma + findocumenro + findte;
-
-            X509Certificate2 cert = FuncionesComunes.obtenerCertificado("LUIS BARAHONA MENDOZA");
-
-
-
-            String signDte = firmarDocumento(documento, cert);
-
-
-            return signDte;
+            return ted;
 
         }
-
-
 
         public String creaEnvio(String dte, String rutEmisor, String RutReceptor, List<int> tipos)
         {
