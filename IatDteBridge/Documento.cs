@@ -73,6 +73,9 @@ namespace IatDteBridge
         public string IdAdicEmisor { get; set; } // adicional para uso libre
         [DataMember]
         public string RUTMandante { get; set; }
+        [DataMember]
+        public string DirRegionalSII { get; set; } //Direccion de las oficinas SII correspondiente
+ 
 //################################### Area Receptor ############################################################################
         
         [DataMember]

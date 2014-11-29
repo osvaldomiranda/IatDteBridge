@@ -16,7 +16,6 @@ namespace IatDteBridge
     {
 
         private string sucursalesEmisor = "";
-        private string datosSii = "S.I.I - SANTIAGO SUR";
         private String[] headerDetalle = { "Item", "Codigo", "Descripción", "Cantidad", "Unidad", "P Unit.", "Dscto.", "Valor" };
         private String[] datosDetalle = new String[300];
         private String[] datosHeaderReferencia = { "Tipo de Documento", "Folio", "Fecha", "Razón Referancia" };
@@ -92,7 +91,7 @@ namespace IatDteBridge
             celdaSucursalesEmisor.BorderWidth = 0;
             cabecera.AddCell(celdaSucursalesEmisor);
 
-            PdfPCell celdaDatosSii = new PdfPCell(new Paragraph(datosSii, fuenteRoja));
+            PdfPCell celdaDatosSii = new PdfPCell(new Paragraph(doc.DirRegionalSII, fuenteRoja));
             celdaDatosSii.HorizontalAlignment = 1;
             celdaDatosSii.BorderWidth = 0;
             cabecera.AddCell(celdaDatosSii);
@@ -340,25 +339,26 @@ namespace IatDteBridge
                 foreach (var prc in doc.imptoReten)
                 {
                     prcimpadic = Convert.ToString(prc.TasaImp);
-                }
+                
 
                 PdfPCell celdaEtiquetaIla = new PdfPCell(new Paragraph("Imp. Adic. (" + prcimpadic + "%):  ", fuenteNegra));
                 celdaEtiquetaIla.BorderWidth = 0;
                 celdaEtiquetaIla.HorizontalAlignment = 2;
                 totales.AddCell(celdaEtiquetaIla);
-
+                
                 // agrega Monto Impuesto Adicional
 
                 String mtoimpadic = String.Empty;
-                foreach (var imp in doc.imptoReten)
-                {
-                    mtoimpadic = Convert.ToString(imp.MontoImp);
-                }
+
+                
+                    mtoimpadic = Convert.ToString(prc.MontoImp);
+                
 
                 PdfPCell celdaIla = new PdfPCell(new Paragraph("$ " + mtoimpadic, fuenteNegra));
                 celdaIla.BorderWidth = 0;
                 celdaIla.HorizontalAlignment = 2;
                 totales.AddCell(celdaIla);
+                }
             }
             PdfPCell celdaEtiquetaMontoTotal = new PdfPCell(new Paragraph("Monto Total:  ", fuenteNegra));
             celdaEtiquetaMontoTotal.BorderWidth = 0;
