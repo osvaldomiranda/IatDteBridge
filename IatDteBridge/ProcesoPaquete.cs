@@ -34,12 +34,37 @@ namespace IatDteBridge
                 String fch = String.Format("{0:yyyy-MM-ddTHH:mm:ss}", thisDay);
                 String fchName = String.Format("{0:yyyyMMddTHHmmss}", thisDay);
 
+                int folio33 = 1000;
+                int folio34 = 1000;
+                int folio52 = 1000;
+                int folio61 = 1000;
+                int folio56 = 1000;
+                int folio = 0;
+                
                 int i = 0;
                 String firsRut = String.Empty;
                 while (docLectura != null)
                 {
 
+                    switch (docLectura.TipoDTE)
+                    {
+                        case 33: { folio33++; folio = folio33; }
+                            break;
+                        case 34: { folio34++; folio = folio34; }
+                            break;
+                        case 52: { folio52++; folio = folio52; }
+                            break;
+                        case 61: { folio61++; folio = folio61; }
+                            break;
+                        case 56: { folio56++; folio = folio56; }
+                            break;
+                    }
+
+
+
                     tipos.Add(docLectura.TipoDTE);
+
+                    docLectura.Folio = folio;
 
                     String TimbreElec = xml.ted_to_xmlSii(docLectura,fch);
                     String docXmlSign = xml.doc_to_xmlSii(docLectura,TimbreElec,fch);
