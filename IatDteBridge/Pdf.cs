@@ -28,6 +28,24 @@ namespace IatDteBridge
         public Document OpenPdf(String dd, Documento doc, String fileName)//OpenPdf(Documento doc, String dd)
         {
 
+            String nombreDocumento = String.Empty;
+
+            switch (doc.TipoDTE)
+            {
+                case 33: nombreDocumento = "FACTURA ELECTRONICA";
+                break;
+                case 34: nombreDocumento = "FACTURA EXENTA ELECTRONICA";
+                break;
+                case 61: nombreDocumento = "NOTA DE CREDITO ELECTRONICA";
+                break;
+                case 56: nombreDocumento = "NOTA DE DEBITO ELECTRONICA";
+                break;
+                case 52: nombreDocumento = "GUIA DESPACHO ELECTRONICA";
+                break;
+
+            }
+
+
 
             Timbre timbre1 = new Timbre();
             timbre1.CreaTimbre(dd);
@@ -75,7 +93,7 @@ namespace IatDteBridge
             rutemisor = rutemisor.Insert(2, ".");
             rutemisor = rutemisor.Insert(6, ".");
 
-            PdfPCell celdaFolio = new PdfPCell(new Paragraph("R.U.T " + rutemisor + " \n\nFACTURA ELECTRÓNICA \n\nNº " + doc.Folio + "\n\n", fuenteRoja));
+            PdfPCell celdaFolio = new PdfPCell(new Paragraph("R.U.T " + rutemisor + " \n\n"+ nombreDocumento +" \n\nNº " + doc.Folio + "\n\n", fuenteRoja));
             celdaFolio.BorderColor = BaseColor.RED;
             celdaFolio.HorizontalAlignment = 1;
             celdaFolio.BorderWidth = 2;
@@ -259,33 +277,106 @@ namespace IatDteBridge
             PdfPCell celdaContenedorDetalle = new PdfPCell(detalle);
             celdaContenedorDetalle.MinimumHeight = 300f;
             contenedorDetalle.AddCell(celdaContenedorDetalle);
+
             //++++++++++++++++++++++++++++++++++++++++++++++++++++ referencias +++++++++++++++++++++++++++++++++++++
+
             PdfPTable referencias = new PdfPTable(4);
             referencias.WidthPercentage = 100;
 
-            PdfPCell headerReferncia = new PdfPCell(new Paragraph("Referencia a otros Documentos", fuenteNegra));
-            headerReferncia.Colspan = 4;
-            headerReferncia.HorizontalAlignment = 1;
-            headerReferncia.BackgroundColor = BaseColor.GRAY;
-            headerReferncia.BorderWidth = 0;
-            referencias.AddCell(headerReferncia);
+            PdfPTable datosReferencias = new PdfPTable(4);
+            datosReferencias.WidthPercentage = 100;
 
-            foreach (string b in datosHeaderReferencia)
+
+
+            if (doc.Referencia.Count > 0)
             {
-                PdfPCell celda = new PdfPCell(new Paragraph(b, fuenteNegra)); ;
-                celda.BackgroundColor = BaseColor.GRAY;
-                celda.HorizontalAlignment = 1;
-                celda.BorderWidth = 0;
-                referencias.AddCell(celda);
+
+
+                PdfPCell headerReferncia = new PdfPCell(new Paragraph("Referencia a otros Documentos", fuenteNegra));
+                headerReferncia.Colspan = 4;
+                headerReferncia.HorizontalAlignment = 1;
+                headerReferncia.BackgroundColor = BaseColor.GRAY;
+                headerReferncia.BorderWidth = 0;
+                referencias.AddCell(headerReferncia);
+
+                foreach (string b in datosHeaderReferencia)
+                {
+                    PdfPCell celda = new PdfPCell(new Paragraph(b, fuenteNegra)); ;
+                    celda.BackgroundColor = BaseColor.GRAY;
+                    celda.HorizontalAlignment = 1;
+                    celda.BorderWidth = 0;
+                    referencias.AddCell(celda);
+
+                }
+
+                //"Tipo de Documento", "Folio", "Fecha", "Razón Referancia"
+
+               
+                foreach (var b in doc.Referencia)
+                {
+                    PdfPCell celda0 = new PdfPCell(new Paragraph(b.TpoDocRef, fuenteNegra)); ;
+                    celda0.BackgroundColor = BaseColor.GRAY;
+                    celda0.HorizontalAlignment = 1;
+                    celda0.BorderWidth = 0;
+                    datosReferencias.AddCell(celda0);
+
+                    PdfPCell celda1 = new PdfPCell(new Paragraph(b.FolioRef, fuenteNegra)); ;
+                    celda1.BackgroundColor = BaseColor.GRAY;
+                    celda1.HorizontalAlignment = 1;
+                    celda1.BorderWidth = 0;
+                    datosReferencias.AddCell(celda1);
+
+                    PdfPCell celda2 = new PdfPCell(new Paragraph(b.FchRef, fuenteNegra)); ;
+                    celda2.BackgroundColor = BaseColor.GRAY;
+                    celda2.HorizontalAlignment = 1;
+                    celda2.BorderWidth = 0;
+                    datosReferencias.AddCell(celda2);
+
+                    PdfPCell celda3 = new PdfPCell(new Paragraph(b.RazonRef, fuenteNegra)); ;
+                    celda3.BackgroundColor = BaseColor.GRAY;
+                    celda3.HorizontalAlignment = 1;
+                    celda3.BorderWidth = 0;
+                    datosReferencias.AddCell(celda3);
+                    
+                }
 
             }
+            
+
+            
             //++++++++++++++++++++++++++++++++++++++++++++++++++ Pie de pagina ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             PdfPTable footer = new PdfPTable(2);
             footer.WidthPercentage = 100;
+
+            PdfPTable tablaTimbre = new PdfPTable(1);
+            tablaTimbre.WidthPercentage = 100;
+
             PdfPCell celdaTimbre = new PdfPCell(timbre);
             celdaTimbre.BorderWidth = 0;
-            celdaTimbre.MinimumHeight = 200;
-            footer.AddCell(celdaTimbre);
+            celdaTimbre.MinimumHeight = 100;
+            celdaTimbre.HorizontalAlignment = 1;
+            tablaTimbre.AddCell(celdaTimbre);
+
+            PdfPCell celdaTxtTimbre1 = new PdfPCell(new Paragraph("Timbre Electrónico S.I.I.", fuenteNegra));
+            celdaTxtTimbre1.BorderWidth = 0;
+            celdaTxtTimbre1.MinimumHeight = 12;
+            celdaTxtTimbre1.HorizontalAlignment = 1;
+            tablaTimbre.AddCell(celdaTxtTimbre1);
+
+            PdfPCell celdaTxtTimbre2 = new PdfPCell(new Paragraph("Resolución Ex. SII Nº 0 del 2010 verifique documento:", fuenteNegra));
+            celdaTxtTimbre2.BorderWidth = 0;
+            celdaTxtTimbre2.MinimumHeight = 12;
+            celdaTxtTimbre2.HorizontalAlignment = 1;
+            tablaTimbre.AddCell(celdaTxtTimbre2);
+
+            PdfPCell celdaTxtTimbre3 = new PdfPCell(new Paragraph("www.sii.cl", fuenteNegra));
+            celdaTxtTimbre3.BorderWidth = 0;
+            celdaTxtTimbre3.MinimumHeight = 12;
+            celdaTxtTimbre3.HorizontalAlignment = 1;
+            tablaTimbre.AddCell(celdaTxtTimbre3);
+
+            footer.AddCell(tablaTimbre);
+
 
             PdfPTable totales = new PdfPTable(2);
             totales.HorizontalAlignment = 0;
@@ -377,12 +468,58 @@ namespace IatDteBridge
             celdaTotales.MinimumHeight = 200;
             footer.AddCell(celdaTotales);
 
+            // ++++++++++++++++++ tabla recibi conforme +++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+            PdfPTable tablaRecibido = new PdfPTable(1);
+            tablaRecibido.WidthPercentage = 100;
+
+            PdfPCell celdaRecibido0 = new PdfPCell(new Paragraph("NOMBRE: ________________________________", fuenteNegra));
+            celdaRecibido0.BorderWidth = 0;
+            celdaRecibido0.MinimumHeight = 15;
+            celdaRecibido0.HorizontalAlignment = 0;
+            tablaRecibido.AddCell(celdaRecibido0);
+
+            PdfPCell celdaRecibido1 = new PdfPCell(new Paragraph("RUT:_______________ FECHA: ____________", fuenteNegra));
+            celdaRecibido1.BorderWidth = 0;
+            celdaRecibido1.MinimumHeight = 15;
+            celdaRecibido1.HorizontalAlignment = 0;
+            tablaRecibido.AddCell(celdaRecibido1);
+
+            PdfPCell celdaRecibido2 = new PdfPCell(new Paragraph("RECINTO:___________________ FIRMA: ____________", fuenteNegra));
+            celdaRecibido2.BorderWidth = 0;
+            celdaRecibido2.MinimumHeight = 15;
+            celdaRecibido2.HorizontalAlignment = 0;
+            tablaRecibido.AddCell(celdaRecibido2);
+
+            PdfPCell celdaRecibido3 = new PdfPCell(new Paragraph("El acuse de recibo que se declara en este acto, de acuerdo a lo dispuesto en la letra b) del Art. 4º y letra c) del Art. 5º de la ley 19383, acredita la entrega de mercaderia(s) o servicio(s).", fuenteNegra));
+            celdaRecibido3.BorderWidth = 0;
+            celdaRecibido3.MinimumHeight = 30;
+            celdaRecibido3.HorizontalAlignment = 0;
+            tablaRecibido.AddCell(celdaRecibido3);
+
+            PdfPCell celdaCedible = new PdfPCell(new Paragraph("CEDIBLE", fuenteNegra));
+            celdaCedible.BorderWidth = 0;
+            celdaCedible.MinimumHeight = 30;
+            celdaCedible.HorizontalAlignment = 0;
+            tablaRecibido.AddCell(celdaCedible);
+
+            PdfPCell celdaRecibido = new PdfPCell(tablaRecibido);
+            celdaRecibido.BorderWidth = 0;
+
+            totales.AddCell(celdaRecibido);
+
+
+          
+            // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            
+            
             pdf.Add(cabecera);
             pdf.Add(contenedorDatosReceptor);
             pdf.Add(new Paragraph(" "));
             pdf.Add(contenedorDetalle);
             pdf.Add(new Paragraph(" "));
             pdf.Add(referencias);
+            pdf.Add(datosReferencias);
             pdf.Add(new Paragraph(" "));
             pdf.Add(footer);
             pdf.NewPage();
