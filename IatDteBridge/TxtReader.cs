@@ -23,6 +23,8 @@ namespace IatDteBridge
             fileAdmin file = new fileAdmin();
             String fileName = file.nextFile(@"c:\IatFiles\file\", "*.json");
 
+            doc.fileName = fileName;
+
             if (fileName != null)
             {
                 StreamReader objReader = new StreamReader(fileName,System.Text.Encoding.Default,true);

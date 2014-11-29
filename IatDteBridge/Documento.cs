@@ -10,6 +10,10 @@ namespace IatDteBridge
     [DataContract]
     class Documento
     {
+        //este atributo es para mantener el nombre del archivo desde donde se serializó la clase
+        // debe ser llenado al momento de cargar la clase, ya que no es un atributo serializable
+        public String fileName { get; set; }
+        
         [DataMember]
         public int TipoDTE { get; set; } //
         [DataMember] 

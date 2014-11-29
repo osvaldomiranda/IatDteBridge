@@ -24,7 +24,7 @@ namespace IatDteBridge
         // iTextSharp.text.Font fuenteNegrita = new Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font., BaseColor.RED);
 
 
-        public Document OpenPdf(String dd, Documento doc)//OpenPdf(Documento doc, String dd)
+        public Document OpenPdf(String dd, Documento doc, String fileName)//OpenPdf(Documento doc, String dd)
         {
 
 
@@ -33,7 +33,7 @@ namespace IatDteBridge
             Console.WriteLine("Timbre creado!!");
 
             Document pdf = new Document(PageSize.LETTER);
-            PdfWriter.GetInstance(pdf, new FileStream(@"C:\IatFiles\file\pdf\" + doc.TipoDTE + "_" + doc.Folio + ".pdf", FileMode.OpenOrCreate));
+            PdfWriter.GetInstance(pdf, new FileStream(fileName, FileMode.OpenOrCreate));
 
 
             pdf.Open();
@@ -389,7 +389,9 @@ namespace IatDteBridge
 
 
             Console.WriteLine("Pdf Cerrado!!");
+
             System.Diagnostics.Process.Start(@"C:\IatFiles\file\pdf\" + doc.TipoDTE + "_" + doc.Folio + ".pdf");
+
             /* ProcessStartInfo info = new ProcessStartInfo();
               info.Verb = "print";
               info.FileName = "C://IatFiles/file/pdf/" + doc.TipoDTE + "_" + doc.Folio+".pdf";

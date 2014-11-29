@@ -81,8 +81,6 @@ namespace IatDteBridge
                System.IO.File.Move(path +"/"+ fileName, path2+"/" + fileName);
 
 
-
-
             }
             catch (Exception e)
             {
