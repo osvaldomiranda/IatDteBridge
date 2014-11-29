@@ -59,31 +59,25 @@ namespace IatDteBridge
                 "</Receptor>\n";
             
             String impreten = String.Empty;
-            String etimpr1 = "<ImptoReten>\n";
-            String etimpr2 = "</ImptoReten>\n";
-            if (doc.imptoReten != null)
-            {
+            string impretenes = String.Empty;
+
 
 
                 foreach (var imp in doc.imptoReten)
                 {
-                    String tasaimp = "<TasaImp>" + imp.TasaImp + "</TasaImp>\n";
-                    if (imp.TasaImp == 0)
-                        tasaimp = "";
-
-                    impreten =
+                    
+                    impreten = "<ImptoReten>\n" +
                     "<TipoImp>" + imp.TipoImp + "</TipoImp>\n" +
-                    tasaimp +
-                    "<MontoImp>" + imp.MontoImp + "</MontoImp>\n";
-                }
-            }
-            else
-            {
-                impreten = "";
-                etimpr1 = "";
-                etimpr2 = "";
+                    "<TasaImp>" + imp.TasaImp + "</TasaImp>\n" +
+                    "<MontoImp>" + imp.MontoImp + "</MontoImp>\n"+
+                    "</ImptoReten>\n";
 
-            }
+                    if (imp.TipoImp == "")
+                        impreten = "";
+
+                    impretenes += impreten;
+                }
+
 
             String mntneto = "<MntNeto>" + doc.MntNeto + "</MntNeto>\n";
             if (doc.MntNeto == 0)
@@ -103,9 +97,7 @@ namespace IatDteBridge
                      mntexe +
                      tasaiva+
                      iva +
-                     etimpr1 +
-                    impreten +
-                    etimpr2 +
+                    impretenes +
                      "<MntTotal>" + doc.MntTotal + "</MntTotal>\n"+
                  "</Totales>\n";
             String finencabezado = "</Encabezado>\n";
@@ -151,7 +143,7 @@ namespace IatDteBridge
                     descuentomonto = "";
 
                 String codimpadic = "<CodImpAdic>" + det.CodImpAdic + "</CodImpAdic>\n";
-                if (det.CodImpAdic == "")
+                if (det.CodImpAdic == "" || det.CodImpAdic == "0")
                     codimpadic = "";
 
                 String nmbItem = det.NmbItem.Replace("&", "&amp;");
@@ -243,6 +235,9 @@ namespace IatDteBridge
                     codref +
                   "<RazonRef>" + refe.RazonRef + "</RazonRef>\n" +
                 "</Referencia>\n";
+                if (refe.NroLinRef == 0)
+                    
+                    referencia = "";
 
                 documento = documento + referencia;
             }
@@ -458,9 +453,9 @@ namespace IatDteBridge
             {
                 //TO DO : falta tomar el nombre del archivo de una variable global
 //********************************************************** SANTIAGO ********************************************************
-               switch (tipo)
+              switch (tipo)
                 {
-                    case 33: xmlCaf = @"C:\IatFiles\cafs\factura\FoliosSII7739857033101201411121753.xml";
+                    case 33: xmlCaf = @"C:\IatFiles\cafs\factura\FoliosSII773985703312920141127156.xml";
                         break;
                     case 61: xmlCaf = @"C:\IatFiles\cafs\NotaCredito\FoliosSII7739857061120141014158.xml";
                         break;
