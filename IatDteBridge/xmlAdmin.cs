@@ -352,8 +352,10 @@ namespace IatDteBridge
             byte[] HashValue = new SHA1CryptoServiceProvider().ComputeHash(bytesStrDD);
 
             RSACryptoServiceProvider rsa = FuncionesComunes.crearRsaDesdePEM(pk);
+          
             byte[] bytesSing = rsa.SignHash(HashValue, "SHA1");
-
+    
+            
             string FRMT1 = Convert.ToBase64String(bytesSing);
 
             return FRMT1;
@@ -390,7 +392,7 @@ namespace IatDteBridge
                     }*/
 
 
-                using (StreamReader sr = new StreamReader(@"C:\IatFiles\cafs\factura\FoliosSII7739857033120141081332.xml"))
+                using (StreamReader sr = new StreamReader(@"C:\IatFiles\cafs\factura\FoliosSII773985703312920141127156.xml")) //FoliosSII77888630331201411132223
                 {
 
                     while ((line = sr.ReadLine()) != null)
