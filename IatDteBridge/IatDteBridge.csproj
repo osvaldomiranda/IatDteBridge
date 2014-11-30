@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Documento.cs" />
     <Compile Include="fileAdmin.cs" />
+    <Compile Include="GetTed.cs" />
     <Compile Include="LibroCompra.cs" />
     <Compile Include="LibroGuias.cs" />
     <Compile Include="LibroVenta.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="ProcesoLibroGuias.cs" />
     <Compile Include="procesoLibroVenta.cs" />
     <Compile Include="ProcesoPaquete.cs" />
+    <Compile Include="ProcesoPaqueteXml.cs" />
     <Compile Include="Service References\FormAdminCaf.cs">
       <SubType>Form</SubType>
     </Compile>

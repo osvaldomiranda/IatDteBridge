@@ -18,6 +18,7 @@ namespace IatDteBridge
         ProcesoLibroCompra procLibComp = new ProcesoLibroCompra();
         procesoLibroVenta procLibVta = new procesoLibroVenta();
         ProcesoLibroGuias procLibGuias = new ProcesoLibroGuias();
+        ProcesoPaqueteXml procFromXml = new ProcesoPaqueteXml();
 
         public FormMain()
         {
@@ -110,6 +111,51 @@ namespace IatDteBridge
         private void button8_Click(object sender, EventArgs e)
         {
             procLibGuias.doLibroGuias();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            procFromXml.procesoPaqueteXml(textBox1.Text,textBox2.Text);
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+
+                System.IO.FileInfo fi = null;
+                try
+                {
+                    fi = new System.IO.FileInfo(openFileDialog1.FileName);
+
+                    textBox1.Text = openFileDialog1.FileName;
+                }
+                catch (System.IO.FileNotFoundException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+            }
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog2.ShowDialog() == DialogResult.OK)
+            {
+
+                System.IO.FileInfo fi = null;
+                try
+                {
+                    fi = new System.IO.FileInfo(openFileDialog2.FileName);
+
+                    textBox2.Text = openFileDialog2.FileName;
+                }
+                catch (System.IO.FileNotFoundException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+            }
         }
 
 

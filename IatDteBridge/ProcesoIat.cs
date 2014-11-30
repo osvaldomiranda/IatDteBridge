@@ -24,7 +24,7 @@ namespace IatDteBridge
                 Documento docLectura = new Documento();
 
                 // Ejecuta metodo de txt_reader que llena y obtienen Clase Documento
-                docLectura = lec.lectura();
+                docLectura = lec.lectura("");
               //  Console.WriteLine("Folio = {0}", docLectura.Folio);
                 if (docLectura != null)
                 {
@@ -55,7 +55,7 @@ namespace IatDteBridge
 
                     //                    docpdf.OpenPdf("sdffffsdfsdfsdfsd", docLectura);
 
-                    docpdf.OpenPdf(TimbreElectr, docLectura,"");
+                    docpdf.OpenPdf(TimbreElectr, docLectura,"","");
 
 
                     Console.WriteLine(docXmlSign);

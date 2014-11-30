@@ -90,11 +90,7 @@ namespace IatDteBridge
 
         }
 
-        public void printPdf() 
-        {
 
-        
-        }
 
     }
 }

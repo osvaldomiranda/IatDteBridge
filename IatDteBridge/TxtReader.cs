@@ -15,13 +15,22 @@ namespace IatDteBridge
     {
   
        
-        public Documento lectura()
+        public Documento lectura(String fileJson)
         {
             Documento doc = new Documento();
-
-
             fileAdmin file = new fileAdmin();
-            String fileName = file.nextFile(@"c:\IatFiles\file\", "*.json");
+            String fileName = String.Empty;
+
+            if (fileJson != "")
+            {
+                fileName = file.nextFile(@"c:\IatFiles\file\", "*.json");
+            }
+            else
+            {
+                fileName = fileJson;
+            }
+
+           
 
             doc.fileName = fileName;
 
