@@ -455,9 +455,9 @@ namespace IatDteBridge
 //********************************************************** SANTIAGO ********************************************************
               switch (tipo)
                 {
-                    case 33: xmlCaf = @"C:\IatFiles\cafs\factura\FoliosSII7739857033120141081332.xml";
+                    case 33: xmlCaf = @"C:\IatFiles\cafs\factura\FoliosSII7739857033169201411291251.xml";
                         break;
-                    case 61: xmlCaf = @"C:\IatFiles\cafs\NotaCredito\FoliosSII77398570611201411291259.xml";
+                    case 61: xmlCaf = @"C:\IatFiles\cafs\NotaCredito\FoliosSII7739857061101201411292123.xml";
                         break;
                     case 56: xmlCaf = @"C:\IatFiles\cafs\NotaDebito\FoliosSII77398570561201410141944.xml";
                         break;

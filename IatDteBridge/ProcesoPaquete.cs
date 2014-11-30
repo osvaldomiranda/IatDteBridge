@@ -34,9 +34,9 @@ namespace IatDteBridge
                 String fch = String.Format("{0:yyyy-MM-ddTHH:mm:ss}", thisDay);
                 String fchName = String.Format("{0:yyyyMMddTHHmmss}", thisDay);
 
-                int folio33 = 1000;
-                int folio34 = 1000;
-                int folio52 = 1000;
+                int folio33 = 190;
+                int folio34 = 1000; //Factura Exenta
+                int folio52 = 1000; //Guia Despacho
                 int folio61 = 1000;
                 int folio56 = 1000;
                 int folio = 0;
