@@ -66,7 +66,7 @@ namespace IatDteBridge
             timbre.SetAbsolutePosition(10, 10);
             timbre.ScaleAbsolute(200f, 100f);
 
-            float[] anchosCabecera = new float[] { 210f, 500f, 300f };
+            float[] anchosCabecera = new float[] { 200f, 500f, 300f };
 
 
             PdfPTable cabecera = new PdfPTable(3);
@@ -254,11 +254,11 @@ namespace IatDteBridge
                 puntero = puntero + 1;
                 datosDetalle[puntero] = Convert.ToString(det.UnmdItem);
                 puntero = puntero + 1;
-                datosDetalle[puntero] = Convert.ToString(det.PrcItem,CultureInfo.CreateSpecificCulture("es-ES"));
+                datosDetalle[puntero] = det.PrcItem.ToString("N0",CultureInfo.CreateSpecificCulture("es-ES"));
                 puntero = puntero + 1;
                 datosDetalle[puntero] = Convert.ToString(det.DescuentoMonto);
                 puntero = puntero + 1;
-                datosDetalle[puntero] = Convert.ToString(det.MontoItem, CultureInfo.CreateSpecificCulture("es-ES"));
+                datosDetalle[puntero] = det.MontoItem.ToString("N0",CultureInfo.CreateSpecificCulture("es-ES"));
                 puntero = puntero + 1;
 
             }
@@ -376,7 +376,7 @@ namespace IatDteBridge
 
             PdfPTable totales = new PdfPTable(2);
             totales.HorizontalAlignment = 0;
-            totales.WidthPercentage = 100;
+            totales.WidthPercentage = 80;
 
             PdfPCell celdaEtiquetaDescuento = new PdfPCell(new Paragraph("Descuento: ", fuenteNegra));
             celdaEtiquetaDescuento.BorderWidth = 1;
@@ -413,7 +413,7 @@ namespace IatDteBridge
             celdaEtiquetaIva.HorizontalAlignment = 2;
             totales.AddCell(celdaEtiquetaIva);
 
-            PdfPCell celdaIva = new PdfPCell(new Paragraph("$ " + doc.IVA, fuenteNegra));
+            PdfPCell celdaIva = new PdfPCell(new Paragraph("$ " + doc.IVA.ToString("N0", CultureInfo.CreateSpecificCulture("es-ES")), fuenteNegra));
             celdaIva.BorderWidth = 1;
             celdaIva.HorizontalAlignment = 2;
             totales.AddCell(celdaIva);
@@ -461,7 +461,7 @@ namespace IatDteBridge
 
             PdfPCell celdaTotales = new PdfPCell(totales);
             celdaTotales.BorderWidth = 1;
-            celdaTotales.MinimumHeight = 200;
+            //celdaTotales.MinimumHeight = 200;
          //   footer.AddCell(celdaTotales);
 
             // ++++++++++++++++++ tabla recibi conforme +++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -562,7 +562,7 @@ namespace IatDteBridge
             pdf.Add(contenedorDatosReceptor);
             pdf.Add(new Paragraph(" "));
             pdf.Add(contenedorDetalle);
-            pdf.Add(new Paragraph(" "));
+           // pdf.Add(new Paragraph(" "));
             pdf.Add(referencias);
             pdf.Add(datosReferencias);
             pdf.Add(new Paragraph(" "));

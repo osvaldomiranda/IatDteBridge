@@ -55,7 +55,7 @@ namespace IatDteBridge
 
                     //                    docpdf.OpenPdf("sdffffsdfsdfsdfsd", docLectura);
 
-                    docpdf.OpenPdf(TimbreElectr, docLectura,"");
+                    docpdf.OpenPdf(TimbreElectr, docLectura,""," ");
 
 
                     Console.WriteLine(docXmlSign);
