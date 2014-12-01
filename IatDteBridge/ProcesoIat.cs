@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Security.Cryptography.Xml;
+using System.Security.Cryptography.X509Certificates;
+using System.Security.Cryptography;
 
 namespace IatDteBridge
 {
@@ -17,67 +20,102 @@ namespace IatDteBridge
                 Console.WriteLine("ProcessIat thread: working...");
                 Thread.Sleep(5000);
 
+                i++;
 
-                // Instancia txt_reader
+                String paquete = String.Empty;
+
+                // instancia fileadmin, para tener las herramientas para mover archivos
+                fileAdmin fileAdm = new fileAdmin();
+
+                // inatancia txt_reader
                 TxtReader lec = new TxtReader();
 
                 Documento docLectura = new Documento();
 
                 // Ejecuta metodo de txt_reader que llena y obtienen Clase Documento
                 docLectura = lec.lectura("");
-              //  Console.WriteLine("Folio = {0}", docLectura.Folio);
+                // instancia XML_admin
+                xmlPaquete xml = new xmlPaquete();
+
+                List<int> tipos = new List<int>();
+
+                DateTime thisDay = DateTime.Now;
+                String fch = String.Format("{0:yyyy-MM-ddTHH:mm:ss}", thisDay);
+                String fchName = String.Format("{0:yyyyMMddTHHmmss}", thisDay);
+
+             
+                String firsRut = String.Empty;
                 if (docLectura != null)
                 {
 
-                    
-                    //instancia Clase de tipo Impresora
 
-                    // Ejecuta metodo que recibe archivo pdf y lo imprime
+                    tipos.Add(docLectura.TipoDTE);
 
 
-                    // instancia XML_admin
-                    xmlAdmin xml = new xmlAdmin();
+                    String TimbreElec = xml.ted_to_xmlSii(docLectura, fch);
+                    String docXmlSign = xml.doc_to_xmlSii(docLectura, TimbreElec, fch);
 
-                    DateTime thisDay = DateTime.Now;
-                    String fch = String.Format("{0:yyyy-MM-ddTHH:mm:ss}", thisDay);
+                    // Guarda DTE xml
+                    String DTE = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + docXmlSign;
+                    String fileNameXML = @"C:/IatFiles/file/xml/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".xml";
+                    using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileNameXML, false, Encoding.GetEncoding("ISO-8859-1")))
+                    {
+                        file.WriteLine(docXmlSign);
+                    }
 
-                    // Ejecuta metodo de XML_admin que recibe objeto de la clase documento 
-                    // que llena el xml lo firma, lo timbra y devuelve la factura xml lista
-                    String TimbreElectr = xml.ted_to_xmlSii(docLectura, "2014-11-16T22:33:55");
 
-                    String docXmlSign = xml.doc_to_xmlSii(docLectura, TimbreElectr, "2014-11-16T22:33:55");
-
-
-                    // intancia objeto de la clase PDF_admin
-                    // ejecutar metodo de PDF_admin que recibe objeto de la clase Documento
-                    // que genera el archivo pdf
+                    //Generar PDF                   
                     Pdf docpdf = new Pdf();
 
-                    //                    docpdf.OpenPdf("sdffffsdfsdfsdfsd", docLectura);
+                    String fileNamePDF = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf";
+                    docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDF, " ");
+
+                    if (docLectura.TipoDTE == 33 || docLectura.TipoDTE == 34)
+                    {
+                        docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDF, "CEDIBLE");
+                    }
+
+                    if (docLectura.TipoDTE == 52)
+                    {
+                        docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDF, "CEDIBLE CON SU FACTURA");
+                    }
 
 
-                    docpdf.OpenPdf(TimbreElectr, docLectura,"","");
+
+                    // Agrega el DTE timbrado al paquete
+                    paquete = paquete + docXmlSign;
+
+                    //Estrae el rut del emisor de la primera factura del paquete
+                    if (i == 0) firsRut = docLectura.RUTEmisor;
+                    i++;
+
+                    //Sgte Documento
+                    docLectura = lec.lectura("");
 
 
 
-                    Console.WriteLine(docXmlSign);
+                    // Firma POaquete unitario   
+                    String envio = xml.creaEnvio(paquete, firsRut, "", tipos);
 
 
-                    // instancia objeto de tipo Connect
-                    Connect conn = new Connect();
+                    X509Certificate2 cert = FuncionesComunes.obtenerCertificado("LUIS BARAHONA MENDOZA");
+                    String enviox509 = xml.firmarDocumento(envio, cert);
 
-                    // ejecuta metodo de Connect que recibe el xml y lo envía al Core
-                    //conn.sendXml(docXmlSign, "Fact1.xml");
+
+                    enviox509 = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + enviox509;
+
+                    String fileNameEnvio = @"C:/IatFiles/file/xml/EnvioUnit_" + firsRut + "_" + fchName + ".xml";
+                    using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileNameEnvio, false, Encoding.GetEncoding("ISO-8859-1")))
+                    {
+                        file.WriteLine(enviox509);
+                    }
 
                 }
-                // Continuar con siguiente documento
-                Console.WriteLine("Iteracion = {0}", i);
-                i++;
-
-
             }
             Console.WriteLine("ProcessIat thread: terminating gracefully.");
         }
+
+        
         public void RequestStop()
         {
             _shouldStop = true;

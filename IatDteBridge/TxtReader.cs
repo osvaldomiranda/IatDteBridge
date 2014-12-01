@@ -21,7 +21,7 @@ namespace IatDteBridge
             fileAdmin file = new fileAdmin();
             String fileName = String.Empty;
 
-            if (fileJson != "")
+            if (fileJson == "")
             {
                 fileName = file.nextFile(@"c:\IatFiles\file\", "*.json");
             }

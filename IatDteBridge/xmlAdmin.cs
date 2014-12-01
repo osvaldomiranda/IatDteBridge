@@ -19,7 +19,11 @@ namespace IatDteBridge
         {
 
             String dte = "<DTE version=\"1.0\">\n" +
-                         "<Documento ID=\"F" + doc.Folio + "T" + doc.TipoDTE + "\">\n";
+                      "<Documento ID=\"F" + doc.Folio + "T" + doc.TipoDTE + "\">\n";
+
+            String tipodespacho = "<TipoDespacho>" + doc.TipoDespacho + "</TipoDespacho>\n";
+            if (doc.TipoDespacho == 0)
+                tipodespacho = "";
 
             String indtraslado = "<IndTraslado>" + doc.IndTraslado + "</IndTraslado>\n";
             if (doc.IndTraslado == 0)
@@ -30,8 +34,11 @@ namespace IatDteBridge
                     "<TipoDTE>" + doc.TipoDTE + "</TipoDTE>\n" +
                     "<Folio>" + doc.Folio + "</Folio> \n" +
                     "<FchEmis>" + doc.FchEmis + "</FchEmis>\n" +
+                    tipodespacho +
                     indtraslado +
                 "</IdDoc>\n";
+
+
 
             String emisor = "<Emisor>\n" +
                     "<RUTEmisor>" + doc.RUTEmisor + "</RUTEmisor>\n" +
@@ -54,42 +61,46 @@ namespace IatDteBridge
                 "</Receptor>\n";
 
             String impreten = String.Empty;
-            String etimpr1 = "<ImptoReten>\n";
-            String etimpr2 = "</ImptoReten>\n";
-            if (doc.imptoReten != null)
+            string impretenes = String.Empty;
+
+
+
+            foreach (var imp in doc.imptoReten)
             {
 
+                impreten = "<ImptoReten>\n" +
+                "<TipoImp>" + imp.TipoImp + "</TipoImp>\n" +
+                "<TasaImp>" + imp.TasaImp + "</TasaImp>\n" +
+                "<MontoImp>" + imp.MontoImp + "</MontoImp>\n" +
+                "</ImptoReten>\n";
 
-                foreach (var imp in doc.imptoReten)
-                {
+                if (imp.TipoImp == "")
+                    impreten = "";
 
-                    impreten =
-                    "<TipoImp>" + imp.TipoImp + "</TipoImp>\n" +
-                    "<TasaImp>" + imp.TasaImp + "</TasaImp>\n" +
-                    "<MontoImp>" + imp.MontoImp + "</MontoImp>\n";
-                }
-            }
-            else
-            {
-                impreten = "";
-                etimpr1 = "";
-                etimpr2 = "";
-
+                impretenes += impreten;
             }
 
+
+            String mntneto = "<MntNeto>" + doc.MntNeto + "</MntNeto>\n";
+            if (doc.MntNeto == 0)
+                mntneto = "";
+            String mntexe = "<MntExe>" + doc.MntExe + "</MntExe>\n";
+            if (doc.MntExe == 0)
+                mntexe = "";
             String tasaiva = "<TasaIVA>" + doc.TasaIVA + "</TasaIVA>\n";
             if (doc.TasaIVA == 0)
                 tasaiva = "";
+            String iva = "<IVA>" + doc.IVA + "</IVA>\n";
+            if (doc.IVA == 0)
+                iva = "";
 
             String totales = "<Totales>\n" +
-                    "<MntNeto>" + doc.MntNeto + "</MntNeto>\n" +
-                    "<MntExe>" + doc.MntExe + "</MntExe>\n" +
+                     mntneto +
+                     mntexe +
                      tasaiva +
-                    "<IVA>" + doc.IVA + "</IVA>\n" +
-                    etimpr1 +
-                    impreten +
-                    etimpr2 +
-                    "<MntTotal>" + doc.MntTotal + "</MntTotal>\n" +
+                     iva +
+                    impretenes +
+                     "<MntTotal>" + doc.MntTotal + "</MntTotal>\n" +
                  "</Totales>\n";
             String finencabezado = "</Encabezado>\n";
 
@@ -107,12 +118,15 @@ namespace IatDteBridge
                 String indexe = "<IndExe>" + det.IndExe + "</IndExe>\n";
                 if (det.IndExe == "0")
                     indexe = "";
-                String dscitem = "<DscItem>" + det.DscItem + "</DscItem>\n";
-                if (det.DscItem == "")
-                    dscitem = "";
+
                 String qtyitem = "<QtyItem>" + det.QtyItem + "</QtyItem>\n";
                 if (det.QtyItem == 0)
                     qtyitem = "";
+
+                String unmditem = "<UnmdItem>" + det.UnmdItem + "</UnmdItem>\n";
+                if (det.UnmdItem == "")
+                    unmditem = "";
+
                 String prcitem = "<PrcItem>" + det.PrcItem + "</PrcItem>\n";
                 if (det.PrcItem == 0)
                     prcitem = "";
@@ -129,11 +143,14 @@ namespace IatDteBridge
                 String descuentomonto = "<DescuentoMonto>" + det.DescuentoMonto + "</DescuentoMonto>\n";
                 if (det.DescuentoMonto == 0)
                     descuentomonto = "";
+
                 String codimpadic = "<CodImpAdic>" + det.CodImpAdic + "</CodImpAdic>\n";
-                if (det.CodImpAdic == "")
+                if (det.CodImpAdic == "" || det.CodImpAdic == "0")
                     codimpadic = "";
 
                 String nmbItem = det.NmbItem.Replace("&", "&amp;");
+
+
 
                 detalle = "<Detalle>\n" +
                 "<NroLinDet>" + det.NroLinDet + "</NroLinDet>\n" +
@@ -142,9 +159,9 @@ namespace IatDteBridge
                 "<VlrCodigo>" + det.VlrCodigo + "</VlrCodigo>\n" +
                 "</CdgItem>\n" +
                 indexe +
-                "<NmbItem>" + det.NmbItem + "</NmbItem>\n" +
-                 dscitem +
+                "<NmbItem>" + nmbItem + "</NmbItem>\n" +
                  qtyitem +
+                 unmditem +
                  prcitem +
                  descuentopct +
                  descuentomonto +
@@ -153,45 +170,45 @@ namespace IatDteBridge
                 "</Detalle>\n";
 
                 documento = documento + detalle;
-                if (i == 0) firstNmbItem = det.NmbItem;
+                if (i == 0) firstNmbItem = nmbItem;
                 i++;
             }
 
             // for para crear descuento global y agregarlas al documento
 
-            String descuentoglobal;
-            if (doc.dscRcgGlobal == null)
-                descuentoglobal = "";
-            else
+            String descuentoglobal = String.Empty;
 
-                foreach (var desglo in doc.dscRcgGlobal)
-                {
-                    String nrolindr = "<NroLinDR>" + desglo.NroLinDR + "</NroLinDR>\n";
-                    if (desglo.NroLinDR == 0)
-                        nrolindr = "";
-                    String tpomov = "<TpoMov>" + desglo.TpoMov + "</TpoMov>\n";
-                    if (desglo.TpoMov == "")
-                        tpomov = "";
-                    String glosadr = "<GlosaDR>" + desglo.GlosaDR + "</GlosaDR>\n";
-                    if (desglo.GlosaDR == "")
-                        glosadr = "";
-                    String tpovalor = "<TpoValor>" + desglo.TpoValor + "</TpoValor>\n";
-                    if (desglo.TpoValor == "")
-                        tpovalor = "";
-                    String valordr = "<ValorDR>" + desglo.ValorDR + "</ValorDR>\n";
-                    if (desglo.ValorDR == 0)
-                        valordr = "";
 
-                    descuentoglobal = "<DscRcgGlobal>\n" +
-                        nrolindr +
-                        tpomov +
-                        glosadr +
-                        tpovalor +
-                        valordr +
-                        "</DscRcgGlobal>\n";
+            foreach (var desglo in doc.dscRcgGlobal)
+            {
+                String nrolindr = "<NroLinDR>" + desglo.NroLinDR + "</NroLinDR>\n";
+                if (desglo.NroLinDR == 0)
+                    nrolindr = "";
+                String tpomov = "<TpoMov>" + desglo.TpoMov + "</TpoMov>\n";
+                if (desglo.TpoMov == "")
+                    tpomov = "";
+                String glosadr = "<GlosaDR>" + desglo.GlosaDR + "</GlosaDR>\n";
+                if (desglo.GlosaDR == "")
+                    glosadr = "";
+                String tpovalor = "<TpoValor>" + desglo.TpoValor + "</TpoValor>\n";
+                if (desglo.TpoValor == "")
+                    tpovalor = "";
+                String valordr = "<ValorDR>" + desglo.ValorDR + "</ValorDR>\n";
+                if (desglo.ValorDR == 0)
+                    valordr = "";
 
-                    documento = documento + descuentoglobal;
-                }
+                descuentoglobal = "<DscRcgGlobal>\n" +
+                    nrolindr +
+                    tpomov +
+                    glosadr +
+                    tpovalor +
+                    valordr +
+                    "</DscRcgGlobal>\n";
+                if (desglo.NroLinDR == 0)
+                    descuentoglobal = "";
+
+                documento = documento + descuentoglobal;
+            }
 
 
             // for para crear referencias y agregarlas al documento
@@ -220,41 +237,31 @@ namespace IatDteBridge
                     codref +
                   "<RazonRef>" + refe.RazonRef + "</RazonRef>\n" +
                 "</Referencia>\n";
+                if (refe.NroLinRef == 0)
+
+                    referencia = "";
 
                 documento = documento + referencia;
             }
 
-
-            
 
             String fechaFirma = "<TmstFirma>" + fch + "</TmstFirma>\r\n";
             String findocumenro = "</Documento>\r\n";
 
             String findte = "</DTE>\r\n";
 
+
+
             documento = documento + TED + fechaFirma + findocumenro + findte;
 
-
             X509Certificate2 cert = FuncionesComunes.obtenerCertificado("LUIS BARAHONA MENDOZA");
+
 
 
             String signDte = firmarDocumento(documento, cert);
 
 
-            String envio = creaEnvio(signDte, doc.RUTEmisor, doc.RUTRecep, doc.TipoDTE.ToString());
-
-            String enviox509 = firmarDocumento(envio, cert);
-
-            enviox509 = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + enviox509;
-
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:/IatFiles/file/xml/" + doc.TipoDTE + "_" + doc.Folio + ".xml", false, Encoding.GetEncoding("ISO-8859-1")))
-            {
-                file.WriteLine(enviox509);
-            }
-
-
-            return enviox509;
-
+            return signDte;
         }
 
 
