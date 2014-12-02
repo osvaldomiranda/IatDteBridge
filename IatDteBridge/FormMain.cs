@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using iTextSharp.text.pdf;
 
 namespace IatDteBridge
 {
@@ -156,6 +157,11 @@ namespace IatDteBridge
                 }
 
             }
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+     
         }
 
 
