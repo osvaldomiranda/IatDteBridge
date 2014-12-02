@@ -451,41 +451,27 @@ namespace IatDteBridge
             bool rsaline = false;
             try
             {
-                //TO DO : falta tomar el nombre del archivo de una variable global
-//********************************************************** SANTIAGO ********************************************************
-              switch (tipo)
+
+
+                fileAdmin file = new fileAdmin();
+                String cafDir = String.Empty;
+                switch (tipo)
                 {
-                    case 33: xmlCaf = @"C:\IatFiles\cafs\factura\FoliosSII7739857033120141081332.xml";
+                    case 33: cafDir = @"C:\IatFiles\cafs\factura\";
+
                         break;
-                    case 61: xmlCaf = @"C:\IatFiles\cafs\NotaCredito\FoliosSII7739857061101201411292123.xml";
+                    case 61: cafDir = @"C:\IatFiles\cafs\NotaCredito\";
                         break;
-                    case 56: xmlCaf = @"C:\IatFiles\cafs\NotaDebito\FoliosSII77398570561201410141944.xml";
+                    case 56: cafDir = @"C:\IatFiles\cafs\NotaDebito\";
                         break;
-                    case 52: xmlCaf = @"C:\IatFiles\cafs\Guia\FoliosSII7739857052120141110175.xml";
+                    case 52: cafDir = @"C:\IatFiles\cafs\Guia\";
                         break;
-                    case 34: xmlCaf = @"C:\IatFiles\cafs\FacturaExenta\FoliosSII77398570341201411111345.xml";
+                    case 34: cafDir = @"C:\IatFiles\cafs\FacturaExenta\";
                         break;
                 }
+
+                xmlCaf = file.nextFile(cafDir, "*.xml");
                 
- //***********************************************************************************************************************************     
-
- //********************************************************** REGIONES ********************************************************
-                 /*  switch (tipo)
-                    {
-                        case 33: xmlCaf = @"C:\IatFiles\cafs\factura\FoliosSII77888630331201411132223.xml";
-                            break;
-                        case 61: xmlCaf = @"C:\IatFiles\cafs\NotaCredito\FoliosSII77888630611201411132228.xml";
-                            break;
-                        case 56: xmlCaf = @"C:\IatFiles\cafs\NotaDebito\FoliosSII77888630561201411132231.xml";
-                            break;
-                        case 52: xmlCaf = @"C:\IatFiles\cafs\Guia\FoliosSII77888630521201411132239.xml";
-                            break;
-                        case 34: xmlCaf = @"C:\IatFiles\cafs\FacturaExenta\FoliosSII77888630341201411132243.xml";
-                            break;
-                    }*/
-
- //***********************************************************************************************************************************   
-
                 using (StreamReader sr = new StreamReader(xmlCaf))
                 {
 
