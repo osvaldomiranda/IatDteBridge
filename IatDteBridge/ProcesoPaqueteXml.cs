@@ -47,7 +47,7 @@ namespace IatDteBridge
   
                 if (docLectura.TipoDTE == 33 || docLectura.TipoDTE == 34)
                 {
-                    docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDFCed, "CEDIBLE");
+                    docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDFCed, "_CEDIBLE");
                 }
 
                 if (docLectura.TipoDTE == 52)

@@ -52,7 +52,7 @@ namespace IatDteBridge
             timbre1.CreaTimbre(dd);
             Console.WriteLine("Timbre creado!!");
 
-            Document pdf = new Document(PageSize.LETTER);
+            Document pdf = new Document(PageSize.LETTER,10f,10f,10f,10f);
             PdfWriter.GetInstance(pdf, new FileStream(fileName, FileMode.OpenOrCreate));
 
 
@@ -461,13 +461,13 @@ namespace IatDteBridge
 
             PdfPCell celdaTotales = new PdfPCell(totales);
             celdaTotales.BorderWidth = 1;
-            //celdaTotales.MinimumHeight = 200;
+           // celdaTotales.MinimumHeight = 20f;
          //   footer.AddCell(celdaTotales);
 
             // ++++++++++++++++++ tabla recibi conforme +++++++++++++++++++++++++++++++++++++++++++++++++++++
 
             PdfPTable tablaRecibido = new PdfPTable(1);
-            tablaRecibido.WidthPercentage = 100;
+            tablaRecibido.WidthPercentage = 100;    
 
             PdfPCell celdaRecibido0 = new PdfPCell(new Paragraph("NOMBRE: ________________________________", fuenteNegra));
             celdaRecibido0.BorderWidth = 0;
@@ -489,13 +489,13 @@ namespace IatDteBridge
 
             PdfPCell celdaRecibido3 = new PdfPCell(new Paragraph("El acuse de recibo que se declara en este acto, de acuerdo a lo dispuesto en la letra b) del Art. 4º y letra c) del Art. 5º de la ley 19383, acredita la entrega de mercaderia(s) o servicio(s).", fuenteNegra));
             celdaRecibido3.BorderWidth = 0;
-            celdaRecibido3.MinimumHeight = 30;
+            celdaRecibido3.MinimumHeight = 20;
             celdaRecibido3.HorizontalAlignment = 0;
             tablaRecibido.AddCell(celdaRecibido3);
 
             PdfPCell celdaCedible = new PdfPCell(new Paragraph(tipoCopia, fuenteBold));
             celdaCedible.BorderWidth = 0;
-            celdaCedible.MinimumHeight = 30;
+            celdaCedible.MinimumHeight = 10f;
             celdaCedible.HorizontalAlignment = 2;
          
 
