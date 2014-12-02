@@ -70,14 +70,19 @@ namespace IatDteBridge
                     String fileNamePDF = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf";
                     docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDF, " ");
 
+
+                    docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDF, "TRIBUTABLE");
+
+                    String fileNamePDFCed = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf";
+  
                     if (docLectura.TipoDTE == 33 || docLectura.TipoDTE == 34)
                     {
-                        docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDF, "CEDIBLE");
+                        docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDFCed, "CEDIBLE");
                     }
 
                     if (docLectura.TipoDTE == 52)
                     {
-                        docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDF, "CEDIBLE CON SU FACTURA");
+                        docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDFCed, "CEDIBLE CON SU FACTURA");
                     }
 
 
