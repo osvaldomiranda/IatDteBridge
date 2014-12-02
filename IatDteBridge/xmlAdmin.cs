@@ -293,12 +293,12 @@ namespace IatDteBridge
 
                     "<IT1>" + ampersan + "</IT1>" +
 
-                    getXmlFolio("CAF") +
+                    getXmlFolio("CAF", doc.TipoDTE) +
 
                     "<TSTED>" + fch + "</TSTED>" +
                 "</DD>";
 
-            String firma = "<FRMT algoritmo=\"SHA1withRSA\">" + firmaNodoDD(dd) + "</FRMT>\r\n";
+            String firma = "<FRMT algoritmo=\"SHA1withRSA\">" + firmaNodoDD(dd, doc.TipoDTE) + "</FRMT>\r\n";
             String finTed = "</TED>\r\n";
 
             String ted =  inicioTed + dd + firma + finTed;
@@ -347,11 +347,11 @@ namespace IatDteBridge
         }
 
 
-        public String firmaNodoDD(String DD)
+        public String firmaNodoDD(String DD, int tipo)
         {
 
 
-            string pk = getXmlFolio("RSA");
+            string pk = getXmlFolio("RSA", tipo);
 
             Encoding ByteConverter = Encoding.GetEncoding("ISO-8859-1");
 
@@ -370,7 +370,7 @@ namespace IatDteBridge
         }
 
 
-        public String getXmlFolio(String nodo)
+        public String getXmlFolio(String nodo, int tipo)
         {
 
             string nodoValue = string.Empty;
@@ -386,20 +386,27 @@ namespace IatDteBridge
 
             try
             {
-                //TO DO : falta tomar el nombre del archivo de una variable global
-                /*    switch (tipo)
-                    {
-                        case 33: xmlCaf = @"C:\IatFiles\cafs\factura\FoliosSII7739857033120141081332.xml";
-                            break;
-                        case 61: xmlCaf = @"C:\IatFiles\cafs\NotaCredito\FoliosSII7739857061120141014158.xml";
-                            break;
-                        case 56: xmlCaf = @"C:\IatFiles\cafs\NotaDebito\FoliosSII77398570561201410141944.xml";
-                            break;
-                        case 52: xmlCaf = @"C:\IatFiles\cafs\Guia\FoliosSII7739857052120141110175.xml";
-                    }*/
+                fileAdmin file = new fileAdmin();
+                String cafDir = String.Empty;
+                switch (tipo)
+                {
+                    case 33: cafDir = @"C:\IatFiles\cafs\factura\";
 
+                        break;
+                    case 61: cafDir = @"C:\IatFiles\cafs\NotaCredito\";
+                        break;
+                    case 56: cafDir = @"C:\IatFiles\cafs\NotaDebito\";
+                        break;
+                    case 52: cafDir = @"C:\IatFiles\cafs\Guia\";
+                        break;
+                    case 34: cafDir = @"C:\IatFiles\cafs\FacturaExenta\";
+                        break;
+                }
 
-                using (StreamReader sr = new StreamReader(@"C:\IatFiles\cafs\factura\FoliosSII773985703312920141127156.xml")) //FoliosSII77888630331201411132223
+               String xmlCaf = file.nextFile(cafDir, "*.xml");
+           
+
+                using (StreamReader sr = new StreamReader(xmlCaf)) 
                 {
 
                     while ((line = sr.ReadLine()) != null)

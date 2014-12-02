@@ -108,11 +108,19 @@ namespace IatDteBridge
                 }
 
 
-
-
                 objReader.Close();
                 ms.Close();
                 file.mvFile(fileName, "C:/IatFiles/file/", "C:/IatFiles/fileProcess/");
+
+                
+                Caf caf = new Caf();
+
+                if(!caf.isValid(doc.FchEmis,doc.TipoDTE,doc.Folio))
+                {
+                    doc = null;
+                }
+
+
                 return doc;
             }
             else

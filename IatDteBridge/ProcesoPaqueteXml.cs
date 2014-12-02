@@ -43,6 +43,7 @@ namespace IatDteBridge
 
                 docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDF, "TRIBUTABLE");
 
+
                 String fileNamePDFCed = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf";
   
                 if (docLectura.TipoDTE == 33 || docLectura.TipoDTE == 34)
