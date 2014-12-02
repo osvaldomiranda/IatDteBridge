@@ -29,8 +29,11 @@ namespace IatDteBridge
                 xmlPaquete xml = new xmlPaquete();
 
                 List<int> tipos = new List<int>();
+                // eliminar despues de la simulacion
 
+                
                 DateTime thisDay = DateTime.Now;
+
                 String fch = String.Format("{0:yyyy-MM-ddTHH:mm:ss}", thisDay);
                 String fchName = String.Format("{0:yyyyMMddTHHmmss}", thisDay);
 
@@ -43,6 +46,8 @@ namespace IatDteBridge
                 
                 int i = 0;
                 String firsRut = String.Empty;
+
+
                 while (docLectura != null)
                 {
 
@@ -64,7 +69,7 @@ namespace IatDteBridge
 
                     tipos.Add(docLectura.TipoDTE);
 
-                    docLectura.Folio = folio;
+                  // docLectura.Folio = folio;
 
                     String TimbreElec = xml.ted_to_xmlSii(docLectura,fch);
                     String docXmlSign = xml.doc_to_xmlSii(docLectura,TimbreElec,fch);
