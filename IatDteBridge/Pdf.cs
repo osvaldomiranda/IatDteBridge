@@ -235,6 +235,15 @@ namespace IatDteBridge
                 detalle.AddCell(celda);
 
             }
+
+            //Captura el codigo de referencia
+            String codigoreferencia = String.Empty;
+            foreach (var codref in doc.Referencia)
+            {
+                codigoreferencia = codref.CodRef.ToString(); 
+            }
+
+
             int puntero = 0;
             String nmbitem = String.Empty;
             foreach (var det in doc.detalle)
@@ -248,6 +257,8 @@ namespace IatDteBridge
                     nmbitem = det.NmbItem;
                 else
                     nmbitem = det.NmbItem.Substring(0, 40);
+                if (codigoreferencia == "2")
+                    nmbitem = det.NmbItem;
                 puntero = puntero + 1;
                 datosDetalle[puntero] = Convert.ToString(nmbitem);
                 puntero = puntero + 1;

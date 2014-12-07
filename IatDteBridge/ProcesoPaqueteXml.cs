@@ -41,7 +41,7 @@ namespace IatDteBridge
                 String fileNamePDF = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf";
                 docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDF, " ");
 
-                docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDF, "TRIBUTABLE");
+                docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDF, " ");
 
 
                 String fileNamePDFCed = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf";
