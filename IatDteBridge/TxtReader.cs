@@ -15,7 +15,7 @@ namespace IatDteBridge
     {
   
        
-        public Documento lectura(String fileJson)
+        public Documento lectura(String fileJson, bool moveFile)
         {
             Documento doc = new Documento();
             fileAdmin file = new fileAdmin();
@@ -32,7 +32,7 @@ namespace IatDteBridge
 
            
 
-            doc.fileName = fileName;
+           
 
             if (fileName != null)
             {
@@ -57,6 +57,7 @@ namespace IatDteBridge
 
                 }
 
+   
                 // Datos del Emisor
                 String lineEmisor = String.Empty;
                 try
@@ -110,8 +111,16 @@ namespace IatDteBridge
 
                 objReader.Close();
                 ms.Close();
-                file.mvFile(fileName, "C:/IatFiles/file/", "C:/IatFiles/fileProcess/");
+                if (moveFile)
+                {
+                    file.mvFile(fileName, "C:/IatFiles/file/", "C:/IatFiles/fileProcess/");
+                }
+                
 
+
+//                Connect conn = new Connect();
+
+//                conn.sendInvoice(doc);
                 
                 Caf caf = new Caf();
 
@@ -120,7 +129,7 @@ namespace IatDteBridge
                     doc = null;
                 }
 
-
+                doc.fileName = fileName;
                 return doc;
             }
             else

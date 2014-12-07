@@ -61,15 +61,15 @@ namespace IatDteBridge
             String impreten = String.Empty;
             string impretenes = String.Empty;
 
-
-
+            if (doc.imptoReten !=null )
+            {
                 foreach (var imp in doc.imptoReten)
                 {
-                    
+
                     impreten = "<ImptoReten>\n" +
                     "<TipoImp>" + imp.TipoImp + "</TipoImp>\n" +
                     "<TasaImp>" + imp.TasaImp + "</TasaImp>\n" +
-                    "<MontoImp>" + imp.MontoImp + "</MontoImp>\n"+
+                    "<MontoImp>" + imp.MontoImp + "</MontoImp>\n" +
                     "</ImptoReten>\n";
 
                     if (imp.TipoImp == "")
@@ -77,6 +77,9 @@ namespace IatDteBridge
 
                     impretenes += impreten;
                 }
+            }
+
+               
 
 
             String mntneto = "<MntNeto>" + doc.MntNeto + "</MntNeto>\n";
@@ -176,12 +179,13 @@ namespace IatDteBridge
 
             String descuentoglobal = String.Empty;
 
-
+            if (doc.dscRcgGlobal != null)
+            {
                 foreach (var desglo in doc.dscRcgGlobal)
                 {
                     String nrolindr = "<NroLinDR>" + desglo.NroLinDR + "</NroLinDR>\n";
                     if (desglo.NroLinDR == 0)
-                       nrolindr = "";
+                        nrolindr = "";
                     String tpomov = "<TpoMov>" + desglo.TpoMov + "</TpoMov>\n";
                     if (desglo.TpoMov == "")
                         tpomov = "";
@@ -207,41 +211,49 @@ namespace IatDteBridge
 
                     documento = documento + descuentoglobal;
                 }
+            }
+
+
 
 
             // for para crear referencias y agregarlas al documento
             String referencia;
 
-            foreach (var refe in doc.Referencia)
+            if (doc.Referencia != null)
             {
-                String indglobal = "<IndGlobal>" + refe.IndGlobal + "</IndGlobal>\n";
-                if (refe.IndGlobal == 0)
-                    indglobal = "";
-                String rutotr = "<RUTOtr>" + refe.RUTOtr + "</RUTOtr>\n";
-                if (refe.RUTOtr == "")
-                    rutotr = "";
-                String codref = "<CodRef>" + refe.CodRef + "</CodRef>\n";
-                if (refe.CodRef == 0)
-                    codref = "";
+                foreach (var refe in doc.Referencia)
+                {
+                    String indglobal = "<IndGlobal>" + refe.IndGlobal + "</IndGlobal>\n";
+                    if (refe.IndGlobal == 0)
+                        indglobal = "";
+                    String rutotr = "<RUTOtr>" + refe.RUTOtr + "</RUTOtr>\n";
+                    if (refe.RUTOtr == "")
+                        rutotr = "";
+                    String codref = "<CodRef>" + refe.CodRef + "</CodRef>\n";
+                    if (refe.CodRef == 0)
+                        codref = "";
 
-                referencia = "<Referencia>\n" +
-                  "<NroLinRef>" + refe.NroLinRef + "</NroLinRef>\n" +
-                  "<TpoDocRef>" + refe.TpoDocRef + "</TpoDocRef>\n" +
-                  indglobal +
-                  "<FolioRef>" + refe.FolioRef + "</FolioRef>\n" +
-                   rutotr +
-                    // "<IdAdicOtr>" + refe.IdAdicOtr +  "</IdAdicOtr> \n" +
-                  "<FchRef>" + refe.FchRef + "</FchRef>\n" +
-                    codref +
-                  "<RazonRef>" + refe.RazonRef + "</RazonRef>\n" +
-                "</Referencia>\n";
-                if (refe.NroLinRef == 0)
-                    
-                    referencia = "";
+                    referencia = "<Referencia>\n" +
+                      "<NroLinRef>" + refe.NroLinRef + "</NroLinRef>\n" +
+                      "<TpoDocRef>" + refe.TpoDocRef + "</TpoDocRef>\n" +
+                      indglobal +
+                      "<FolioRef>" + refe.FolioRef + "</FolioRef>\n" +
+                       rutotr +
+                        // "<IdAdicOtr>" + refe.IdAdicOtr +  "</IdAdicOtr> \n" +
+                      "<FchRef>" + refe.FchRef + "</FchRef>\n" +
+                        codref +
+                      "<RazonRef>" + refe.RazonRef + "</RazonRef>\n" +
+                    "</Referencia>\n";
+                    if (refe.NroLinRef == 0)
 
-                documento = documento + referencia;
+                        referencia = "";
+
+                    documento = documento + referencia;
+                }
+
             }
 
+           
 
             String fechaFirma = "<TmstFirma>" + fch + "</TmstFirma>\r\n";
             String findocumenro = "</Documento>\r\n";
