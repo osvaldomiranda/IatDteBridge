@@ -19,7 +19,7 @@ namespace IatDteBridge
             Documento docLectura = new Documento();
 
             // Ejecuta metodo de txt_reader que llena y obtienen Clase Documento
-            docLectura = lec.lectura(fileJson);
+            docLectura = lec.lectura(fileJson, true);
             // instancia XML_admin
             xmlPaquete xml = new xmlPaquete();
 
@@ -48,7 +48,7 @@ namespace IatDteBridge
   
                 if (docLectura.TipoDTE == 33 || docLectura.TipoDTE == 34)
                 {
-                    docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDFCed, "_CEDIBLE");
+                    docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDFCed, "CEDIBLE");
                 }
 
                 if (docLectura.TipoDTE == 52)

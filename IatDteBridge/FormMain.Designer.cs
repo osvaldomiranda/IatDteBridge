@@ -54,6 +54,7 @@
             this.button11 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
+            this.button12 = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -274,11 +275,22 @@
             // 
             this.openFileDialog2.FileName = "openFileDialog2";
             // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(415, 227);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(168, 23);
+            this.button12.TabIndex = 26;
+            this.button12.Text = "PDF Masivo";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click_1);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(940, 402);
+            this.Controls.Add(this.button12);
             this.Controls.Add(this.button11);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.label3);
@@ -337,6 +349,7 @@
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
+        private System.Windows.Forms.Button button12;
     }
 }
 

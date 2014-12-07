@@ -164,6 +164,13 @@ namespace IatDteBridge
      
         }
 
+        private void button12_Click_1(object sender, EventArgs e)
+        {
+            PdfMasivo pdfM = new PdfMasivo();
+
+            pdfM.pdfMasivo();
+        }
+
 
 
   

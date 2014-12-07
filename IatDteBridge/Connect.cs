@@ -3,13 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Net;
+using System.Runtime.Serialization.Json;
+using System.IO;
+using System.Collections;
+using System.Windows.Forms;
+
+
 
 namespace IatDteBridge
 {
     class Connect
     {
        // public static string server = "http://www.cranberrychic.com";
-        public static string server = "http://104.130.1.179";
+      //  public static string server = "http://104.130.1.179";
+        public static string server = "http://192.168.1.34:3000";
         public static string version = "/api/v1";
         public static string auth_token = "tokenprueba";
 
@@ -73,6 +80,60 @@ namespace IatDteBridge
             {
                 return err.Message;
             }
+        }
+
+        public string sendInvoice(Documento doc)
+        {
+
+        //    try
+        //    {
+                string HtmlResult = String.Empty;
+                string postUri = string.Format("{0}{1}/invoice.json",
+                                    server,
+                                    version);
+
+
+
+                MemoryStream stream = new MemoryStream();
+                DataContractJsonSerializer ds = new DataContractJsonSerializer(typeof(Documento));
+             //   DataContractJsonSerializerSettings js = new DataContractJsonSerializerSettings();
+                ds.WriteObject(stream, doc);
+                string jsonString = Encoding.UTF8.GetString(stream.ToArray());
+                stream.Close();
+
+
+
+              //  String json = js.ToString();
+                String json = jsonString.Replace("null", "\"\"");
+                json = json.Replace("\":", ":");
+                json = json.Replace(",\"", ",");
+                json = json.Replace("{\"", "{");
+                json = json.Replace("detalle", "detalles_attributes");
+                json = json.Replace("Referencia", "referencium_attributes");
+                json = json.Replace("detalle", "detalles_attributes");
+                json = json.Replace("detalle", "detalles_attributes");
+                json = json.Replace("detalle", "detalles_attributes");
+                json = json.Replace("detalle", "detalles_attributes");
+
+                String parameters = string.Format("documento={0}&auth_token={1}", json, auth_token);
+
+                Console.WriteLine("Url = {0}.", postUri);
+
+                using (WebClient wc = new WebClient())
+                {
+                    wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
+                    HtmlResult = wc.UploadString(postUri, parameters);
+                }
+
+                Console.WriteLine("Resultado = {0}.", HtmlResult);
+                return HtmlResult;
+
+          /*  }
+            catch (Exception err)
+            {
+                return err.Message;
+            }
+           */ 
         }
         
 
