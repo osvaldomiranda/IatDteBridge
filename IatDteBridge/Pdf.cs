@@ -84,7 +84,8 @@ namespace IatDteBridge
             celdaLogo.VerticalAlignment = 0;
             cabecera.AddCell(celdaLogo);
 
-            PdfPCell celdaDatosEmisor = new PdfPCell(new Paragraph(doc.RznSoc + "\n" + doc.GiroEmis + "\n" + "FONOS: " + doc.Telefono + "\n" + "CASA MATRIZ: :" + doc.DirOrigen, fuenteNegra));
+            PdfPCell celdaDatosEmisor = new PdfPCell(new Paragraph(doc.RznSoc + "\n" + doc.GiroEmis + "\n" + "FONOS: " + doc.Telefono + "\n" + "CASA MATRIZ: " + doc.DirOrigen + 
+                "\n" + "SUCURSALES: \n" + doc.SucursalesEmpresa, fuenteNegra));
             celdaDatosEmisor.BorderWidth = 0;
             cabecera.AddCell(celdaDatosEmisor);
 
@@ -312,30 +313,62 @@ namespace IatDteBridge
 
                 //"Tipo de Documento", "Folio", "Fecha", "Razón Referancia"
 
-               
-                foreach (var b in doc.Referencia)
-                {
-                    PdfPCell celda0 = new PdfPCell(new Paragraph(b.TpoDocRef, fuenteNegra)); 
-                    celda0.HorizontalAlignment = 1;
-                    celda0.BorderWidth = 1;
-                    datosReferencias.AddCell(celda0);
 
-                    PdfPCell celda1 = new PdfPCell(new Paragraph(b.FolioRef, fuenteNegra)); 
-                    celda1.HorizontalAlignment = 1;
-                    celda1.BorderWidth = 1;
-                    datosReferencias.AddCell(celda1);
+                    foreach (var b in doc.Referencia)
+                    {
+                        if (b.NroLinRef == 0)
+                        {
+                        }
+                        else
+                        {
+                            String tipoDocRef = String.Empty;
 
-                    PdfPCell celda2 = new PdfPCell(new Paragraph(b.FchRef, fuenteNegra)); 
-                    celda2.HorizontalAlignment = 1;
-                    celda2.BorderWidth = 1;
-                    datosReferencias.AddCell(celda2);
+                            if (b.TpoDocRef == "SET")
+                            {
+                                tipoDocRef = "SET";
+                            }
+                            else
+                            {
 
-                    PdfPCell celda3 = new PdfPCell(new Paragraph(b.RazonRef, fuenteNegra)); 
-                    celda3.HorizontalAlignment = 1;
-                    celda3.BorderWidth = 1;
-                    datosReferencias.AddCell(celda3);
-                    
-                }
+                                switch (Convert.ToInt32(b.TpoDocRef))
+                                {
+                                    case 33: tipoDocRef = "FACTURA ELECTRONICA";
+                                        break;
+                                    case 34: tipoDocRef = "FACTURA EXENTA ELECTRONICA";
+                                        break;
+                                    case 61: tipoDocRef = "NOTA DE CREDITO ELECTRONICA";
+                                        break;
+                                    case 56: tipoDocRef = "NOTA DE DEBITO ELECTRONICA";
+                                        break;
+                                    case 52: tipoDocRef = "GUIA DESPACHO ELECTRONICA";
+                                        break;
+
+                                }
+                            }
+
+                            PdfPCell celda0 = new PdfPCell(new Paragraph(tipoDocRef, fuenteNegra));
+                            celda0.HorizontalAlignment = 1;
+                            celda0.BorderWidth = 1;
+                            datosReferencias.AddCell(celda0);
+
+                            PdfPCell celda1 = new PdfPCell(new Paragraph(b.FolioRef, fuenteNegra));
+                            celda1.HorizontalAlignment = 1;
+                            celda1.BorderWidth = 1;
+                            datosReferencias.AddCell(celda1);
+
+                            PdfPCell celda2 = new PdfPCell(new Paragraph(b.FchRef, fuenteNegra));
+                            celda2.HorizontalAlignment = 1;
+                            celda2.BorderWidth = 1;
+                            datosReferencias.AddCell(celda2);
+
+                            PdfPCell celda3 = new PdfPCell(new Paragraph(b.RazonRef, fuenteNegra));
+                            celda3.HorizontalAlignment = 1;
+                            celda3.BorderWidth = 1;
+                            datosReferencias.AddCell(celda3);
+                        }
+                    }
+
+                                   
 
             }
             

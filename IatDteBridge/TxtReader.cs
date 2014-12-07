@@ -92,7 +92,8 @@ namespace IatDteBridge
                                     break;
                                 case 11: doc.DirRegionalSII = lineEmisor;
                                     break;
-
+                                case 12: doc.SucursalesEmpresa = lineEmisor;
+                                    break;
                             }
                             i++;
                         }

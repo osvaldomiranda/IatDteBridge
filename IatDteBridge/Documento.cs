@@ -80,6 +80,11 @@ namespace IatDteBridge
         //este atributo es para cargar en pdf la zona de oficina SII por empresa
         // debe ser llenado al momento de cargar la clase, ya que no es un atributo serializable
         public string DirRegionalSII { get; set; } //Direccion de las oficinas SII correspondiente
+        //este atributo es una ista la cual carga las sucursales de la empresa certificada
+        // debe ser llenado al momento de cargar la clase, ya que no es un atributo serializable
+        public string SucursalesEmpresa { get; set; }
+
+
  
 //################################### Area Receptor ############################################################################
         
@@ -290,6 +295,7 @@ namespace IatDteBridge
 
       
     }
+
 
 //######################################## Sub Totales Informativos ###########################################################################
      [DataContract]
