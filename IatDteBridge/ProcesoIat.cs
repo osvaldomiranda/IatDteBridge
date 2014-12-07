@@ -33,7 +33,7 @@ namespace IatDteBridge
                 Documento docLectura = new Documento();
 
                 // Ejecuta metodo de txt_reader que llena y obtienen Clase Documento
-                docLectura = lec.lectura("");
+                docLectura = lec.lectura("", true);
                 // instancia XML_admin
                 xmlPaquete xml = new xmlPaquete();
 
@@ -95,7 +95,7 @@ namespace IatDteBridge
                     i++;
 
                     //Sgte Documento
-                    docLectura = lec.lectura("");
+                    docLectura = lec.lectura("", true);
 
 
 
@@ -114,6 +114,8 @@ namespace IatDteBridge
                     {
                         file.WriteLine(enviox509);
                     }
+
+
 
                 }
             }

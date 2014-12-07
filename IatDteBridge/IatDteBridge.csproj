@@ -64,6 +64,7 @@
     <Compile Include="LibroCompra.cs" />
     <Compile Include="LibroGuias.cs" />
     <Compile Include="LibroVenta.cs" />
+    <Compile Include="PdfMasivo.cs" />
     <Compile Include="ProcesoLibroCompra.cs" />
     <Compile Include="ProcesoLibroGuias.cs" />
     <Compile Include="procesoLibroVenta.cs" />

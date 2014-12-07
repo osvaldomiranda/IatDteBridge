@@ -24,7 +24,7 @@ namespace IatDteBridge
                 Documento docLectura = new Documento();
 
                 // Ejecuta metodo de txt_reader que llena y obtienen Clase Documento
-                docLectura = lec.lectura("");
+                docLectura = lec.lectura("", true);
                 // instancia XML_admin
                 xmlPaquete xml = new xmlPaquete();
 
@@ -73,7 +73,10 @@ namespace IatDteBridge
 
                     String TimbreElec = xml.ted_to_xmlSii(docLectura,fch);
                     String docXmlSign = xml.doc_to_xmlSii(docLectura,TimbreElec,fch);
-                    
+
+ 
+
+
                     // Guarda DTE xml
                     String DTE = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + docXmlSign;
                     String fileNameXML = @"C:/IatFiles/file/xml/DTE_"+docLectura.RUTEmisor+"_"+ docLectura.TipoDTE+"_"+ docLectura.Folio  +"_"+ fchName + ".xml";
@@ -114,7 +117,7 @@ namespace IatDteBridge
                     i++;
 
                     //Sgte Documento
-                    docLectura = lec.lectura("");
+                    docLectura = lec.lectura("", true);
 
                     // Verifica que el siguiente documento sea del mismo emisor
                   /*  if (docLectura != null)
