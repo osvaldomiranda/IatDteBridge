@@ -16,7 +16,7 @@ namespace IatDteBridge
     {
        // public static string server = "http://www.cranberrychic.com";
       //  public static string server = "http://104.130.1.179";
-        public static string server = "http://192.168.1.34:3000";
+        public static string server = "http://192.168.1.3:3000";
         public static string version = "/api/v1";
         public static string auth_token = "tokenprueba";
 
@@ -92,30 +92,54 @@ namespace IatDteBridge
                                     server,
                                     version);
 
-
-
                 MemoryStream stream = new MemoryStream();
                 DataContractJsonSerializer ds = new DataContractJsonSerializer(typeof(Documento));
-             //   DataContractJsonSerializerSettings js = new DataContractJsonSerializerSettings();
                 ds.WriteObject(stream, doc);
                 string jsonString = Encoding.UTF8.GetString(stream.ToArray());
                 stream.Close();
 
-
-
-              //  String json = js.ToString();
                 String json = jsonString.Replace("null", "\"\"");
                 json = json.Replace("\":", ":");
                 json = json.Replace(",\"", ",");
                 json = json.Replace("{\"", "{");
                 json = json.Replace("detalle", "detalles_attributes");
-                json = json.Replace("Referencia", "referencium_attributes");
-                json = json.Replace("detalle", "detalles_attributes");
-                json = json.Replace("detalle", "detalles_attributes");
-                json = json.Replace("detalle", "detalles_attributes");
-                json = json.Replace("detalle", "detalles_attributes");
+                json = json.Replace("Referencia", "ref_detalles_attributes");
+                json = json.Replace("comisiones", "comisions_attributes");
+                json = json.Replace("dscRcgGlobal", "dsc_rcg_globals_attributes");
+                json = json.Replace("imptoReten", "impuesto_retens_attributes");
+                json = json.Replace("mntpagos", "monto_pagos_attributes");
 
-                String parameters = string.Format("documento={0}&auth_token={1}", json, auth_token);
+
+
+
+                if (json.IndexOf("detalles_attributes:\"\"") != -1)
+                {
+                    json = json.Replace("detalles_attributes:\"\"", "detalles_attributes:[]");
+                }
+                if (json.IndexOf("ref_detalles_attributes:\"\"") != -1)
+                {
+                    json = json.Replace("ref_detalles_attributes:\"\"", "ref_detalles_attributes:[]");
+                }
+                if (json.IndexOf("comisions_attributes:\"\"") != -1)
+                {
+                    json = json.Replace("comisions_attributes:\"\"", "comisions_attributes:[{}]");
+                }
+                if (json.IndexOf("dsc_rcg_globals_attributes:\"\"") != -1)
+                {
+                    json = json.Replace("dsc_rcg_globals_attributes:\"\"", "dsc_rcg_globals_attributes:[]");
+                }
+                if (json.IndexOf("impuesto_retens_attributes:\"\"") != -1)
+                {
+                    json = json.Replace("impuesto_retens_attributes:\"\"", "impuesto_retens_attributes:[]");
+                }
+                if (json.IndexOf("monto_pagos_attributes:\"\"") != -1)
+                {
+                    json = json.Replace("monto_pagos_attributes:\"\"", "monto_pagos_attributes:[]");
+                }
+
+
+
+                String parameters = string.Format("doc={0}&auth_token={1}", "{documento:"+json+"}", auth_token);
 
                 Console.WriteLine("Url = {0}.", postUri);
 
