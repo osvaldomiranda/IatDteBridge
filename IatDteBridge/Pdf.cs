@@ -33,15 +33,15 @@ namespace IatDteBridge
 
             switch (doc.TipoDTE)
             {
-                case 33: nombreDocumento = "FACTURA ELECTRONICA";
+                case 33: nombreDocumento = "FACTURA ELECTRÓNICA";
                 break;
-                case 34: nombreDocumento = "FACTURA EXENTA ELECTRONICA";
+                case 34: nombreDocumento = "FACTURA NO AFECTA O EXENTA ELECTRÓNICA";
                 break;
-                case 61: nombreDocumento = "NOTA DE CREDITO ELECTRONICA";
+                case 61: nombreDocumento = "NOTA DE CRÉDITO ELECTRÓNICA";
                 break;
-                case 56: nombreDocumento = "NOTA DE DEBITO ELECTRONICA";
+                case 56: nombreDocumento = "NOTA DE DÉBITO ELECTRÓNICA";
                 break;
-                case 52: nombreDocumento = "GUIA DESPACHO ELECTRONICA";
+                case 52: nombreDocumento = "GUÍA DE DESPACHO ELECTRÓNICA";
                 break;
 
             }
@@ -83,9 +83,23 @@ namespace IatDteBridge
             celdaLogo.BorderWidth = 0;
             celdaLogo.VerticalAlignment = 0;
             cabecera.AddCell(celdaLogo);
+            // Agrego las sucursales
+            
+            String sucursales = String.Empty;
+           // sucursales = "Arlegui 951, Fono:32-215 7357 / 32-215 7358 - Viña del Mar\nIndependencia 336, Fono: 53-243 3350 / 53-243 3351 - Ovalle\nArturo Prat 665, Fono: 51-254 4320 / 51-254 4321 - La Serena";
+            sucursales = "Monumento 1963, Fono:2 2784 5243 / 2 2784 5242 - Maipú - Stgo.\nAv. 5 Abril 412-A, Fono: 2 2481 4245 - Maipú - Stgo.\nDomingo Correa 25 - La Cisterna - Stgo.";
+         
+            /*if (doc.sucursalesempresa != null)
+            {
 
+                foreach (var suc in doc.sucursalesempresa)
+                {
+                    sucursales += suc.datosucursal + "\n";
+                }
+
+            }*/
             PdfPCell celdaDatosEmisor = new PdfPCell(new Paragraph(doc.RznSoc + "\n" + doc.GiroEmis + "\n" + "FONOS: " + doc.Telefono + "\n" + "CASA MATRIZ: " + doc.DirOrigen + 
-                "\n" + "SUCURSALES: \n" + doc.SucursalesEmpresa, fuenteNegra));
+                "\n" + "SUCURSALES: \n" + sucursales, fuenteNegra));
             celdaDatosEmisor.BorderWidth = 0;
             cabecera.AddCell(celdaDatosEmisor);
 
@@ -248,30 +262,58 @@ namespace IatDteBridge
             String nmbitem = String.Empty;
             foreach (var det in doc.detalle)
             {
+                if (codigoreferencia == "2" && det.NmbItem.Length > 41)
+                {
 
-                datosDetalle[puntero] = Convert.ToString(det.NroLinDet);
-                puntero = puntero + 1;
-                datosDetalle[puntero] = Convert.ToString(det.VlrCodigo);
-                //controla el largo de nombre item
-                if (det.NmbItem.Length <= 40)
-                    nmbitem = det.NmbItem;
+                    datosDetalle[puntero] = " ";
+                    puntero = puntero + 1;
+                    datosDetalle[puntero] = " ";
+                    puntero = puntero + 1;
+                    datosDetalle[puntero] = det.NmbItem;
+                    puntero = puntero + 1;
+                    datosDetalle[puntero] = " ";
+                    puntero = puntero + 1;
+                    datosDetalle[puntero] = " ";
+                    puntero = puntero + 1;
+                    datosDetalle[puntero] = " ";
+                    puntero = puntero + 1;
+                    datosDetalle[puntero] = " ";
+                    puntero = puntero + 1;
+                    datosDetalle[puntero] = " ";
+                    puntero = puntero + 1;
+
+
+                }
                 else
-                    nmbitem = det.NmbItem.Substring(0, 40);
-                if (codigoreferencia == "2")
-                    nmbitem = det.NmbItem;
-                puntero = puntero + 1;
-                datosDetalle[puntero] = Convert.ToString(nmbitem);
-                puntero = puntero + 1;
-                datosDetalle[puntero] = Convert.ToString(det.QtyItem);
-                puntero = puntero + 1;
-                datosDetalle[puntero] = Convert.ToString(det.UnmdItem);
-                puntero = puntero + 1;
-                datosDetalle[puntero] = det.PrcItem.ToString("N0",CultureInfo.CreateSpecificCulture("es-ES"));
-                puntero = puntero + 1;
-                datosDetalle[puntero] = Convert.ToString(det.DescuentoMonto);
-                puntero = puntero + 1;
-                datosDetalle[puntero] = det.MontoItem.ToString("N0",CultureInfo.CreateSpecificCulture("es-ES"));
-                puntero = puntero + 1;
+                {
+                    datosDetalle[puntero] = Convert.ToString(det.NroLinDet);
+                    puntero = puntero + 1;
+                    datosDetalle[puntero] = Convert.ToString(det.VlrCodigo);
+                    //controla el largo de nombre item
+                    if (det.NmbItem.Length <= 40)
+                        nmbitem = det.NmbItem;
+                    else
+                        nmbitem = det.NmbItem.Substring(0, 40);
+                    if (codigoreferencia == "2")
+
+                        nmbitem = det.NmbItem;
+
+                    puntero = puntero + 1;
+                    datosDetalle[puntero] = Convert.ToString(nmbitem);
+                    puntero = puntero + 1;
+                    datosDetalle[puntero] = Convert.ToString(det.QtyItem);
+                    puntero = puntero + 1;
+                    datosDetalle[puntero] = Convert.ToString(det.UnmdItem);
+                    puntero = puntero + 1;
+                    datosDetalle[puntero] = det.PrcItem.ToString("N0", CultureInfo.CreateSpecificCulture("es-ES"));
+                    puntero = puntero + 1;
+                    datosDetalle[puntero] = Convert.ToString(det.DescuentoMonto);
+                    puntero = puntero + 1;
+                    datosDetalle[puntero] = det.MontoItem.ToString("N0", CultureInfo.CreateSpecificCulture("es-ES"));
+                    puntero = puntero + 1;
+
+                }
+
 
             }
 
@@ -343,15 +385,15 @@ namespace IatDteBridge
 
                                 switch (Convert.ToInt32(b.TpoDocRef))
                                 {
-                                    case 33: tipoDocRef = "FACTURA ELECTRONICA";
+                                    case 33: tipoDocRef = "FACTURA ELECTRÓNICA";
                                         break;
-                                    case 34: tipoDocRef = "FACTURA EXENTA ELECTRONICA";
+                                    case 34: tipoDocRef = "FACTURA NO AFECTA O EXENTA ELECTRÓNICA";
                                         break;
-                                    case 61: tipoDocRef = "NOTA DE CREDITO ELECTRONICA";
+                                    case 61: tipoDocRef = "NOTA DE CRÉDITO ELECTRÓNICA";
                                         break;
-                                    case 56: tipoDocRef = "NOTA DE DEBITO ELECTRONICA";
+                                    case 56: tipoDocRef = "NOTA DE DÉBITO ELECTRÓNICA";
                                         break;
-                                    case 52: tipoDocRef = "GUIA DESPACHO ELECTRONICA";
+                                    case 52: tipoDocRef = "GUÍA DESPACHO ELECTRÓNICA";
                                         break;
 
                                 }

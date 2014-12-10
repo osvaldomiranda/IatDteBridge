@@ -60,8 +60,8 @@ namespace IatDteBridge
    
                 // Datos del Emisor
                 String lineEmisor = String.Empty;
-                try
-                {
+                //try
+               // {
                     using (StreamReader sr = new StreamReader(@"c:\IatFiles\config\empresa" + ".txt"))
                     {
                         int i = 1;
@@ -93,21 +93,35 @@ namespace IatDteBridge
                                     break;
                                 case 11: doc.DirRegionalSII = lineEmisor;
                                     break;
-                                case 12: doc.SucursalesEmpresa = lineEmisor;
-                                    break;
+
+
                             }
+                            
+
+                            // recupero las sucursales del txt y los cargo en el list
+                           /* if (i >= 12)
+                            {
+
+                                Console.WriteLine("i es {0} {1}", i, lineEmisor);
+                                doc.sucursalesempresa.Add(new Sucursal(lineEmisor) {datosucursal = lineEmisor });
+                               
+
+                            }*/
                             i++;
                         }
 
+
+
+
+
                         sr.Close();
                     }
-
-                }
+                /*}
                 catch (Exception e)
                 {
                     Console.WriteLine("The file could not be read:");
                     Console.WriteLine(e.Message);
-                }
+                }*/
 
 
                 objReader.Close();
