@@ -171,6 +171,22 @@ namespace IatDteBridge
             pdfM.pdfMasivo();
         }
 
+        private void button13_Click(object sender, EventArgs e)
+        {
+            Log l = new Log();
+            if (l.creaDB())
+            {
+                l.addLog("Creacion de DB", "OK");
+                MessageBox.Show("Base de Datos Se ha creado con Exito");
+            }
+            else
+            {
+                MessageBox.Show("Base de datos ya Existe");
+            }
+
+            l.verLog();
+        }
+
 
 
   

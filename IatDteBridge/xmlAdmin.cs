@@ -260,7 +260,8 @@ namespace IatDteBridge
 
             String signDte = firmarDocumento(documento, cert);
 
-
+            Log log = new Log();
+            log.addLog("XML generado y firmado TipoDTE :" + doc.TipoDTE + " Folio :" + doc.Folio, "OK");
             return signDte;
         }
 
