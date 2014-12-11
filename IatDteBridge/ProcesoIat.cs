@@ -43,12 +43,13 @@ namespace IatDteBridge
                 String fch = String.Format("{0:yyyy-MM-ddTHH:mm:ss}", thisDay);
                 String fchName = String.Format("{0:yyyyMMddTHHmmss}", thisDay);
 
-             
+                Log log = new Log();
+
                 String firsRut = String.Empty;
                 if (docLectura != null)
                 {
 
-
+                    log.addLog("Inicio proceso TipoDTE :"+ docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK" );
                     tipos.Add(docLectura.TipoDTE);
 
 
@@ -110,6 +111,8 @@ namespace IatDteBridge
                     {
                         file.WriteLine(enviox509);
                     }
+
+
 
                     // *************  Envía json a server
                     Connect conn = new Connect();

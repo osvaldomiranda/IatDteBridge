@@ -677,6 +677,9 @@ namespace IatDteBridge
               if (false == p.CloseMainWindow())
                   p.Kill();*/
 
+
+            Log log = new Log();
+            log.addLog("PDF generado TipoDTE :" + doc.TipoDTE + " Folio :" + doc.Folio, "OK");
             return pdf;
 
 

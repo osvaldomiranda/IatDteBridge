@@ -154,11 +154,18 @@ namespace IatDteBridge
             }
 
             Console.WriteLine("Resultado = {0}.", HtmlResult);
+
+            Log log = new Log();
+            log.addLog("DTE enviado al Core TipoDTE :" + doc.TipoDTE + " Folio :" + doc.Folio, "OK");
+
             return HtmlResult;
 
             }
             catch (Exception err)
             {
+                Log log = new Log();
+                log.addLog("ERROR envio al Core TipoDTE :" + doc.TipoDTE + " Folio :" + doc.Folio, "ERROR");
+
                   Console.WriteLine(err);
                   return err.Message;
             }
