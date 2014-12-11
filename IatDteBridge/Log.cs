@@ -42,34 +42,51 @@ namespace IatDteBridge
 
         public void addLog( String suceso, String estado)
         {
-            DateTime thisDay = DateTime.Now;
-            String fecha = String.Format("{0:yyyyMMddTHHmmss}", thisDay);
+            try
+            {
+                DateTime thisDay = DateTime.Now;
+                String fecha = String.Format("{0:yyyyMMddTHHmmss}", thisDay);
 
-            SQLiteConnection myConn = new SQLiteConnection(strConn);
-            myConn.Open();
+                SQLiteConnection myConn = new SQLiteConnection(strConn);
+                myConn.Open();
 
-            string sql = "insert into log (fch, suceso, estado) values ('"+fecha+"' , '"+suceso+"', '"+estado+"')";
-            SQLiteCommand command = new SQLiteCommand(sql, myConn);
-            command.ExecuteNonQuery();
+                string sql = "insert into log (fch, suceso, estado) values ('" + fecha + "' , '" + suceso + "', '" + estado + "')";
+                SQLiteCommand command = new SQLiteCommand(sql, myConn);
+                command.ExecuteNonQuery();
 
-            myConn.Close();
+                myConn.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("ERROR: {0}", e.ToString());
+            }
         }
 
         public String verLog()
         {
+
             String logRes = String.Empty;
 
-            SQLiteConnection myConn = new SQLiteConnection(strConn);
-            myConn.Open();
+            try
+            {
 
-            string sql = "select * from log order by fch";
-            SQLiteCommand command = new SQLiteCommand(sql, myConn);
-            SQLiteDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-                Console.WriteLine("Estado :"+reader["estado"]+"\tFecha: " + reader["fch"] + "\tSuceso: " + reader["suceso"] );
+                SQLiteConnection myConn = new SQLiteConnection(strConn);
+                myConn.Open();
+
+                string sql = "select * from log order by fch";
+                SQLiteCommand command = new SQLiteCommand(sql, myConn);
+                SQLiteDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                    Console.WriteLine("Estado :" + reader["estado"] + "\tFecha: " + reader["fch"] + "\tSuceso: " + reader["suceso"]);
 
 
-            myConn.Close();
+                myConn.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("ERROR: {0}", e.ToString());
+                return logRes;
+            }
 
             return logRes;
         }
