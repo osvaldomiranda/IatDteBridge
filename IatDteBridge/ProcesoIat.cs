@@ -6,6 +6,7 @@ using System.Threading;
 using System.Security.Cryptography.Xml;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography;
+using System.Diagnostics;
 
 namespace IatDteBridge
 {
@@ -18,7 +19,7 @@ namespace IatDteBridge
             while (!_shouldStop)
             {
                 Console.WriteLine("ProcessIat thread: working...");
-                Thread.Sleep(60000);
+                Thread.Sleep(30000);
 
                 i++;
 
@@ -71,7 +72,7 @@ namespace IatDteBridge
                     docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDF, " ");
 
 
-                    docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDF, "TRIBUTABLE");
+                    docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDF, " ");
 
                     String fileNamePDFCed = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf";
   
@@ -84,6 +85,24 @@ namespace IatDteBridge
                     {
                         docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDFCed, "CEDIBLE CON SU FACTURA");
                     }
+
+                    //Imprime pdf
+
+                    ProcessStartInfo info = new ProcessStartInfo();
+                    info.Verb = "print";
+                    info.FileName = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf";
+                    info.CreateNoWindow = true;
+                    info.WindowStyle = ProcessWindowStyle.Hidden;
+
+                    Process p = new Process();
+                    p.StartInfo = info;
+                    p.Start();
+
+                    p.WaitForInputIdle();
+                    System.Threading.Thread.Sleep(10000);
+                    if (false == p.CloseMainWindow())
+                        p.Kill();
+
 
 
 
