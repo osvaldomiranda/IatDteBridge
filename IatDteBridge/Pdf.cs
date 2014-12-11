@@ -662,7 +662,7 @@ namespace IatDteBridge
 
            // System.Diagnostics.Process.Start(@"C:\IatFiles\file\pdf\" + doc.TipoDTE + "_" + doc.Folio + ".pdf");
 
-            /* ProcessStartInfo info = new ProcessStartInfo();
+           /*  ProcessStartInfo info = new ProcessStartInfo();
               info.Verb = "print";
               info.FileName = "C://IatFiles/file/pdf/" + doc.TipoDTE + "_" + doc.Folio+".pdf";
               info.CreateNoWindow = true;
