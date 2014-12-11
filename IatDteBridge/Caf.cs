@@ -8,7 +8,7 @@ namespace IatDteBridge
 {
     class Caf
     {
-        public bool isValid(String fchEmis, int tipoDoc, int folio)
+        public bool isValid(Documento doc)
         {
             bool valid = true;
 
@@ -20,7 +20,7 @@ namespace IatDteBridge
             try
             {
                 //TO DO : falta tomar el nombre del archivo de una variable global
-                switch (tipoDoc)
+                switch (doc.TipoDTE)
                 {
                     case 33: cafDir = @"C:\IatFiles\cafs\factura\";
 
@@ -53,7 +53,7 @@ namespace IatDteBridge
 
                 // Valida tipo de documento
                 String td = xml.Substring(start, largo);
-                if (td != tipoDoc.ToString()) valid = false;
+                if (td != doc.TipoDTE.ToString()) valid = false;
 
 
                 start = xml.IndexOf("<FA>") + 4;
@@ -93,7 +93,11 @@ namespace IatDteBridge
             //    if (!((folio < hs) && (folio >ds)) ) valid = false;
 
 
-  
+                // OTRAS VALIDACIONES
+                if (doc.CiudadRecep == null || doc.CiudadRecep == String.Empty ) valid = false;
+                if (doc.CmnaRecep == null || doc.CmnaRecep == String.Empty) valid = false;
+                
+
             }
             catch (Exception e)
             {

@@ -18,7 +18,7 @@ namespace IatDteBridge
             while (!_shouldStop)
             {
                 Console.WriteLine("ProcessIat thread: working...");
-                Thread.Sleep(5000);
+                Thread.Sleep(60000);
 
                 i++;
 
@@ -94,11 +94,7 @@ namespace IatDteBridge
                     if (i == 0) firsRut = docLectura.RUTEmisor;
                     i++;
 
-                    //Sgte Documento
-                    docLectura = lec.lectura("", true);
-
-
-
+                    
                     // Firma POaquete unitario   
                     String envio = xml.creaEnvio(paquete, firsRut, "", tipos);
 
@@ -109,12 +105,17 @@ namespace IatDteBridge
 
                     enviox509 = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + enviox509;
 
-                    String fileNameEnvio = @"C:/IatFiles/file/xml/EnvioUnit_" + firsRut + "_" + fchName + ".xml";
+                    String fileNameEnvio = @"C:/IatFiles/file/xml/EnvioUnit_" + docLectura.RUTEmisor + "_" + docLectura.Folio + "_" + fchName + ".xml";
                     using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileNameEnvio, false, Encoding.GetEncoding("ISO-8859-1")))
                     {
                         file.WriteLine(enviox509);
                     }
 
+                    // *************  Envía json a server
+                    Connect conn = new Connect();
+
+                    conn.sendInvoice(docLectura,enviox509,@"EnvioUnit_" + docLectura.RUTEmisor + "_" + docLectura.Folio +"_"+ fchName + ".xml");
+                    // *************  Envía json a server
 
 
                 }

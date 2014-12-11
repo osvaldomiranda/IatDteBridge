@@ -118,17 +118,10 @@ namespace IatDteBridge
                 }
                 
 
-                // *************  Envía json a server
-                
-                Connect conn = new Connect();
-                conn.sendInvoice(doc);
-
-                // *************  Envía json a server
-
-
+            
                 Caf caf = new Caf();
 
-                if(!caf.isValid(doc.FchEmis,doc.TipoDTE,doc.Folio))
+                if(!caf.isValid(doc))
                 {
                     doc = null;
                 }
