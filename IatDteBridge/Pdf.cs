@@ -19,7 +19,7 @@ namespace IatDteBridge
         private string sucursalesEmisor = "";
         private String[] headerDetalle = { "Item", "Codigo", "Descripción", "Cantidad", "Unidad", "P Unit.", "Dscto.", "Valor" };
         private String[] datosDetalle = new String[300];
-        private String[] datosHeaderReferencia = { "Tipo de Documento", "Folio", "Fecha", "Razón Referancia" };
+        private String[] datosHeaderReferencia = { "Tipo de Documento", "Folio", "Fecha", "Razón Referencia" };
         iTextSharp.text.Font fuenteNegra = new Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font.NORMAL);
         iTextSharp.text.Font fuenteBold = new Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font.BOLD);
         iTextSharp.text.Font fuenteRoja = new Font(iTextSharp.text.Font.FontFamily.HELVETICA, 9, iTextSharp.text.Font.NORMAL, BaseColor.RED);
@@ -86,8 +86,8 @@ namespace IatDteBridge
             // Agrego las sucursales
             
             String sucursales = String.Empty;
-           // sucursales = "Arlegui 951, Fono:32-215 7357 / 32-215 7358 - Viña del Mar\nIndependencia 336, Fono: 53-243 3350 / 53-243 3351 - Ovalle\nArturo Prat 665, Fono: 51-254 4320 / 51-254 4321 - La Serena";
-            sucursales = "Monumento 1963, Fono:2 2784 5243 / 2 2784 5242 - Maipú - Stgo.\nAv. 5 Abril 412-A, Fono: 2 2481 4245 - Maipú - Stgo.\nDomingo Correa 25 - La Cisterna - Stgo.";
+            sucursales = "Arlegui 951, Fono:32-215 7357 / 32-215 7358 - Viña del Mar\nIndependencia 336, Fono: 53-243 3350 / 53-243 3351 - Ovalle\nArturo Prat 665, Fono: 51-254 4320 / 51-254 4321 - La Serena";
+           // sucursales = "Monumento 1963, Fono:2 2784 5243 / 2 2784 5242 - Maipú - Stgo.\nAv. 5 Abril 412-A, Fono: 2 2481 4245 - Maipú - Stgo.\nDomingo Correa 25 - La Cisterna - Stgo.";
          
             /*if (doc.sucursalesempresa != null)
             {
@@ -445,7 +445,12 @@ namespace IatDteBridge
             celdaTxtTimbre1.HorizontalAlignment = 1;
             tablaDTimbre.AddCell(celdaTxtTimbre1);
 
-            PdfPCell celdaTxtTimbre2 = new PdfPCell(new Paragraph("Resolución Ex. SII Nº 0 del 2010 verifique documento:", fuenteNegra));
+            String resolucion = String.Empty;
+
+            // resolucion 
+            resolucion = "Resolución Ex. SII Nº 80 del 22/08/2014 verifique documento:";
+
+            PdfPCell celdaTxtTimbre2 = new PdfPCell(new Paragraph(resolucion, fuenteNegra));
             celdaTxtTimbre2.BorderWidth = 0;
             celdaTxtTimbre2.MinimumHeight = 12;
             celdaTxtTimbre2.HorizontalAlignment = 1;
