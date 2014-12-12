@@ -187,6 +187,13 @@ namespace IatDteBridge
             l.verLog();
         }
 
+        private void button14_Click(object sender, EventArgs e)
+        {
+            
+            proc.StopProcessIat();
+            this.Close();
+        }
+
 
 
   

@@ -338,8 +338,8 @@ namespace IatDteBridge
             envio_xml += "<RutReceptor>60803000-K</RutReceptor>\r\n";
 
             //TO DO: cambiar fecha de resolución
-            envio_xml += "<FchResol>2014-09-10</FchResol>\r\n";
-            envio_xml += "<NroResol>0</NroResol>\r\n";
+            envio_xml += "<FchResol>2014-08-22</FchResol>\r\n";
+            envio_xml += "<NroResol>80</NroResol>\r\n";
             //***********************
 
             envio_xml += "<TmstFirmaEnv>2014-10-22T22:25:00</TmstFirmaEnv>\r\n";

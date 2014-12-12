@@ -18,7 +18,7 @@ namespace IatDteBridge
     {
       
         //  public static string server = "http://104.130.1.179";  // Staging
-       //( public static string server = "http://192.168.1.34:3000";   // Localhost
+      // public static string server = "http://192.168.1.34:3000";   // Localhost
         public static string server = "http://200.72.145.75"; // prosuccion
         public static string version = "/api/v1";
         public static string auth_token = "tokenprueba";
@@ -27,6 +27,7 @@ namespace IatDteBridge
 
         public Connect()
         {
+
         }
 
         //TO DO : falta definir el ID del iat, debe estar definido en una variable global (ver parameters en el método ping)

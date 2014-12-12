@@ -89,22 +89,27 @@ namespace IatDteBridge
 
                     //Imprime pdf
 
-                    ProcessStartInfo info = new ProcessStartInfo();
-                    info.Verb = "print";
-                    info.FileName = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf";
-                    info.CreateNoWindow = true;
-                    info.WindowStyle = ProcessWindowStyle.Hidden;
 
-                    Process p = new Process();
-                    p.StartInfo = info;
-                    p.Start();
+                    int numeroDeCopias = 2;
+                    for (int c = 1; c <= numeroDeCopias; c++)
+                    {
 
-                    p.WaitForInputIdle();
-                    System.Threading.Thread.Sleep(10000);
-                    if (false == p.CloseMainWindow())
-                        p.Kill();
+                        ProcessStartInfo info = new ProcessStartInfo();
+                        info.Verb = "print";
+                        info.FileName = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf";
+                        info.CreateNoWindow = true;
+                        info.WindowStyle = ProcessWindowStyle.Hidden;
 
+                        Process p = new Process();
+                        p.StartInfo = info;
+                        p.Start();
 
+                        p.WaitForInputIdle();
+                        System.Threading.Thread.Sleep(10000);
+                        if (false == p.CloseMainWindow())
+                            p.Kill();
+
+                    }
 
 
                     // Agrega el DTE timbrado al paquete
@@ -116,7 +121,7 @@ namespace IatDteBridge
 
                     
                     // Firma POaquete unitario   
-                    String envio = xml.creaEnvio(paquete, firsRut, "", tipos);
+                    String envio = xml.creaEnvio(paquete, docLectura.RUTEmisor, docLectura.RUTRecep, tipos);
 
 
                     X509Certificate2 cert = FuncionesComunes.obtenerCertificado("LUIS BARAHONA MENDOZA");

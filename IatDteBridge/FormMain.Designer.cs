@@ -56,6 +56,7 @@
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -296,11 +297,22 @@
             this.button13.UseVisualStyleBackColor = true;
             this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(779, 333);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(112, 35);
+            this.button14.TabIndex = 28;
+            this.button14.Text = "Salir";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(940, 402);
+            this.Controls.Add(this.button14);
             this.Controls.Add(this.button13);
             this.Controls.Add(this.button12);
             this.Controls.Add(this.button11);
@@ -363,6 +375,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button button14;
     }
 }
 
