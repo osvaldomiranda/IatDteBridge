@@ -19,7 +19,7 @@ namespace IatDteBridge
             while (!_shouldStop)
             {
                 Console.WriteLine("ProcessIat thread: working...");
-                Thread.Sleep(30000);
+                Thread.Sleep(5000);
 
                 i++;
 
@@ -116,7 +116,7 @@ namespace IatDteBridge
 
                     
                     // Firma POaquete unitario   
-                    String envio = xml.creaEnvio(paquete, firsRut, "", tipos);
+                    String envio = xml.creaEnvio(paquete, docLectura.RUTEmisor, "", tipos);
 
 
                     X509Certificate2 cert = FuncionesComunes.obtenerCertificado("LUIS BARAHONA MENDOZA");

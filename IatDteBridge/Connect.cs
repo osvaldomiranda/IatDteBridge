@@ -7,8 +7,7 @@ using System.Runtime.Serialization.Json;
 using System.IO;
 using System.Collections;
 using System.Windows.Forms;
-
-
+using System.Net.Http;
 
 
 
@@ -18,8 +17,8 @@ namespace IatDteBridge
     {
       
         //  public static string server = "http://104.130.1.179";  // Staging
-       //( public static string server = "http://192.168.1.34:3000";   // Localhost
-        public static string server = "http://200.72.145.75"; // prosuccion
+        public static string server = "http://192.168.1.33:3000";   // Localhost
+       // public static string server = "http://200.72.145.75"; // prosuccion
         public static string version = "/api/v1";
         public static string auth_token = "tokenprueba";
 
@@ -146,8 +145,12 @@ namespace IatDteBridge
             String parameters = string.Format("doc={0}&auth_token={1}&xml={2}&filename={3}", "{documento:" + json + "}", auth_token, xml, filename);
 
             Console.WriteLine("Url = {0}.", postUri);
+            
+            sendDocPdf(filename,json);
 
-            using (WebClient wc = new WebClient())
+            return @" ";
+
+       /*     using (WebClient wc = new WebClient())
             {
                 wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
                 HtmlResult = wc.UploadString(postUri, parameters);
@@ -159,7 +162,7 @@ namespace IatDteBridge
             log.addLog("DTE enviado al Core TipoDTE :" + doc.TipoDTE + " Folio :" + doc.Folio, "OK");
 
             return HtmlResult;
-
+        */
             }
             catch (Exception err)
             {
@@ -172,11 +175,105 @@ namespace IatDteBridge
             
         }
 
-        public void sendDocPdf(String fileName)
+        public void sendDocPdf(String fileName, String json)
         {
-            string postUri = string.Format("{0}{1}/iat_doc.json",
+            string url = string.Format("{0}{1}/invoice.jsonn",
                     server,
                     version);
+
+            Console.WriteLine("Url = {0}.  {1}", url, fileName);
+
+
+          //  long length = 0;
+            string boundary = "----------------------------" +
+            DateTime.Now.Ticks.ToString("x");
+
+
+            HttpWebRequest httpWebRequest2 = (HttpWebRequest)WebRequest.Create(url);
+            httpWebRequest2.ContentType = "multipart/form-data; boundary=" + boundary;
+            httpWebRequest2.Method = "POST";
+            httpWebRequest2.KeepAlive = true;
+            httpWebRequest2.Credentials = System.Net.CredentialCache.DefaultCredentials;
+
+
+            Stream memStream = new System.IO.MemoryStream();
+
+            byte[] boundarybytes = System.Text.Encoding.ASCII.GetBytes("\r\n--" +boundary + "\r\n");
+
+
+            // ************** HEADER ********
+            string formdataTemplate = "\r\n--" + boundary +
+            "\r\nContent-Disposition: form-data; name=\"{0}\";\r\n\r\n{1}";
+
+            string formitem = string.Format(formdataTemplate, "doc", "{documento:" + json + "}");
+
+            byte[] formitembytes = System.Text.Encoding.UTF8.GetBytes(formitem);
+             
+            memStream.Write(formitembytes, 0, formitembytes.Length);
+
+            memStream.Write(boundarybytes, 0, boundarybytes.Length);
+
+
+
+            // ****************** FILE HEAD***************
+            string headerTemplate = "Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"\r\n Content-Type: application/octet-stream\r\n\r\n";
+
+            string header = string.Format(headerTemplate, "xmlFile", fileName);
+
+            byte[] headerbytes = System.Text.Encoding.UTF8.GetBytes(header);
+            memStream.Write(headerbytes, 0, headerbytes.Length);
+
+
+
+            // ******************* FILE BODY **************
+
+
+            Console.WriteLine("FILE BODY {0}", @"C:/IatFiles/file/xml/" + fileName);
+
+            FileStream fileStream = new FileStream(@"C:/IatFiles/file/xml/"+fileName, FileMode.Open, FileAccess.Read);
+
+            byte[] buffer = new byte[1024];
+
+            int bytesRead = 0;
+
+            while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) != 0)
+            {
+                 memStream.Write(buffer, 0, bytesRead);
+            }
+
+            boundarybytes = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "--\r\n");
+            memStream.Write(boundarybytes, 0, boundarybytes.Length);
+
+            fileStream.Close();
+            
+            
+            
+            // ******************** REQUEST *****************
+
+            httpWebRequest2.ContentLength = memStream.Length;
+
+            Stream requestStream = httpWebRequest2.GetRequestStream();
+
+            memStream.Position = 0;
+            byte[] tempBuffer = new byte[memStream.Length];
+            memStream.Read(tempBuffer, 0, tempBuffer.Length);
+            memStream.Close();
+            requestStream.Write(tempBuffer, 0, tempBuffer.Length);
+            requestStream.Close();
+
+
+            WebResponse webResponse2 = httpWebRequest2.GetResponse();
+
+            Stream stream2 = webResponse2.GetResponseStream();
+            StreamReader reader2 = new StreamReader(stream2);
+
+
+            MessageBox.Show(reader2.ReadToEnd());
+
+            webResponse2.Close();
+            httpWebRequest2 = null;
+            webResponse2 = null;
+
 
   
         }
