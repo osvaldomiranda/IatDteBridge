@@ -48,11 +48,26 @@ namespace IatDteBridge
                     "<CmnaOrigen>" + doc.CmnaOrigen + "</CmnaOrigen>\n" +
                     "<CiudadOrigen>" + doc.CiudadOrigen + "</CiudadOrigen>\n" +
                     "</Emisor>\n";
+            //limita el largo de giro receptor
+            String giroreceptor = String.Empty;
+            if (doc.GiroRecep.Length < 40)
+            {
+                giroreceptor = doc.GiroRecep;
+            }else{
+
+            giroreceptor = doc.GiroRecep.Substring(0, 40);
+            }
+
+            if (doc.CiudadRecep == " " || doc.CmnaRecep == " ")
+            {
+                Environment.Exit(0);
+                
+            }
 
             String receptor = "<Receptor>\n" +
                     "<RUTRecep>" + doc.RUTRecep + "</RUTRecep>\n" +
                     "<RznSocRecep>" + doc.RznSocRecep + "</RznSocRecep>\n" +
-                    "<GiroRecep>" + doc.GiroRecep + "</GiroRecep>\n" +
+                    "<GiroRecep>" + giroreceptor + "</GiroRecep>\n" +
                     "<DirRecep>" + doc.DirRecep + "</DirRecep>\n" +
                     "<CmnaRecep>" + doc.CmnaRecep + "</CmnaRecep>\n" +
                     "<CiudadRecep>" + doc.CiudadRecep + "</CiudadRecep>\n" +

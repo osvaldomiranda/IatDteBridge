@@ -187,6 +187,18 @@ namespace IatDteBridge
             l.verLog();
         }
 
+        private void button14_Click(object sender, EventArgs e)
+        {
+
+            Environment.Exit(0);
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            EnvioMasivo enmas = new EnvioMasivo();
+            enmas.envioMasivo();
+        }
+
 
 
   

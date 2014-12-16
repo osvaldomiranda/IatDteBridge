@@ -12,7 +12,7 @@ namespace IatDteBridge
         String strConn = @"Data Source=C:/IatFiles/iatDB.sqlite;Pooling=true;FailIfMissing=false;Version=3";
         public bool creaDB()
         {
-            try
+       /*     try
             {
                 if (!System.IO.File.Exists("C:/IatFiles/iatDB.sqlite"))
                 {
@@ -36,13 +36,13 @@ namespace IatDteBridge
             {
                 Console.WriteLine("ERROR: {0}", e.ToString());
                 return false;
-            }
+            }*/
             return true;
         }
 
         public void addLog( String suceso, String estado)
         {
-            try
+          /*  try
             {
                 DateTime thisDay = DateTime.Now;
                 String fecha = String.Format("{0:yyyyMMddTHHmmss}", thisDay);
@@ -59,7 +59,7 @@ namespace IatDteBridge
             catch (Exception e)
             {
                 Console.WriteLine("ERROR: {0}", e.ToString());
-            }
+            }*/
         }
 
         public String verLog()
@@ -67,7 +67,7 @@ namespace IatDteBridge
 
             String logRes = String.Empty;
 
-            try
+          /*  try
             {
 
                 SQLiteConnection myConn = new SQLiteConnection(strConn);
@@ -86,7 +86,7 @@ namespace IatDteBridge
             {
                 Console.WriteLine("ERROR: {0}", e.ToString());
                 return logRes;
-            }
+            }*/
 
             return logRes;
         }
