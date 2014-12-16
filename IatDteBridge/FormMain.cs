@@ -189,9 +189,14 @@ namespace IatDteBridge
 
         private void button14_Click(object sender, EventArgs e)
         {
-            
-            proc.StopProcessIat();
-            this.Close();
+
+            Environment.Exit(0);
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            EnvioMasivo enmas = new EnvioMasivo();
+            enmas.envioMasivo();
         }
 
 

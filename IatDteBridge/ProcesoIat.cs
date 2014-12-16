@@ -19,7 +19,7 @@ namespace IatDteBridge
             while (!_shouldStop)
             {
                 Console.WriteLine("ProcessIat thread: working...");
-                Thread.Sleep(30000);
+                Thread.Sleep(10000);
 
                 i++;
 

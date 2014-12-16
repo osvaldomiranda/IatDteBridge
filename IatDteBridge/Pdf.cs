@@ -86,8 +86,14 @@ namespace IatDteBridge
             // Agrego las sucursales
             
             String sucursales = String.Empty;
-            //sucursales = "Arlegui 951, Fono:32-215 7357 / 32-215 7358 - Viña del Mar\nIndependencia 336, Fono: 53-243 3350 / 53-243 3351 - Ovalle\nArturo Prat 665, Fono: 51-254 4320 / 51-254 4321 - La Serena";
-            sucursales = "Monumento 1963, Fono:2 2784 5243 / 2 2784 5242 - Maipú - Stgo.\nAv. 5 Abril 412-A, Fono: 2 2481 4245 - Maipú - Stgo.\nDomingo Correa 25 - La Cisterna - Stgo.";
+            if (doc.RUTEmisor == "77888630-8")
+            {
+                sucursales = "Arlegui 951, Fono:32-215 7357 / 32-215 7358 - Viña del Mar\nIndependencia 336, Fono: 53-243 3350 / 53-243 3351 - Ovalle\nArturo Prat 665, Fono: 51-254 4320 / 51-254 4321 - La Serena";
+            }
+            else
+            {
+                sucursales = "Monumento 1963, Fono:2 2784 5243 / 2 2784 5242 - Maipú - Stgo.\nAv. 5 Abril 412-A, Fono: 2 2481 4245 - Maipú - Stgo.\nDomingo Correa 25 - La Cisterna - Stgo.";
+            }
          
             /*if (doc.sucursalesempresa != null)
             {
