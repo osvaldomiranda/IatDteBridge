@@ -154,19 +154,7 @@ namespace IatDteBridge
 
             return @" ";
 
-       /*     using (WebClient wc = new WebClient())
-            {
-                wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
-                HtmlResult = wc.UploadString(postUri, parameters);
-            }
 
-            Console.WriteLine("Resultado = {0}.", HtmlResult);
-
-            Log log = new Log();
-            log.addLog("DTE enviado al Core TipoDTE :" + doc.TipoDTE + " Folio :" + doc.Folio, "OK");
-
-            return HtmlResult;
-        */
             }
             catch (Exception err)
             {
@@ -233,9 +221,9 @@ namespace IatDteBridge
             // ******************* XML BODY **************
 
 
-            Console.WriteLine("FILE BODY {0}", @"C:/IatFiles/file/xml/" + fileName);
+            Console.WriteLine("FILE BODY {0}", @"C:/IatFiles/file/xml/envioUnitario/" + fileName);
 
-            FileStream fileStream = new FileStream(@"C:/IatFiles/file/xml/"+fileName, FileMode.Open, FileAccess.Read);
+            FileStream fileStream = new FileStream(@"C:/IatFiles/file/xml/envioUnitario/"+fileName, FileMode.Open, FileAccess.Read);
             byte[] buffer = new byte[1024];
             int bytesRead = 0;
             while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) != 0)
