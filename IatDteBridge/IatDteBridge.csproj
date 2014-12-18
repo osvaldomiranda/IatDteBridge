@@ -90,6 +90,7 @@
   <ItemGroup>
     <Compile Include="Caf.cs" />
     <Compile Include="Documento.cs" />
+    <Compile Include="EnvioAutomatico.cs" />
     <Compile Include="EnvioMasivo.cs" />
     <Compile Include="fileAdmin.cs" />
     <Compile Include="GetTed.cs" />

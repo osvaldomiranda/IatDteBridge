@@ -225,14 +225,14 @@ namespace IatDteBridge
             }
         }
 
-        private void button16_Click(object sender, EventArgs e)
+     /*   private void button16_Click(object sender, EventArgs e)
         {
             proc.StopProcessIat();
             this.label4.Text = "IatProcess Detenido";
             this.progressBar1.Value = 0;
             this.timer1.Stop();
         }
-
+        */
         private void progressBar1_Click(object sender, EventArgs e)
         {
 
@@ -257,6 +257,8 @@ namespace IatDteBridge
         {
 
         }
+
+
 
 
 

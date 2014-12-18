@@ -44,3 +44,33 @@ namespace IatDteBridge
 
 
 }
+
+/*
+
+
+--9022632e1130lc4
+Content-Disposition: form-data; name="rutSender"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 8Bit
+
+05682509
+--9022632e1130lc4
+Content-Disposition: form-data; name="dvSender"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 8Bit
+
+6
+--9022632e1130lc4
+Content-Disposition: form-data; name="ruCompany"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 8Bit
+
+77398570
+--9022632e1130lc4
+Content-Disposition: form-data; name="dvCompany"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 8Bit
+
+7
+
+*/

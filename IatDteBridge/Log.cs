@@ -9,7 +9,8 @@ namespace IatDteBridge
 {
     class Log
     {
-        String strConn = @"Data Source=C:/IatFiles/iatDB.sqlite;Pooling=true;FailIfMissing=false;Version=3";
+        //String strConn = @"Data Source=C:/IatFiles/iatDB.sqlite;Pooling=true;FailIfMissing=false;Version=3";
+
         public bool creaDB()
         {
        /*     try
