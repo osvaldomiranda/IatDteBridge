@@ -7,7 +7,6 @@ using System.Runtime.Serialization.Json;
 using System.IO;
 using System.Collections;
 using System.Windows.Forms;
-using System.Net.Http;
 using System.Xml;
 
 
@@ -19,8 +18,8 @@ namespace IatDteBridge
 
       
         //  public static string server = "http://104.130.1.179";  // Staging
-       // public static string server = "http://192.168.1.154:3000";   // Localhost
-        public static string server = "http://200.72.145.75"; // prosuccion
+        public static string server = "http://192.168.1.154:3000";   // Localhost
+       // public static string server = "http://200.72.145.75"; // prosuccion
 
         public static string version = "/api/v1";
         public static string auth_token = "tokenprueba";
@@ -260,7 +259,7 @@ namespace IatDteBridge
             StreamReader reader2 = new StreamReader(stream2);
 
 
-            MessageBox.Show(reader2.ReadToEnd());
+        //    MessageBox.Show(reader2.ReadToEnd());
 
             webResponse2.Close();
             httpWebRequest2 = null;
