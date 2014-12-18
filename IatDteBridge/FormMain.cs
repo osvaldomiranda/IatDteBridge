@@ -199,6 +199,13 @@ namespace IatDteBridge
             enmas.envioMasivo();
         }
 
+        private void button16_Click(object sender, EventArgs e)
+        {
+            EnvioAutomatico env = new EnvioAutomatico();
+
+            env.sendToSii("EnvioUnit_77398570-7_13_20141216T012224.xml");
+        }
+
 
 
   

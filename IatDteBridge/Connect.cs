@@ -8,6 +8,7 @@ using System.IO;
 using System.Collections;
 using System.Windows.Forms;
 using System.Net.Http;
+using System.Xml;
 
 
 
@@ -17,10 +18,9 @@ namespace IatDteBridge
     {
       
         //  public static string server = "http://104.130.1.179";  // Staging
-        public static string server = "http://192.168.1.33:3000";   // Localhost
+        public static string server = "http://192.168.1.154:3000";   // Localhost
        // public static string server = "http://200.72.145.75"; // prosuccion
-        //public static string server = "http://192.168.1.33:3000";   // Localhost
-        // public static string server = "http://200.72.145.75"; // prosuccion
+
 
         public static string version = "/api/v1";
         public static string auth_token = "tokenprueba";
@@ -150,7 +150,7 @@ namespace IatDteBridge
 
             Console.WriteLine("Url = {0}.", postUri);
             
-            sendDocPdf(filename,json);
+            sendToServer(filename,json);
 
             return @" ";
 
@@ -179,9 +179,10 @@ namespace IatDteBridge
             
         }
 
-        public void sendDocPdf(String fileName, String json)
+        // TO DO: agregar envio del archivo pdf cedible, tributable y xml
+        public void sendToServer(String fileName, String json)
         {
-            string url = string.Format("{0}{1}/invoice.jsonn",
+            string url = string.Format("{0}{1}/invoice.json",
                     server,
                     version);
 
@@ -219,7 +220,7 @@ namespace IatDteBridge
 
 
 
-            // ****************** FILE HEAD***************
+            // ****************** XML HEAD***************
             string headerTemplate = "Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"\r\n Content-Type: application/octet-stream\r\n\r\n";
 
             string header = string.Format(headerTemplate, "xmlFile", fileName);
@@ -229,21 +230,20 @@ namespace IatDteBridge
 
 
 
-            // ******************* FILE BODY **************
+            // ******************* XML BODY **************
 
 
             Console.WriteLine("FILE BODY {0}", @"C:/IatFiles/file/xml/" + fileName);
 
             FileStream fileStream = new FileStream(@"C:/IatFiles/file/xml/"+fileName, FileMode.Open, FileAccess.Read);
-
             byte[] buffer = new byte[1024];
-
             int bytesRead = 0;
-
             while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) != 0)
             {
                  memStream.Write(buffer, 0, bytesRead);
             }
+
+            // ***************** Cierro el envío
 
             boundarybytes = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "--\r\n");
             memStream.Write(boundarybytes, 0, boundarybytes.Length);
@@ -281,5 +281,9 @@ namespace IatDteBridge
 
   
         }
+
+
     }
+
+
 }
