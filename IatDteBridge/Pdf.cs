@@ -52,7 +52,11 @@ namespace IatDteBridge
             timbre1.CreaTimbre(dd);
             Console.WriteLine("Timbre creado!!");
 
-            Document pdf = new Document(PageSize.LETTER,10f,10f,10f,10f);
+            // TO DO 
+            //margen definitivo
+            //Document pdf = new Document(PageSize.LETTER, 10f, 10f, 10f, 10f);
+            // margen temporal para lubba abel gonzalez
+            Document pdf = new Document(PageSize.LETTER);
             PdfWriter.GetInstance(pdf, new FileStream(fileName, FileMode.OpenOrCreate));
 
 
@@ -239,7 +243,7 @@ namespace IatDteBridge
             contenedorDatosReceptor.AddCell(celdaContDatRecep);
 
             //+++++++++++++++++++++++++++++++++++++++++++++++++++++ Detalle +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-            float[] anchosDetalle = new float[] { 30f, 30f, 200f, 30f, 30f, 30f, 30f, 30f };
+            float[] anchosDetalle = new float[] { 30f, 30f, 200f, 30f, 30f, 30f, 30f, 40f };
 
             PdfPTable detalle = new PdfPTable(8);
             detalle.SetWidths(anchosDetalle);
