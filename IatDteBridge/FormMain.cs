@@ -20,6 +20,7 @@ namespace IatDteBridge
         procesoLibroVenta procLibVta = new procesoLibroVenta();
         ProcesoLibroGuias procLibGuias = new ProcesoLibroGuias();
         ProcesoPaqueteXml procFromXml = new ProcesoPaqueteXml();
+        public CheckBox checkbox1 = new CheckBox();
 
         public FormMain()
         {
@@ -97,6 +98,9 @@ namespace IatDteBridge
         private void button3_Click(object sender, EventArgs e)
         {
             proc.StartProcessIat();
+            this.label4.Text = "IatProcess En Ejecución";
+            this.timer1.Start();
+            
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -195,8 +199,63 @@ namespace IatDteBridge
 
         private void button15_Click(object sender, EventArgs e)
         {
+            
             EnvioMasivo enmas = new EnvioMasivo();
             enmas.envioMasivo();
+            
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (progressBar1.Value == 100)
+            {
+                progressBar1.Value = 1;
+            }else{
+            this.progressBar1.Increment(1);
+            }
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            proc.StopProcessIat();
+            this.label4.Text = "IatProcess Detenido";
+            this.progressBar1.Value = 0;
+            this.timer1.Stop();
+        }
+
+        private void progressBar1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
 
 

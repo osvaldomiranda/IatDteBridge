@@ -60,7 +60,7 @@ namespace IatDteBridge
 
             if (doc.CiudadRecep == " " || doc.CmnaRecep == " ")
             {
-                Environment.Exit(0);
+                Environment.Exit(0);   
                 
             }
 
@@ -75,12 +75,15 @@ namespace IatDteBridge
             
             String impreten = String.Empty;
             string impretenes = String.Empty;
+            String ultipimp = String.Empty;
 
             if (doc.imptoReten !=null )
             {
                 foreach (var imp in doc.imptoReten)
                 {
 
+                    if (ultipimp == imp.TipoImp)
+                        Environment.Exit(0);
                     impreten = "<ImptoReten>\n" +
                     "<TipoImp>" + imp.TipoImp + "</TipoImp>\n" +
                     "<TasaImp>" + imp.TasaImp + "</TasaImp>\n" +
@@ -91,6 +94,7 @@ namespace IatDteBridge
                         impreten = "";
 
                     impretenes += impreten;
+                    ultipimp = imp.TipoImp;
                 }
             }
 
