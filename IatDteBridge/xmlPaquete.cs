@@ -82,8 +82,9 @@ namespace IatDteBridge
                 foreach (var imp in doc.imptoReten)
                 {
 
-                    if (ultipimp == imp.TipoImp)
+                    if (ultipimp == imp.TipoImp && imp.TipoImp != "")
                         Environment.Exit(0);
+                    Console.WriteLine("ERROR JSON: Impuesto Retención duplicado");
                     impreten = "<ImptoReten>\n" +
                     "<TipoImp>" + imp.TipoImp + "</TipoImp>\n" +
                     "<TasaImp>" + imp.TasaImp + "</TasaImp>\n" +
@@ -491,13 +492,13 @@ namespace IatDteBridge
                     case 33: cafDir = @"C:\IatFiles\cafs\factura\";
 
                         break;
-                    case 61: cafDir = @"C:\IatFiles\cafs\NotaCredito\";
+                    case 61: cafDir = @"C:\IatFiles\cafs\notacredito\";
                         break;
-                    case 56: cafDir = @"C:\IatFiles\cafs\NotaDebito\";
+                    case 56: cafDir = @"C:\IatFiles\cafs\notadebito\";
                         break;
                     case 52: cafDir = @"C:\IatFiles\cafs\Guia\";
                         break;
-                    case 34: cafDir = @"C:\IatFiles\cafs\FacturaExenta\";
+                    case 34: cafDir = @"C:\IatFiles\cafs\facturaexenta\";
                         break;
                 }
 

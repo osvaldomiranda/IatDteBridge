@@ -705,5 +705,6 @@ namespace IatDteBridge
 
         // crear un metodo que un Documento
 
-    }
 }
+
+    }

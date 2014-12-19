@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using iTextSharp.text.pdf;
+using System.IO;
 
 namespace IatDteBridge
 {
@@ -86,6 +87,25 @@ namespace IatDteBridge
 
         private void FormMain_Load_1(object sender, EventArgs e)
         {
+            //Creadirectorios
+            Directory.CreateDirectory(@"c://IatFiles");
+            Directory.CreateDirectory(@"c://IatFiles/cafs");
+            Directory.CreateDirectory(@"c://IatFiles/cafs/factura");
+            Directory.CreateDirectory(@"c://IatFiles/cafs/facturaexenta");
+            Directory.CreateDirectory(@"c://IatFiles/cafs/guia");
+            Directory.CreateDirectory(@"c://IatFiles/cafs/notacredito");
+            Directory.CreateDirectory(@"c://IatFiles/cafs/notadebito");
+            Directory.CreateDirectory(@"c://IatFiles/config");
+            Directory.CreateDirectory(@"c://IatFiles/file");
+            Directory.CreateDirectory(@"c://IatFiles/file/libroCompra");
+            Directory.CreateDirectory(@"c://IatFiles/file/libroVenta");
+            Directory.CreateDirectory(@"c://IatFiles/file/libroGuia");
+            Directory.CreateDirectory(@"c://IatFiles/file/pdf");
+            Directory.CreateDirectory(@"c://IatFiles/file/xml");
+            Directory.CreateDirectory(@"c://IatFiles/file/xml/enviado");
+            Directory.CreateDirectory(@"c://IatFiles/file/xml/enviomasivo");
+            Directory.CreateDirectory(@"c://IatFiles/file/xml/enviounitario");
+            Directory.CreateDirectory(@"c://IatFiles/fileprocess");
 
            // proc.StartProcessIat();
         }

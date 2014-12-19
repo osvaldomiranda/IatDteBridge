@@ -96,14 +96,14 @@ namespace IatDteBridge
                     for (int c = 1; c <= numeroDeCopias; c++)
                     {
 
-                        ProcessStartInfo info = new ProcessStartInfo();
-                        info.Verb = "print";
-                        info.FileName = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf";
-                        info.CreateNoWindow = true;
-                        info.WindowStyle = ProcessWindowStyle.Hidden;
+                        ProcessStartInfo copiaOriginal = new ProcessStartInfo();
+                        copiaOriginal.Verb = "print";
+                        copiaOriginal.FileName = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf";
+                        copiaOriginal.CreateNoWindow = true;
+                        copiaOriginal.WindowStyle = ProcessWindowStyle.Hidden;
 
                         Process p = new Process();
-                        p.StartInfo = info;
+                        p.StartInfo = copiaOriginal;
                         p.Start();
 
                         p.WaitForInputIdle();
@@ -134,7 +134,11 @@ namespace IatDteBridge
 
                     enviox509 = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + enviox509;
 
+<<<<<<< HEAD
                     String fileNameEnvio = @"C:/IatFiles/file/xml/envioUnitario/EnvioUnit_" + docLectura.RUTEmisor + "_" + docLectura.Folio + "_" + fchName + ".xml";
+=======
+                    String fileNameEnvio = @"C:/IatFiles/file/xml/enviounitario/EnvioUnit_" + docLectura.RUTEmisor + "_" + docLectura.Folio + "_" + fchName + ".xml";
+>>>>>>> Mauricio
                     using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileNameEnvio, false, Encoding.GetEncoding("ISO-8859-1")))
                     {
                         file.WriteLine(enviox509);

@@ -77,7 +77,7 @@ namespace IatDteBridge
        
                 enviox509 = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + enviox509;
 
-                String fileNameEnvio = @"C:/IatFiles/file/xml/EnvioMasivo/EnvioMasivoPAck_" + firsRut +"_"+ fchName +".xml";
+                String fileNameEnvio = @"C:/IatFiles/file/xml/enviomasivo/EnvioMasivoPAck_" + firsRut +"_"+ fchName +".xml";
                 using (System.IO.StreamWriter fileP = new System.IO.StreamWriter(fileNameEnvio, false, Encoding.GetEncoding("ISO-8859-1")))
                 {
                     fileP.WriteLine(enviox509);
