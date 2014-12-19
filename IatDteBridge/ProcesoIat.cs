@@ -141,11 +141,10 @@ namespace IatDteBridge
                     }
 
 
-
                     // *************  Envía json a server
                     Connect conn = new Connect();
 
-                    conn.sendInvoice(docLectura,enviox509,@"EnvioUnit_" + docLectura.RUTEmisor + "_" + docLectura.Folio +"_"+ fchName + ".xml");
+                    conn.sendInvoice(docLectura, @"DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf", @"DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf", @"EnvioUnit_" + docLectura.RUTEmisor + "_" + docLectura.Folio + "_" + fchName + ".xml", "S");
                     // *************  Envía json a server
 
 

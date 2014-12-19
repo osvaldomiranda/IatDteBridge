@@ -88,7 +88,7 @@ namespace IatDteBridge
             }
         }
 
-        public string sendInvoice(Documento doc, String xml, String filename)
+        public string sendInvoice(Documento doc, String pdfTfileName, String pdfCfileName, String filename, String conEnv)
         {
 
                try
@@ -144,14 +144,9 @@ namespace IatDteBridge
             }
 
 
+            return sendToServer(filename,json,pdfTfileName,pdfCfileName, conEnv);
 
-            String parameters = string.Format("doc={0}&auth_token={1}&xml={2}&filename={3}", "{documento:" + json + "}", auth_token, xml, filename);
-
-            Console.WriteLine("Url = {0}.", postUri);
             
-            sendToServer(filename,json);
-
-            return @" ";
 
 
             }
@@ -167,7 +162,7 @@ namespace IatDteBridge
         }
 
         // TO DO: agregar envio del archivo pdf cedible, tributable y xml
-        public void sendToServer(String fileName, String json)
+        public String sendToServer(String fileName, String json, String pdfTfileName, String pdfCfileName, String conEnvio)
         {
             string url = string.Format("{0}{1}/invoice.json",
                     server,
@@ -175,18 +170,15 @@ namespace IatDteBridge
 
             Console.WriteLine("Url = {0}.  {1}", url, fileName);
 
-
           //  long length = 0;
             string boundary = "----------------------------" +
             DateTime.Now.Ticks.ToString("x");
-
 
             HttpWebRequest httpWebRequest2 = (HttpWebRequest)WebRequest.Create(url);
             httpWebRequest2.ContentType = "multipart/form-data; boundary=" + boundary;
             httpWebRequest2.Method = "POST";
             httpWebRequest2.KeepAlive = true;
             httpWebRequest2.Credentials = System.Net.CredentialCache.DefaultCredentials;
-
 
             Stream memStream = new System.IO.MemoryStream();
 
@@ -199,12 +191,17 @@ namespace IatDteBridge
 
             string formitem = string.Format(formdataTemplate, "doc", "{documento:" + json + "}");
 
-            byte[] formitembytes = System.Text.Encoding.UTF8.GetBytes(formitem);
-             
+            byte[] formitembytes = System.Text.Encoding.UTF8.GetBytes(formitem); 
             memStream.Write(formitembytes, 0, formitembytes.Length);
-
             memStream.Write(boundarybytes, 0, boundarybytes.Length);
 
+            // ************************************************
+            
+            formitem = string.Format(formdataTemplate, "conEnvio", conEnvio);
+
+            formitembytes = System.Text.Encoding.UTF8.GetBytes(formitem); 
+            memStream.Write(formitembytes, 0, formitembytes.Length);
+            memStream.Write(boundarybytes, 0, boundarybytes.Length);
 
 
             // ****************** XML HEAD***************
@@ -214,12 +211,7 @@ namespace IatDteBridge
 
             byte[] headerbytes = System.Text.Encoding.UTF8.GetBytes(header);
             memStream.Write(headerbytes, 0, headerbytes.Length);
-
-
-
             // ******************* XML BODY **************
-
-
             Console.WriteLine("FILE BODY {0}", @"C:/IatFiles/file/xml/envioUnitario/" + fileName);
 
             FileStream fileStream = new FileStream(@"C:/IatFiles/file/xml/envioUnitario/"+fileName, FileMode.Open, FileAccess.Read);
@@ -228,6 +220,46 @@ namespace IatDteBridge
             while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) != 0)
             {
                  memStream.Write(buffer, 0, bytesRead);
+            }
+
+            boundarybytes = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "\r\n");
+            memStream.Write(boundarybytes, 0, boundarybytes.Length);
+
+            // ****************** PDFC HEAD***************
+            header = string.Format(headerTemplate, "pdfCed", pdfCfileName);
+
+            headerbytes = System.Text.Encoding.UTF8.GetBytes(header);
+            memStream.Write(headerbytes, 0, headerbytes.Length);
+            // ******************* pdfC BODY **************
+            Console.WriteLine("FILE BODY {0}", @"C:/IatFiles/file/pdf/" + pdfCfileName);
+
+            FileStream fileStreampdfC = new FileStream(@"C:/IatFiles/file/pdf/" + pdfCfileName, FileMode.Open, FileAccess.Read);
+            byte[] bufferpdfC = new byte[1024];
+            int bytesReadpdfC = 0;
+            while ((bytesReadpdfC = fileStreampdfC.Read(bufferpdfC, 0, bufferpdfC.Length)) != 0)
+            {
+                memStream.Write(bufferpdfC, 0, bytesReadpdfC);
+            }
+
+            boundarybytes = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "\r\n");
+            memStream.Write(boundarybytes, 0, boundarybytes.Length);
+
+            // ****************** PdfT HEAD***************
+            header = string.Format(headerTemplate, "pdfTrib", pdfTfileName);
+
+            headerbytes = System.Text.Encoding.UTF8.GetBytes(header);
+            memStream.Write(headerbytes, 0, headerbytes.Length);
+
+
+            // ******************* pdfT BODY **************
+            Console.WriteLine("FILE BODY {0}", @"C:/IatFiles/file/pdf/" + pdfTfileName);
+
+            FileStream fileStreampdfT = new FileStream(@"C:/IatFiles/file/pdf/" + pdfTfileName, FileMode.Open, FileAccess.Read);
+            byte[] bufferpdfT = new byte[1024];
+            int bytesReadpdfT = 0;
+            while ((bytesReadpdfT = fileStreampdfT.Read(bufferpdfT, 0, bufferpdfT.Length)) != 0)
+            {
+                memStream.Write(bufferpdfT, 0, bytesReadpdfT);
             }
 
             // ***************** Cierro el envío
@@ -259,13 +291,11 @@ namespace IatDteBridge
             StreamReader reader2 = new StreamReader(stream2);
 
 
-        //    MessageBox.Show(reader2.ReadToEnd());
-
             webResponse2.Close();
             httpWebRequest2 = null;
             webResponse2 = null;
 
-
+            return "Ok"
   
         }
 
