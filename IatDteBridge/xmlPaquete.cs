@@ -58,15 +58,20 @@ namespace IatDteBridge
             giroreceptor = doc.GiroRecep.Substring(0, 40);
             }
 
-            if (doc.CiudadRecep == " " || doc.CmnaRecep == " ")
+            if (doc.CiudadRecep == " " || doc.CmnaRecep == " " || doc.DirRecep == "")
             {
-                Environment.Exit(0);   
+                Console.WriteLine("ERROR EN  DATOS DEL RECEPTOR");
+                Environment.Exit(0);
+
                 
             }
 
+            String rznsocrecep = doc.RznSocRecep.Replace("&", "&amp;");
+            String rutrecep = doc.RUTRecep.Replace("k","K");
+
             String receptor = "<Receptor>\n" +
-                    "<RUTRecep>" + doc.RUTRecep + "</RUTRecep>\n" +
-                    "<RznSocRecep>" + doc.RznSocRecep + "</RznSocRecep>\n" +
+                    "<RUTRecep>" + rutrecep + "</RUTRecep>\n" +
+                    "<RznSocRecep>" + rznsocrecep + "</RznSocRecep>\n" +
                     "<GiroRecep>" + giroreceptor + "</GiroRecep>\n" +
                     "<DirRecep>" + doc.DirRecep + "</DirRecep>\n" +
                     "<CmnaRecep>" + doc.CmnaRecep + "</CmnaRecep>\n" +
@@ -312,7 +317,8 @@ namespace IatDteBridge
                 i++;
             }
 
-           
+            String rutrecep = doc.RUTRecep.Replace("k", "K");
+
             String inicioTed = "<TED version=\"1.0\">\r\n";
             // nodo DD
             String dd = "<DD>" +
@@ -320,7 +326,7 @@ namespace IatDteBridge
                     "<TD>" + doc.TipoDTE + "</TD>" +
                     "<F>" + doc.Folio + "</F>" +
                     "<FE>" + doc.FchEmis + "</FE>" +
-                    "<RR>" + doc.RUTRecep + "</RR>" +
+                    "<RR>" + rutrecep + "</RR>" +
                     "<RSR>" + doc.RznSocRecep + "</RSR>" +
                     "<MNT>" + doc.MntTotal + "</MNT>" +
 
@@ -358,8 +364,16 @@ namespace IatDteBridge
             envio_xml += "<RutReceptor>60803000-K</RutReceptor>\r\n";
 
             //TO DO: cambiar fecha de resolución
-            envio_xml += "<FchResol>2014-08-22</FchResol>\r\n";
-            envio_xml += "<NroResol>80</NroResol>\r\n";
+
+            // Resolucion Set Prueba
+            //envio_xml += "<FchResol>2014-09-10</FchResol>\r\n";
+            //envio_xml += "<NroResol>0</NroResol>\r\n";
+
+            // Resolucion Produccion
+
+           envio_xml += "<FchResol>2014-08-22</FchResol>\r\n";
+           envio_xml += "<NroResol>80</NroResol>\r\n";
+           
             //***********************
 
             envio_xml += "<TmstFirmaEnv>2014-10-22T22:25:00</TmstFirmaEnv>\r\n";
