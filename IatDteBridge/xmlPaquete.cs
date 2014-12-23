@@ -68,12 +68,13 @@ namespace IatDteBridge
 
             String rznsocrecep = doc.RznSocRecep.Replace("&", "&amp;");
             String rutrecep = doc.RUTRecep.Replace("k","K");
+            String dirrecep = doc.DirRecep.Replace("#"," ");
 
             String receptor = "<Receptor>\n" +
                     "<RUTRecep>" + rutrecep + "</RUTRecep>\n" +
                     "<RznSocRecep>" + rznsocrecep + "</RznSocRecep>\n" +
                     "<GiroRecep>" + giroreceptor + "</GiroRecep>\n" +
-                    "<DirRecep>" + doc.DirRecep + "</DirRecep>\n" +
+                    "<DirRecep>" + dirrecep + "</DirRecep>\n" +
                     "<CmnaRecep>" + doc.CmnaRecep + "</CmnaRecep>\n" +
                     "<CiudadRecep>" + doc.CiudadRecep + "</CiudadRecep>\n" +
                 "</Receptor>\n";
@@ -252,7 +253,7 @@ namespace IatDteBridge
                     if (refe.IndGlobal == 0)
                         indglobal = "";
                     String rutotr = "<RUTOtr>" + refe.RUTOtr + "</RUTOtr>\n";
-                    if (refe.RUTOtr == "")
+                    if (refe.RUTOtr == "" || refe.RUTOtr == null)
                         rutotr = "";
                     String codref = "<CodRef>" + refe.CodRef + "</CodRef>\n";
                     if (refe.CodRef == 0)
@@ -318,6 +319,7 @@ namespace IatDteBridge
             }
 
             String rutrecep = doc.RUTRecep.Replace("k", "K");
+            String rznsocrecep = doc.RznSocRecep.Replace("&","&amp;");
 
             String inicioTed = "<TED version=\"1.0\">\r\n";
             // nodo DD
@@ -327,7 +329,7 @@ namespace IatDteBridge
                     "<F>" + doc.Folio + "</F>" +
                     "<FE>" + doc.FchEmis + "</FE>" +
                     "<RR>" + rutrecep + "</RR>" +
-                    "<RSR>" + doc.RznSocRecep + "</RSR>" +
+                    "<RSR>" + rznsocrecep + "</RSR>" +
                     "<MNT>" + doc.MntTotal + "</MNT>" +
 
                     "<IT1>" + firstNmbItem + "</IT1>" +
