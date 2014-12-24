@@ -6,6 +6,8 @@ using System.Security.Cryptography;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Diagnostics;
+using System.Drawing.Printing;
+
 
 
 
@@ -210,7 +212,44 @@ namespace IatDteBridge
 
             }
 
+         //PrintParamter is a custom data structure to capture file related info
+        public void PrintDocument(string printerName, String filename)
+        {
+           // if (!File.Exists(fs.FullyQualifiedName)) return;
+
+           // var filename = fs.FullyQualifiedName ?? string.Empty;
+           // printerName = printerName ?? GetDefaultPrinter(); //get your printer here
+
+            string processArgs = " -dPrinted -dBATCH -dNOPAUSE -dNOSAFER -q -dNumCopies=1 -sDEVICE=pdfwrite -sOutputFile=%printer%" + GetDefaultPrinter() + "\" \"" + filename + "\" ";
+                //string.Format("-ghostscript -copies=1 -all -printer \"{0}\" \"{1}\"", GetDefaultPrinter(), filename );
+         
+                var gsProcessInfo = new ProcessStartInfo
+                                        {
+                                          //  WindowStyle = ProcessWindowStyle.Hidden,
+                                            FileName = @"C:\iatFiles\gswin32c.exe",
+                                            Arguments = processArgs
+                                        };
+                using (var gsProcess = Process.Start(gsProcessInfo))
+                {
+
+                //    gsProcess.WaitForExit();
+
+                }
 
         }
+
+
+        string GetDefaultPrinter()
+        {
+            PrinterSettings settings = new PrinterSettings();
+            foreach (string printer in PrinterSettings.InstalledPrinters)
+            {
+                settings.PrinterName = printer;
+                if (settings.IsDefaultPrinter)
+                    return printer;
+            }
+            return string.Empty;
+        }
+    }
     
 }

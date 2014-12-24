@@ -93,10 +93,11 @@ namespace IatDteBridge
                         docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDFCed, "CEDIBLE CON SU FACTURA");
                     }
 
-                  
+                   // FuncionesComunes f = new FuncionesComunes();
+                   // f.PrintDocument(@"CutePDF Writer", @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf");
                     
                     //Imprime pdf
-
+                    
                         ProcessStartInfo copiaOriginal = new ProcessStartInfo();
                         copiaOriginal.Verb = "print";
                         copiaOriginal.FileName = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf";
@@ -153,7 +154,7 @@ namespace IatDteBridge
                              p.Kill();
                         }
                          
-
+                    
 
                     // Agrega el DTE timbrado al paquete
                     paquete = paquete + docXmlSign;

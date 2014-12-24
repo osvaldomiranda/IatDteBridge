@@ -17,8 +17,8 @@ namespace IatDteBridge
     {
 
         //  public static string server = "http://104.130.1.179";  // Staging
-        //public static string server = "http://192.168.1.35:3000";   // Localhost
-        public static string server = "http://200.72.145.75"; // prosuccion
+        public static string server = "http://192.168.1.35:3000";   // Localhost
+       // public static string server = "http://200.72.145.75"; // prosuccion
 
 
 
@@ -225,8 +225,8 @@ namespace IatDteBridge
             // ******************* XML BODY **************
             Console.WriteLine("FILE BODY {0}", @"C:/IatFiles/file/xml/envioUnitario/" + fileName);
 
-          //  FileStream fileStream = new FileStream(@"C:/IatFiles/file/xml/envioUnitario/"+fileName, FileMode.Open, FileAccess.Read);
-            FileStream fileStream = new FileStream(@"C:/IatFiles/envioUnitario/" + fileName, FileMode.Open, FileAccess.Read);
+            FileStream fileStream = new FileStream(@"C:/IatFiles/file/xml/envioUnitario/"+fileName, FileMode.Open, FileAccess.Read);
+           // FileStream fileStream = new FileStream(@"C:/IatFiles/envioUnitario/" + fileName, FileMode.Open, FileAccess.Read);
             byte[] buffer = new byte[1024];
             int bytesRead = 0;
             while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) != 0)
@@ -245,8 +245,8 @@ namespace IatDteBridge
             // ******************* pdfC BODY **************
             Console.WriteLine("FILE BODY {0}", @"C:/IatFiles/file/pdf/" + pdfCfileName);
 
-           // FileStream fileStreampdfC = new FileStream(@"C:/IatFiles/file/pdf/" + pdfCfileName, FileMode.Open, FileAccess.Read);
-            FileStream fileStreampdfC = new FileStream(@"C:/IatFiles/pdf/" + pdfCfileName, FileMode.Open, FileAccess.Read);
+            FileStream fileStreampdfC = new FileStream(@"C:/IatFiles/file/pdf/" + pdfCfileName, FileMode.Open, FileAccess.Read);
+          //  FileStream fileStreampdfC = new FileStream(@"C:/IatFiles/pdf/" + pdfCfileName, FileMode.Open, FileAccess.Read);
             
             byte[] bufferpdfC = new byte[1024];
             int bytesReadpdfC = 0;
@@ -270,9 +270,9 @@ namespace IatDteBridge
             // ******************* pdfT BODY **************
             Console.WriteLine("FILE BODY {0}", @"C:/IatFiles/file/pdf/" + pdfTfileName);
 
-          //  FileStream fileStreampdfT = new FileStream(@"C:/IatFiles/file/pdf/" + pdfTfileName, FileMode.Open, FileAccess.Read);
+            FileStream fileStreampdfT = new FileStream(@"C:/IatFiles/file/pdf/" + pdfTfileName, FileMode.Open, FileAccess.Read);
 
-            FileStream fileStreampdfT = new FileStream(@"C:/IatFiles/pdf/" + pdfTfileName, FileMode.Open, FileAccess.Read);
+          //  FileStream fileStreampdfT = new FileStream(@"C:/IatFiles/pdf/" + pdfTfileName, FileMode.Open, FileAccess.Read);
 
             byte[] bufferpdfT = new byte[1024];
             int bytesReadpdfT = 0;
