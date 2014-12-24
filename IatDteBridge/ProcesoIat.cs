@@ -8,6 +8,11 @@ using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography;
 using System.Diagnostics;
 
+
+
+
+
+
 namespace IatDteBridge
 {
     class ProcesoIat
@@ -95,7 +100,6 @@ namespace IatDteBridge
                     int numeroDeCopias = 2;
                     for (int c = 1; c <= numeroDeCopias; c++)
                     {
-
                         ProcessStartInfo info = new ProcessStartInfo();
                         info.Verb = "print";
                         info.FileName = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf";
@@ -109,8 +113,10 @@ namespace IatDteBridge
                         p.WaitForInputIdle();
                         System.Threading.Thread.Sleep(10000);
                         if (false == p.CloseMainWindow())
+                        {
                             p.Kill();
-
+                        }
+                        
                     }
 
 
@@ -144,7 +150,7 @@ namespace IatDteBridge
                     // *************  Envía json a server
                     Connect conn = new Connect();
 
-                    conn.sendInvoice(docLectura, @"DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf", @"DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf", @"EnvioUnit_" + docLectura.RUTEmisor + "_" + docLectura.Folio + "_" + fchName + ".xml", "S");
+                    conn.sendInvoice(docLectura, @"DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf", @"DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf", @"EnvioUnit_" + docLectura.RUTEmisor + "_" + docLectura.Folio + "_" + fchName + ".xml", "N");
                     // *************  Envía json a server
 
 

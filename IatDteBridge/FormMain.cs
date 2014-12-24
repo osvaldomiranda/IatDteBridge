@@ -258,6 +258,12 @@ namespace IatDteBridge
 
         }
 
+        private void button16_Click(object sender, EventArgs e)
+        {
+            EnvioMasivo envM = new EnvioMasivo();
+            envM.envioMasivo();
+        }
+
 
 
 

@@ -18,8 +18,8 @@ namespace IatDteBridge
 
       
         //  public static string server = "http://104.130.1.179";  // Staging
-        public static string server = "http://192.168.1.154:3000";   // Localhost
-       // public static string server = "http://200.72.145.75"; // prosuccion
+        //public static string server = "http://192.168.1.35:3000";   // Localhost
+        public static string server = "http://200.72.145.75"; // prosuccion
 
         public static string version = "/api/v1";
         public static string auth_token = "tokenprueba";
@@ -144,7 +144,7 @@ namespace IatDteBridge
             }
 
 
-            return sendToServer(filename,json,pdfTfileName,pdfCfileName, conEnv);
+            return sendToServer(doc.Folio, filename,json,pdfTfileName,pdfCfileName, conEnv);
 
             
 
@@ -162,7 +162,7 @@ namespace IatDteBridge
         }
 
         // TO DO: agregar envio del archivo pdf cedible, tributable y xml
-        public String sendToServer(String fileName, String json, String pdfTfileName, String pdfCfileName, String conEnvio)
+        public String sendToServer(int folio, String fileName, String json, String pdfTfileName, String pdfCfileName, String conEnvio)
         {
             string url = string.Format("{0}{1}/invoice.json",
                     server,
@@ -196,6 +196,16 @@ namespace IatDteBridge
             memStream.Write(boundarybytes, 0, boundarybytes.Length);
 
             // ************************************************
+
+            formitem = string.Format(formdataTemplate, "Folio", folio);
+
+            formitembytes = System.Text.Encoding.UTF8.GetBytes(formitem);
+            memStream.Write(formitembytes, 0, formitembytes.Length);
+            memStream.Write(boundarybytes, 0, boundarybytes.Length);
+
+            
+            
+            // ************************************************
             
             formitem = string.Format(formdataTemplate, "conEnvio", conEnvio);
 
@@ -203,9 +213,9 @@ namespace IatDteBridge
             memStream.Write(formitembytes, 0, formitembytes.Length);
             memStream.Write(boundarybytes, 0, boundarybytes.Length);
 
-
+            
             // ****************** XML HEAD***************
-            string headerTemplate = "Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"\r\n Content-Type: application/octet-stream\r\n\r\n";
+          string headerTemplate = "Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"\r\n Content-Type: application/octet-stream\r\n\r\n";
 
             string header = string.Format(headerTemplate, "xmlFile", fileName);
 
@@ -214,7 +224,8 @@ namespace IatDteBridge
             // ******************* XML BODY **************
             Console.WriteLine("FILE BODY {0}", @"C:/IatFiles/file/xml/envioUnitario/" + fileName);
 
-            FileStream fileStream = new FileStream(@"C:/IatFiles/file/xml/envioUnitario/"+fileName, FileMode.Open, FileAccess.Read);
+          //  FileStream fileStream = new FileStream(@"C:/IatFiles/file/xml/envioUnitario/"+fileName, FileMode.Open, FileAccess.Read);
+            FileStream fileStream = new FileStream(@"C:/IatFiles/envioUnitario/" + fileName, FileMode.Open, FileAccess.Read);
             byte[] buffer = new byte[1024];
             int bytesRead = 0;
             while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) != 0)
@@ -224,7 +235,7 @@ namespace IatDteBridge
 
             boundarybytes = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "\r\n");
             memStream.Write(boundarybytes, 0, boundarybytes.Length);
-
+            
             // ****************** PDFC HEAD***************
             header = string.Format(headerTemplate, "pdfCed", pdfCfileName);
 
@@ -233,7 +244,9 @@ namespace IatDteBridge
             // ******************* pdfC BODY **************
             Console.WriteLine("FILE BODY {0}", @"C:/IatFiles/file/pdf/" + pdfCfileName);
 
-            FileStream fileStreampdfC = new FileStream(@"C:/IatFiles/file/pdf/" + pdfCfileName, FileMode.Open, FileAccess.Read);
+           // FileStream fileStreampdfC = new FileStream(@"C:/IatFiles/file/pdf/" + pdfCfileName, FileMode.Open, FileAccess.Read);
+            FileStream fileStreampdfC = new FileStream(@"C:/IatFiles/pdf/" + pdfCfileName, FileMode.Open, FileAccess.Read);
+            
             byte[] bufferpdfC = new byte[1024];
             int bytesReadpdfC = 0;
             while ((bytesReadpdfC = fileStreampdfC.Read(bufferpdfC, 0, bufferpdfC.Length)) != 0)
@@ -243,6 +256,8 @@ namespace IatDteBridge
 
             boundarybytes = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "\r\n");
             memStream.Write(boundarybytes, 0, boundarybytes.Length);
+
+            fileStreampdfC.Close();
 
             // ****************** PdfT HEAD***************
             header = string.Format(headerTemplate, "pdfTrib", pdfTfileName);
@@ -254,7 +269,10 @@ namespace IatDteBridge
             // ******************* pdfT BODY **************
             Console.WriteLine("FILE BODY {0}", @"C:/IatFiles/file/pdf/" + pdfTfileName);
 
-            FileStream fileStreampdfT = new FileStream(@"C:/IatFiles/file/pdf/" + pdfTfileName, FileMode.Open, FileAccess.Read);
+          //  FileStream fileStreampdfT = new FileStream(@"C:/IatFiles/file/pdf/" + pdfTfileName, FileMode.Open, FileAccess.Read);
+
+            FileStream fileStreampdfT = new FileStream(@"C:/IatFiles/pdf/" + pdfTfileName, FileMode.Open, FileAccess.Read);
+
             byte[] bufferpdfT = new byte[1024];
             int bytesReadpdfT = 0;
             while ((bytesReadpdfT = fileStreampdfT.Read(bufferpdfT, 0, bufferpdfT.Length)) != 0)
@@ -262,6 +280,7 @@ namespace IatDteBridge
                 memStream.Write(bufferpdfT, 0, bytesReadpdfT);
             }
 
+            fileStreampdfT.Close();
             // ***************** Cierro el envío
 
             boundarybytes = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "--\r\n");
@@ -295,7 +314,7 @@ namespace IatDteBridge
             httpWebRequest2 = null;
             webResponse2 = null;
 
-            return "Ok"
+            return "Ok";
   
         }
 

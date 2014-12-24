@@ -62,6 +62,7 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.button16 = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -121,12 +122,12 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.archivosMaestrosToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(163, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(172, 26);
             // 
             // archivosMaestrosToolStripMenuItem
             // 
             this.archivosMaestrosToolStripMenuItem.Name = "archivosMaestrosToolStripMenuItem";
-            this.archivosMaestrosToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.archivosMaestrosToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.archivosMaestrosToolStripMenuItem.Text = "Archivos Maestros";
             // 
             // menuStrip1
@@ -146,21 +147,21 @@
             this.empresaToolStripMenuItem,
             this.adminCAFToolStripMenuItem});
             this.datosEmpresaToolStripMenuItem.Name = "datosEmpresaToolStripMenuItem";
-            this.datosEmpresaToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
+            this.datosEmpresaToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
             this.datosEmpresaToolStripMenuItem.Text = "Administración";
             this.datosEmpresaToolStripMenuItem.Click += new System.EventHandler(this.datosEmpresaToolStripMenuItem_Click);
             // 
             // empresaToolStripMenuItem
             // 
             this.empresaToolStripMenuItem.Name = "empresaToolStripMenuItem";
-            this.empresaToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.empresaToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.empresaToolStripMenuItem.Text = "Empresa";
             this.empresaToolStripMenuItem.Click += new System.EventHandler(this.empresaToolStripMenuItem_Click);
             // 
             // adminCAFToolStripMenuItem
             // 
             this.adminCAFToolStripMenuItem.Name = "adminCAFToolStripMenuItem";
-            this.adminCAFToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.adminCAFToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.adminCAFToolStripMenuItem.Text = "Admin CAF";
             this.adminCAFToolStripMenuItem.Click += new System.EventHandler(this.adminCAFToolStripMenuItem_Click);
             // 
@@ -378,11 +379,22 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
+            // button16
+            // 
+            this.button16.Location = new System.Drawing.Point(415, 150);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(75, 23);
+            this.button16.TabIndex = 34;
+            this.button16.Text = "button16";
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(940, 402);
+            this.Controls.Add(this.button16);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label4);
@@ -459,6 +471,7 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button button16;
 
     }
 }
