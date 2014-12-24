@@ -34,9 +34,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ghostscript.NET">
-      <HintPath>..\packages\Ghostscript.NET.1.1.9\lib\net40\Ghostscript.NET.dll</HintPath>
-    </Reference>
     <Reference Include="itextsharp">
       <HintPath>.\itextsharp.dll</HintPath>
     </Reference>
