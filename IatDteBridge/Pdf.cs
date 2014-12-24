@@ -54,9 +54,9 @@ namespace IatDteBridge
 
             // TO DO 
             //margen definitivo
-            //Document pdf = new Document(PageSize.LETTER, 10f, 10f, 10f, 10f);
+            Document pdf = new Document(PageSize.LETTER, 15f, 15f, 15f, 15f);
             // margen temporal para lubba abel gonzalez
-            Document pdf = new Document(PageSize.LETTER);
+           // Document pdf = new Document(PageSize.LETTER);
             PdfWriter.GetInstance(pdf, new FileStream(fileName, FileMode.OpenOrCreate));
 
 
@@ -705,5 +705,6 @@ namespace IatDteBridge
 
         // crear un metodo que un Documento
 
-    }
 }
+
+    }
