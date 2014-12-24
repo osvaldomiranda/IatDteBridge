@@ -16,10 +16,10 @@ namespace IatDteBridge
     class Connect
     {
 
+        //  public static string server = "http://104.130.1.179";  // Staging
+        //public static string server = "http://192.168.1.35:3000";   // Localhost
+        public static string server = "http://200.72.145.75"; // prosuccion
 
-        //public static string server = "http://104.130.1.179";  // Staging
-        //public static string server = "http://192.168.0.13:3000";   // Localhost
-       public static string server = "http://200.72.145.75"; // prosuccion
 
 
         public static string version = "/api/v1";
