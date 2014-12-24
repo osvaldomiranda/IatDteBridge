@@ -148,9 +148,9 @@ namespace IatDteBridge
                         p3.WaitForInputIdle();
                         
                         System.Threading.Thread.Sleep(10000);
-                        if (false == p.CloseMainWindow())
+                        if (false == p3.CloseMainWindow())
                         {
-                             p.Kill();
+                             p3.Kill();
                         }
                          
 
