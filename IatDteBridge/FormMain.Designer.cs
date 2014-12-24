@@ -122,12 +122,12 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.archivosMaestrosToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(172, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(163, 26);
             // 
             // archivosMaestrosToolStripMenuItem
             // 
             this.archivosMaestrosToolStripMenuItem.Name = "archivosMaestrosToolStripMenuItem";
-            this.archivosMaestrosToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.archivosMaestrosToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.archivosMaestrosToolStripMenuItem.Text = "Archivos Maestros";
             // 
             // menuStrip1
@@ -147,21 +147,21 @@
             this.empresaToolStripMenuItem,
             this.adminCAFToolStripMenuItem});
             this.datosEmpresaToolStripMenuItem.Name = "datosEmpresaToolStripMenuItem";
-            this.datosEmpresaToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
+            this.datosEmpresaToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
             this.datosEmpresaToolStripMenuItem.Text = "Administración";
             this.datosEmpresaToolStripMenuItem.Click += new System.EventHandler(this.datosEmpresaToolStripMenuItem_Click);
             // 
             // empresaToolStripMenuItem
             // 
             this.empresaToolStripMenuItem.Name = "empresaToolStripMenuItem";
-            this.empresaToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.empresaToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.empresaToolStripMenuItem.Text = "Empresa";
             this.empresaToolStripMenuItem.Click += new System.EventHandler(this.empresaToolStripMenuItem_Click);
             // 
             // adminCAFToolStripMenuItem
             // 
             this.adminCAFToolStripMenuItem.Name = "adminCAFToolStripMenuItem";
-            this.adminCAFToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.adminCAFToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.adminCAFToolStripMenuItem.Text = "Admin CAF";
             this.adminCAFToolStripMenuItem.Click += new System.EventHandler(this.adminCAFToolStripMenuItem_Click);
             // 
@@ -380,12 +380,13 @@
             // 
             // button16
             // 
-            this.button16.Location = new System.Drawing.Point(415, 150);
+            this.button16.Location = new System.Drawing.Point(789, 44);
             this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(75, 23);
+            this.button16.Size = new System.Drawing.Size(134, 23);
             this.button16.TabIndex = 34;
-            this.button16.Text = "button16";
+            this.button16.Text = "Carga Pdfs Al Core";
             this.button16.UseVisualStyleBackColor = true;
+            this.button16.Visible = false;
             this.button16.Click += new System.EventHandler(this.button16_Click);
             // 
             // FormMain
