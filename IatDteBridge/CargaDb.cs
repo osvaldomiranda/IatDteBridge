@@ -13,7 +13,7 @@ namespace IatDteBridge
             // Ir al directorio del envío Unitario
             // obtener siguiente .xml
             fileAdmin file = new fileAdmin();
-            String xmlName = file.nextFile(@"c:\IatFiles\file\xml\envioUnitario", "*.xml");
+            String xmlName = file.nextFile(@"c:\IatFiles\file\xml\enviounitario", "*.xml");
 
             // deducir nombre de los PDF y del json
             String pdf = xmlName.Substring(20, xmlName.Length - 20); //no incluir la extención se debe incluir el path
@@ -34,7 +34,7 @@ namespace IatDteBridge
             conn.sendInvoice(docLectura, pdft, pdfc, xmlName, "N");
 
             // mover archivo a carpeta de enviados
-            file.mvFile(xmlName,@"c:\IatFiles\file\xml\envioUnitario",@"c:\IatFiles\file\xml\envioEnviado");
+            file.mvFile(xmlName,@"c:\IatFiles\file\xml\enviounitario",@"c:\IatFiles\file\xml\envioEnviado");
  
         }
        

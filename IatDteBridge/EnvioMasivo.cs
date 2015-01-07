@@ -42,7 +42,7 @@ namespace IatDteBridge
                     int largo = filePdft.Length - 4; 
                     filePdfc = filePdft.Substring(0, largo) +"CEDIBLE.pdf";
                     filexmlap="EnvioUnit" + filePdft.Substring(3, 12)+filePdft.Substring(18, 5);
-                    filexml = file.fileAprox(filexmlap,@"c:\IatFiles\enviounitario","*.xml");
+                    filexml = file.fileAprox(filexmlap,@"c:\IatFiles\file\xml\enviounitario","*.xml");
                     fileJson =@"c:\IatFiles\fileProcess\Fac_"+ filePdft.Substring(18, 4)+".json";
 
                     docLectura = lec.lectura(fileJson,false);

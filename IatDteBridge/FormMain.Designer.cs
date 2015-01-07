@@ -63,6 +63,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button16 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -380,7 +381,7 @@
             // 
             // button16
             // 
-            this.button16.Location = new System.Drawing.Point(789, 44);
+            this.button16.Location = new System.Drawing.Point(716, 315);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(134, 23);
             this.button16.TabIndex = 34;
@@ -389,11 +390,23 @@
             this.button16.Visible = false;
             this.button16.Click += new System.EventHandler(this.button16_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Red;
+            this.label5.Location = new System.Drawing.Point(778, 34);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(158, 13);
+            this.label5.TabIndex = 35;
+            this.label5.Text = "VERSIÓN: 06012015-1525";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(940, 402);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.button16);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.progressBar1);
@@ -472,6 +485,7 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.Label label5;
 
     }
 }

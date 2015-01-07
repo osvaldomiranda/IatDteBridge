@@ -99,7 +99,7 @@ namespace IatDteBridge
 
                         ProcessStartInfo copiaOriginal = new ProcessStartInfo();
                         copiaOriginal.Verb = "print";
-                        copiaOriginal.FileName = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf";
+                        copiaOriginal.FileName = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf";
                         copiaOriginal.CreateNoWindow = true;
                         copiaOriginal.WindowStyle = ProcessWindowStyle.Hidden;
 
@@ -118,7 +118,7 @@ namespace IatDteBridge
 
                         ProcessStartInfo copiaOriginal2 = new ProcessStartInfo();
                         copiaOriginal2.Verb = "print";
-                        copiaOriginal2.FileName = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf";
+                        copiaOriginal2.FileName = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf";
                         copiaOriginal2.CreateNoWindow = true;
                         copiaOriginal2.WindowStyle = ProcessWindowStyle.Hidden;
 
@@ -176,7 +176,7 @@ namespace IatDteBridge
                     enviox509 = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + enviox509;
 
 
-                    String fileNameEnvio = @"C:/IatFiles/file/xml/envioUnitario/EnvioUnit_" + docLectura.RUTEmisor + "_" + docLectura.Folio + "_" + fchName + ".xml";
+                    String fileNameEnvio = @"C:/IatFiles/file/xml/enviounitario/EnvioUnit_" + docLectura.RUTEmisor + "_" + docLectura.Folio + "_" + fchName + ".xml";
 
                     using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileNameEnvio, false, Encoding.GetEncoding("ISO-8859-1")))
                     {
@@ -187,7 +187,7 @@ namespace IatDteBridge
                     // *************  Envía json a server
                     Connect conn = new Connect();
 
-                    conn.sendInvoice(docLectura, @"DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf", @"DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf", @"EnvioUnit_" + docLectura.RUTEmisor + "_" + docLectura.Folio + "_" + fchName + ".xml", "N");
+                    conn.sendInvoice(docLectura, @"DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf", @"DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf", @"EnvioUnit_" + docLectura.RUTEmisor + "_" + docLectura.Folio + "_" + fchName + ".xml", "S");
                     // *************  Envía json a server
 
 
