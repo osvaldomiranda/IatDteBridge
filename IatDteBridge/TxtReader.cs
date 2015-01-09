@@ -15,15 +15,18 @@ namespace IatDteBridge
     {
   
        
-        public Documento lectura(String fileJson, bool moveFile)
+        public Documento lectura(String fileJson, bool moveFile, String dirOrigen)
         {
             Documento doc = new Documento();
             fileAdmin file = new fileAdmin();
             String fileName = String.Empty;
 
+            if (dirOrigen == " ") dirOrigen = @"C:\IatFiles\cajas\caj1";
+
+
             if (fileJson == "")
             {
-                fileName = file.nextFile(@"c:\IatFiles\file\", "*.json");
+                fileName = file.nextFile(dirOrigen, "*.json");
             }
             else
             {
@@ -57,9 +60,12 @@ namespace IatDteBridge
 
                 }
 
+ 
    
                 // Datos del Emisor
                 String lineEmisor = String.Empty;
+                if (doc.RUTEmisor == null)
+                {
                     using (StreamReader sr = new StreamReader(@"c:\IatFiles\config\empresa" + ".txt"))
                     {
                         int i = 1;
@@ -69,7 +75,53 @@ namespace IatDteBridge
                             Console.WriteLine(lineEmisor);
                             switch (i)
                             {
-                             
+
+                                case 1: doc.RUTEmisor = lineEmisor;
+                                    break;
+                                case 2: doc.RznSoc = lineEmisor;
+                                    break;
+                                case 3: doc.GiroEmis = lineEmisor;
+                                    break;
+                                case 4: doc.Telefono = lineEmisor;
+                                    break;
+                                case 5: doc.CorreoEmisor = lineEmisor;
+                                    break;
+                                case 6: doc.Acteco = Convert.ToInt32(lineEmisor);
+                                    break;
+                                case 7: doc.CdgSIISucur = Convert.ToInt32(lineEmisor);
+                                    break;
+                                case 8: doc.DirOrigen = lineEmisor;
+                                    break;
+                                case 9: doc.CmnaOrigen = lineEmisor;
+                                    break;
+                                case 10: doc.CiudadOrigen = lineEmisor;
+                                    break;
+                                case 11: doc.DirRegionalSII = lineEmisor;
+                                    break;
+
+                            }
+
+
+                            i++;
+                        }
+
+                        sr.Close();
+                    }
+            
+                }
+                else 
+                {
+                    
+                    using (StreamReader sr = new StreamReader(@"c:\IatFiles\config\empresa" + ".txt"))
+                    {
+                        int i = 1;
+                        while ((lineEmisor = sr.ReadLine()) != null)
+                        {
+
+                            Console.WriteLine(lineEmisor);
+                            switch (i)
+                            {
+
                                 case 4: doc.Telefono = lineEmisor;
                                     break;
                                 case 5: doc.CorreoEmisor = lineEmisor;
@@ -80,21 +132,22 @@ namespace IatDteBridge
                                     break;
 
                             }
-                            
+
 
                             i++;
                         }
 
                         sr.Close();
                     }
-                // fin Datos del Emisor
+                }
+
 
 
                 objReader.Close();
                 ms.Close();
                 if (moveFile)
                 {
-                    file.mvFile(fileName, "C:/IatFiles/file/", "C:/IatFiles/fileProcess/");
+                    file.mvFile(fileName, dirOrigen, "C:/IatFiles/fileProcess/");
                 }
                 
 

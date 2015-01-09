@@ -26,7 +26,7 @@ namespace IatDteBridge
             TxtReader lec = new TxtReader();
             Documento docLectura = new Documento();
 
-            docLectura = lec.lectura(json, false);
+            docLectura = lec.lectura(json, false,"");
 
             // llamar a sendInvoice conEnvio = N
 

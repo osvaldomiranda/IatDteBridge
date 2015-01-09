@@ -45,7 +45,7 @@ namespace IatDteBridge
                     filexml = file.fileAprox(filexmlap,@"c:\IatFiles\file\xml\enviounitario","*.xml");
                     fileJson =@"c:\IatFiles\fileProcess\Fac_"+ filePdft.Substring(18, 4)+".json";
 
-                    docLectura = lec.lectura(fileJson,false);
+                    docLectura = lec.lectura(fileJson,false,"");
 
                     con.sendInvoice(docLectura,filePdft,filePdfc,filexml,"N");
 

@@ -24,7 +24,7 @@ namespace IatDteBridge
                 Documento docLectura = new Documento();
 
                 // Ejecuta metodo de txt_reader que llena y obtienen Clase Documento
-                docLectura = lec.lectura("", true);
+                docLectura = lec.lectura("", true,"");
                 // instancia XML_admin
                 xmlPaquete xml = new xmlPaquete();
 
@@ -117,7 +117,7 @@ namespace IatDteBridge
                     i++;
 
                     //Sgte Documento
-                    docLectura = lec.lectura("", true);
+                    docLectura = lec.lectura("", true,"");
 
                     // Verifica que el siguiente documento sea del mismo emisor
                   /*  if (docLectura != null)

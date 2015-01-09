@@ -21,6 +21,7 @@ namespace IatDteBridge
         public void DoProcessIat()
         {
             int i = 0;
+            int j = 0;
             while (!_shouldStop)
             {
                 Console.WriteLine("ProcessIat thread: working...");
@@ -41,7 +42,10 @@ namespace IatDteBridge
                 Documento docLectura = new Documento();
 
                 // Ejecuta metodo de txt_reader que llena y obtienen Clase Documento
-                docLectura = lec.lectura("", true);
+                j++;
+                docLectura = lec.lectura("", true, @"C:\IatFiles\cajas\caj"+j+@"\");
+                
+      
                 // instancia XML_admin
                 xmlPaquete xml = new xmlPaquete();
 
@@ -100,13 +104,26 @@ namespace IatDteBridge
                     String fileNamePDFPrint = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "PRINT.pdf";
                     docpdf.OpenPdfPrint(TimbreElec, docLectura, fileNamePDFPrint);
 
+                    String impresora = String.Empty;
+                    switch (j)
+                    {
+                        case 1: impresora = @"CutePDF Writer";
+                            break;
+                        case 2: impresora = @"PDFCreator";
+                            break;
+                        case 3: impresora = @"CutePDFWrite";
+                            break;
+                        case 4: impresora = @"CutePDFWrite";
+                            break;
+                    }
 
                         ProcessStartInfo copiaOriginal = new ProcessStartInfo();
-                        copiaOriginal.Verb = "print";
+                        copiaOriginal.Arguments = "\""+impresora+"\"";
+                        copiaOriginal.Verb = "printTo";
                         copiaOriginal.FileName = fileNamePDFPrint;
                         copiaOriginal.CreateNoWindow = true;
                         copiaOriginal.WindowStyle = ProcessWindowStyle.Hidden;
-
+                        
                         Process p = new Process();
                         p.StartInfo = copiaOriginal;
                         p.Start();
@@ -118,7 +135,8 @@ namespace IatDteBridge
                         {
                             p.Kill();
                         }
-                       
+
+                        if (j == 4) j = 1;   
 
 
                     // Agrega el DTE timbrado al paquete

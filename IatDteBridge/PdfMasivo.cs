@@ -15,7 +15,7 @@ namespace IatDteBridge
             TxtReader lec = new TxtReader();
             // Ejecuta metodo de txt_reader que llena y obtienen Clase Documento
 
-            docLectura = lec.lectura("",false);
+            docLectura = lec.lectura("",false,"");
 
 
 
@@ -37,7 +37,7 @@ namespace IatDteBridge
 
                 f.mvFile(docLectura.fileName, "C:/IatFiles/file/", "C:/IatFiles/fileProcess/");
 
-                docLectura = lec.lectura("", false);
+                docLectura = lec.lectura("", false,"");
             }
 
 

@@ -19,7 +19,7 @@ namespace IatDteBridge
             Documento docLectura = new Documento();
 
             // Ejecuta metodo de txt_reader que llena y obtienen Clase Documento
-            docLectura = lec.lectura(fileJson, true);
+            docLectura = lec.lectura(fileJson, true, " ");
             // instancia XML_admin
             xmlPaquete xml = new xmlPaquete();
 
