@@ -43,7 +43,15 @@ namespace IatDteBridge
 
                 // Ejecuta metodo de txt_reader que llena y obtienen Clase Documento
                 j++;
-                docLectura = lec.lectura("", true, @"C:\IatFiles\cajas\caj"+j+@"\");
+                
+                if (j == 1)
+                {
+                    docLectura = lec.lectura("", true, @"C:\IatFiles\files");
+                }
+                else
+                {
+                    docLectura = lec.lectura("", true, @"C:\IatFiles\cajas\caj" + j + @"\");
+                }
                 
       
                 // instancia XML_admin
@@ -104,16 +112,17 @@ namespace IatDteBridge
                     String fileNamePDFPrint = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "PRINT.pdf";
                     docpdf.OpenPdfPrint(TimbreElec, docLectura, fileNamePDFPrint);
 
+                    FuncionesComunes fc = new FuncionesComunes();
                     String impresora = String.Empty;
                     switch (j)
                     {
-                        case 1: impresora = @"CutePDF Writer";
+                        case 1: impresora = fc.GetDefaultPrinter();
                             break;
-                        case 2: impresora = @"PDFCreator";
+                        case 2: impresora = fc.GetPrinter(1);
                             break;
-                        case 3: impresora = @"CutePDFWrite";
+                        case 3: impresora = fc.GetPrinter(2);
                             break;
-                        case 4: impresora = @"CutePDFWrite";
+                        case 4: impresora = fc.GetPrinter(3);
                             break;
                     }
 

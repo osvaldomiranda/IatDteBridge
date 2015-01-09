@@ -239,7 +239,7 @@ namespace IatDteBridge
         }
 
 
-        string GetDefaultPrinter()
+        public string GetDefaultPrinter()
         {
             PrinterSettings settings = new PrinterSettings();
             foreach (string printer in PrinterSettings.InstalledPrinters)
@@ -249,6 +249,36 @@ namespace IatDteBridge
                     return printer;
             }
             return string.Empty;
+        }
+
+        public String GetPrinter(int printernum)
+        {
+            String printer = String.Empty;
+            String lineEmisor = String.Empty;
+            try 
+            {
+                using (StreamReader sr = new StreamReader(@"c:\IatFiles\config\printer" + ".txt"))
+                {
+                    while ((lineEmisor = sr.ReadLine()) != null)
+                    {
+                        switch (printernum)
+                        {
+                            case 1: printer = lineEmisor;
+                                break;
+                            case 2: printer = lineEmisor;
+                                break;
+                            case 3: printer = lineEmisor;
+                                break;
+                        }
+                    }
+                    sr.Close();
+                }
+            }
+            catch (Exception)
+            {
+                return GetDefaultPrinter(); 
+            }
+            return printer;
         }
     }
     
