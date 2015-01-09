@@ -79,8 +79,6 @@ namespace IatDteBridge
                     docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDF, " ");
 
 
-                    docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDF, " ");
-
                     String fileNamePDFCed = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf";
   
                     if (docLectura.TipoDTE == 33 || docLectura.TipoDTE == 34)
@@ -93,14 +91,19 @@ namespace IatDteBridge
                         docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDFCed, "CEDIBLE CON SU FACTURA");
                     }
 
+                   // para otro tipo de impresion
                    // FuncionesComunes f = new FuncionesComunes();
                    // f.PrintDocument(@"CutePDF Writer", @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf");
                     
                     //Imprime pdf
-                    
+
+                    String fileNamePDFPrint = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "PRINT.pdf";
+                    docpdf.OpenPdfPrint(TimbreElec, docLectura, fileNamePDFPrint);
+
+
                         ProcessStartInfo copiaOriginal = new ProcessStartInfo();
                         copiaOriginal.Verb = "print";
-                        copiaOriginal.FileName = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf";
+                        copiaOriginal.FileName = fileNamePDFPrint;
                         copiaOriginal.CreateNoWindow = true;
                         copiaOriginal.WindowStyle = ProcessWindowStyle.Hidden;
 
@@ -117,44 +120,6 @@ namespace IatDteBridge
                         }
                        
 
-                        ProcessStartInfo copiaOriginal2 = new ProcessStartInfo();
-                        copiaOriginal2.Verb = "print";
-                        copiaOriginal2.FileName = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf";
-                        copiaOriginal2.CreateNoWindow = true;
-                        copiaOriginal2.WindowStyle = ProcessWindowStyle.Hidden;
-
-                        Process p2 = new Process();
-                        p2.StartInfo = copiaOriginal2;
-                        p2.Start();
-
-                        p2.WaitForInputIdle();
-                       
-                        System.Threading.Thread.Sleep(10000);
-                        if (false == p2.CloseMainWindow())
-                        {
-                             p2.Kill();
-                        }
-                         
-
-                        ProcessStartInfo copiaCedible = new ProcessStartInfo();
-                        copiaCedible.Verb = "print";
-                        copiaCedible.FileName = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf";
-                        copiaCedible.CreateNoWindow = true;
-                        copiaCedible.WindowStyle = ProcessWindowStyle.Hidden;
-
-                        Process p3 = new Process();
-                        p3.StartInfo = copiaCedible;
-                        p3.Start();
-
-                        p3.WaitForInputIdle();
-                        
-                        System.Threading.Thread.Sleep(10000);
-                        if (false == p3.CloseMainWindow())
-                        {
-                             p3.Kill();
-                        }
-                         
-                    
 
                     // Agrega el DTE timbrado al paquete
                     paquete = paquete + docXmlSign;

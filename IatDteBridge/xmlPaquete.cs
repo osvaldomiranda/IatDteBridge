@@ -334,13 +334,13 @@ namespace IatDteBridge
 
                     "<IT1>" + firstNmbItem + "</IT1>" +
 
-                    getXmlFolio("CAF", doc.TipoDTE) +
+                    getXmlFolio("CAF", doc.TipoDTE, doc.RUTEmisor) +
 
                     "<TSTED>" + fch + "</TSTED>" +
                 "</DD>";
 
 
-            String firma = "<FRMT algoritmo=\"SHA1withRSA\">" + firmaNodoDD(dd, doc.TipoDTE) + "</FRMT>\r\n";
+            String firma = "<FRMT algoritmo=\"SHA1withRSA\">" + firmaNodoDD(dd, doc.TipoDTE, doc.RUTEmisor) + "</FRMT>\r\n";
             String finTed = "</TED>\r\n";
 
             
@@ -366,7 +366,6 @@ namespace IatDteBridge
             envio_xml += "<RutReceptor>60803000-K</RutReceptor>\r\n";
 
             //TO DO: cambiar fecha de resolución
-
             // Resolucion Set Prueba
             //envio_xml += "<FchResol>2014-09-10</FchResol>\r\n";
             //envio_xml += "<NroResol>0</NroResol>\r\n";
@@ -465,11 +464,10 @@ namespace IatDteBridge
         }
 
 
-        public String firmaNodoDD(String DD, int tipoDte)
+        public String firmaNodoDD(String DD, int tipoDte, string rut)
         {
 
-
-            string pk = getXmlFolio("RSA",tipoDte);
+            string pk = getXmlFolio("RSA",tipoDte, rut);
 
             Encoding ByteConverter = Encoding.GetEncoding("ISO-8859-1");
 
@@ -486,7 +484,7 @@ namespace IatDteBridge
         }
 
 
-        public String getXmlFolio(String nodo, int tipo)
+        public String getXmlFolio(String nodo, int tipo, string rut)
         {
 
             string nodoValue = string.Empty;
@@ -503,21 +501,24 @@ namespace IatDteBridge
 
                 fileAdmin file = new fileAdmin();
                 String cafDir = String.Empty;
+
+                // Elegir Caf según Rut y tipo 
+
                 switch (tipo)
                 {
-                    case 33: cafDir = @"C:\IatFiles\cafs\factura\";
-
+                    case 33: cafDir = @"C:\IatFiles\cafs\" + rut + @"\factura\";
                         break;
-                    case 61: cafDir = @"C:\IatFiles\cafs\notacredito\";
+                    case 61: cafDir = @"C:\IatFiles\cafs\" + rut + @"\notacredito\";
                         break;
-                    case 56: cafDir = @"C:\IatFiles\cafs\notadebito\";
+                    case 56: cafDir = @"C:\IatFiles\cafs\" + rut + @"\notadebito\";
                         break;
-                    case 52: cafDir = @"C:\IatFiles\cafs\Guia\";
+                    case 52: cafDir = @"C:\IatFiles\cafs\" + rut + @"\Guia\";
                         break;
-                    case 34: cafDir = @"C:\IatFiles\cafs\facturaexenta\";
+                    case 34: cafDir = @"C:\IatFiles\cafs\" + rut + @"\facturaexenta\";
                         break;
                 }
 
+               
                 xmlCaf = file.nextFile(cafDir, "*.xml");
                 
                 using (StreamReader sr = new StreamReader(xmlCaf))
