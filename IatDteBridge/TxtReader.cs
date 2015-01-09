@@ -60,8 +60,6 @@ namespace IatDteBridge
    
                 // Datos del Emisor
                 String lineEmisor = String.Empty;
-                //try
-               // {
                     using (StreamReader sr = new StreamReader(@"c:\IatFiles\config\empresa" + ".txt"))
                     {
                         int i = 1;
@@ -71,57 +69,25 @@ namespace IatDteBridge
                             Console.WriteLine(lineEmisor);
                             switch (i)
                             {
-                                case 1: doc.RUTEmisor = lineEmisor;
-                                    break;
-                                case 2: doc.RznSoc = lineEmisor;
-                                    break;
-                                case 3: doc.GiroEmis = lineEmisor;
-                                    break;
+                             
                                 case 4: doc.Telefono = lineEmisor;
                                     break;
                                 case 5: doc.CorreoEmisor = lineEmisor;
                                     break;
                                 case 6: doc.Acteco = Convert.ToInt32(lineEmisor);
                                     break;
-                                case 7: doc.CdgSIISucur = Convert.ToInt32(lineEmisor);
-                                    break;
-                                case 8: doc.DirOrigen = lineEmisor;
-                                    break;
-                                case 9: doc.CmnaOrigen = lineEmisor;
-                                    break;
-                                case 10: doc.CiudadOrigen = lineEmisor;
-                                    break;
                                 case 11: doc.DirRegionalSII = lineEmisor;
                                     break;
-
 
                             }
                             
 
-                            // recupero las sucursales del txt y los cargo en el list
-                           /* if (i >= 12)
-                            {
-
-                                Console.WriteLine("i es {0} {1}", i, lineEmisor);
-                                doc.sucursalesempresa.Add(new Sucursal(lineEmisor) {datosucursal = lineEmisor });
-                               
-
-                            }*/
                             i++;
                         }
 
-
-
-
-
                         sr.Close();
                     }
-                /*}
-                catch (Exception e)
-                {
-                    Console.WriteLine("The file could not be read:");
-                    Console.WriteLine(e.Message);
-                }*/
+                // fin Datos del Emisor
 
 
                 objReader.Close();
