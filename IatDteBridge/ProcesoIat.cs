@@ -9,10 +9,6 @@ using System.Security.Cryptography;
 using System.Diagnostics;
 
 
-
-
-
-
 namespace IatDteBridge
 {
     class ProcesoIat
@@ -105,7 +101,10 @@ namespace IatDteBridge
                         tipos.Add(docLectura.TipoDTE);
 
                         String TimbreElec = xml.ted_to_xmlSii(docLectura, fch);
+                        log.addLog("Crea Timbre TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
+
                         String docXmlSign = xml.doc_to_xmlSii(docLectura, TimbreElec, fch);
+                        log.addLog("Crea XML Envio TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
 
                         // Guarda DTE xml
                         String DTE = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + docXmlSign;
@@ -120,7 +119,7 @@ namespace IatDteBridge
 
                         String fileNamePDF = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf";
                         docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDF, " ");
-
+                        log.addLog("Crea PDF Trib TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
 
                         String fileNamePDFCed = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf";
 
@@ -133,6 +132,7 @@ namespace IatDteBridge
                         {
                             docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDFCed, "CEDIBLE CON SU FACTURA");
                         }
+                        log.addLog("Crea PDF C TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
 
                         // para otro tipo de impresion
                         // FuncionesComunes f = new FuncionesComunes();
@@ -142,6 +142,7 @@ namespace IatDteBridge
 
                         String fileNamePDFPrint = @"C:/IatFiles/file/pdf/PRINT_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + ".pdf";
                         docpdf.OpenPdfPrint(TimbreElec, docLectura, fileNamePDFPrint);
+                        log.addLog("Crea PDF PRINT TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
 
                         FuncionesComunes fc = new FuncionesComunes();
                         String impresora = String.Empty;
@@ -158,6 +159,7 @@ namespace IatDteBridge
                         }
 
                         fc.printPdf(fileNamePDFPrint, impresora);
+                        log.addLog("IMPRIME TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
 
                         // Agrega el DTE timbrado al paquete
                         paquete = paquete + docXmlSign;
@@ -173,7 +175,7 @@ namespace IatDteBridge
 
                         X509Certificate2 cert = FuncionesComunes.obtenerCertificado("LUIS BARAHONA MENDOZA");
                         String enviox509 = xml.firmarDocumento(envio, cert);
-
+                        log.addLog("FIRMA ENVIO TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
 
                         enviox509 = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + enviox509;
 
@@ -198,7 +200,7 @@ namespace IatDteBridge
 
                         conn.sendInvoice(docLectura, trib, ced, envU, "S");
                         // *************  Envía json a server
-
+                        log.addLog("Envia CORE TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
                     }
                 }
                 if (j == 4) { j = 0; } 
