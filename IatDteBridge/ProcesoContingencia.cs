@@ -14,52 +14,67 @@ namespace IatDteBridge
 
             while (!_shouldStop)
             {
-                Thread.Sleep(600000);
-                Console.WriteLine("ProcessIat thread: working...");
                 
-                ReenvioSql reenv = new ReenvioSql();
-                // saco el nombres de los archivos  json, enviomasivo.xml pdfT y pdfC
+                Thread.Sleep(20000);
+                Console.WriteLine("ProcessContingencia thread: working...");
 
-                List<String> listaReenvio = new List<string>();
-
-                listaReenvio = reenv.sgteReenvio();
-                // cargo clase Documento
-                Documento doc = new Documento();
-                TxtReader json = new TxtReader();
+                Connect conn = new Connect();
+                Log log = new Log();
+                String ping = conn.ping();
 
                 String envunit = String.Empty;
                 String pdft = String.Empty;
                 String pdfc = String.Empty;
                 String jsonName = String.Empty;
 
-                int i = 0;
-                foreach (var reenvio in listaReenvio)
+                if (ping == "{\"status\":\"Ok\"}")
                 {
-                    i++;
-                    switch (i)
+
+                    ReenvioSql reenv = new ReenvioSql();
+                    // saco el nombres de los archivos  json, enviomasivo.xml pdfT y pdfC
+
+                    List<String> listaReenvio = new List<string>();
+
+                    listaReenvio = reenv.sgteReenvio();
+                    // cargo clase Documento
+                    Documento doc = new Documento();
+                    TxtReader json = new TxtReader();
+
+
+
+                    int i = 0;
+                    foreach (var reenvio in listaReenvio)
                     {
-                        case 1:
-                            {
-                                doc = json.lectura(@"c:\IatFiles\fileprocess\" + reenvio, false, @"c:\IatFiles\fileprocess\");
-                                jsonName = reenvio;
-                            }
-                            break;
-                        case 2: envunit = reenvio;
-                            break;
-                        case 3: pdft = reenvio;
-                            break;
-                        case 4: pdfc = reenvio;
-                            break;
+                        i++;
+                        switch (i)
+                        {
+                            case 1:
+                                {
+                                    doc = json.lectura(@"c:\IatFiles\fileprocess\" + reenvio, false, @"c:\IatFiles\fileprocess\");
+                                    jsonName = reenvio;
+                                }
+                                break;
+                            case 2: envunit = reenvio;
+                                break;
+                            case 3: pdft = reenvio;
+                                break;
+                            case 4: pdfc = reenvio;
+                                break;
+                        }
+                    }
+                    // llamo clase connect para reenviar
+                    if (listaReenvio.Count() > 0)
+                    {
+
+                        conn.sendInvoice(doc, pdft, pdfc, envunit, "S");
+
+                        // Cambio estado del registro de reenvio 
+                        reenv.cambioEstadoReenvio("PROCESADO", jsonName);
                     }
                 }
-                // llamo clase connect para reenviar
-                if (listaReenvio.Count() > 0)
+                else
                 {
-                    Connect conn = new Connect();
-                    conn.sendInvoice(doc, pdft, pdfc, envunit, "S");
-
-                    // Cambio estado del registro de reenvio 
-                    reenv.cambioEstadoReenvio("PROCESADO", jsonName);
+                    log.addLog("ERROR Proceso Contingencia Ping no responde Json:" + jsonName , "ERROR");
                 }
             }
         }
@@ -71,7 +86,7 @@ namespace IatDteBridge
         private volatile bool _shouldStop;
 
 
-        public void StartProcessIat()
+        public void StartProcessConting()
         {
             // Create the thread object. This does not start the thread.
 
@@ -79,7 +94,7 @@ namespace IatDteBridge
 
             // Start the worker thread.
             processIatThread.Start();
-            Console.WriteLine("main thread: Starting ProcessIat thread...");
+            Console.WriteLine("main thread: Starting ProcessContingencia thread...");
 
             // Loop until worker thread activates. 
             while (!processIatThread.IsAlive) ;
@@ -87,12 +102,12 @@ namespace IatDteBridge
 
         }
 
-        public void StopProcessIat()
+        public void StopProcessConting()
         {
 
             RequestStop();
 
-            Console.WriteLine("main thread: ProcessIat thread has terminated.");
+            Console.WriteLine("main thread: ProcessContingencia thread has terminated.");
 
         }
     }

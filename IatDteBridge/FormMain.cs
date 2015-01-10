@@ -21,6 +21,7 @@ namespace IatDteBridge
         procesoLibroVenta procLibVta = new procesoLibroVenta();
         ProcesoLibroGuias procLibGuias = new ProcesoLibroGuias();
         ProcesoPaqueteXml procFromXml = new ProcesoPaqueteXml();
+        ProcesoContingencia procContig = new ProcesoContingencia();
         public CheckBox checkbox1 = new CheckBox();
 
         public FormMain()
@@ -52,20 +53,15 @@ namespace IatDteBridge
         private void button6_Click(object sender, EventArgs e)
         {
             
-            //ping.StartPing();
+            ping.StartPing();
 
-
-           // xmlAdmin a = new xmlAdmin();
-
-          //  a.PruebaTimbreDD();
-            
 
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-           // ping.StopPing();
-            proc.StopProcessIat();
+            ping.StopPing();
+         
         }
 
         private void datosEmpresaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -120,6 +116,8 @@ namespace IatDteBridge
             proc.StartProcessIat();
             this.label4.Text = "IatProcess En Ejecución";
             this.timer1.Start();
+
+            procContig.StartProcessConting();
             
         }
 

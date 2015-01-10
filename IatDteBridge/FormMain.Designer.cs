@@ -188,6 +188,7 @@
             this.button2.TabIndex = 15;
             this.button2.Text = "PackProcess";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
@@ -411,6 +412,7 @@
             this.button17.TabIndex = 36;
             this.button17.Text = "Ver Log";
             this.button17.UseVisualStyleBackColor = true;
+            this.button17.Visible = false;
             this.button17.Click += new System.EventHandler(this.button17_Click);
             // 
             // button18
@@ -421,6 +423,7 @@
             this.button18.TabIndex = 37;
             this.button18.Text = "Ver tabla reenvios";
             this.button18.UseVisualStyleBackColor = true;
+            this.button18.Visible = false;
             this.button18.Click += new System.EventHandler(this.button18_Click);
             // 
             // button19
@@ -431,6 +434,7 @@
             this.button19.TabIndex = 38;
             this.button19.Text = "Proceso Reenvio";
             this.button19.UseVisualStyleBackColor = true;
+            this.button19.Visible = false;
             this.button19.Click += new System.EventHandler(this.button19_Click);
             // 
             // FormMain
