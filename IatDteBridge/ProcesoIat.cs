@@ -26,7 +26,7 @@ namespace IatDteBridge
             {
                 Console.WriteLine("ProcessIat thread: working...");
 
-                Thread.Sleep(5000);
+                Thread.Sleep(3000);
 
 
                 i++;
@@ -44,9 +44,9 @@ namespace IatDteBridge
                 // Ejecuta metodo de txt_reader que llena y obtienen Clase Documento
                 j++;
                 
-                if (j == 1)
+                if (j == 4)
                 {
-                    docLectura = lec.lectura("", true, @"C:\IatFiles\files");
+                    docLectura = lec.lectura("", true, @"C:\IatFiles\file");
                 }
                 else
                 {
@@ -71,7 +71,6 @@ namespace IatDteBridge
 
                     log.addLog("Inicio proceso TipoDTE :"+ docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK" );
                     tipos.Add(docLectura.TipoDTE);
-
 
                     String TimbreElec = xml.ted_to_xmlSii(docLectura, fch);
                     String docXmlSign = xml.doc_to_xmlSii(docLectura, TimbreElec, fch);
@@ -145,7 +144,7 @@ namespace IatDteBridge
                             p.Kill();
                         }
 
-                        if (j == 4) j = 1;   
+                        if (j == 4) j = 0;   
 
 
                     // Agrega el DTE timbrado al paquete
@@ -184,6 +183,10 @@ namespace IatDteBridge
                     // *************  Envía json a server
 
 
+                }
+                else
+                {
+                    if (j == 4) { j = 0; } 
                 }
             }
             Console.WriteLine("ProcessIat thread: terminating gracefully.");
