@@ -698,7 +698,7 @@ namespace IatDteBridge
 
 
             for(int i = 0; i<3 ;i++){
-                // setear el tipo de copia para i = 1,2 tributable, i=3 cedible
+                // setear el tipo de copia para i = 0,1 tributable, i=2 cedible
                 if (i == 0 || i == 1) { tipoCopia = " "; }
                 if (i == 2) 
                 { 
@@ -709,6 +709,11 @@ namespace IatDteBridge
                     if (doc.TipoDTE == 52)
                     {
                         tipoCopia = "CEDIBLE CON SU FACTURA";
+                    }
+
+                    if (doc.TipoDTE == 61)
+                    {
+                        break;
                     }
                 }
 
