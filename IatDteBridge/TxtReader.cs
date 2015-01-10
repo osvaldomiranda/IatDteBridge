@@ -21,7 +21,7 @@ namespace IatDteBridge
             fileAdmin file = new fileAdmin();
             String fileName = String.Empty;
 
-            if (dirOrigen == " ") dirOrigen = @"C:\IatFiles\cajas\caj1";
+            if (dirOrigen == "") dirOrigen = @"C:\IatFiles\file";
 
 
             if (fileJson == "")
@@ -33,9 +33,6 @@ namespace IatDteBridge
                 fileName = fileJson;
             }
 
-           
-
-           
 
             if (fileName != null)
             {
@@ -53,11 +50,8 @@ namespace IatDteBridge
                 }
                 catch (Exception e)
                 {
-
                     Console.WriteLine(e.Message);
                     MessageBox.Show("Error de lectura JSON"+ e.Message);
-
-
                 }
 
  
@@ -66,7 +60,7 @@ namespace IatDteBridge
                 String lineEmisor = String.Empty;
                 if (doc.RUTEmisor == null)
                 {
-                    using (StreamReader sr = new StreamReader(@"c:\IatFiles\config\empresa" + ".txt"))
+                    using (StreamReader sr = new StreamReader(@"c:\IatFiles\config\empresa.txt"))
                     {
                         int i = 1;
                         while ((lineEmisor = sr.ReadLine()) != null)
@@ -141,8 +135,6 @@ namespace IatDteBridge
                     }
                 }
 
-
-
                 objReader.Close();
                 ms.Close();
                 if (moveFile)
@@ -150,8 +142,6 @@ namespace IatDteBridge
                     file.mvFile(fileName, dirOrigen, "C:/IatFiles/fileProcess/");
                 }
                 
-
-            
                 Caf caf = new Caf();
 
                 if(!caf.isValid(doc))

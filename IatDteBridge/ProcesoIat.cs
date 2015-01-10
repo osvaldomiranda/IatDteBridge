@@ -32,6 +32,7 @@ namespace IatDteBridge
                 i++;
 
                 String paquete = String.Empty;
+                String dirCurrentFile = String.Empty;
 
                 // instancia fileadmin, para tener las herramientas para mover archivos
                 fileAdmin fileAdm = new fileAdmin();
@@ -46,11 +47,13 @@ namespace IatDteBridge
                 
                 if (j == 4)
                 {
-                    docLectura = lec.lectura("", true, @"C:\IatFiles\file");
+                    docLectura = lec.lectura("",false, @"C:\IatFiles\file");
+                    dirCurrentFile = @"C:\IatFiles\file";
                 }
                 else
                 {
-                    docLectura = lec.lectura("", true, @"C:\IatFiles\cajas\caj" + j + @"\");
+                    docLectura = lec.lectura("",false, @"C:\IatFiles\cajas\caj" + j + @"\");
+                    dirCurrentFile = @"C:\IatFiles\cajas\caj" + j + @"\";
                 }
                 
       
@@ -68,128 +71,136 @@ namespace IatDteBridge
                 String firsRut = String.Empty;
                 if (docLectura != null)
                 {
-
-                    log.addLog("Inicio proceso TipoDTE :"+ docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK" );
-                    tipos.Add(docLectura.TipoDTE);
-
-                    String TimbreElec = xml.ted_to_xmlSii(docLectura, fch);
-                    String docXmlSign = xml.doc_to_xmlSii(docLectura, TimbreElec, fch);
-
-                    // Guarda DTE xml
-                    String DTE = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + docXmlSign;
-                    String fileNameXML = @"C:/IatFiles/file/xml/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".xml";
-                    using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileNameXML, false, Encoding.GetEncoding("ISO-8859-1")))
+                    // Proceso de ReImpresión
+                    // ir a directorio procesados y buscar el archivo docLectura.filename 
+                    if (System.IO.File.Exists(@"C:\IatFiles\fileprocess\"+docLectura.fileName)) // si ya existe, reimprimir
                     {
-                        file.WriteLine(docXmlSign);
-                    }
+                        String fileNamePDFRePrint = @"C:/IatFiles/file/pdf/PRINT_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + ".pdf";
 
-                    //Generar PDF                   
-                    Pdf docpdf = new Pdf();
-
-                    String fileNamePDF = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf";
-                    docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDF, " ");
-
-
-                    String fileNamePDFCed = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf";
-  
-                    if (docLectura.TipoDTE == 33 || docLectura.TipoDTE == 34)
-                    {
-                        docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDFCed, "CEDIBLE");
-                    }
-
-                    if (docLectura.TipoDTE == 52)
-                    {
-                        docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDFCed, "CEDIBLE CON SU FACTURA");
-                    }
-
-                   // para otro tipo de impresion
-                   // FuncionesComunes f = new FuncionesComunes();
-                   // f.PrintDocument(@"CutePDF Writer", @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf");
-                    
-                    //Imprime pdf
-
-                    String fileNamePDFPrint = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "PRINT.pdf";
-                    docpdf.OpenPdfPrint(TimbreElec, docLectura, fileNamePDFPrint);
-
-                    FuncionesComunes fc = new FuncionesComunes();
-                    String impresora = String.Empty;
-                    switch (j)
-                    {
-                        case 1: impresora = fc.GetDefaultPrinter();
-                            break;
-                        case 2: impresora = fc.GetPrinter(1);
-                            break;
-                        case 3: impresora = fc.GetPrinter(2);
-                            break;
-                        case 4: impresora = fc.GetPrinter(3);
-                            break;
-                    }
-
-                        ProcessStartInfo copiaOriginal = new ProcessStartInfo();
-                        copiaOriginal.Arguments = "\""+impresora+"\"";
-                        copiaOriginal.Verb = "printTo";
-                        copiaOriginal.FileName = fileNamePDFPrint;
-                        copiaOriginal.CreateNoWindow = true;
-                        copiaOriginal.WindowStyle = ProcessWindowStyle.Hidden;
-                        
-                        Process p = new Process();
-                        p.StartInfo = copiaOriginal;
-                        p.Start();
-
-                        p.WaitForInputIdle();
-                       
-                        System.Threading.Thread.Sleep(10000);
-                        if (false == p.CloseMainWindow())
+                        if(System.IO.File.Exists(fileNamePDFRePrint))
                         {
-                            p.Kill();
+                            FuncionesComunes fc = new FuncionesComunes();
+                            String impresora = String.Empty;
+                            switch (j)
+                            {
+                                case 1: impresora = fc.GetDefaultPrinter();
+                                    break;
+                                case 2: impresora = fc.GetPrinter(1);
+                                    break;
+                                case 3: impresora = fc.GetPrinter(2);
+                                    break;
+                                case 4: impresora = fc.GetPrinter(3);
+                                    break;
+                            }
+
+                            fc.printPdf(fileNamePDFRePrint, impresora);
+                        }
+                        fileAdm.mvFile(docLectura.fileName, dirCurrentFile, @"C:\IatFiles\fileprocess\");
+                    }
+                    else // si no procesar
+                    {
+                        fileAdm.mvFile(docLectura.fileName, dirCurrentFile, @"C:\IatFiles\fileprocess\");
+
+                        log.addLog("Inicio proceso TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
+                        tipos.Add(docLectura.TipoDTE);
+
+                        String TimbreElec = xml.ted_to_xmlSii(docLectura, fch);
+                        String docXmlSign = xml.doc_to_xmlSii(docLectura, TimbreElec, fch);
+
+                        // Guarda DTE xml
+                        String DTE = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + docXmlSign;
+                        String fileNameXML = @"C:/IatFiles/file/xml/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".xml";
+                        using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileNameXML, false, Encoding.GetEncoding("ISO-8859-1")))
+                        {
+                            file.WriteLine(docXmlSign);
                         }
 
-                
-                    // Agrega el DTE timbrado al paquete
-                    paquete = paquete + docXmlSign;
+                        //Generar PDF                   
+                        Pdf docpdf = new Pdf();
 
-                    //Estrae el rut del emisor de la primera factura del paquete
-                    if (i == 0) firsRut = docLectura.RUTEmisor;
-                    i++;
-
-                    
-                    // Firma POaquete unitario   
-
-                    String envio = xml.creaEnvio(paquete, docLectura.RUTEmisor, docLectura.RUTRecep, tipos);
+                        String fileNamePDF = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf";
+                        docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDF, " ");
 
 
+                        String fileNamePDFCed = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf";
 
-                    X509Certificate2 cert = FuncionesComunes.obtenerCertificado("LUIS BARAHONA MENDOZA");
-                    String enviox509 = xml.firmarDocumento(envio, cert);
+                        if (docLectura.TipoDTE == 33 || docLectura.TipoDTE == 34)
+                        {
+                            docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDFCed, "CEDIBLE");
+                        }
+
+                        if (docLectura.TipoDTE == 52)
+                        {
+                            docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDFCed, "CEDIBLE CON SU FACTURA");
+                        }
+
+                        // para otro tipo de impresion
+                        // FuncionesComunes f = new FuncionesComunes();
+                        // f.PrintDocument(@"CutePDF Writer", @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf");
+
+                        //Imprime pdf
+
+                        String fileNamePDFPrint = @"C:/IatFiles/file/pdf/PRINT_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + ".pdf";
+                        docpdf.OpenPdfPrint(TimbreElec, docLectura, fileNamePDFPrint);
+
+                        FuncionesComunes fc = new FuncionesComunes();
+                        String impresora = String.Empty;
+                        switch (j)
+                        {
+                            case 1: impresora = fc.GetDefaultPrinter();
+                                break;
+                            case 2: impresora = fc.GetPrinter(1);
+                                break;
+                            case 3: impresora = fc.GetPrinter(2);
+                                break;
+                            case 4: impresora = fc.GetPrinter(3);
+                                break;
+                        }
+
+                        fc.printPdf(fileNamePDFPrint, impresora);
+
+                        // Agrega el DTE timbrado al paquete
+                        paquete = paquete + docXmlSign;
+
+                        //Estrae el rut del emisor de la primera factura del paquete
+                        if (i == 0) firsRut = docLectura.RUTEmisor;
+                        i++;
 
 
-                    enviox509 = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + enviox509;
+                        // Firma POaquete unitario   
+
+                        String envio = xml.creaEnvio(paquete, docLectura.RUTEmisor, docLectura.RUTRecep, tipos);
+
+                        X509Certificate2 cert = FuncionesComunes.obtenerCertificado("LUIS BARAHONA MENDOZA");
+                        String enviox509 = xml.firmarDocumento(envio, cert);
 
 
-                    String fileNameEnvio = @"C:/IatFiles/file/xml/enviounitario/EnvioUnit_" + docLectura.RUTEmisor + "_" + docLectura.Folio + "_" + fchName + ".xml";
+                        enviox509 = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + enviox509;
 
-                    using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileNameEnvio, false, Encoding.GetEncoding("ISO-8859-1")))
-                    {
-                        file.WriteLine(enviox509);
+
+                        String fileNameEnvio = @"C:/IatFiles/file/xml/enviounitario/EnvioUnit_" + docLectura.RUTEmisor + "_" + docLectura.Folio + "_" + fchName + ".xml";
+
+                        using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileNameEnvio, false, Encoding.GetEncoding("ISO-8859-1")))
+                        {
+                            file.WriteLine(enviox509);
+                        }
+
+
+                        // *************  Envía json a server
+                        Connect conn = new Connect();
+                        String trib = @"DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf";
+                        String envU = @"EnvioUnit_" + docLectura.RUTEmisor + "_" + docLectura.Folio + "_" + fchName + ".xml";
+                        String ced = String.Empty;
+                        if (docLectura.TipoDTE != 61)
+                        {
+                            ced = @"DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf";
+                        }
+
+                        conn.sendInvoice(docLectura, trib, ced, envU, "S");
+                        // *************  Envía json a server
+
                     }
-
-
-                    // *************  Envía json a server
-                    Connect conn = new Connect();
-                    String trib = @"DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf";
-                    String envU = @"EnvioUnit_" + docLectura.RUTEmisor + "_" + docLectura.Folio + "_" + fchName + ".xml";
-                    String ced = String.Empty;
-                    if (docLectura.TipoDTE != 61)
-                    {
-                        ced = @"DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf";
-                    }
-
-                    conn.sendInvoice(docLectura,trib,ced,envU, "S");
-                    // *************  Envía json a server
-
-
                 }
-
                 if (j == 4) { j = 0; } 
             }
             Console.WriteLine("ProcessIat thread: terminating gracefully.");

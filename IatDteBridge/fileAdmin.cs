@@ -92,8 +92,6 @@ namespace IatDteBridge
 
         public String fileAprox(String fileN, String path, String fileType)
         {
-
-
             String fileName = null;
 
             string currentDirName = System.IO.Directory.GetCurrentDirectory();
@@ -133,23 +131,14 @@ namespace IatDteBridge
                     {
                         fileName = fi.Name;
                     }
-                    
                     Console.WriteLine("NextFile   {0} : {1}", fi.Name, fi.Directory);
-
-                }
-
-                
+                }   
                 return fileName;
             }
             else
             {
                 return null;
             }
-
-
-
-
         }
-
     }
 }

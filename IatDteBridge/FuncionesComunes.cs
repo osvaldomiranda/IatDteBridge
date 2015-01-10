@@ -212,6 +212,7 @@ namespace IatDteBridge
 
             }
 
+        // Funcion Para imprimir sin adobereader
          //PrintParamter is a custom data structure to capture file related info
         public void PrintDocument(string printerName, String filename)
         {
@@ -280,6 +281,31 @@ namespace IatDteBridge
             }
             return printer;
         }
+
+        public void printPdf(String fileName,String impresora)
+        {
+
+
+            ProcessStartInfo copiaOriginal = new ProcessStartInfo();
+            copiaOriginal.Arguments = "\"" + impresora + "\"";
+            copiaOriginal.Verb = "printTo";
+            copiaOriginal.FileName = fileName;
+            copiaOriginal.CreateNoWindow = true;
+            copiaOriginal.WindowStyle = ProcessWindowStyle.Hidden;
+
+            Process p = new Process();
+            p.StartInfo = copiaOriginal;
+            p.Start();
+
+            p.WaitForInputIdle();
+
+            System.Threading.Thread.Sleep(10000);
+            if (false == p.CloseMainWindow())
+            {
+                p.Kill();
+            }
+
+        }
     }
-    
+
 }
