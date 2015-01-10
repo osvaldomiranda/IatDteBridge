@@ -9,11 +9,11 @@ namespace IatDteBridge
 {
     class Log
     {
-        //String strConn = @"Data Source=C:/IatFiles/iatDB.sqlite;Pooling=true;FailIfMissing=false;Version=3";
+        String strConn = @"Data Source=C:/IatFiles/iatDB.sqlite;Pooling=true;FailIfMissing=false;Version=3";
 
         public bool creaDB()
         {
-       /*     try
+            try
             {
                 if (!System.IO.File.Exists("C:/IatFiles/iatDB.sqlite"))
                 {
@@ -22,9 +22,13 @@ namespace IatDteBridge
                     myConn.Open();
 
                     String sql = "CREATE TABLE log (fch VARCHAR(20), suceso VARCHAR(255), estado VARCHAR(20)) ";
+                    String sql2 = "CREATE TABLE reenvio (fch VARCHAR(20), jsonname VARCHAR(255), envunit VARCHAR(255), pdft VARCHAR(255), pdfc VARCHAR(255), estado VARCHAR(20)) ";
 
                     SQLiteCommand cmd = new SQLiteCommand(sql, myConn);
                     cmd.ExecuteNonQuery();
+
+                    SQLiteCommand cmd2 = new SQLiteCommand(sql2, myConn);
+                    cmd2.ExecuteNonQuery();
 
                     myConn.Close();
                 }
@@ -37,13 +41,13 @@ namespace IatDteBridge
             {
                 Console.WriteLine("ERROR: {0}", e.ToString());
                 return false;
-            }*/
+            }
             return true;
         }
 
         public void addLog( String suceso, String estado)
         {
-          /*  try
+            try
             {
                 DateTime thisDay = DateTime.Now;
                 String fecha = String.Format("{0:yyyyMMddTHHmmss}", thisDay);
@@ -60,15 +64,17 @@ namespace IatDteBridge
             catch (Exception e)
             {
                 Console.WriteLine("ERROR: {0}", e.ToString());
-            }*/
+            }
         }
+
+      
 
         public String verLog()
         {
 
             String logRes = String.Empty;
 
-          /*  try
+            try
             {
 
                 SQLiteConnection myConn = new SQLiteConnection(strConn);
@@ -87,11 +93,12 @@ namespace IatDteBridge
             {
                 Console.WriteLine("ERROR: {0}", e.ToString());
                 return logRes;
-            }*/
+            }
 
             return logRes;
         }
 
+      
 
     }
 }

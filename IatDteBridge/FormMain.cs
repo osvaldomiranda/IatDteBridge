@@ -245,14 +245,7 @@ namespace IatDteBridge
             }
         }
 
-     /*   private void button16_Click(object sender, EventArgs e)
-        {
-            proc.StopProcessIat();
-            this.label4.Text = "IatProcess Detenido";
-            this.progressBar1.Value = 0;
-            this.timer1.Stop();
-        }
-        */
+
         private void progressBar1_Click(object sender, EventArgs e)
         {
 
@@ -284,12 +277,23 @@ namespace IatDteBridge
             envM.envioMasivo();
         }
 
+        private void button17_Click(object sender, EventArgs e)
+        {
+            Log l = new Log();
+            l.verLog();
 
+        }
 
+        private void button18_Click(object sender, EventArgs e)
+        {
+            ReenvioSql reenv = new ReenvioSql();
+            reenv.verReenv();
+        }
 
-
-
-
-  
+        private void button19_Click(object sender, EventArgs e)
+        {
+            ProcesoContingencia pc = new ProcesoContingencia();
+            pc.procesoContingencia();
+        }
     }
 }

@@ -64,6 +64,9 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button16 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.button17 = new System.Windows.Forms.Button();
+            this.button18 = new System.Windows.Forms.Button();
+            this.button19 = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -123,12 +126,12 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.archivosMaestrosToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(163, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(172, 26);
             // 
             // archivosMaestrosToolStripMenuItem
             // 
             this.archivosMaestrosToolStripMenuItem.Name = "archivosMaestrosToolStripMenuItem";
-            this.archivosMaestrosToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.archivosMaestrosToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.archivosMaestrosToolStripMenuItem.Text = "Archivos Maestros";
             // 
             // menuStrip1
@@ -148,21 +151,21 @@
             this.empresaToolStripMenuItem,
             this.adminCAFToolStripMenuItem});
             this.datosEmpresaToolStripMenuItem.Name = "datosEmpresaToolStripMenuItem";
-            this.datosEmpresaToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
+            this.datosEmpresaToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
             this.datosEmpresaToolStripMenuItem.Text = "Administración";
             this.datosEmpresaToolStripMenuItem.Click += new System.EventHandler(this.datosEmpresaToolStripMenuItem_Click);
             // 
             // empresaToolStripMenuItem
             // 
             this.empresaToolStripMenuItem.Name = "empresaToolStripMenuItem";
-            this.empresaToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.empresaToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.empresaToolStripMenuItem.Text = "Empresa";
             this.empresaToolStripMenuItem.Click += new System.EventHandler(this.empresaToolStripMenuItem_Click);
             // 
             // adminCAFToolStripMenuItem
             // 
             this.adminCAFToolStripMenuItem.Name = "adminCAFToolStripMenuItem";
-            this.adminCAFToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.adminCAFToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.adminCAFToolStripMenuItem.Text = "Admin CAF";
             this.adminCAFToolStripMenuItem.Click += new System.EventHandler(this.adminCAFToolStripMenuItem_Click);
             // 
@@ -312,13 +315,12 @@
             // 
             // button13
             // 
-            this.button13.Location = new System.Drawing.Point(716, 286);
+            this.button13.Location = new System.Drawing.Point(482, 119);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(168, 23);
             this.button13.TabIndex = 27;
             this.button13.Text = "Crea DB logs";
             this.button13.UseVisualStyleBackColor = true;
-            this.button13.Visible = false;
             this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
             // button14
@@ -401,11 +403,44 @@
             this.label5.TabIndex = 35;
             this.label5.Text = "VERSIÓN: 09012015-1500";
             // 
+            // button17
+            // 
+            this.button17.Location = new System.Drawing.Point(482, 164);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(168, 23);
+            this.button17.TabIndex = 36;
+            this.button17.Text = "Ver Log";
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
+            // 
+            // button18
+            // 
+            this.button18.Location = new System.Drawing.Point(482, 197);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(168, 23);
+            this.button18.TabIndex = 37;
+            this.button18.Text = "Ver tabla reenvios";
+            this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
+            // 
+            // button19
+            // 
+            this.button19.Location = new System.Drawing.Point(482, 275);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(168, 23);
+            this.button19.TabIndex = 38;
+            this.button19.Text = "Proceso Reenvio";
+            this.button19.UseVisualStyleBackColor = true;
+            this.button19.Click += new System.EventHandler(this.button19_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(940, 402);
+            this.Controls.Add(this.button19);
+            this.Controls.Add(this.button18);
+            this.Controls.Add(this.button17);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.button16);
             this.Controls.Add(this.checkBox1);
@@ -486,6 +521,9 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.Button button19;
 
     }
 }

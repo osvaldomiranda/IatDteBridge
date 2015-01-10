@@ -92,8 +92,8 @@ namespace IatDteBridge
         public string sendInvoice(Documento doc, String pdfTfileName, String pdfCfileName, String filename, String conEnv)
         {
 
-            //   try
-           //     {
+            try
+            {
             string HtmlResult = String.Empty;
             string postUri = string.Format("{0}{1}/invoice.json",
                                 server,
@@ -149,17 +149,19 @@ namespace IatDteBridge
 
             
 
-/*
+
             }
             catch (Exception err)
             {
                 Log log = new Log();
+                ReenvioSql renv = new ReenvioSql();
                 log.addLog("ERROR envio al Core TipoDTE :" + doc.TipoDTE + " Folio :" + doc.Folio, "ERROR");
+                renv.addReenvio(doc.fileName,filename,pdfTfileName,pdfCfileName);
 
                   Console.WriteLine(err);
                   return err.Message;
             }
-  */          
+            
         }
 
         // TO DO: agregar envio del archivo pdf cedible, tributable y xml

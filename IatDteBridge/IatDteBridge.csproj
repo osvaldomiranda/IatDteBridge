@@ -85,11 +85,13 @@
     <Compile Include="LibroVenta.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="PdfMasivo.cs" />
+    <Compile Include="ProcesoContingencia.cs" />
     <Compile Include="ProcesoLibroCompra.cs" />
     <Compile Include="ProcesoLibroGuias.cs" />
     <Compile Include="procesoLibroVenta.cs" />
     <Compile Include="ProcesoPaquete.cs" />
     <Compile Include="ProcesoPaqueteXml.cs" />
+    <Compile Include="ReenvioSql.cs" />
     <Compile Include="Service References\FormAdminCaf.cs">
       <SubType>Form</SubType>
     </Compile>
