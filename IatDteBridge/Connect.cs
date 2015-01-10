@@ -229,29 +229,34 @@ namespace IatDteBridge
 
             boundarybytes = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "\r\n");
             memStream.Write(boundarybytes, 0, boundarybytes.Length);
-            
-            // ****************** PDFC HEAD***************
-            header = string.Format(headerTemplate, "pdfCed", pdfCfileName);
 
-            headerbytes = System.Text.Encoding.UTF8.GetBytes(header);
-            memStream.Write(headerbytes, 0, headerbytes.Length);
-            // ******************* pdfC BODY **************
-            Console.WriteLine("FILE BODY {0}", @"C:/IatFiles/file/pdf/" + pdfCfileName);
 
-            FileStream fileStreampdfC = new FileStream(@"C:/IatFiles/file/pdf/" + pdfCfileName, FileMode.Open, FileAccess.Read);
-
-            
-            byte[] bufferpdfC = new byte[1024];
-            int bytesReadpdfC = 0;
-            while ((bytesReadpdfC = fileStreampdfC.Read(bufferpdfC, 0, bufferpdfC.Length)) != 0)
+            if (pdfCfileName != "")
             {
-                memStream.Write(bufferpdfC, 0, bytesReadpdfC);
+                // ****************** PDFC HEAD***************
+                header = string.Format(headerTemplate, "pdfCed", pdfCfileName);
+
+                headerbytes = System.Text.Encoding.UTF8.GetBytes(header);
+                memStream.Write(headerbytes, 0, headerbytes.Length);
+                // ******************* pdfC BODY **************
+                Console.WriteLine("FILE BODY {0}", @"C:/IatFiles/file/pdf/" + pdfCfileName);
+
+                FileStream fileStreampdfC = new FileStream(@"C:/IatFiles/file/pdf/" + pdfCfileName, FileMode.Open, FileAccess.Read);
+
+
+                byte[] bufferpdfC = new byte[1024];
+                int bytesReadpdfC = 0;
+                while ((bytesReadpdfC = fileStreampdfC.Read(bufferpdfC, 0, bufferpdfC.Length)) != 0)
+                {
+                    memStream.Write(bufferpdfC, 0, bytesReadpdfC);
+                }
+
+                boundarybytes = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "\r\n");
+                memStream.Write(boundarybytes, 0, boundarybytes.Length);
+
+                fileStreampdfC.Close();
             }
-
-            boundarybytes = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "\r\n");
-            memStream.Write(boundarybytes, 0, boundarybytes.Length);
-
-            fileStreampdfC.Close();
+            
 
             // ****************** PdfT HEAD***************
             header = string.Format(headerTemplate, "pdfTrib", pdfTfileName);

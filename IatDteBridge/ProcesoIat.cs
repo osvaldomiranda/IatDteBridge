@@ -144,9 +144,7 @@ namespace IatDteBridge
                             p.Kill();
                         }
 
-                        if (j == 4) j = 0;   
-
-
+                
                     // Agrega el DTE timbrado al paquete
                     paquete = paquete + docXmlSign;
 
@@ -178,16 +176,21 @@ namespace IatDteBridge
 
                     // *************  Envía json a server
                     Connect conn = new Connect();
+                    String trib = @"DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf";
+                    String envU = @"EnvioUnit_" + docLectura.RUTEmisor + "_" + docLectura.Folio + "_" + fchName + ".xml";
+                    String ced = String.Empty;
+                    if (docLectura.TipoDTE != 61)
+                    {
+                        ced = @"DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf";
+                    }
 
-                    conn.sendInvoice(docLectura, @"DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf", @"DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf", @"EnvioUnit_" + docLectura.RUTEmisor + "_" + docLectura.Folio + "_" + fchName + ".xml", "S");
+                    conn.sendInvoice(docLectura,trib,ced,envU, "S");
                     // *************  Envía json a server
 
 
                 }
-                else
-                {
-                    if (j == 4) { j = 0; } 
-                }
+
+                if (j == 4) { j = 0; } 
             }
             Console.WriteLine("ProcessIat thread: terminating gracefully.");
         }
