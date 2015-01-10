@@ -399,7 +399,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(158, 13);
             this.label5.TabIndex = 35;
-            this.label5.Text = "VERSIÓN: 06012015-2200";
+            this.label5.Text = "VERSIÓN: 09012015-1500";
             // 
             // FormMain
             // 

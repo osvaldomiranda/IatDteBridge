@@ -97,7 +97,7 @@ namespace IatDteBridge
                     "<MontoImp>" + imp.MontoImp + "</MontoImp>\n" +
                     "</ImptoReten>\n";
 
-                    if (imp.TipoImp == "")
+                    if (imp.TipoImp == "" || imp.TipoImp == "0")
                         impreten = "";
 
                     impretenes += impreten;

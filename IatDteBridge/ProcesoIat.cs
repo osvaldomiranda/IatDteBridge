@@ -46,7 +46,7 @@ namespace IatDteBridge
                 
                 if (j == 1)
                 {
-                    docLectura = lec.lectura("", true, @"C:\IatFiles\files");
+                    docLectura = lec.lectura("", true, @"C:\IatFiles\file");
                 }
                 else
                 {
