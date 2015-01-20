@@ -64,9 +64,20 @@ namespace IatDteBridge
                     }
                 }
 
+                // si montoivafueraplazo es nulo o cero no se agrega en el xml
+                String totIVAFueraPlazo = String.Empty;
+                if (total.TotIVAFueraPlazo == 0)
+                {
+                    totIVAFueraPlazo = "";
+                }
+                else {
+
+                    totIVAFueraPlazo = "<TotIVAFueraPlazo>" + total.TotIVAFueraPlazo + "</TotIVAFueraPlazo>\n";
+                }
+
 
                 TotalesP += a + b + c + d +
-                "<TotIVAFueraPlazo>" + total.TotIVAFueraPlazo + "</TotIVAFueraPlazo>\n" +
+                 totIVAFueraPlazo +
                 "<TotMntTotal>" + total.TotMntTotal +"</TotMntTotal>\n" +
               "</TotalesPeriodo>\n";
             }
@@ -77,6 +88,7 @@ namespace IatDteBridge
             String detalle = String.Empty;
             String detIvaNo = String.Empty;
             String detOtrosImp = String.Empty;
+            String mnttotal = String.Empty;
 
             if (libro.Detalle == null)
             {
@@ -95,7 +107,8 @@ namespace IatDteBridge
                      "<RUTDoc>" + det.RUTDoc + "</RUTDoc>\n" +
                      "<RznSoc>" + det.RznSoc + "</RznSoc>\n" +
                      "<MntExe>" + det.MntExe + "</MntExe>\n" +
-                     "<MntNeto>" + det.MntNeto + "</MntNeto>\n";
+                     "<MntNeto>" + det.MntNeto + "</MntNeto>\n"+
+                     "<MntIVA>" + det.MntIVA + "</MntIVA>\n";
 
                     foreach (var otros in det.OtrosImp)
                     {
@@ -105,10 +118,12 @@ namespace IatDteBridge
                         "<MntImp>" + otros.MntImp + "</MntImp>\n" +
                       "</OtrosImp>\n";
                     }
+
+                   mnttotal =  "<MntTotal>" + det.MntTotal + "</MntTotal>\n";
                 }
 
                 detalle += detIvaNo + detOtrosImp +
-                "<MntTotal></MntTotal>\n" +
+                mnttotal +
                 "</Detalle>\n";
             }
 

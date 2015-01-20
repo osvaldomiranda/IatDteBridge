@@ -208,13 +208,14 @@ namespace IatDteBridge
     [DataContract]
     class detalle 
     {
+        [DataMember]
         public int   TpoDoc{get;set;}
         [DataMember] 
         public int   Emisor{get;set;}
         [DataMember] 
         public int   NroDoc {get;set;}
         [DataMember] 
-        public int   Anulado{get;set;}
+        public String Anulado {get;set;}
         [DataMember] 
         public int   Operacion {get;set;}
         [DataMember] 
@@ -228,13 +229,13 @@ namespace IatDteBridge
         [DataMember] 
         public String FchDoc{get;set;}
         [DataMember] 
-        public String CdgSIISucur{get;set;}
+        public int CdgSIISucur{get;set;}
         [DataMember] 
         public String RUTDoc{get;set;}
         [DataMember] 
         public String RznSoc{get;set;}
         [DataMember] 
-        public int    NumId{get;set;}
+        public String    NumId{get;set;}
         [DataMember] 
         public String Nacionalidad{get;set;}
         [DataMember] 
@@ -269,6 +270,10 @@ namespace IatDteBridge
          
         [DataMember]
         public List<detLiqui> Liquidaciones = new List<detLiqui>();
+        
+        [DataMember]
+        public int MntTotal { get; set; }
+
 	             
     }
 
