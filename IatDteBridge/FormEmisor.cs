@@ -55,11 +55,19 @@ namespace IatDteBridge
                                 break;
                             case 9: textBox_CmnaOrigen.Text = lineEmisor;
                                 break;
-                            /*case 7: doc.CmnaOrigen = lineEmisor;
+                            case 10: textBox_CdadOrigen.Text = lineEmisor;
                                 break;
-                            case 8: doc.CiudadOrigen = lineEmisor;
-                                break;*/
-
+                            case 11: textBox_ScsalSII.Text = lineEmisor;
+                                break;
+                            case 12: textBox_NbreCertificado.Text = lineEmisor;
+                                break;
+                            case 13: textBox_Sucursales.Text = lineEmisor;
+                                break;
+                            case 14: textBox_FchResol.Text = lineEmisor;
+                                break;
+                            case 15: textBox_RutCertificado.Text = lineEmisor;
+                                break;
+ 
                         }
 
                         i++;
@@ -91,11 +99,29 @@ namespace IatDteBridge
                          file.WriteLine(textBox_CdgSIISucur.Text);
                          file.WriteLine(textBox_DirOrigen.Text);
                          file.WriteLine(textBox_CmnaOrigen.Text);
+                         file.WriteLine(textBox_CdadOrigen.Text);
+                         file.WriteLine(textBox_ScsalSII.Text);
+                         file.WriteLine(textBox_NbreCertificado.Text);
+                         file.WriteLine(textBox_Sucursales.Text);
+                         file.WriteLine(textBox_FchResol.Text);
+                         file.WriteLine(textBox_RutCertificado.Text);
+
+
          
                   
             }
 
          }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
 
 
      }

@@ -17,7 +17,7 @@ namespace IatDteBridge
     {
 
         //  public static string server = "http://104.130.1.179";  // Staging
-        public static string server = "http://192.168.0.208:3000";   // Localhost
+        public static string server = "http://192.168.43.164:3000";   // Localhost
        //public static string server = "http://200.72.145.75"; // produccion
 
 

@@ -92,7 +92,14 @@ namespace IatDteBridge
                                     break;
                                 case 11: doc.DirRegionalSII = lineEmisor;
                                     break;
-
+                                case 12: doc.NombreCertificado = lineEmisor;
+                                    break;
+                                case 13: doc.SucurEmisor = lineEmisor;
+                                    break;
+                                case 14: doc.FchResol = lineEmisor;
+                                    break;
+                                case 15: doc.RutEnvia = lineEmisor;
+                                    break;
                             }
 
 

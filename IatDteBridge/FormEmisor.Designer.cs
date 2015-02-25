@@ -45,8 +45,20 @@
             this.textBox_CdgSIISucur = new System.Windows.Forms.TextBox();
             this.label_DirOrigen = new System.Windows.Forms.Label();
             this.textBox_DirOrigen = new System.Windows.Forms.TextBox();
-            this.label1_CmnaOrigen = new System.Windows.Forms.Label();
+            this.label_CmnaOrigen = new System.Windows.Forms.Label();
             this.textBox_CmnaOrigen = new System.Windows.Forms.TextBox();
+            this.textBox_CdadOrigen = new System.Windows.Forms.TextBox();
+            this.label_CdadOrigen = new System.Windows.Forms.Label();
+            this.textBox_ScsalSII = new System.Windows.Forms.TextBox();
+            this.label_ScsalSII = new System.Windows.Forms.Label();
+            this.textBox_NbreCertificado = new System.Windows.Forms.TextBox();
+            this.label_NbreCertifficado = new System.Windows.Forms.Label();
+            this.textBox_Sucursales = new System.Windows.Forms.TextBox();
+            this.label_Sucursales = new System.Windows.Forms.Label();
+            this.textBox_FchResol = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox_RutCertificado = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label_Rutempresa
@@ -61,7 +73,7 @@
             // 
             // textBox_RUTEmisor
             // 
-            this.textBox_RUTEmisor.Location = new System.Drawing.Point(107, 15);
+            this.textBox_RUTEmisor.Location = new System.Drawing.Point(124, 15);
             this.textBox_RUTEmisor.Name = "textBox_RUTEmisor";
             this.textBox_RUTEmisor.Size = new System.Drawing.Size(370, 20);
             this.textBox_RUTEmisor.TabIndex = 1;
@@ -77,7 +89,7 @@
             // 
             // textBox_RznSoc
             // 
-            this.textBox_RznSoc.Location = new System.Drawing.Point(107, 50);
+            this.textBox_RznSoc.Location = new System.Drawing.Point(124, 50);
             this.textBox_RznSoc.Name = "textBox_RznSoc";
             this.textBox_RznSoc.Size = new System.Drawing.Size(370, 20);
             this.textBox_RznSoc.TabIndex = 3;
@@ -93,7 +105,7 @@
             // 
             // textBox_GiroEmis
             // 
-            this.textBox_GiroEmis.Location = new System.Drawing.Point(107, 85);
+            this.textBox_GiroEmis.Location = new System.Drawing.Point(124, 85);
             this.textBox_GiroEmis.Name = "textBox_GiroEmis";
             this.textBox_GiroEmis.Size = new System.Drawing.Size(370, 20);
             this.textBox_GiroEmis.TabIndex = 5;
@@ -109,7 +121,7 @@
             // 
             // textBox_Telefono
             // 
-            this.textBox_Telefono.Location = new System.Drawing.Point(108, 120);
+            this.textBox_Telefono.Location = new System.Drawing.Point(125, 120);
             this.textBox_Telefono.Name = "textBox_Telefono";
             this.textBox_Telefono.Size = new System.Drawing.Size(370, 20);
             this.textBox_Telefono.TabIndex = 7;
@@ -125,7 +137,7 @@
             // 
             // textBox_CorreoEmisor
             // 
-            this.textBox_CorreoEmisor.Location = new System.Drawing.Point(107, 155);
+            this.textBox_CorreoEmisor.Location = new System.Drawing.Point(124, 155);
             this.textBox_CorreoEmisor.Name = "textBox_CorreoEmisor";
             this.textBox_CorreoEmisor.Size = new System.Drawing.Size(370, 20);
             this.textBox_CorreoEmisor.TabIndex = 9;
@@ -141,14 +153,14 @@
             // 
             // textBox_Acteco
             // 
-            this.textBox_Acteco.Location = new System.Drawing.Point(107, 190);
+            this.textBox_Acteco.Location = new System.Drawing.Point(124, 190);
             this.textBox_Acteco.Name = "textBox_Acteco";
             this.textBox_Acteco.Size = new System.Drawing.Size(370, 20);
             this.textBox_Acteco.TabIndex = 11;
             // 
             // button_guardar
             // 
-            this.button_guardar.Location = new System.Drawing.Point(64, 374);
+            this.button_guardar.Location = new System.Drawing.Point(690, 452);
             this.button_guardar.Name = "button_guardar";
             this.button_guardar.Size = new System.Drawing.Size(75, 23);
             this.button_guardar.TabIndex = 12;
@@ -167,7 +179,7 @@
             // 
             // textBox_CdgSIISucur
             // 
-            this.textBox_CdgSIISucur.Location = new System.Drawing.Point(107, 225);
+            this.textBox_CdgSIISucur.Location = new System.Drawing.Point(124, 225);
             this.textBox_CdgSIISucur.Name = "textBox_CdgSIISucur";
             this.textBox_CdgSIISucur.Size = new System.Drawing.Size(370, 20);
             this.textBox_CdgSIISucur.TabIndex = 14;
@@ -183,34 +195,144 @@
             // 
             // textBox_DirOrigen
             // 
-            this.textBox_DirOrigen.Location = new System.Drawing.Point(108, 260);
+            this.textBox_DirOrigen.Location = new System.Drawing.Point(125, 260);
             this.textBox_DirOrigen.Name = "textBox_DirOrigen";
             this.textBox_DirOrigen.Size = new System.Drawing.Size(370, 20);
             this.textBox_DirOrigen.TabIndex = 16;
             // 
-            // label1_CmnaOrigen
+            // label_CmnaOrigen
             // 
-            this.label1_CmnaOrigen.AutoSize = true;
-            this.label1_CmnaOrigen.Location = new System.Drawing.Point(13, 295);
-            this.label1_CmnaOrigen.Name = "label1_CmnaOrigen";
-            this.label1_CmnaOrigen.Size = new System.Drawing.Size(80, 13);
-            this.label1_CmnaOrigen.TabIndex = 17;
-            this.label1_CmnaOrigen.Text = "Comuna Origen";
+            this.label_CmnaOrigen.AutoSize = true;
+            this.label_CmnaOrigen.Location = new System.Drawing.Point(13, 295);
+            this.label_CmnaOrigen.Name = "label_CmnaOrigen";
+            this.label_CmnaOrigen.Size = new System.Drawing.Size(80, 13);
+            this.label_CmnaOrigen.TabIndex = 17;
+            this.label_CmnaOrigen.Text = "Comuna Origen";
             // 
             // textBox_CmnaOrigen
             // 
-            this.textBox_CmnaOrigen.Location = new System.Drawing.Point(107, 295);
+            this.textBox_CmnaOrigen.Location = new System.Drawing.Point(124, 295);
             this.textBox_CmnaOrigen.Name = "textBox_CmnaOrigen";
             this.textBox_CmnaOrigen.Size = new System.Drawing.Size(370, 20);
             this.textBox_CmnaOrigen.TabIndex = 18;
+            // 
+            // textBox_CdadOrigen
+            // 
+            this.textBox_CdadOrigen.Location = new System.Drawing.Point(124, 327);
+            this.textBox_CdadOrigen.Name = "textBox_CdadOrigen";
+            this.textBox_CdadOrigen.Size = new System.Drawing.Size(370, 20);
+            this.textBox_CdadOrigen.TabIndex = 20;
+            this.textBox_CdadOrigen.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label_CdadOrigen
+            // 
+            this.label_CdadOrigen.AutoSize = true;
+            this.label_CdadOrigen.Location = new System.Drawing.Point(13, 327);
+            this.label_CdadOrigen.Name = "label_CdadOrigen";
+            this.label_CdadOrigen.Size = new System.Drawing.Size(74, 13);
+            this.label_CdadOrigen.TabIndex = 19;
+            this.label_CdadOrigen.Text = "Ciudad Origen";
+            this.label_CdadOrigen.Click += new System.EventHandler(this.label1_Click_1);
+            // 
+            // textBox_ScsalSII
+            // 
+            this.textBox_ScsalSII.Location = new System.Drawing.Point(124, 364);
+            this.textBox_ScsalSII.Name = "textBox_ScsalSII";
+            this.textBox_ScsalSII.Size = new System.Drawing.Size(370, 20);
+            this.textBox_ScsalSII.TabIndex = 22;
+            // 
+            // label_ScsalSII
+            // 
+            this.label_ScsalSII.AutoSize = true;
+            this.label_ScsalSII.Location = new System.Drawing.Point(13, 364);
+            this.label_ScsalSII.Name = "label_ScsalSII";
+            this.label_ScsalSII.Size = new System.Drawing.Size(64, 13);
+            this.label_ScsalSII.TabIndex = 21;
+            this.label_ScsalSII.Text = "Sucursal SII";
+            // 
+            // textBox_NbreCertificado
+            // 
+            this.textBox_NbreCertificado.Location = new System.Drawing.Point(124, 396);
+            this.textBox_NbreCertificado.Name = "textBox_NbreCertificado";
+            this.textBox_NbreCertificado.Size = new System.Drawing.Size(370, 20);
+            this.textBox_NbreCertificado.TabIndex = 24;
+            // 
+            // label_NbreCertifficado
+            // 
+            this.label_NbreCertifficado.AutoSize = true;
+            this.label_NbreCertifficado.Location = new System.Drawing.Point(13, 396);
+            this.label_NbreCertifficado.Name = "label_NbreCertifficado";
+            this.label_NbreCertifficado.Size = new System.Drawing.Size(97, 13);
+            this.label_NbreCertifficado.TabIndex = 23;
+            this.label_NbreCertifficado.Text = "Nombre Certificado";
+            // 
+            // textBox_Sucursales
+            // 
+            this.textBox_Sucursales.Location = new System.Drawing.Point(124, 426);
+            this.textBox_Sucursales.Name = "textBox_Sucursales";
+            this.textBox_Sucursales.Size = new System.Drawing.Size(370, 20);
+            this.textBox_Sucursales.TabIndex = 26;
+            // 
+            // label_Sucursales
+            // 
+            this.label_Sucursales.AutoSize = true;
+            this.label_Sucursales.Location = new System.Drawing.Point(13, 426);
+            this.label_Sucursales.Name = "label_Sucursales";
+            this.label_Sucursales.Size = new System.Drawing.Size(59, 13);
+            this.label_Sucursales.TabIndex = 25;
+            this.label_Sucursales.Text = "Sucursales";
+            // 
+            // textBox_FchResol
+            // 
+            this.textBox_FchResol.Location = new System.Drawing.Point(626, 15);
+            this.textBox_FchResol.Name = "textBox_FchResol";
+            this.textBox_FchResol.Size = new System.Drawing.Size(165, 20);
+            this.textBox_FchResol.TabIndex = 28;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(515, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(93, 13);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "Fecha Resolucion";
+            // 
+            // textBox_RutCertificado
+            // 
+            this.textBox_RutCertificado.Location = new System.Drawing.Point(626, 50);
+            this.textBox_RutCertificado.Name = "textBox_RutCertificado";
+            this.textBox_RutCertificado.Size = new System.Drawing.Size(165, 20);
+            this.textBox_RutCertificado.TabIndex = 30;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(515, 50);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(77, 13);
+            this.label2.TabIndex = 29;
+            this.label2.Text = "Rut Certificado";
             // 
             // FormEmisor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(531, 439);
+            this.ClientSize = new System.Drawing.Size(821, 487);
+            this.Controls.Add(this.textBox_RutCertificado);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.textBox_FchResol);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBox_Sucursales);
+            this.Controls.Add(this.label_Sucursales);
+            this.Controls.Add(this.textBox_NbreCertificado);
+            this.Controls.Add(this.label_NbreCertifficado);
+            this.Controls.Add(this.textBox_ScsalSII);
+            this.Controls.Add(this.label_ScsalSII);
+            this.Controls.Add(this.textBox_CdadOrigen);
+            this.Controls.Add(this.label_CdadOrigen);
             this.Controls.Add(this.textBox_CmnaOrigen);
-            this.Controls.Add(this.label1_CmnaOrigen);
+            this.Controls.Add(this.label_CmnaOrigen);
             this.Controls.Add(this.textBox_DirOrigen);
             this.Controls.Add(this.label_DirOrigen);
             this.Controls.Add(this.textBox_CdgSIISucur);
@@ -255,7 +377,19 @@
         private System.Windows.Forms.TextBox textBox_CdgSIISucur;
         private System.Windows.Forms.Label label_DirOrigen;
         private System.Windows.Forms.TextBox textBox_DirOrigen;
-        private System.Windows.Forms.Label label1_CmnaOrigen;
+        private System.Windows.Forms.Label label_CmnaOrigen;
         private System.Windows.Forms.TextBox textBox_CmnaOrigen;
+        private System.Windows.Forms.TextBox textBox_CdadOrigen;
+        private System.Windows.Forms.Label label_CdadOrigen;
+        private System.Windows.Forms.TextBox textBox_ScsalSII;
+        private System.Windows.Forms.Label label_ScsalSII;
+        private System.Windows.Forms.TextBox textBox_NbreCertificado;
+        private System.Windows.Forms.Label label_NbreCertifficado;
+        private System.Windows.Forms.TextBox textBox_Sucursales;
+        private System.Windows.Forms.Label label_Sucursales;
+        private System.Windows.Forms.TextBox textBox_FchResol;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox_RutCertificado;
+        private System.Windows.Forms.Label label2;
     }
 }

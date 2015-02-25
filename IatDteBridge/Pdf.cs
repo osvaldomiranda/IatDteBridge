@@ -90,14 +90,17 @@ namespace IatDteBridge
             // Agrego las sucursales
             
             String sucursales = String.Empty;
-            if (doc.RUTEmisor == "77888630-8")
-            {
-                sucursales = "Arlegui 951, Fono:32-215 7357 / 32-215 7358 - Viña del Mar\nIndependencia 336, Fono: 53-243 3350 / 53-243 3351 - Ovalle\nArturo Prat 665, Fono: 51-254 4320 / 51-254 4321 - La Serena";
-            }
-            else
-            {
-                sucursales = "Monumento 1963, Fono:2 2784 5243 / 2 2784 5242 - Maipú - Stgo.\nAv. 5 Abril 412-A, Fono: 2 2481 4245 - Maipú - Stgo.\nDomingo Correa 25 - La Cisterna - Stgo.";
-            }
+            sucursales = doc.SucurEmisor;
+            //if (doc.RUTEmisor == "77888630-8")
+            //{
+            //    sucursales = "Arlegui 951, Fono:32-215 7357 / 32-215 7358 - Viña del Mar\nIndependencia 336, Fono: 53-243 3350 / 53-243 3351 - Ovalle\nArturo Prat 665, Fono: 51-254 4320 / 51-254 4321 - La Serena";
+            //}
+            //else
+            //{
+            //    //sucursales = "Monumento 1963, Fono:2 2784 5243 / 2 2784 5242 - Maipú - Stgo.\nAv. 5 Abril 412-A, Fono: 2 2481 4245 - Maipú - Stgo.\nDomingo Correa 25 - La Cisterna - Stgo.";
+
+            //    sucursales = "SALVADOR SANFUENTES 2759, Bloque AL, Depto. 2767  \nCiudad SANTIAGO, Comuna SANTIAGO ";
+            //}
          
             /*if (doc.sucursalesempresa != null)
             {
@@ -404,6 +407,8 @@ namespace IatDteBridge
                                     case 56: tipoDocRef = "NOTA DE DÉBITO ELECTRÓNICA";
                                         break;
                                     case 52: tipoDocRef = "GUÍA DESPACHO ELECTRÓNICA";
+                                        break;
+                                    case 35: tipoDocRef = "BOLETA";
                                         break;
 
                                 }
@@ -762,14 +767,7 @@ namespace IatDteBridge
                 // Agrego las sucursales
 
                 String sucursales = String.Empty;
-                if (doc.RUTEmisor == "77888630-8")
-                {
-                    sucursales = "Arlegui 951, Fono:32-215 7357 / 32-215 7358 - Viña del Mar\nIndependencia 336, Fono: 53-243 3350 / 53-243 3351 - Ovalle\nArturo Prat 665, Fono: 51-254 4320 / 51-254 4321 - La Serena";
-                }
-                else
-                {
-                    sucursales = "Monumento 1963, Fono:2 2784 5243 / 2 2784 5242 - Maipú - Stgo.\nAv. 5 Abril 412-A, Fono: 2 2481 4245 - Maipú - Stgo.\nDomingo Correa 25 - La Cisterna - Stgo.";
-                }
+                sucursales = doc.SucurEmisor;
 
                 PdfPCell celdaDatosEmisor = new PdfPCell(new Paragraph(doc.RznSoc + "\n" + doc.GiroEmis + "\n" + "FONOS: " + doc.Telefono + "\n" + "CASA MATRIZ: " + doc.DirOrigen +
                     "\n" + "SUCURSALES: \n" + sucursales, fuenteNegra));
@@ -1065,6 +1063,8 @@ namespace IatDteBridge
                                     case 56: tipoDocRef = "NOTA DE DÉBITO ELECTRÓNICA";
                                         break;
                                     case 52: tipoDocRef = "GUÍA DESPACHO ELECTRÓNICA";
+                                        break;
+                                    case 35: tipoDocRef = "BOLETA";
                                         break;
 
                                 }

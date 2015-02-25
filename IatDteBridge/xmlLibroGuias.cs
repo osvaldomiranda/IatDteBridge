@@ -14,7 +14,7 @@ namespace IatDteBridge
     {
         public String do_libroGuias(LibroGuias libro)
         {
-
+            Documento doc = new Documento();
             if (libro != null)
             {
                 String cabeceraLibro =
@@ -90,7 +90,7 @@ namespace IatDteBridge
                 String libroGuia = cabeceraLibro + resumen + finResumen + detall + finLibro;
 
 
-                X509Certificate2 cert = FuncionesComunes.obtenerCertificado("LUIS BARAHONA MENDOZA");
+                X509Certificate2 cert = FuncionesComunes.obtenerCertificado(doc.NombreCertificado);
 
                 String signLibro = firmarLibroGuias(libroGuia, cert);
 

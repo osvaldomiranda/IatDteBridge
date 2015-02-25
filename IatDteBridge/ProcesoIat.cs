@@ -171,9 +171,9 @@ namespace IatDteBridge
 
                         // Firma POaquete unitario   
 
-                        String envio = xml.creaEnvio(paquete, docLectura.RUTEmisor, docLectura.RUTRecep, tipos);
+                        String envio = xml.creaEnvio(paquete, docLectura.RUTEmisor, docLectura.RUTRecep, tipos, docLectura.RutEnvia, docLectura.FchResol);
 
-                        X509Certificate2 cert = FuncionesComunes.obtenerCertificado("LUIS BARAHONA MENDOZA");
+                        X509Certificate2 cert = FuncionesComunes.obtenerCertificado(docLectura.NombreCertificado);
                         String enviox509 = xml.firmarDocumento(envio, cert);
                         log.addLog("FIRMA ENVIO TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
 
@@ -198,7 +198,7 @@ namespace IatDteBridge
                             ced = @"DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf";
                         }
 
-                        conn.sendInvoice(docLectura, trib, ced, envU, "S");
+                        //conn.sendInvoice(docLectura, trib, ced, envU, "S");
                         // *************  Envía json a server
                         log.addLog("Envia CORE TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
                     }

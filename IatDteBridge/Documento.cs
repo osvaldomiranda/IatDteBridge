@@ -80,7 +80,19 @@ namespace IatDteBridge
         //este atributo es para cargar en pdf la zona de oficina SII por empresa
         // debe ser llenado al momento de cargar la clase, ya que no es un atributo serializable
         public string DirRegionalSII { get; set; } //Direccion de las oficinas SII correspondiente
-       
+        
+        //este atributo carga el nombre del certificado digital
+        public string NombreCertificado { get; set; }
+
+        //este atributo carga las sucursales del emisor
+        public string SucurEmisor { get; set; }
+
+        // este atributo carga la fecha de resolución
+        public string FchResol { get; set; }
+
+        // este atributo carga el rut del certificado
+        public string RutEnvia { get; set; }
+
         //este atributo es una ista la cual carga las sucursales de la empresa certificada
         // debe ser llenado al momento de cargar la clase, ya que no es un atributo serializable
         public List<Sucursal> sucursalesempresa = new List<Sucursal>(8);

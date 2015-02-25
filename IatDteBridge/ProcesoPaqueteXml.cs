@@ -60,5 +60,12 @@ namespace IatDteBridge
 
 
         }
+
+        public void firmaxml(String fileXml)
+        {
+
+           
+
+        }
     }
 }

@@ -138,10 +138,10 @@ namespace IatDteBridge
 
 
                 // Firma POaquete    
-                String envio = xml.creaEnvio(paquete,firsRut, "", tipos);
+                String envio = xml.creaEnvio(paquete,firsRut, "", tipos,"","");
 
 
-                X509Certificate2 cert = FuncionesComunes.obtenerCertificado("LUIS BARAHONA MENDOZA");
+                X509Certificate2 cert = FuncionesComunes.obtenerCertificado(docLectura.NombreCertificado);
                 String enviox509 = xml.firmarDocumento(envio, cert);
 
        

@@ -290,7 +290,7 @@ namespace IatDteBridge
 
             documento = documento+ TED + fechaFirma + findocumenro + findte;
 
-            X509Certificate2 cert = FuncionesComunes.obtenerCertificado("LUIS BARAHONA MENDOZA");
+            X509Certificate2 cert = FuncionesComunes.obtenerCertificado(doc.NombreCertificado);
 
 
 
@@ -350,9 +350,8 @@ namespace IatDteBridge
 
         }
 
-        public String creaEnvio(String dte, String rutEmisor, String RutReceptor, List<int> tipos)
+        public String creaEnvio(String dte, String rutEmisor, String RutReceptor, List<int> tipos, String RutEnvia, String FchResol)
         {
-
 
 
             String envio_xml = "<EnvioDTE xmlns=\"http://www.sii.cl/SiiDte\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sii.cl/SiiDte EnvioDTE_v10.xsd\" version=\"1.0\">\r\n";
@@ -360,20 +359,23 @@ namespace IatDteBridge
             envio_xml += "<Caratula version=\"1.0\">\r\n";
             envio_xml += "<RutEmisor>" + rutEmisor + "</RutEmisor>\r\n";
             //TO DO: Rutenvia, obtener desde certificado
-            envio_xml += "<RutEnvia>" + "05682509-6" + "</RutEnvia>\r\n";
+            envio_xml += "<RutEnvia>" + RutEnvia + "</RutEnvia>\r\n";
 
             //TO DO: rut receptor SII
             envio_xml += "<RutReceptor>60803000-K</RutReceptor>\r\n";
 
+            //TO DO: rut receptor CLIENTE
+            //envio_xml += "<RutReceptor>90703000-8</RutReceptor>\r\n";
+
             //TO DO: cambiar fecha de resolución
             // Resolucion Set Prueba
-           // envio_xml += "<FchResol>2014-09-10</FchResol>\r\n";
-           // envio_xml += "<NroResol>0</NroResol>\r\n";
+            envio_xml += "<FchResol>" + FchResol +"</FchResol>\r\n";
+            envio_xml += "<NroResol>0</NroResol>\r\n";
 
             // Resolucion Produccion
 
-            envio_xml += "<FchResol>2014-08-22</FchResol>\r\n";
-            envio_xml += "<NroResol>80</NroResol>\r\n";
+            //envio_xml += "<FchResol>2014-08-22</FchResol>\r\n";
+            //envio_xml += "<NroResol>80</NroResol>\r\n";
            
             //***********************
 

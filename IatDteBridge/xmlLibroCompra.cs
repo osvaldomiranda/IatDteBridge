@@ -15,7 +15,7 @@ namespace IatDteBridge
 
         public String libroCompra_to_xml(LibroCompra libro)
         {
-
+            Documento doc = new Documento();
             String cabeceraLibro =
 
              "<LibroCompraVenta xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sii.cl/SiiDte LibroCV_v10.xsd\" version=\"1.0\" xmlns=\"http://www.sii.cl/SiiDte\">\n"
@@ -185,7 +185,7 @@ namespace IatDteBridge
 
             String LibroCom = cabeceraLibro + resumen  + TotalesP +  finResumen + detalleaux + finLibro;
 
-            X509Certificate2 cert = FuncionesComunes.obtenerCertificado("LUIS BARAHONA MENDOZA");
+            X509Certificate2 cert = FuncionesComunes.obtenerCertificado(doc.NombreCertificado);
 
             String signLibro = firmarLibro(LibroCom, cert);
 

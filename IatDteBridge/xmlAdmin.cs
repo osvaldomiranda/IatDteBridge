@@ -254,7 +254,7 @@ namespace IatDteBridge
 
             documento = documento + TED + fechaFirma + findocumenro + findte;
 
-            X509Certificate2 cert = FuncionesComunes.obtenerCertificado("LUIS BARAHONA MENDOZA");
+            X509Certificate2 cert = FuncionesComunes.obtenerCertificado(doc.NombreCertificado);
 
 
 
@@ -313,20 +313,20 @@ namespace IatDteBridge
 
         public String creaEnvio(String dte, String rutEmisor, String RutReceptor, String tipo)
         {
-
+            Documento doc = new Documento();
 
             String envio_xml = "<EnvioDTE xmlns=\"http://www.sii.cl/SiiDte\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sii.cl/SiiDte EnvioDTE_v10.xsd\" version=\"1.0\">\r\n";
             envio_xml += "<SetDTE ID=\"SetDoc\">\r\n";
             envio_xml += "<Caratula version=\"1.0\">\r\n";
             envio_xml += "<RutEmisor>" + rutEmisor + "</RutEmisor>\r\n";
             //TO DO: Rutenvia, obtener desde certificado
-            envio_xml += "<RutEnvia>" + "05682509-6" + "</RutEnvia>\r\n";
+            envio_xml += "<RutEnvia>" + doc.RutEnvia + "</RutEnvia>\r\n";
 
             //TO DO: rut receptor SII
             envio_xml += "<RutReceptor>60803000-K</RutReceptor>\r\n";
 
             //TO DO: cambiar fecha de resolución
-            envio_xml += "<FchResol>2014-08-22</FchResol>\r\n";
+            envio_xml += "<FchResol>" + doc.FchResol + "</FchResol>\r\n";
             envio_xml += "<NroResol>80</NroResol>\r\n";
             //***********************
 
