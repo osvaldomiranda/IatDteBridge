@@ -203,13 +203,15 @@ namespace IatDteBridge
                         Connect conn = new Connect();
                         String trib = @"DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf";
                         String envU = @"EnvioUnit_" + docLectura.RUTEmisor + "_" + docLectura.Folio + "_" + fchName + ".xml";
+                        String envC = @"EnvioUnitCliente_" + docLectura.RUTEmisor + "_" + docLectura.Folio + "_" + fchName + ".xml";
+                        String envF = @"DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".xml";
                         String ced = String.Empty;
                         if (docLectura.TipoDTE != 61)
                         {
                             ced = @"DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf";
                         }
 
-                        //conn.sendInvoice(docLectura, trib, ced, envU, "S");
+                        conn.sendInvoice(docLectura, trib, ced, envU,envC,envF, "S");
                         // *************  Envía json a server
                         log.addLog("Envia CORE TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
                     }

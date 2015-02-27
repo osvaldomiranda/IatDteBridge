@@ -89,7 +89,7 @@ namespace IatDteBridge
             }
         }
 
-        public string sendInvoice(Documento doc, String pdfTfileName, String pdfCfileName, String filename, String conEnv)
+        public string sendInvoice(Documento doc, String pdfTfileName, String pdfCfileName, String filename, String fileCliente, String fileFactura, String conEnv)
         {
 
             try
@@ -145,10 +145,7 @@ namespace IatDteBridge
             }
 
 
-            return sendToServer(doc.Folio, filename,json,pdfTfileName,pdfCfileName, conEnv);
-
-            
-
+            return sendToServer(doc.Folio, fileCliente, fileFactura, doc.fileName, filename,json,pdfTfileName,pdfCfileName, conEnv);
 
             }
             catch (Exception err)
@@ -165,7 +162,7 @@ namespace IatDteBridge
         }
 
         // TO DO: agregar envio del archivo pdf cedible, tributable y xml
-        public String sendToServer(int folio, String fileName, String json, String pdfTfileName, String pdfCfileName, String conEnvio)
+        public String sendToServer(int folio, String fileCliente, String fileFactura, String fileJson, String fileName, String json, String pdfTfileName, String pdfCfileName, String conEnvio)
         {
             string url = string.Format("{0}{1}/invoice.json",
                     server,
@@ -209,7 +206,7 @@ namespace IatDteBridge
 
             
             // ****************** XML HEAD***************
-          string headerTemplate = "Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"\r\n Content-Type: application/octet-stream\r\n\r\n";
+           string headerTemplate = "Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"\r\n Content-Type: application/octet-stream\r\n\r\n";
 
             string header = string.Format(headerTemplate, "xmlFile", fileName);
 
@@ -231,6 +228,82 @@ namespace IatDteBridge
 
             boundarybytes = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "\r\n");
             memStream.Write(boundarybytes, 0, boundarybytes.Length);
+
+
+            if (fileCliente != "")
+            {
+                // ****************** fileCliente HEAD***************
+                header = string.Format(headerTemplate, "fileCliente", fileCliente);
+
+                headerbytes = System.Text.Encoding.UTF8.GetBytes(header);
+                memStream.Write(headerbytes, 0, headerbytes.Length);
+                // ******************* pdfC BODY **************
+                Console.WriteLine("FILE BODY {0}", @"C:/IatFiles/file/xml/enviounitario/" + fileCliente);
+
+                FileStream fileStreamfileCliente = new FileStream(@"C:/IatFiles/file/xml/enviounitario/" + fileCliente, FileMode.Open, FileAccess.Read);
+
+                byte[] bufferFileCliente = new byte[1024];
+                int bytesReadFileCliente = 0;
+                while ((bytesReadFileCliente = fileStreamfileCliente.Read(bufferFileCliente, 0, bufferFileCliente.Length)) != 0)
+                {
+                    memStream.Write(bufferFileCliente, 0, bytesReadFileCliente);
+                }
+
+                boundarybytes = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "\r\n");
+                memStream.Write(boundarybytes, 0, boundarybytes.Length);
+
+                fileStreamfileCliente.Close();
+            }
+
+            if (fileFactura != "")
+            {
+                // ****************** fileFactura HEAD***************
+                header = string.Format(headerTemplate, "fileFactura", fileFactura);
+
+                headerbytes = System.Text.Encoding.UTF8.GetBytes(header);
+                memStream.Write(headerbytes, 0, headerbytes.Length);
+                // ******************* FileFactura BODY **************
+                Console.WriteLine("FILE BODY {0}", @"C:/IatFiles/file/xml/" + fileFactura);
+
+                FileStream fileStreamfileFactura = new FileStream(@"C:/IatFiles/file/xml/" + fileFactura, FileMode.Open, FileAccess.Read);
+
+                byte[] bufferFileFactura = new byte[1024];
+                int bytesReadFileFactura = 0;
+                while ((bytesReadFileFactura = fileStreamfileFactura.Read(bufferFileFactura, 0, bufferFileFactura.Length)) != 0)
+                {
+                    memStream.Write(bufferFileFactura, 0, bytesReadFileFactura);
+                }
+
+                boundarybytes = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "\r\n");
+                memStream.Write(boundarybytes, 0, boundarybytes.Length);
+
+                fileStreamfileFactura.Close();
+            }
+
+            if (fileJson != "")
+            {
+                // ****************** fileJson HEAD***************
+                header = string.Format(headerTemplate, "fileJson", fileJson);
+
+                headerbytes = System.Text.Encoding.UTF8.GetBytes(header);
+                memStream.Write(headerbytes, 0, headerbytes.Length);
+                // ******************* fileJson BODY **************
+                Console.WriteLine("FILE BODY {0}", @"C:/IatFiles/fileprocess/" + fileJson);
+
+                FileStream fileStreamfileJson = new FileStream(@"C:/IatFiles/fileprocess/" + fileJson, FileMode.Open, FileAccess.Read);
+
+                byte[] bufferFileJson = new byte[1024];
+                int bytesReadFileJson = 0;
+                while ((bytesReadFileJson = fileStreamfileJson.Read(bufferFileJson, 0, bufferFileJson.Length)) != 0)
+                {
+                    memStream.Write(bufferFileJson, 0, bytesReadFileJson);
+                }
+
+                boundarybytes = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "\r\n");
+                memStream.Write(boundarybytes, 0, boundarybytes.Length);
+
+                fileStreamfileJson.Close();
+            }
 
 
             if (pdfCfileName != "")
@@ -259,6 +332,7 @@ namespace IatDteBridge
                 fileStreampdfC.Close();
             }
             
+
 
             // ****************** PdfT HEAD***************
             header = string.Format(headerTemplate, "pdfTrib", pdfTfileName);
