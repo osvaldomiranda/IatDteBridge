@@ -350,7 +350,7 @@ namespace IatDteBridge
 
         }
 
-        public String creaEnvio(String dte, String rutEmisor, String RutReceptor, List<int> tipos, String RutEnvia, String FchResol)
+        public String creaEnvio(String dte, String rutEmisor, String RutReceptor, List<int> tipos, String RutEnvia, String FchResol, String rutReceptorEnvio )
         {
 
 
@@ -362,7 +362,11 @@ namespace IatDteBridge
             envio_xml += "<RutEnvia>" + RutEnvia + "</RutEnvia>\r\n";
 
             //TO DO: rut receptor SII
-            envio_xml += "<RutReceptor>60803000-K</RutReceptor>\r\n";
+            if (rutReceptorEnvio == "") 
+            {
+                rutReceptorEnvio = "60803000-K";
+            }
+            envio_xml += "<RutReceptor>" + rutReceptorEnvio+ "</RutReceptor>\r\n";
 
             //TO DO: rut receptor CLIENTE
             //envio_xml += "<RutReceptor>90703000-8</RutReceptor>\r\n";
@@ -378,8 +382,9 @@ namespace IatDteBridge
             //envio_xml += "<NroResol>80</NroResol>\r\n";
            
             //***********************
-
-            envio_xml += "<TmstFirmaEnv>2014-10-22T22:25:00</TmstFirmaEnv>\r\n";
+            DateTime thisDay = DateTime.Now;
+            String fch = String.Format("{0:yyyy-MM-ddTHH:mm:ss}", thisDay);
+            envio_xml += "<TmstFirmaEnv>"+ fch +"</TmstFirmaEnv>\r\n";
                 //envio_xml += "<SubTotDTE>\r\n";
                 //envio_xml += "<TpoDTE>" + tipo + "</TpoDTE>\r\n";
 //******************************************ESTOS DATOS ESTAN EN DURO ******************************************************

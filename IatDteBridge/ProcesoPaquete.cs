@@ -138,7 +138,7 @@ namespace IatDteBridge
 
 
                 // Firma POaquete    
-                String envio = xml.creaEnvio(paquete,firsRut, "", tipos,"","");
+                String envio = xml.creaEnvio(paquete,firsRut, "", tipos,"","","");
 
 
                 X509Certificate2 cert = FuncionesComunes.obtenerCertificado(docLectura.NombreCertificado);

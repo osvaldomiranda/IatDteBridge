@@ -170,23 +170,34 @@ namespace IatDteBridge
 
 
                         // Firma POaquete unitario   
+                        String envioCliente = xml.creaEnvio(paquete, docLectura.RUTEmisor, docLectura.RUTRecep, tipos, docLectura.RutEnvia, docLectura.FchResol, docLectura.RUTRecep);
 
-                        String envio = xml.creaEnvio(paquete, docLectura.RUTEmisor, docLectura.RUTRecep, tipos, docLectura.RutEnvia, docLectura.FchResol);
+                        String envioSII = xml.creaEnvio(paquete, docLectura.RUTEmisor, docLectura.RUTRecep, tipos, docLectura.RutEnvia, docLectura.FchResol, "");
 
                         X509Certificate2 cert = FuncionesComunes.obtenerCertificado(docLectura.NombreCertificado);
-                        String enviox509 = xml.firmarDocumento(envio, cert);
+
+                        String enviox509SII = xml.firmarDocumento(envioSII, cert);
+                        String enviox509Cliente = xml.firmarDocumento(envioCliente, cert);
+                        
                         log.addLog("FIRMA ENVIO TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
 
-                        enviox509 = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + enviox509;
+                        enviox509SII = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + enviox509SII;
+                        enviox509Cliente = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + enviox509Cliente;
 
 
-                        String fileNameEnvio = @"C:/IatFiles/file/xml/enviounitario/EnvioUnit_" + docLectura.RUTEmisor + "_" + docLectura.Folio + "_" + fchName + ".xml";
+                        String fileNameEnvioSII = @"C:/IatFiles/file/xml/enviounitario/EnvioUnit_" + docLectura.RUTEmisor + "_" + docLectura.Folio + "_" + fchName + ".xml";
 
-                        using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileNameEnvio, false, Encoding.GetEncoding("ISO-8859-1")))
+                        String fileNameEnvioCliente = @"C:/IatFiles/file/xml/enviounitario/EnvioUnitCliente_" + docLectura.RUTEmisor + "_" + docLectura.Folio + "_" + fchName + ".xml";
+
+                        using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileNameEnvioSII, false, Encoding.GetEncoding("ISO-8859-1")))
                         {
-                            file.WriteLine(enviox509);
+                            file.WriteLine(enviox509SII);
                         }
 
+                        using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileNameEnvioCliente, false, Encoding.GetEncoding("ISO-8859-1")))
+                        {
+                            file.WriteLine(enviox509Cliente);
+                        }
 
                         // *************  Envía json a server
                         Connect conn = new Connect();
