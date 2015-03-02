@@ -17,7 +17,7 @@ namespace IatDteBridge
     {
 
         //  public static string server = "http://104.130.1.179";  // Staging
-        public static string server = "http://192.168.43.164:3000";   // Localhost
+        public static string server = "http://192.168.1.154:3000";   // Localhost
        //public static string server = "http://200.72.145.75"; // produccion
 
 
@@ -344,11 +344,7 @@ namespace IatDteBridge
             // ******************* pdfT BODY **************
             Console.WriteLine("FILE BODY {0}", @"C:/IatFiles/file/pdf/" + pdfTfileName);
 
-
             FileStream fileStreampdfT = new FileStream(@"C:/IatFiles/file/pdf/" + pdfTfileName, FileMode.Open, FileAccess.Read);
-
-
-          //  FileStream fileStreampdfT = new FileStream(@"C:/IatFiles/pdf/" + pdfTfileName, FileMode.Open, FileAccess.Read);
 
             byte[] bufferpdfT = new byte[1024];
             int bytesReadpdfT = 0;

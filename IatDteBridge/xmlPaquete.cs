@@ -292,10 +292,7 @@ namespace IatDteBridge
 
             X509Certificate2 cert = FuncionesComunes.obtenerCertificado(doc.NombreCertificado);
 
-
-
             String signDte = firmarDocumento(documento, cert);
-
 
             return signDte;
 

@@ -31,7 +31,7 @@ namespace IatDteBridge
             // llamar a sendInvoice conEnvio = N
 
             Connect conn = new Connect();
-            conn.sendInvoice(docLectura, pdft, pdfc, xmlName, "N");
+            conn.sendInvoice(docLectura, pdft, pdfc, xmlName,"","", "N");
 
             // mover archivo a carpeta de enviados
             file.mvFile(xmlName,@"c:\IatFiles\file\xml\enviounitario",@"c:\IatFiles\file\xml\envioEnviado");

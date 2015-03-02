@@ -47,7 +47,7 @@ namespace IatDteBridge
 
                     docLectura = lec.lectura(fileJson,false,"");
 
-                    con.sendInvoice(docLectura,filePdft,filePdfc,filexml,"N");
+                    con.sendInvoice(docLectura,filePdft,filePdfc,filexml,"","","N");
 
                     
      

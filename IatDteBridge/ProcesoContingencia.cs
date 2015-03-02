@@ -40,8 +40,6 @@ namespace IatDteBridge
                     Documento doc = new Documento();
                     TxtReader json = new TxtReader();
 
-
-
                     int i = 0;
                     foreach (var reenvio in listaReenvio)
                     {
@@ -66,7 +64,7 @@ namespace IatDteBridge
                     if (listaReenvio.Count() > 0)
                     {
 
-                        conn.sendInvoice(doc, pdft, pdfc, envunit, "S");
+                    //    conn.sendInvoice(doc, pdft, pdfc, envunit, "S");
 
                         // Cambio estado del registro de reenvio 
                         reenv.cambioEstadoReenvio("PROCESADO", jsonName);
