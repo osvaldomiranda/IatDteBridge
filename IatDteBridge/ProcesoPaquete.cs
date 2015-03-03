@@ -45,7 +45,11 @@ namespace IatDteBridge
                 int folio = 0;
                 
                 int i = 0;
-                String firsRut = String.Empty;
+                
+              String firsRut = String.Empty;
+              String rutenvia = String.Empty;
+              String fchresol = String.Empty;
+              String nomcertificado = String.Empty;
 
 
                 while (docLectura != null)
@@ -113,7 +117,13 @@ namespace IatDteBridge
                     paquete = paquete + docXmlSign;
 
                     //Estrae el rut del emisor de la primera factura del paquete
-                    if (i == 0) firsRut = docLectura.RUTEmisor;
+                    if (i == 0) 
+                    {
+                        firsRut = docLectura.RUTEmisor;
+                        rutenvia = docLectura.RutEnvia;
+                        fchresol = docLectura.FchResol;
+                        nomcertificado = docLectura.NombreCertificado;
+                    }
                     i++;
 
                     //Sgte Documento
@@ -138,10 +148,10 @@ namespace IatDteBridge
 
 
                 // Firma POaquete    
-                String envio = xml.creaEnvio(paquete,firsRut, "", tipos,"","","");
+                String envio = xml.creaEnvio(paquete,firsRut,"", tipos,rutenvia,fchresol,"");
+                
 
-
-                X509Certificate2 cert = FuncionesComunes.obtenerCertificado(docLectura.NombreCertificado);
+                X509Certificate2 cert = FuncionesComunes.obtenerCertificado(nomcertificado);
                 String enviox509 = xml.firmarDocumento(envio, cert);
 
        

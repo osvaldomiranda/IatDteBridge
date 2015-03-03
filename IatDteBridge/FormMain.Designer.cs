@@ -158,14 +158,14 @@
             // empresaToolStripMenuItem
             // 
             this.empresaToolStripMenuItem.Name = "empresaToolStripMenuItem";
-            this.empresaToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.empresaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.empresaToolStripMenuItem.Text = "Empresa";
             this.empresaToolStripMenuItem.Click += new System.EventHandler(this.empresaToolStripMenuItem_Click);
             // 
             // adminCAFToolStripMenuItem
             // 
             this.adminCAFToolStripMenuItem.Name = "adminCAFToolStripMenuItem";
-            this.adminCAFToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.adminCAFToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.adminCAFToolStripMenuItem.Text = "Admin CAF";
             this.adminCAFToolStripMenuItem.Click += new System.EventHandler(this.adminCAFToolStripMenuItem_Click);
             // 
@@ -182,13 +182,12 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(154, 227);
+            this.button2.Location = new System.Drawing.Point(22, 210);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 15;
             this.button2.Text = "PackProcess";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
@@ -342,6 +341,7 @@
             this.button15.TabIndex = 29;
             this.button15.Text = "Envio Masivo";
             this.button15.UseVisualStyleBackColor = true;
+            this.button15.Visible = false;
             this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
             // label4
