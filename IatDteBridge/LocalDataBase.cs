@@ -22,8 +22,8 @@ namespace IatDteBridge
                     SQLiteConnection myConn = new SQLiteConnection(strConn);
                     myConn.Open();
 
-                    String sql1 = "CREATE TABLE log (fch VARCHAR(20), suceso VARCHAR(255), estado VARCHAR(20)) ";
-                    String sql2 = "CREATE TABLE reenvio (fch VARCHAR(20), jsonname VARCHAR(255), envunit VARCHAR(255), pdft VARCHAR(255), pdfc VARCHAR(255), estado VARCHAR(20)) ";
+                    String sql1 = "CREATE TABLE IF NOT EXISTS log (fch VARCHAR(20), suceso VARCHAR(255), estado VARCHAR(20)) ";
+                    String sql2 = "CREATE TABLE IF NOT EXISTS reenvio (fch VARCHAR(20), jsonname VARCHAR(255), envunit VARCHAR(255), pdft VARCHAR(255), pdfc VARCHAR(255), estado VARCHAR(20)) ";
 
                     SQLiteCommand cmd = new SQLiteCommand(sql1, myConn);
                     cmd.ExecuteNonQuery();
