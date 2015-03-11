@@ -59,6 +59,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_RutCertificado = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.textBox_NumResol = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label_Rutempresa
@@ -314,11 +316,29 @@
             this.label2.TabIndex = 29;
             this.label2.Text = "Rut Certificado";
             // 
+            // textBox_NumResol
+            // 
+            this.textBox_NumResol.Location = new System.Drawing.Point(626, 85);
+            this.textBox_NumResol.Name = "textBox_NumResol";
+            this.textBox_NumResol.Size = new System.Drawing.Size(165, 20);
+            this.textBox_NumResol.TabIndex = 32;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(515, 85);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(100, 13);
+            this.label3.TabIndex = 31;
+            this.label3.Text = "Numero Resolución";
+            // 
             // FormEmisor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(821, 487);
+            this.Controls.Add(this.textBox_NumResol);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox_RutCertificado);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox_FchResol);
@@ -391,5 +411,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox_RutCertificado;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox_NumResol;
+        private System.Windows.Forms.Label label3;
     }
 }

@@ -68,6 +68,7 @@
             this.button18 = new System.Windows.Forms.Button();
             this.button19 = new System.Windows.Forms.Button();
             this.button20 = new System.Windows.Forms.Button();
+            this.button21 = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -127,12 +128,12 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.archivosMaestrosToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(172, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(163, 26);
             // 
             // archivosMaestrosToolStripMenuItem
             // 
             this.archivosMaestrosToolStripMenuItem.Name = "archivosMaestrosToolStripMenuItem";
-            this.archivosMaestrosToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.archivosMaestrosToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.archivosMaestrosToolStripMenuItem.Text = "Archivos Maestros";
             // 
             // menuStrip1
@@ -152,21 +153,21 @@
             this.empresaToolStripMenuItem,
             this.adminCAFToolStripMenuItem});
             this.datosEmpresaToolStripMenuItem.Name = "datosEmpresaToolStripMenuItem";
-            this.datosEmpresaToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
+            this.datosEmpresaToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
             this.datosEmpresaToolStripMenuItem.Text = "Administración";
             this.datosEmpresaToolStripMenuItem.Click += new System.EventHandler(this.datosEmpresaToolStripMenuItem_Click);
             // 
             // empresaToolStripMenuItem
             // 
             this.empresaToolStripMenuItem.Name = "empresaToolStripMenuItem";
-            this.empresaToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.empresaToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.empresaToolStripMenuItem.Text = "Empresa";
             this.empresaToolStripMenuItem.Click += new System.EventHandler(this.empresaToolStripMenuItem_Click);
             // 
             // adminCAFToolStripMenuItem
             // 
             this.adminCAFToolStripMenuItem.Name = "adminCAFToolStripMenuItem";
-            this.adminCAFToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.adminCAFToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.adminCAFToolStripMenuItem.Text = "Admin CAF";
             this.adminCAFToolStripMenuItem.Click += new System.EventHandler(this.adminCAFToolStripMenuItem_Click);
             // 
@@ -447,11 +448,22 @@
             this.button20.UseVisualStyleBackColor = true;
             this.button20.Click += new System.EventHandler(this.button20_Click);
             // 
+            // button21
+            // 
+            this.button21.Location = new System.Drawing.Point(360, 328);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(75, 23);
+            this.button21.TabIndex = 40;
+            this.button21.Text = "button21";
+            this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.button21_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(940, 402);
+            this.Controls.Add(this.button21);
             this.Controls.Add(this.button20);
             this.Controls.Add(this.button19);
             this.Controls.Add(this.button18);
@@ -540,6 +552,7 @@
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.Button button19;
         private System.Windows.Forms.Button button20;
+        private System.Windows.Forms.Button button21;
 
     }
 }
