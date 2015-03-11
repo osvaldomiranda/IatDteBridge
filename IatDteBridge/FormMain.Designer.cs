@@ -158,14 +158,14 @@
             // empresaToolStripMenuItem
             // 
             this.empresaToolStripMenuItem.Name = "empresaToolStripMenuItem";
-            this.empresaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.empresaToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.empresaToolStripMenuItem.Text = "Empresa";
             this.empresaToolStripMenuItem.Click += new System.EventHandler(this.empresaToolStripMenuItem_Click);
             // 
             // adminCAFToolStripMenuItem
             // 
             this.adminCAFToolStripMenuItem.Name = "adminCAFToolStripMenuItem";
-            this.adminCAFToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.adminCAFToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.adminCAFToolStripMenuItem.Text = "Admin CAF";
             this.adminCAFToolStripMenuItem.Click += new System.EventHandler(this.adminCAFToolStripMenuItem_Click);
             // 
@@ -219,7 +219,6 @@
             this.button5.TabIndex = 18;
             this.button5.Text = "Libro Venta";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Visible = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button8

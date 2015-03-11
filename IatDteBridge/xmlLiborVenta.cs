@@ -27,7 +27,7 @@ namespace IatDteBridge
                + "<TipoOperacion>" + libro.TipoOperacion + "</TipoOperacion>\n"
                + "<TipoLibro>" + libro.TipoLibro + "</TipoLibro>\n"
                + "<TipoEnvio>" + libro.TipoEnvio + "</TipoEnvio>\n"
-               + "<FolioNotificacion>" + libro.FolioNotificacion + "</FolioNotificacion>\n"
+              // + "<FolioNotificacion>" + libro.FolioNotificacion + "</FolioNotificacion>\n"
                + "</Caratula>\n";
 
 
@@ -137,7 +137,7 @@ namespace IatDteBridge
 
             String LibroCom = cabeceraLibro + resumen + TotalesP + finResumen + detalle + finLibro;
 
-            X509Certificate2 cert = FuncionesComunes.obtenerCertificado(doc.NombreCertificado);
+            X509Certificate2 cert = FuncionesComunes.obtenerCertificado("LUIS BARAHONA MENDOZA");
 
             String signLibro = firmarLibroVta(LibroCom, cert);
 
