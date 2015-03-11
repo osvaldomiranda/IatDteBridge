@@ -129,7 +129,15 @@ namespace IatDteBridge
                                     break;
                                 case 6: doc.Acteco = Convert.ToInt32(lineEmisor);
                                     break;
+                                case 7: doc.CdgSIISucur = Convert.ToInt32(lineEmisor);
+                                    break;
                                 case 11: doc.DirRegionalSII = lineEmisor;
+                                    break;
+                                case 12: doc.NombreCertificado = lineEmisor;
+                                    break;
+                                case 14: doc.FchResol = lineEmisor;
+                                    break;
+                                case 15: doc.RutEnvia = lineEmisor;
                                     break;
 
                             }

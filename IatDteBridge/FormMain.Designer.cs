@@ -183,13 +183,12 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(154, 227);
+            this.button2.Location = new System.Drawing.Point(22, 210);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 15;
             this.button2.Text = "PackProcess";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
@@ -221,7 +220,6 @@
             this.button5.TabIndex = 18;
             this.button5.Text = "Libro Venta";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Visible = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button8
@@ -343,6 +341,7 @@
             this.button15.TabIndex = 29;
             this.button15.Text = "Envio Masivo";
             this.button15.UseVisualStyleBackColor = true;
+            this.button15.Visible = false;
             this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
             // label4

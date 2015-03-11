@@ -204,7 +204,7 @@ namespace IatDteBridge
         [DataMember]
         public int MntMargenCom { get; set; } // Monto informado
         [DataMember]
-        public float TasaIVA { get; set; } // 
+        public decimal TasaIVA { get; set; } // 
         [DataMember]
         public int IVA { get; set; } // 
         [DataMember]           
@@ -285,9 +285,9 @@ namespace IatDteBridge
         [DataMember] 
         public string UnmdRef { get; set; } //Glosa con unidad de medida de referencia Obligatorio para facturas de venta, compra o notas que indican emisor opera como Agente Retenedor
         [DataMember] 
-        public float PrcRef { get; set; } // Precio unitario para la unidad de medida de referencia (no se usa para el cálculo del valor neto) 12 enteros, 6 decimales. Obligatorio para facturas de venta, compra o notas que indican emisor opera como Agente Retenedor 
+        public decimal PrcRef { get; set; } // Precio unitario para la unidad de medida de referencia (no se usa para el cálculo del valor neto) 12 enteros, 6 decimales. Obligatorio para facturas de venta, compra o notas que indican emisor opera como Agente Retenedor 
         [DataMember]
-        public float QtyItem { get; set; } // Cantidad del ítem en 12 enteros y 6 decimales Obligatorio para facturas de venta, compra o notas que indican emisor opera como Agente Retenedor
+        public decimal QtyItem { get; set; } // Cantidad del ítem en 12 enteros y 6 decimales Obligatorio para facturas de venta, compra o notas que indican emisor opera como Agente Retenedor
         [DataMember] 
         public string FchElabor { get; set; } // del item
         [DataMember] 
@@ -295,9 +295,9 @@ namespace IatDteBridge
         [DataMember]
         public string UnmdItem { get; set; } // unidad de medidas
         [DataMember]
-        public float PrcItem { get; set; } // Precio
+        public decimal PrcItem { get; set; } // Precio
         [DataMember] 
-        public float DescuentoPct { get; set; } // Descuento (%) en 3 enteros y 2 decimales
+        public decimal DescuentoPct { get; set; } // Descuento (%) en 3 enteros y 2 decimales
         [DataMember] 
         public int DescuentoMonto { get; set; } //Correspondiente al anterior. Totaliza todos los descuentos otorgados al ítem
         [DataMember]
@@ -335,7 +335,7 @@ namespace IatDteBridge
         [DataMember]
         public string TipoImp { get; set; } //Código del impuesto o retención de acuerdo a la codificación detallada en tabla de códigos (ver Punto 4 del índice). Incluye Retención de Cambio sujeto de Construcción
         [DataMember]
-        public float TasaImp { get; set; } //Se debe indicar la tasa de Impuesto adicional o retención. En el caso de impuesto específicos se puede omitir
+        public decimal TasaImp { get; set; } //Se debe indicar la tasa de Impuesto adicional o retención. En el caso de impuesto específicos se puede omitir
         [DataMember]
         public int MontoImp { get; set; } // Valor del impuesto o retención asociado al código indicado anteriormente
     }

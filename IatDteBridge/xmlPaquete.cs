@@ -304,6 +304,7 @@ namespace IatDteBridge
             // for para crear detalles y agregarlos al documento
             String ted;
             String firstNmbItem = String.Empty;
+
             int i = 0;
 
             foreach (var det in doc.detalle)
@@ -317,6 +318,13 @@ namespace IatDteBridge
 
             String rutrecep = doc.RUTRecep.Replace("k", "K");
             String rznsocrecep = doc.RznSocRecep.Replace("&","&amp;");
+            
+
+            if (firstNmbItem.Length > 40)
+            {
+                firstNmbItem = firstNmbItem.Substring(0, 39);
+            }
+           
 
             String inicioTed = "<TED version=\"1.0\">\r\n";
             // nodo DD

@@ -271,6 +271,7 @@ namespace IatDteBridge
 
 
             String firstNmbItem = String.Empty;
+
             int i = 0;
 
             foreach (var det in doc.detalle)
@@ -292,7 +293,7 @@ namespace IatDteBridge
                     "<RSR>" + doc.RznSocRecep + "</RSR>" +
                     "<MNT>" + doc.MntTotal + "</MNT>" +
 
-                    "<IT1>" + ampersan + "</IT1>" +
+                    "<IT1>" + ampersan.Substring(0,39) +"</IT1>" +
 
                     getXmlFolio("CAF", doc.TipoDTE) +
 
