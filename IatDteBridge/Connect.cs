@@ -153,7 +153,10 @@ namespace IatDteBridge
                 Log log = new Log();
                 ReenvioSql renv = new ReenvioSql();
                 log.addLog("ERROR envio al Core TipoDTE :" + doc.TipoDTE + " Folio :" + doc.Folio, "ERROR");
-                renv.addReenvio(doc.fileName,filename,pdfTfileName,pdfCfileName);
+                //si no existen las columnas de fileCliente y FileFactura las crea
+                log.addCollumnToReenvio();
+
+                renv.addReenvio(doc.fileName,filename,pdfTfileName,pdfCfileName,fileCliente,fileFactura);
 
                   Console.WriteLine(err);
                   return err.Message;

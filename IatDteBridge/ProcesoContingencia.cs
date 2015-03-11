@@ -26,6 +26,8 @@ namespace IatDteBridge
                 String pdft = String.Empty;
                 String pdfc = String.Empty;
                 String jsonName = String.Empty;
+                String filecliente = String.Empty;
+                String filefactura = String.Empty;
 
                 if (ping == "{\"status\":\"Ok\"}")
                 {
@@ -58,13 +60,18 @@ namespace IatDteBridge
                                 break;
                             case 4: pdfc = reenvio;
                                 break;
+                            case 5: filecliente = reenvio;
+                                break;
+                            case 6: filefactura = reenvio;
+                                break;
+
                         }
                     }
                     // llamo clase connect para reenviar
                     if (listaReenvio.Count() > 0)
                     {
 
-                    //    conn.sendInvoice(doc, pdft, pdfc, envunit, "S");
+                        conn.sendInvoice(doc, pdft, pdfc, envunit,filecliente,filefactura, "S");
 
                         // Cambio estado del registro de reenvio 
                         reenv.cambioEstadoReenvio("PROCESADO", jsonName);

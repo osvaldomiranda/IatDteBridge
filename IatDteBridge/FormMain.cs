@@ -293,5 +293,11 @@ namespace IatDteBridge
             ProcesoContingencia pc = new ProcesoContingencia();
             pc.procesoContingencia();
         }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            Log l = new Log();
+            l.addCollumnToReenvio();
+        }
     }
 }

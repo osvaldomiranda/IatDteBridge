@@ -11,7 +11,7 @@ namespace IatDteBridge
     {
         String strConn = @"Data Source=C:/IatFiles/iatDB.sqlite;Pooling=true;FailIfMissing=false;Version=3";
 
-        public void addReenvio(String jsonName, String envunit, String pdft, String pdfc)
+        public void addReenvio(String jsonName, String envunit, String pdft, String pdfc, String filecliente, String filefactura)
         {
             try
             {
@@ -21,7 +21,7 @@ namespace IatDteBridge
                 SQLiteConnection myConn = new SQLiteConnection(strConn);
                 myConn.Open();
 
-                string sql = "insert into reenvio (fch, jsonname, envunit, pdft, pdfc, estado) values ('" + fecha + "' , '" + jsonName + "','" + envunit + "','" + pdft + "','" + pdfc + "', 'CREADO')";
+                string sql = "insert into reenvio (fch, jsonname, envunit, pdft, pdfc, filecliente, filefactura, estado) values ('" + fecha + "' , '" + jsonName + "','" + envunit + "','" + pdft + "','" + pdfc + "','" + filecliente + "','" + filefactura + "', 'CREADO')";
                 SQLiteCommand command = new SQLiteCommand(sql, myConn);
                 command.ExecuteNonQuery();
 
@@ -52,6 +52,8 @@ namespace IatDteBridge
                     sgteEnv.Add(reader["envunit"].ToString());
                     sgteEnv.Add(reader["pdft"].ToString());
                     sgteEnv.Add(reader["pdfc"].ToString());
+                    sgteEnv.Add(reader["filecliente"].ToString());
+                    sgteEnv.Add(reader["filefactura"].ToString());
                     break;
                 }
 
@@ -87,12 +89,9 @@ namespace IatDteBridge
 
         public String verReenv()
         {
-
             String logRes = String.Empty;
-
             try
             {
-
                 SQLiteConnection myConn = new SQLiteConnection(strConn);
                 myConn.Open();
 
@@ -101,7 +100,6 @@ namespace IatDteBridge
                 SQLiteDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                     Console.WriteLine("Json: " + reader["jsonname"] + "\tXML: " + reader["envunit"] + "\tpdfT: " + reader["pdft"] + "\tpdfc: " + reader["pdfc"] + "\tFecha: " + reader["fch"] + "\testado: " + reader["estado"]);
-
 
                 myConn.Close();
             }
