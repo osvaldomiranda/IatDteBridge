@@ -154,7 +154,8 @@ namespace IatDteBridge
                 ReenvioSql renv = new ReenvioSql();
                 log.addLog("ERROR envio al Core TipoDTE :" + doc.TipoDTE + " Folio :" + doc.Folio, "ERROR");
                 //si no existen las columnas de fileCliente y FileFactura las crea
-                log.addCollumnToReenvio();
+                LocalDataBase ldb = new LocalDataBase();
+                ldb.addCollumnToReenvio();
 
                 renv.addReenvio(doc.fileName,filename,pdfTfileName,pdfCfileName,fileCliente,fileFactura);
 

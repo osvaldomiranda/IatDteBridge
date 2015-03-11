@@ -196,7 +196,8 @@ namespace IatDteBridge
         private void button13_Click(object sender, EventArgs e)
         {
             Log l = new Log();
-            if (l.creaDB())
+            LocalDataBase ldb = new LocalDataBase();
+            if (ldb.creaDB())
             {
                 l.addLog("Creacion de DB", "OK");
                 MessageBox.Show("Base de Datos Se ha creado con Exito");
@@ -296,7 +297,7 @@ namespace IatDteBridge
 
         private void button20_Click(object sender, EventArgs e)
         {
-            Log l = new Log();
+            LocalDataBase l = new LocalDataBase();
             l.addCollumnToReenvio();
         }
     }

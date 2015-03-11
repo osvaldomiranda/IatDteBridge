@@ -83,6 +83,7 @@
     <Compile Include="LibroCompra.cs" />
     <Compile Include="LibroGuias.cs" />
     <Compile Include="LibroVenta.cs" />
+    <Compile Include="LocalDataBase.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="PdfMasivo.cs" />
     <Compile Include="ProcesoContingencia.cs" />
