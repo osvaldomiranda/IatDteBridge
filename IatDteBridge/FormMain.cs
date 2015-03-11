@@ -300,5 +300,11 @@ namespace IatDteBridge
             LocalDataBase l = new LocalDataBase();
             l.addCollumnToReenvio();
         }
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+            Empresa empresa = new Empresa();
+            empresa.creaTabla();
+        }
     }
 }
