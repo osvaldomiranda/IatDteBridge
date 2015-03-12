@@ -55,7 +55,6 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -67,7 +66,6 @@
             this.button17 = new System.Windows.Forms.Button();
             this.button18 = new System.Windows.Forms.Button();
             this.button19 = new System.Windows.Forms.Button();
-            this.button20 = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -313,16 +311,6 @@
             this.button12.Visible = false;
             this.button12.Click += new System.EventHandler(this.button12_Click_1);
             // 
-            // button13
-            // 
-            this.button13.Location = new System.Drawing.Point(482, 95);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(168, 23);
-            this.button13.TabIndex = 27;
-            this.button13.Text = "Crea DB logs";
-            this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
-            // 
             // button14
             // 
             this.button14.Location = new System.Drawing.Point(803, 358);
@@ -437,22 +425,11 @@
             this.button19.Visible = false;
             this.button19.Click += new System.EventHandler(this.button19_Click);
             // 
-            // button20
-            // 
-            this.button20.Location = new System.Drawing.Point(482, 119);
-            this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(168, 23);
-            this.button20.TabIndex = 39;
-            this.button20.Text = "Agrega Campos Contingencia";
-            this.button20.UseVisualStyleBackColor = true;
-            this.button20.Click += new System.EventHandler(this.button20_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(940, 402);
-            this.Controls.Add(this.button20);
             this.Controls.Add(this.button19);
             this.Controls.Add(this.button18);
             this.Controls.Add(this.button17);
@@ -463,7 +440,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button15);
             this.Controls.Add(this.button14);
-            this.Controls.Add(this.button13);
             this.Controls.Add(this.button12);
             this.Controls.Add(this.button11);
             this.Controls.Add(this.button10);
@@ -526,7 +502,6 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
         private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button15;
 
@@ -539,7 +514,6 @@
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.Button button19;
-        private System.Windows.Forms.Button button20;
 
     }
 }

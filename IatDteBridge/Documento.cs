@@ -73,6 +73,8 @@ namespace IatDteBridge
         public string CiudadOrigen { get; set; } // Analogo a direccion de origen
         [DataMember] 
         public int CdgVendedor { get; set; } // Identificador del vendedor
+        [DataMember]
+        public string NomVendedor { get; set; } // Nombre del vendedor
         [DataMember] 
         public string IdAdicEmisor { get; set; } // adicional para uso libre
         [DataMember]

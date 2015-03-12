@@ -23,6 +23,7 @@ namespace IatDteBridge
         ProcesoPaqueteXml procFromXml = new ProcesoPaqueteXml();
         ProcesoContingencia procContig = new ProcesoContingencia();
         public CheckBox checkbox1 = new CheckBox();
+        LocalDataBase ldb = new LocalDataBase();
 
         public FormMain()
         {
@@ -86,11 +87,6 @@ namespace IatDteBridge
             //Creadirectorios
             Directory.CreateDirectory(@"c://IatFiles");
             Directory.CreateDirectory(@"c://IatFiles/cafs");
-            Directory.CreateDirectory(@"c://IatFiles/cafs/factura");
-            Directory.CreateDirectory(@"c://IatFiles/cafs/facturaexenta");
-            Directory.CreateDirectory(@"c://IatFiles/cafs/guia");
-            Directory.CreateDirectory(@"c://IatFiles/cafs/notacredito");
-            Directory.CreateDirectory(@"c://IatFiles/cafs/notadebito");
             Directory.CreateDirectory(@"c://IatFiles/config");
             Directory.CreateDirectory(@"c://IatFiles/file");
             Directory.CreateDirectory(@"c://IatFiles/file/libroCompra");
@@ -102,6 +98,8 @@ namespace IatDteBridge
             Directory.CreateDirectory(@"c://IatFiles/file/xml/enviomasivo");
             Directory.CreateDirectory(@"c://IatFiles/file/xml/enviounitario");
             Directory.CreateDirectory(@"c://IatFiles/fileprocess");
+            // crea base de datos
+            ldb.creaDB();
 
            // proc.StartProcessIat();
         }
@@ -196,7 +194,7 @@ namespace IatDteBridge
         private void button13_Click(object sender, EventArgs e)
         {
             Log l = new Log();
-            LocalDataBase ldb = new LocalDataBase();
+ 
             if (ldb.creaDB())
             {
                 l.addLog("Creacion de DB", "OK");

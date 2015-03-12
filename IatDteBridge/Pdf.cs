@@ -88,31 +88,16 @@ namespace IatDteBridge
             celdaLogo.VerticalAlignment = 0;
             cabecera.AddCell(celdaLogo);
             // Agrego las sucursales
-            
-            String sucursales = String.Empty;
-            sucursales = doc.SucurEmisor;
-            //if (doc.RUTEmisor == "77888630-8")
-            //{
-            //    sucursales = "Arlegui 951, Fono:32-215 7357 / 32-215 7358 - Viña del Mar\nIndependencia 336, Fono: 53-243 3350 / 53-243 3351 - Ovalle\nArturo Prat 665, Fono: 51-254 4320 / 51-254 4321 - La Serena";
-            //}
-            //else
-            //{
-            //    //sucursales = "Monumento 1963, Fono:2 2784 5243 / 2 2784 5242 - Maipú - Stgo.\nAv. 5 Abril 412-A, Fono: 2 2481 4245 - Maipú - Stgo.\nDomingo Correa 25 - La Cisterna - Stgo.";
-
-            //    sucursales = "SALVADOR SANFUENTES 2759, Bloque AL, Depto. 2767  \nCiudad SANTIAGO, Comuna SANTIAGO ";
-            //}
-         
-            /*if (doc.sucursalesempresa != null)
+            string sucu = string.Empty;
+            string[] sucuremisor = doc.SucurEmisor.Split(new char[]{';'});
+            foreach (string s in sucuremisor)
             {
+                Console.WriteLine(s);
+                sucu += s + "\n";
+            }
 
-                foreach (var suc in doc.sucursalesempresa)
-                {
-                    sucursales += suc.datosucursal + "\n";
-                }
-
-            }*/
             PdfPCell celdaDatosEmisor = new PdfPCell(new Paragraph(doc.RznSoc + "\n" + doc.GiroEmis + "\n" + "FONOS: " + doc.Telefono + "\n" + "CASA MATRIZ: " + doc.DirOrigen + 
-                "\n" + "SUCURSALES: \n" + sucursales, fuenteNegra));
+                "\n" + "SUCURSALES: \n" + sucu, fuenteNegra));
             celdaDatosEmisor.BorderWidth = 0;
             cabecera.AddCell(celdaDatosEmisor);
 
@@ -235,10 +220,34 @@ namespace IatDteBridge
             celdaEtiquetaTelefono.BorderWidth = 0;
             datosReceptor.AddCell(celdaEtiquetaTelefono);
 
-            PdfPCell celdaTelefonoRecep = new PdfPCell(new Paragraph("", fuenteNegra));
+            PdfPCell celdaTelefonoRecep = new PdfPCell(new Paragraph(" ", fuenteNegra));
             celdaTelefonoRecep.HorizontalAlignment = 0;
             celdaTelefonoRecep.BorderWidth = 0;
             datosReceptor.AddCell(celdaTelefonoRecep);
+
+
+            // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Cuarta fila +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+            PdfPCell celdaEtiquetaCodVendedor = new PdfPCell(new Paragraph("Vendedor: ", fuenteNegra));
+            celdaEtiquetaCodVendedor.HorizontalAlignment = 0;
+            celdaEtiquetaCodVendedor.BorderWidth = 0;
+            datosReceptor.AddCell(celdaEtiquetaCodVendedor);
+
+            PdfPCell celdaCodVendedor = new PdfPCell(new Paragraph(doc.CdgVendedor.ToString() + " - " + doc.NomVendedor, fuenteNegra));
+            celdaCodVendedor.HorizontalAlignment = 0;
+            celdaCodVendedor.BorderWidth = 0;
+            datosReceptor.AddCell(celdaCodVendedor);
+
+            PdfPCell celdaEtiquetaNomVendedor = new PdfPCell(new Paragraph(" ", fuenteNegra)); // esta disponible para agregar datos
+            celdaEtiquetaNomVendedor.HorizontalAlignment = 0;
+            celdaEtiquetaNomVendedor.BorderWidth = 0;
+            datosReceptor.AddCell(celdaEtiquetaNomVendedor);
+
+            PdfPCell celdaNomVendedor = new PdfPCell(new Paragraph("", fuenteNegra));
+            celdaNomVendedor.HorizontalAlignment = 0;
+            celdaNomVendedor.BorderWidth = 0;
+            datosReceptor.AddCell(celdaNomVendedor);
 
             PdfPTable contenedorDatosReceptor = new PdfPTable(1);
             contenedorDatosReceptor.WidthPercentage = 100;
@@ -764,13 +773,18 @@ namespace IatDteBridge
                 celdaLogo.BorderWidth = 0;
                 celdaLogo.VerticalAlignment = 0;
                 cabecera.AddCell(celdaLogo);
-                // Agrego las sucursales
 
-                String sucursales = String.Empty;
-                sucursales = doc.SucurEmisor;
+                // Agrego las sucursales
+                string sucu = string.Empty;
+                string[] sucuremisor = doc.SucurEmisor.Split(new char[] { ';' });
+                foreach (string s in sucuremisor)
+                {
+                    Console.WriteLine(s);
+                    sucu += s + "\n";
+                }
 
                 PdfPCell celdaDatosEmisor = new PdfPCell(new Paragraph(doc.RznSoc + "\n" + doc.GiroEmis + "\n" + "FONOS: " + doc.Telefono + "\n" + "CASA MATRIZ: " + doc.DirOrigen +
-                    "\n" + "SUCURSALES: \n" + sucursales, fuenteNegra));
+                    "\n" + "SUCURSALES: \n" + sucu, fuenteNegra));
                 celdaDatosEmisor.BorderWidth = 0;
                 cabecera.AddCell(celdaDatosEmisor);
 
@@ -896,10 +910,35 @@ namespace IatDteBridge
                 celdaTelefonoRecep.BorderWidth = 0;
                 datosReceptor.AddCell(celdaTelefonoRecep);
 
+
+                // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Cuarta fila +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+                PdfPCell celdaEtiquetaCodVendedor = new PdfPCell(new Paragraph("Vendedor: ", fuenteNegra));
+                celdaEtiquetaCodVendedor.HorizontalAlignment = 0;
+                celdaEtiquetaCodVendedor.BorderWidth = 0;
+                datosReceptor.AddCell(celdaEtiquetaCodVendedor);
+
+                PdfPCell celdaCodVendedor = new PdfPCell(new Paragraph(doc.CdgVendedor.ToString() + " - " + doc.NomVendedor, fuenteNegra));
+                celdaCodVendedor.HorizontalAlignment = 0;
+                celdaCodVendedor.BorderWidth = 0;
+                datosReceptor.AddCell(celdaCodVendedor);
+
+                PdfPCell celdaEtiquetaNomVendedor = new PdfPCell(new Paragraph(" ", fuenteNegra)); // esta disponible para agregar datos
+                celdaEtiquetaNomVendedor.HorizontalAlignment = 0;
+                celdaEtiquetaNomVendedor.BorderWidth = 0;
+                datosReceptor.AddCell(celdaEtiquetaNomVendedor);
+
+                PdfPCell celdaNomVendedor = new PdfPCell(new Paragraph("", fuenteNegra));
+                celdaNomVendedor.HorizontalAlignment = 0;
+                celdaNomVendedor.BorderWidth = 0;
+                datosReceptor.AddCell(celdaNomVendedor);
+
                 PdfPTable contenedorDatosReceptor = new PdfPTable(1);
                 contenedorDatosReceptor.WidthPercentage = 100;
                 PdfPCell celdaContDatRecep = new PdfPCell(datosReceptor);
                 contenedorDatosReceptor.AddCell(celdaContDatRecep);
+
 
                 //+++++++++++++++++++++++++++++++++++++++++++++++++++++ Detalle +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
                 float[] anchosDetalle = new float[] { 30f, 30f, 200f, 30f, 30f, 30f, 30f, 40f };

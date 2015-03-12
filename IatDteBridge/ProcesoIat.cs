@@ -211,9 +211,9 @@ namespace IatDteBridge
                             ced = @"DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf";
                         }
 
-                        conn.sendInvoice(docLectura, trib, ced, envU,envC,envF, "S");
+                        //conn.sendInvoice(docLectura, trib, ced, envU,envC,envF, "S");
                         // *************  Envía json a server
-                        log.addLog("Envia CORE TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
+                        //log.addLog("Envia CORE TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
                     }
                 }
                 if (j == 4) { j = 0; } 
