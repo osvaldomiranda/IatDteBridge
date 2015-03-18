@@ -170,9 +170,9 @@ namespace IatDteBridge
 
 
                         // Firma POaquete unitario   
-                        String envioCliente = xml.creaEnvio(paquete, docLectura.RUTEmisor, docLectura.RUTRecep, tipos, docLectura.RutEnvia, docLectura.FchResol, docLectura.RUTRecep);
+                        String envioCliente = xml.creaEnvio(paquete, docLectura.RUTEmisor, docLectura.RUTRecep, tipos, docLectura.RutEnvia, docLectura.FchResol, docLectura.RUTRecep, docLectura.NumResol);
 
-                        String envioSII = xml.creaEnvio(paquete, docLectura.RUTEmisor, docLectura.RUTRecep, tipos, docLectura.RutEnvia, docLectura.FchResol, "");
+                        String envioSII = xml.creaEnvio(paquete, docLectura.RUTEmisor, docLectura.RUTRecep, tipos, docLectura.RutEnvia, docLectura.FchResol, "",docLectura.NumResol);
 
                         X509Certificate2 cert = FuncionesComunes.obtenerCertificado(docLectura.NombreCertificado);
 

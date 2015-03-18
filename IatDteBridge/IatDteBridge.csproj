@@ -74,6 +74,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administracion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracion.Designer.cs">
+      <DependentUpon>Administracion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Caf.cs" />
     <Compile Include="CargaDb.cs" />
     <Compile Include="Documento.cs" />
@@ -130,6 +136,9 @@
     <Compile Include="xmlLibroCompra.cs" />
     <Compile Include="xmlLibroGuias.cs" />
     <Compile Include="xmlPaquete.cs" />
+    <EmbeddedResource Include="Administracion.resx">
+      <DependentUpon>Administracion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Service References\FormAdminCaf.resx">
       <DependentUpon>FormAdminCaf.cs</DependentUpon>
       <SubType>Designer</SubType>

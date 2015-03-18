@@ -7,11 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Data.SQLite;
 
 namespace IatDteBridge
 {
     public partial class FormEmisor : Form
     {
+
+        String strConn = @"Data Source=C:/IatFiles/iatDB.sqlite;Pooling=true;FailIfMissing=false;Version=3";
+
         public FormEmisor()
         {
             InitializeComponent();
@@ -26,102 +30,105 @@ namespace IatDteBridge
         {
             //abrir archivo empresa.txt si existe recuperar datos en textbox
             String lineEmisor = String.Empty;
-           
+
+
+
+
             try
             {
-                using (StreamReader sr = new StreamReader(@"C:/IatFiles/config/empresa" + ".txt"))
+
+                SQLiteConnection myConn = new SQLiteConnection(strConn);
+                myConn.Open();
+
+                string sql = "select * from empresa";
+                SQLiteCommand command = new SQLiteCommand(sql, myConn);
+                SQLiteDataReader reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    int i = 1;
-                    while ((lineEmisor = sr.ReadLine()) != null)
-                    {
-                        Console.WriteLine(lineEmisor);
-                        switch (i)
-                        {
-                            case 1: textBox_RUTEmisor.Text = lineEmisor;
-                                break;
-                            case 2: textBox_RznSoc.Text = lineEmisor;
-                                break;
-                            case 3: textBox_GiroEmis.Text = lineEmisor;
-                                break;
-                            case 4: textBox_Telefono.Text = lineEmisor;
-                                break;
-                            case 5: textBox_CorreoEmisor.Text = lineEmisor;
-                                break;
-                            case 6: textBox_Acteco.Text = lineEmisor;
-                                break;
-                            case 7: textBox_CdgSIISucur.Text = lineEmisor;
-                                break;
-                            case 8: textBox_DirOrigen.Text = lineEmisor;
-                                break;
-                            case 9: textBox_CmnaOrigen.Text = lineEmisor;
-                                break;
-                            case 10: textBox_CdadOrigen.Text = lineEmisor;
-                                break;
-                            case 11: textBox_ScsalSII.Text = lineEmisor;
-                                break;
-                            case 12: textBox_NbreCertificado.Text = lineEmisor;
-                                break;
-                            case 13: textBox_Sucursales.Text = lineEmisor;
-                                break;
-                            case 14: textBox_FchResol.Text = lineEmisor;
-                                break;
-                            case 15: textBox_RutCertificado.Text = lineEmisor;
-                                break;
- 
-                        }
 
-                        i++;
-
-                    }
+                    textBox_RUTEmisor.Text = reader["RutEmisor"].ToString();
+                    textBox_RznSoc.Text = reader["RznSoc"].ToString();
+                    textBox_GiroEmis.Text = reader["GiroEmis"].ToString();
+                    textBox_Telefono.Text = reader["Telefono"].ToString();
+                    textBox_CorreoEmisor.Text = reader["CorreoEmisor"].ToString();
+                    textBox_Acteco.Text = Convert.ToString(reader["Acteco"]);
+                    textBox_CdgSIISucur.Text = Convert.ToString(reader["CdgSIISucur"]);
+                    textBox_DirMatriz.Text = reader["DirMatriz"].ToString();
+                    textBox_CdadOrigen.Text = reader["CiudadOrigen"].ToString();
+                    textBox_CmnaOrigen.Text = reader["CmnaOrigen"].ToString();
+                    textBox_ScsalSII.Text = reader["SucurSII"].ToString();
+                    textBox_NbreCertificado.Text = reader["NomCertificado"].ToString();
+                    textBox_Sucursales.Text = reader["SucurEmisor"].ToString();
+                    textBox_FchResol.Text = reader["FchResol"].ToString();
+                    textBox_RutCertificado.Text = reader["RutCertificado"].ToString();
+                    textBox_NumResol.Text = reader["NumResol"].ToString();
+                    checkBox_condEntrega.Checked = Convert.ToBoolean(reader["CondEntrega"]);
 
                 }
+                myConn.Close();
             }
-            catch (Exception en)
+            catch (Exception s)
             {
-                Console.WriteLine("The file could not be read:");
-                Console.WriteLine(en.Message);
+                Console.WriteLine("ERROR: {0}"+ s.ToString());
+                MessageBox.Show("ERROR: {0}"+ s.ToString());
             }
+
         }
 
         private void button_guardar_Click(object sender, EventArgs e)
         {
             // guardar información del FormEmisor
-
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:/IatFiles/config/empresa" + ".txt"))
+            try
             {
 
-                         file.WriteLine(textBox_RUTEmisor.Text);
-                         file.WriteLine(textBox_RznSoc.Text);
-                         file.WriteLine(textBox_GiroEmis.Text);
-                         file.WriteLine(textBox_Telefono.Text);
-                         file.WriteLine(textBox_CorreoEmisor.Text);
-                         file.WriteLine(textBox_Acteco.Text);
-                         file.WriteLine(textBox_CdgSIISucur.Text);
-                         file.WriteLine(textBox_DirOrigen.Text);
-                         file.WriteLine(textBox_CmnaOrigen.Text);
-                         file.WriteLine(textBox_CdadOrigen.Text);
-                         file.WriteLine(textBox_ScsalSII.Text);
-                         file.WriteLine(textBox_NbreCertificado.Text);
-                         file.WriteLine(textBox_Sucursales.Text);
-                         file.WriteLine(textBox_FchResol.Text);
-                         file.WriteLine(textBox_RutCertificado.Text);
 
+                SQLiteConnection myConn = new SQLiteConnection(strConn);
+                myConn.Open();
 
-         
-                  
+                string sql = "UPDATE empresa set " +
+                               "RutEmisor = '" + textBox_RUTEmisor.Text + "', " +
+                               "RznSoc = '" + textBox_RznSoc.Text + "', " +
+                               "GiroEmis = '" + textBox_GiroEmis.Text + "', " +
+                               "Telefono = '" + textBox_Telefono.Text + "', " +
+                               "CorreoEmisor= '" + textBox_CorreoEmisor.Text + "', " +
+                               "Acteco = " + Convert.ToInt32(textBox_Acteco.Text) + "," +
+                               "CdgSIISucur = " + Convert.ToInt32(textBox_CdgSIISucur.Text) + ", " +
+                               "DirMatriz = '" + textBox_DirMatriz.Text + "', " +
+                               "CiudadOrigen = '" + textBox_CdadOrigen.Text + "', " +
+                               "CmnaOrigen = '" + textBox_CmnaOrigen.Text + "', " +
+                               "SucurSII = '" + textBox_ScsalSII.Text + "', " +
+                               "NomCertificado = '" + textBox_NbreCertificado.Text + "', " +
+                               "SucurEmisor = '" + textBox_Sucursales.Text + "', " +
+                               "FchResol = '" + textBox_FchResol.Text + "', " +
+                               "RutCertificado = '" + textBox_RutCertificado.Text + "', " +
+                               "NumResol = '" + textBox_NumResol.Text + "', " +
+                               "CondEntrega = '" + checkBox_condEntrega.Checked.ToString() + "';";
+
+                SQLiteCommand command = new SQLiteCommand(sql, myConn);
+                command.ExecuteNonQuery();
+
+                myConn.Close();
+            }
+            catch (Exception empUpdate)
+            {
+                Console.WriteLine("ERROR: {0}"+ empUpdate.ToString());
+                MessageBox.Show("ERROR: {0}"+ empUpdate.ToString());
             }
 
+
+            MessageBox.Show("Guardado con exito");
          }
 
         private void label1_Click_1(object sender, EventArgs e)
         {
-
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void label4_Click(object sender, EventArgs e)
         {
 
         }
+
+
 
 
      }

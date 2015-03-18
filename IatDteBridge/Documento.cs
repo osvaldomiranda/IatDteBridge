@@ -95,9 +95,20 @@ namespace IatDteBridge
         // este atributo carga el rut del certificado
         public string RutEnvia { get; set; }
 
+        //Numero de resolucion
+        public string NumResol { get; set; }
+
+        // Estado de la condiciónd e entrega en pdf
+        public String CondEntrega { get; set; }
+
+        [DataMember]
+        public string BodOrigen { get; set; } // bodega Origen
+
         //este atributo es una ista la cual carga las sucursales de la empresa certificada
         // debe ser llenado al momento de cargar la clase, ya que no es un atributo serializable
         public List<Sucursal> sucursalesempresa = new List<Sucursal>(8);
+
+
 
  
 //################################### Area Receptor ############################################################################
@@ -133,6 +144,9 @@ namespace IatDteBridge
         [DataMember] 
         public string CiudadPostal { get; set; } // Análogo a Dirección Receptor
         [DataMember]
+        public string BodDestino { get; set; } // Bodega de destino
+        [DataMember]
+
         public string RUTSolicita { get; set; } // En casos de venta a público. Es obligatorio si es distinto de Rut receptor o Rut Receptor es persona jurídica. Con guión y dígito verificador
 //################################# Area Transporte #############################################################################       
         [DataMember] 

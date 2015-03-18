@@ -50,6 +50,8 @@ namespace IatDteBridge
               String rutenvia = String.Empty;
               String fchresol = String.Empty;
               String nomcertificado = String.Empty;
+              String numResol= String.Empty;
+
 
 
                 while (docLectura != null)
@@ -122,6 +124,7 @@ namespace IatDteBridge
                         firsRut = docLectura.RUTEmisor;
                         rutenvia = docLectura.RutEnvia;
                         fchresol = docLectura.FchResol;
+                        numResol = docLectura.NumResol;
                         nomcertificado = docLectura.NombreCertificado;
                     }
                     i++;
@@ -148,7 +151,7 @@ namespace IatDteBridge
 
 
                 // Firma POaquete    
-                String envio = xml.creaEnvio(paquete,firsRut,"", tipos,rutenvia,fchresol,"");
+                String envio = xml.creaEnvio(paquete,firsRut,"", tipos,rutenvia,fchresol,"",numResol);
                 
 
                 X509Certificate2 cert = FuncionesComunes.obtenerCertificado(nomcertificado);

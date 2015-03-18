@@ -6,6 +6,7 @@ using System.IO;
 using System.Collections;
 using System.Runtime.Serialization.Json;
 using System.Windows.Forms;
+using System.Data.SQLite;
 
 
 
@@ -13,7 +14,7 @@ namespace IatDteBridge
 {
     class TxtReader
     {
-  
+        String strConn = @"Data Source=C:/IatFiles/iatDB.sqlite;Pooling=true;FailIfMissing=false;Version=3";
        
         public Documento lectura(String fileJson, bool moveFile, String dirOrigen)
         {
@@ -57,6 +58,82 @@ namespace IatDteBridge
  
    
                 // Datos del Emisor
+                // Cargo datos en laclase Documento desde sqlite
+
+                if (doc.RUTEmisor == null)
+                {
+                    try
+                    {
+
+                        SQLiteConnection myConn = new SQLiteConnection(strConn);
+                        myConn.Open();
+
+                        string sql = "select * from empresa";
+                        SQLiteCommand command = new SQLiteCommand(sql, myConn);
+                        SQLiteDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+
+                            doc.RUTEmisor = reader["RutEmisor"].ToString();
+                            doc.RznSoc = reader["RznSoc"].ToString();
+                            doc.GiroEmis = reader["GiroEmis"].ToString();
+                            doc.Telefono = reader["Telefono"].ToString();
+                            doc.CorreoEmisor = reader["CorreoEmisor"].ToString();
+                            doc.Acteco = Convert.ToInt32(reader["Acteco"]);
+                            doc.CdgSIISucur = Convert.ToInt32(reader["CdgSIISucur"]);
+                            doc.DirOrigen = reader["DirOrigen"].ToString();
+                            doc.NombreCertificado = reader["NomCertificado"].ToString();
+                            doc.SucurEmisor = reader["SucurEmisor"].ToString();
+                            doc.FchResol = reader["FchResol"].ToString();
+                            doc.RutEnvia = reader["RutEnvia"].ToString();
+                            doc.NumResol = reader["NumResol"].ToString();
+                            doc.CondEntrega = reader["CondEntrega"].ToString();
+
+                        }
+                        myConn.Close();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("ERROR: {0}", e.ToString());
+                    }
+                }
+                else
+                {
+                    try
+                    {
+
+                        SQLiteConnection myConn = new SQLiteConnection(strConn);
+                        myConn.Open();
+
+                        string sql = "select * from empresa";
+                        SQLiteCommand command = new SQLiteCommand(sql, myConn);
+                        SQLiteDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+
+                            doc.Telefono = reader["Telefono"].ToString();
+                            doc.CorreoEmisor = reader["CorreoEmisor"].ToString();
+                            doc.Acteco = Convert.ToInt32(reader["Acteco"]);
+                            doc.CdgSIISucur = Convert.ToInt32(reader["CdgSIISucur"]);
+                            doc.DirRegionalSII = reader["sucurSII"].ToString();
+                            doc.NombreCertificado = reader["NomCertificado"].ToString();
+                            doc.SucurEmisor = reader["SucurEmisor"].ToString();
+                            doc.FchResol = reader["FchResol"].ToString();
+                            doc.RutEnvia = reader["RutCertificado"].ToString();
+                            doc.NumResol = reader["NumResol"].ToString();
+                            doc.CondEntrega = reader["CondEntrega"].ToString();
+                        }
+
+                        myConn.Close();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("ERROR: {0}", e.ToString());
+                    }
+               }
+
+
+/*
                 String lineEmisor = String.Empty;
                 if (doc.RUTEmisor == null)
                 {
@@ -151,6 +228,8 @@ namespace IatDteBridge
                         sr.Close();
                     }
                 }
+
+                */
 
                 objReader.Close();
                 ms.Close();

@@ -38,8 +38,6 @@
             this.archivosMaestrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.datosEmpresaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.empresaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.adminCAFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -146,27 +144,10 @@
             // 
             // datosEmpresaToolStripMenuItem
             // 
-            this.datosEmpresaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.empresaToolStripMenuItem,
-            this.adminCAFToolStripMenuItem});
             this.datosEmpresaToolStripMenuItem.Name = "datosEmpresaToolStripMenuItem";
             this.datosEmpresaToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
             this.datosEmpresaToolStripMenuItem.Text = "Administración";
             this.datosEmpresaToolStripMenuItem.Click += new System.EventHandler(this.datosEmpresaToolStripMenuItem_Click);
-            // 
-            // empresaToolStripMenuItem
-            // 
-            this.empresaToolStripMenuItem.Name = "empresaToolStripMenuItem";
-            this.empresaToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.empresaToolStripMenuItem.Text = "Empresa";
-            this.empresaToolStripMenuItem.Click += new System.EventHandler(this.empresaToolStripMenuItem_Click);
-            // 
-            // adminCAFToolStripMenuItem
-            // 
-            this.adminCAFToolStripMenuItem.Name = "adminCAFToolStripMenuItem";
-            this.adminCAFToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.adminCAFToolStripMenuItem.Text = "Admin CAF";
-            this.adminCAFToolStripMenuItem.Click += new System.EventHandler(this.adminCAFToolStripMenuItem_Click);
             // 
             // pictureBox1
             // 
@@ -361,13 +342,17 @@
             // 
             this.checkBox1.AccessibleDescription = "Public";
             this.checkBox1.AutoSize = true;
+            this.checkBox1.BackColor = System.Drawing.Color.Transparent;
+            this.checkBox1.CheckAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.checkBox1.Cursor = System.Windows.Forms.Cursors.Default;
             this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.ForeColor = System.Drawing.Color.Black;
             this.checkBox1.Location = new System.Drawing.Point(241, 73);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(150, 17);
+            this.checkBox1.Size = new System.Drawing.Size(84, 17);
             this.checkBox1.TabIndex = 33;
-            this.checkBox1.Text = "Sin conección al core";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.Text = "Sin Envio ";
+            this.checkBox1.UseVisualStyleBackColor = false;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // button16
@@ -485,8 +470,6 @@
         private System.Windows.Forms.ToolStripMenuItem archivosMaestrosToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem datosEmpresaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem empresaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem adminCAFToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;

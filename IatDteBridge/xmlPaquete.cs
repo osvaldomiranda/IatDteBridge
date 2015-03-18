@@ -355,7 +355,7 @@ namespace IatDteBridge
 
         }
 
-        public String creaEnvio(String dte, String rutEmisor, String RutReceptor, List<int> tipos, String RutEnvia, String FchResol, String rutReceptorEnvio )
+        public String creaEnvio(String dte, String rutEmisor, String RutReceptor, List<int> tipos, String RutEnvia, String FchResol, String rutReceptorEnvio, String nroResol )
         {
 
 
@@ -363,36 +363,25 @@ namespace IatDteBridge
             envio_xml += "<SetDTE ID=\"SetDoc\">\r\n";
             envio_xml += "<Caratula version=\"1.0\">\r\n";
             envio_xml += "<RutEmisor>" + rutEmisor + "</RutEmisor>\r\n";
-            //TO DO: Rutenvia, obtener desde certificado
+           
+
             envio_xml += "<RutEnvia>" + RutEnvia + "</RutEnvia>\r\n";
 
-            //TO DO: rut receptor SII
+           
             if (rutReceptorEnvio == "") 
             {
                 rutReceptorEnvio = "60803000-K";
             }
             envio_xml += "<RutReceptor>" + rutReceptorEnvio+ "</RutReceptor>\r\n";
 
-            //TO DO: rut receptor CLIENTE
-            //envio_xml += "<RutReceptor>90703000-8</RutReceptor>\r\n";
-
-            //TO DO: cambiar fecha de resolución
-            // Resolucion Set Prueba
             envio_xml += "<FchResol>" + FchResol +"</FchResol>\r\n";
-            envio_xml += "<NroResol>0</NroResol>\r\n";
+            envio_xml += "<NroResol>" + nroResol + "</NroResol>\r\n";
 
-            // Resolucion Produccion
-
-            //envio_xml += "<FchResol>2014-08-22</FchResol>\r\n";
-            //envio_xml += "<NroResol>80</NroResol>\r\n";
-           
-            //***********************
+       
             DateTime thisDay = DateTime.Now;
             String fch = String.Format("{0:yyyy-MM-ddTHH:mm:ss}", thisDay);
             envio_xml += "<TmstFirmaEnv>"+ fch +"</TmstFirmaEnv>\r\n";
-                //envio_xml += "<SubTotDTE>\r\n";
-                //envio_xml += "<TpoDTE>" + tipo + "</TpoDTE>\r\n";
-//******************************************ESTOS DATOS ESTAN EN DURO ******************************************************
+
 
 
             int tipo56 = 0,

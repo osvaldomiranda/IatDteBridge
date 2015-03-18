@@ -67,7 +67,8 @@ namespace IatDteBridge
 
         private void datosEmpresaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Administracion admin = new Administracion();
+            admin.Show();
         }
 
         private void empresaToolStripMenuItem_Click(object sender, EventArgs e)

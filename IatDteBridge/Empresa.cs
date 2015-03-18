@@ -41,6 +41,8 @@ namespace IatDteBridge
         public String RutCertificado { get; set; }
         // Numero de Resolución
         public String NumResol { get; set; }
+        // Estado de la condiciónd e entrega en pdf
+        public String CondEntrega { get; set; }
 
 
         public void creaTabla() 

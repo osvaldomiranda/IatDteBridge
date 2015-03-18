@@ -66,6 +66,7 @@ namespace IatDteBridge
             logo.ScaleAbsolute(100f, 50f);
             logo.Alignment = iTextSharp.text.Image.ALIGN_LEFT;
 
+
             iTextSharp.text.Image timbre = iTextSharp.text.Image.GetInstance("Timbre.jpg");
             timbre.SetAbsolutePosition(10, 10);
             timbre.ScaleAbsolute(200f, 100f);
@@ -449,13 +450,25 @@ namespace IatDteBridge
 
             }
             
-
             
             //++++++++++++++++++++++++++++++++++++++++++++++++++ Pie de pagina ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
             PdfPTable tablaDTimbre = new PdfPTable(1);
             tablaDTimbre.WidthPercentage = 100;
+
+
+
+            // verifico si necesita Condicion de Entrega
+            if (doc.CondEntrega == "True")
+            {
+                // Agrega Condición de entrega del documento
+                PdfPCell celdaCondEntrega = new PdfPCell(new Paragraph("Condición Entrega:  ___ Inmediato    ___ Retiro    ___ Despacho \n\n\n", fuenteBold));
+                celdaCondEntrega.BorderWidth = 0;
+                celdaCondEntrega.HorizontalAlignment = 0;
+                tablaDTimbre.AddCell(celdaCondEntrega);
+
+            }
 
             PdfPCell celdaTimbre = new PdfPCell(timbre);
             celdaTimbre.BorderWidth = 0;
@@ -584,19 +597,19 @@ namespace IatDteBridge
             PdfPTable tablaRecibido = new PdfPTable(1);
             tablaRecibido.WidthPercentage = 100;    
 
-            PdfPCell celdaRecibido0 = new PdfPCell(new Paragraph("NOMBRE: ________________________________", fuenteNegra));
+            PdfPCell celdaRecibido0 = new PdfPCell(new Paragraph("NOMBRE: ____________________________________________", fuenteNegra));
             celdaRecibido0.BorderWidth = 0;
             celdaRecibido0.MinimumHeight = 15;
             celdaRecibido0.HorizontalAlignment = 0;
             tablaRecibido.AddCell(celdaRecibido0);
 
-            PdfPCell celdaRecibido1 = new PdfPCell(new Paragraph("RUT:_______________ FECHA: ____________", fuenteNegra));
+            PdfPCell celdaRecibido1 = new PdfPCell(new Paragraph("RUT:_________________________ FECHA: ________________", fuenteNegra));
             celdaRecibido1.BorderWidth = 0;
             celdaRecibido1.MinimumHeight = 15;
             celdaRecibido1.HorizontalAlignment = 0;
             tablaRecibido.AddCell(celdaRecibido1);
 
-            PdfPCell celdaRecibido2 = new PdfPCell(new Paragraph("RECINTO:___________________ FIRMA: ____________", fuenteNegra));
+            PdfPCell celdaRecibido2 = new PdfPCell(new Paragraph("RECINTO:___________________ FIRMA: __________________", fuenteNegra));
             celdaRecibido2.BorderWidth = 0;
             celdaRecibido2.MinimumHeight = 15;
             celdaRecibido2.HorizontalAlignment = 0;
@@ -713,7 +726,7 @@ namespace IatDteBridge
 
             for(int i = 0; i<3 ;i++){
                 // setear el tipo de copia para i = 0,1 tributable, i=2 cedible
-                if (i == 0 || i == 1) { tipoCopia = " "; }
+                //if (i == 0 || i == 1) { tipoCopia = " "; }
                 if (i == 2) 
                 { 
                     if (doc.TipoDTE == 33 || doc.TipoDTE == 34)
@@ -1143,6 +1156,20 @@ namespace IatDteBridge
                 PdfPTable tablaDTimbre = new PdfPTable(1);
                 tablaDTimbre.WidthPercentage = 100;
 
+                object check = Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\IAT", "CondicionEntrega", null);
+                            
+                
+                // verifico si necesita Condicion de Entrega
+                if ( doc.CondEntrega == "True")
+                {
+
+                    // Agrega Condición de entrega del documento
+                    PdfPCell celdaCondEntrega = new PdfPCell(new Paragraph("Condición Entrega:  ___ Inmediato    ___ Retiro    ___ Despacho \n\n\n", fuenteBold));
+                    celdaCondEntrega.BorderWidth = 0;
+                    celdaCondEntrega.HorizontalAlignment = 0;
+                    tablaDTimbre.AddCell(celdaCondEntrega);
+                }
+
                 PdfPCell celdaTimbre = new PdfPCell(timbre);
                 celdaTimbre.BorderWidth = 0;
                 celdaTimbre.MinimumHeight = 100;
@@ -1270,30 +1297,34 @@ namespace IatDteBridge
                 PdfPTable tablaRecibido = new PdfPTable(1);
                 tablaRecibido.WidthPercentage = 100;
 
-                PdfPCell celdaRecibido0 = new PdfPCell(new Paragraph("NOMBRE: ________________________________", fuenteNegra));
+                PdfPCell celdaRecibido0 = new PdfPCell(new Paragraph("NOMBRE: ________________________________________", fuenteNegra));
                 celdaRecibido0.BorderWidth = 0;
                 celdaRecibido0.MinimumHeight = 15;
                 celdaRecibido0.HorizontalAlignment = 0;
                 tablaRecibido.AddCell(celdaRecibido0);
 
-                PdfPCell celdaRecibido1 = new PdfPCell(new Paragraph("RUT:_______________ FECHA: ____________", fuenteNegra));
+                PdfPCell celdaRecibido1 = new PdfPCell(new Paragraph("RUT:_______________ FECHA: _____________________", fuenteNegra));
                 celdaRecibido1.BorderWidth = 0;
                 celdaRecibido1.MinimumHeight = 15;
                 celdaRecibido1.HorizontalAlignment = 0;
                 tablaRecibido.AddCell(celdaRecibido1);
 
-                PdfPCell celdaRecibido2 = new PdfPCell(new Paragraph("RECINTO:___________________ FIRMA: ____________", fuenteNegra));
+                PdfPCell celdaRecibido2 = new PdfPCell(new Paragraph("RECINTO:___________________ FIRMA: _____________", fuenteNegra));
                 celdaRecibido2.BorderWidth = 0;
                 celdaRecibido2.MinimumHeight = 15;
                 celdaRecibido2.HorizontalAlignment = 0;
                 tablaRecibido.AddCell(celdaRecibido2);
 
-                PdfPCell celdaRecibido3 = new PdfPCell(new Paragraph("El acuse de recibo que se declara en este acto, de acuerdo a lo dispuesto en la letra b) del Art. 4º y letra c) del Art. 5º de la ley 19383, acredita la entrega de mercaderia(s) o servicio(s).", fuenteNegra));
-                celdaRecibido3.BorderWidth = 0;
-                celdaRecibido3.MinimumHeight = 20;
-                celdaRecibido3.HorizontalAlignment = 0;
-                tablaRecibido.AddCell(celdaRecibido3);
+                // si la copia es la numero 3 agrega Acuse de recibo
+                if (i == 2)
+                {
+                    PdfPCell celdaRecibido3 = new PdfPCell(new Paragraph("El acuse de recibo que se declara en este acto, de acuerdo a lo dispuesto en la letra b) del Art. 4º y letra c) del Art. 5º de la ley 19383, acredita la entrega de mercaderia(s) o servicio(s).", fuenteNegra));
+                    celdaRecibido3.BorderWidth = 0;
+                    celdaRecibido3.MinimumHeight = 20;
+                    celdaRecibido3.HorizontalAlignment = 0;
+                    tablaRecibido.AddCell(celdaRecibido3);
 
+                }
                 PdfPCell celdaCedible = new PdfPCell(new Paragraph(tipoCopia, fuenteBold));
                 celdaCedible.BorderWidth = 0;
                 celdaCedible.MinimumHeight = 10f;
