@@ -101,8 +101,10 @@ namespace IatDteBridge
         // Estado de la condiciónd e entrega en pdf
         public String CondEntrega { get; set; }
 
+        // bodega Origen
         [DataMember]
-        public string BodOrigen { get; set; } // bodega Origen
+        public string BodEmis { get; set; } 
+
 
         //este atributo es una ista la cual carga las sucursales de la empresa certificada
         // debe ser llenado al momento de cargar la clase, ya que no es un atributo serializable
@@ -144,10 +146,14 @@ namespace IatDteBridge
         [DataMember] 
         public string CiudadPostal { get; set; } // Análogo a Dirección Receptor
         [DataMember]
-        public string BodDestino { get; set; } // Bodega de destino
+        public string BodRecep { get; set; } // Bodega de destino
+        // En casos de venta a público. Es obligatorio si es distinto de Rut receptor o Rut Receptor es persona jurídica. Con guión y dígito verificador
         [DataMember]
+        public string RUTSolicita { get; set; } 
+        //Telefono del Receptor
+        [DataMember]
+        public string TelRecep { get; set; } 
 
-        public string RUTSolicita { get; set; } // En casos de venta a público. Es obligatorio si es distinto de Rut receptor o Rut Receptor es persona jurídica. Con guión y dígito verificador
 //################################# Area Transporte #############################################################################       
         [DataMember] 
         public string Patente { get; set; } // 
