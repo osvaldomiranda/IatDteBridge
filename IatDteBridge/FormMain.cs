@@ -116,7 +116,7 @@ namespace IatDteBridge
             this.label4.Text = "IatProcess En Ejecución";
             this.timer1.Start();
 
-            procContig.StartProcessConting();
+           // procContig.StartProcessConting();
             
         }
 
