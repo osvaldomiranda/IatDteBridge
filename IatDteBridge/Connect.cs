@@ -17,8 +17,8 @@ namespace IatDteBridge
     {
 
         //  public static string server = "http://104.130.1.179";  // Staging
-       // public static string server = "http://192.168.1.154:3000";   // Localhost
-       public static string server = "http://200.72.145.75"; // produccion
+        public static string server = "http://192.168.1.37:3000";   // Localhost
+      // public static string server = "http://200.72.145.75"; // produccion
 
 
 
@@ -37,10 +37,13 @@ namespace IatDteBridge
         {
             try
             {
-                string getUrl = string.Format("{0}{1}/iat_ping/1.json?auth_token={2}",
+                UltimoDteSql uDTE = new UltimoDteSql();
+                String udte = uDTE.getUltimoDte().ToString();
+
+                string getUrl = string.Format("{0}{1}/iat_ping/1.json?udte={2}",
                                     server,
                                     version,
-                                    auth_token);
+                                    udte);
 
                 Console.WriteLine("Url = {0}.", getUrl);
                 string response;

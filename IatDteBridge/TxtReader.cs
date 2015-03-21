@@ -22,8 +22,11 @@ namespace IatDteBridge
             fileAdmin file = new fileAdmin();
             String fileName = String.Empty;
 
-            if (dirOrigen == "") dirOrigen = @"C:\IatFiles\file";
-
+            if (dirOrigen == "")
+            {
+                dirOrigen = @"C:\IatFiles\file";
+            }
+            
 
             if (fileJson == "")
             {
@@ -31,7 +34,7 @@ namespace IatDteBridge
             }
             else
             {
-                fileName = fileJson;
+                fileName = dirOrigen + fileJson;
             }
 
 
@@ -54,9 +57,7 @@ namespace IatDteBridge
                     Console.WriteLine(e.Message);
                     MessageBox.Show("Error de lectura JSON"+ e.Message);
                 }
-
- 
-   
+  
                 // Datos del Emisor
                 // Cargo datos en laclase Documento desde sqlite
 
@@ -81,11 +82,11 @@ namespace IatDteBridge
                             doc.CorreoEmisor = reader["CorreoEmisor"].ToString();
                             doc.Acteco = Convert.ToInt32(reader["Acteco"]);
                             doc.CdgSIISucur = Convert.ToInt32(reader["CdgSIISucur"]);
-                            doc.DirOrigen = reader["DirOrigen"].ToString();
+                            doc.DirMatriz = reader["DirMatriz"].ToString();
                             doc.NombreCertificado = reader["NomCertificado"].ToString();
                             doc.SucurEmisor = reader["SucurEmisor"].ToString();
                             doc.FchResol = reader["FchResol"].ToString();
-                            doc.RutEnvia = reader["RutEnvia"].ToString();
+                            doc.RutEnvia = reader["RutCertificado"].ToString();
                             doc.NumResol = reader["NumResol"].ToString();
                             doc.CondEntrega = reader["CondEntrega"].ToString();
 
@@ -132,105 +133,6 @@ namespace IatDteBridge
                     }
                }
 
-
-/*
-                String lineEmisor = String.Empty;
-                if (doc.RUTEmisor == null)
-                {
-                    using (StreamReader sr = new StreamReader(@"c:\IatFiles\config\empresa.txt"))
-                    {
-                        int i = 1;
-                        while ((lineEmisor = sr.ReadLine()) != null)
-                        {
-
-                            Console.WriteLine(lineEmisor);
-                            switch (i)
-                            {
-
-                                case 1: doc.RUTEmisor = lineEmisor;
-                                    break;
-                                case 2: doc.RznSoc = lineEmisor;
-                                    break;
-                                case 3: doc.GiroEmis = lineEmisor;
-                                    break;
-                                case 4: doc.Telefono = lineEmisor;
-                                    break;
-                                case 5: doc.CorreoEmisor = lineEmisor;
-                                    break;
-                                case 6: doc.Acteco = Convert.ToInt32(lineEmisor);
-                                    break;
-                                case 7: doc.CdgSIISucur = Convert.ToInt32(lineEmisor);
-                                    break;
-                                case 8: doc.DirOrigen = lineEmisor;
-                                    break;
-                                case 9: doc.CmnaOrigen = lineEmisor;
-                                    break;
-                                case 10: doc.CiudadOrigen = lineEmisor;
-                                    break;
-                                case 11: doc.DirRegionalSII = lineEmisor;
-                                    break;
-                                case 12: doc.NombreCertificado = lineEmisor;
-                                    break;
-                                case 13: doc.SucurEmisor = lineEmisor;
-                                    break;
-                                case 14: doc.FchResol = lineEmisor;
-                                    break;
-                                case 15: doc.RutEnvia = lineEmisor;
-                                    break;
-                            }
-
-
-                            i++;
-                        }
-
-                        sr.Close();
-                    }
-            
-                }
-                else 
-                {
-                    
-                    using (StreamReader sr = new StreamReader(@"c:\IatFiles\config\empresa" + ".txt"))
-                    {
-                        int i = 1;
-                        while ((lineEmisor = sr.ReadLine()) != null)
-                        {
-
-                            Console.WriteLine(lineEmisor);
-                            switch (i)
-                            {
-
-                                case 4: doc.Telefono = lineEmisor;
-                                    break;
-                                case 5: doc.CorreoEmisor = lineEmisor;
-                                    break;
-                                case 6: doc.Acteco = Convert.ToInt32(lineEmisor);
-                                    break;
-                                case 7: doc.CdgSIISucur = Convert.ToInt32(lineEmisor);
-                                    break;
-                                case 11: doc.DirRegionalSII = lineEmisor;
-                                    break;
-                                case 12: doc.NombreCertificado = lineEmisor;
-                                    break;
-                                case 13: doc.SucurEmisor = lineEmisor;
-                                    break;
-                                case 14: doc.FchResol = lineEmisor;
-                                    break;
-                                case 15: doc.RutEnvia = lineEmisor;
-                                    break;
-
-                            }
-
-
-                            i++;
-                        }
-
-                        sr.Close();
-                    }
-                }
-
-                */
-
                 objReader.Close();
                 ms.Close();
                 if (moveFile)
@@ -245,7 +147,14 @@ namespace IatDteBridge
                     doc = null;
                 }
 
-                doc.fileName = fileName;
+                if (fileJson == "")
+                {
+                    doc.fileName = fileName;
+                }
+                else
+                {
+                    doc.fileName = fileJson;
+                }
                 return doc;
             }
             else

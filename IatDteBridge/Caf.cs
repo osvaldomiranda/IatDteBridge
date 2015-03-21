@@ -17,21 +17,21 @@ namespace IatDteBridge
 
             fileAdmin file = new fileAdmin();
 
+            string rut = doc.RUTEmisor;
+
             try
             {
-                //TO DO : falta tomar el nombre del archivo de una variable global
                 switch (doc.TipoDTE)
                 {
-                    case 33: cafDir = @"C:\IatFiles\cafs\factura\";
-
+                    case 33: cafDir = @"C:\IatFiles\cafs\" + rut + @"\factura\";
                         break;
-                    case 61: cafDir = @"C:\IatFiles\cafs\notacredito\";
+                    case 61: cafDir = @"C:\IatFiles\cafs\" + rut + @"\notacredito\";
                         break;
-                    case 56: cafDir = @"C:\IatFiles\cafs\notadebito\";
+                    case 56: cafDir = @"C:\IatFiles\cafs\" + rut + @"\notadebito\";
                         break;
-                    case 52: cafDir = @"C:\IatFiles\cafs\Guia\";
+                    case 52: cafDir = @"C:\IatFiles\cafs\" + rut + @"\Guia\";
                         break;
-                    case 34: cafDir = @"C:\IatFiles\cafs\facturaexenta\";
+                    case 34: cafDir = @"C:\IatFiles\cafs\" + rut + @"\facturaexenta\";
                         break;
                 }
 

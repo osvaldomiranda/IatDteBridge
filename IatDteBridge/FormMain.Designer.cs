@@ -123,12 +123,12 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.archivosMaestrosToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(163, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(172, 26);
             // 
             // archivosMaestrosToolStripMenuItem
             // 
             this.archivosMaestrosToolStripMenuItem.Name = "archivosMaestrosToolStripMenuItem";
-            this.archivosMaestrosToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.archivosMaestrosToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.archivosMaestrosToolStripMenuItem.Text = "Archivos Maestros";
             // 
             // menuStrip1
@@ -145,7 +145,7 @@
             // datosEmpresaToolStripMenuItem
             // 
             this.datosEmpresaToolStripMenuItem.Name = "datosEmpresaToolStripMenuItem";
-            this.datosEmpresaToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
+            this.datosEmpresaToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
             this.datosEmpresaToolStripMenuItem.Text = "Administración";
             this.datosEmpresaToolStripMenuItem.Click += new System.EventHandler(this.datosEmpresaToolStripMenuItem_Click);
             // 
@@ -396,7 +396,6 @@
             this.button18.TabIndex = 37;
             this.button18.Text = "Ver tabla reenvios";
             this.button18.UseVisualStyleBackColor = true;
-            this.button18.Visible = false;
             this.button18.Click += new System.EventHandler(this.button18_Click);
             // 
             // button19

@@ -15,7 +15,8 @@ namespace IatDteBridge
             while (!_shouldStop)
             {
                 
-                Thread.Sleep(60000); // Duerme 10 minutos
+             //   Thread.Sleep(60000); // Duerme 10 minutos
+                Thread.Sleep(5000);
                 Console.WriteLine("ProcessContingencia thread: working...");
 
                 Connect conn = new Connect();
@@ -50,7 +51,7 @@ namespace IatDteBridge
                         {
                             case 1:
                                 {
-                                    doc = json.lectura(@"c:\IatFiles\fileprocess\" + reenvio, false, @"c:\IatFiles\fileprocess\");
+                                    doc = json.lectura(reenvio, false, @"c:\IatFiles\fileprocess\");
                                     jsonName = reenvio;
                                 }
                                 break;

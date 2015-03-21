@@ -103,7 +103,10 @@ namespace IatDteBridge
 
         // bodega Origen
         [DataMember]
-        public string BodEmis { get; set; } 
+        public string BodEmis { get; set; }
+        // Dirección de casa Matriz
+        [DataMember]
+        public string DirMatriz { get; set; } 
 
 
         //este atributo es una ista la cual carga las sucursales de la empresa certificada

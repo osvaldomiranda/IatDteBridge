@@ -130,6 +130,7 @@
     <Compile Include="TxtLiborCompra.cs" />
     <Compile Include="TxtLibroGuias.cs" />
     <Compile Include="TxtLibroVenta.cs" />
+    <Compile Include="UltimoDteSql.cs" />
     <Compile Include="xmlAdmin.cs" />
     <Compile Include="TxtReader.cs" />
     <Compile Include="xmlLiborVenta.cs" />
