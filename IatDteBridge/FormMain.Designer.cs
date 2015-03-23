@@ -64,6 +64,7 @@
             this.button17 = new System.Windows.Forms.Button();
             this.button18 = new System.Windows.Forms.Button();
             this.button19 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -123,12 +124,12 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.archivosMaestrosToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(172, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(163, 26);
             // 
             // archivosMaestrosToolStripMenuItem
             // 
             this.archivosMaestrosToolStripMenuItem.Name = "archivosMaestrosToolStripMenuItem";
-            this.archivosMaestrosToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.archivosMaestrosToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.archivosMaestrosToolStripMenuItem.Text = "Archivos Maestros";
             // 
             // menuStrip1
@@ -145,7 +146,7 @@
             // datosEmpresaToolStripMenuItem
             // 
             this.datosEmpresaToolStripMenuItem.Name = "datosEmpresaToolStripMenuItem";
-            this.datosEmpresaToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
+            this.datosEmpresaToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
             this.datosEmpresaToolStripMenuItem.Text = "Administración";
             this.datosEmpresaToolStripMenuItem.Click += new System.EventHandler(this.datosEmpresaToolStripMenuItem_Click);
             // 
@@ -168,6 +169,7 @@
             this.button2.TabIndex = 15;
             this.button2.Text = "PackProcess";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
@@ -178,6 +180,7 @@
             this.button3.TabIndex = 16;
             this.button3.Text = "IatProcess";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
@@ -199,6 +202,7 @@
             this.button5.TabIndex = 18;
             this.button5.Text = "Libro Venta";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Visible = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button8
@@ -353,6 +357,7 @@
             this.checkBox1.TabIndex = 33;
             this.checkBox1.Text = "Sin Envio ";
             this.checkBox1.UseVisualStyleBackColor = false;
+            this.checkBox1.Visible = false;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // button16
@@ -375,7 +380,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(158, 13);
             this.label5.TabIndex = 35;
-            this.label5.Text = "VERSIÓN: 11012015-2300";
+            this.label5.Text = "VERSIÓN: 22032015-2330";
             // 
             // button17
             // 
@@ -396,6 +401,7 @@
             this.button18.TabIndex = 37;
             this.button18.Text = "Ver tabla reenvios";
             this.button18.UseVisualStyleBackColor = true;
+            this.button18.Visible = false;
             this.button18.Click += new System.EventHandler(this.button18_Click);
             // 
             // button19
@@ -409,11 +415,23 @@
             this.button19.Visible = false;
             this.button19.Click += new System.EventHandler(this.button19_Click);
             // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(22, 136);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(107, 23);
+            this.button13.TabIndex = 39;
+            this.button13.Text = "Stop IatProcess";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click_1);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(940, 402);
+            this.ControlBox = false;
+            this.Controls.Add(this.button13);
             this.Controls.Add(this.button19);
             this.Controls.Add(this.button18);
             this.Controls.Add(this.button17);
@@ -444,7 +462,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox1);
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximizeBox = false;
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "IatDteBridge";
@@ -496,6 +513,7 @@
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.Button button19;
+        private System.Windows.Forms.Button button13;
 
     }
 }

@@ -15,7 +15,7 @@ namespace IatDteBridge
             while (!_shouldStop)
             {
                 Console.WriteLine("Ping thread: working...");
-                Thread.Sleep(5000);
+                Thread.Sleep(60000);
 
                 // send request ping to server DteBridge
                 Connect conn = new Connect();

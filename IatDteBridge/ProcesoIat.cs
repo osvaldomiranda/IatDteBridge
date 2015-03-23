@@ -22,7 +22,7 @@ namespace IatDteBridge
             {
                 Console.WriteLine("ProcessIat thread: working...");
 
-                Thread.Sleep(3000);
+                Thread.Sleep(5000);
 
 
                 i++;
@@ -211,6 +211,8 @@ namespace IatDteBridge
                             ced = @"DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf";
                         }
 
+                        
+                        //envia documentos al core 
                         conn.sendInvoice(docLectura, trib, ced, envU,envC,envF, "S");
                         // *************  Envía json a server
                         log.addLog("Envia CORE TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");

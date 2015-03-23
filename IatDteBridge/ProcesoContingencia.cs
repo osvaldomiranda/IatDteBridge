@@ -16,7 +16,7 @@ namespace IatDteBridge
             {
                 
              //   Thread.Sleep(60000); // Duerme 10 minutos
-                Thread.Sleep(5000);
+                Thread.Sleep(120000);
                 Console.WriteLine("ProcessContingencia thread: working...");
 
                 Connect conn = new Connect();

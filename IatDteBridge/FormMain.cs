@@ -101,8 +101,12 @@ namespace IatDteBridge
             Directory.CreateDirectory(@"c://IatFiles/fileprocess");
             // crea base de datos
             ldb.creaDB();
-
-           // proc.StartProcessIat();
+            // Inicia proceso IAt
+            proc.StartProcessIat();
+            this.label4.Text = "IatProcess En Ejecución";
+            this.timer1.Start();
+            //Inicia Proceso contingencia
+            procContig.StartProcessConting();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -304,6 +308,15 @@ namespace IatDteBridge
         {
             Empresa empresa = new Empresa();
             empresa.creaTabla();
+        }
+
+        private void button13_Click_1(object sender, EventArgs e)
+        {
+            proc.StopProcessIat();
+            procContig.StopProcessConting();
+            this.label4.Text = "IatProcess Detenido";
+            this.timer1.Stop();
+
         }
     }
 }
