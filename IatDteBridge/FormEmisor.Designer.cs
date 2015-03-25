@@ -63,6 +63,8 @@
             this.label_NotaSucursales = new System.Windows.Forms.Label();
             this.textBox_RznSoc = new System.Windows.Forms.TextBox();
             this.checkBox_condEntrega = new System.Windows.Forms.CheckBox();
+            this.textBox_DirOrigen = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label_Rutempresa
@@ -157,7 +159,7 @@
             // 
             // button_guardar
             // 
-            this.button_guardar.Location = new System.Drawing.Point(690, 452);
+            this.button_guardar.Location = new System.Drawing.Point(736, 467);
             this.button_guardar.Name = "button_guardar";
             this.button_guardar.Size = new System.Drawing.Size(75, 23);
             this.button_guardar.TabIndex = 12;
@@ -232,7 +234,7 @@
             // 
             // textBox_ScsalSII
             // 
-            this.textBox_ScsalSII.Location = new System.Drawing.Point(128, 364);
+            this.textBox_ScsalSII.Location = new System.Drawing.Point(128, 384);
             this.textBox_ScsalSII.Name = "textBox_ScsalSII";
             this.textBox_ScsalSII.Size = new System.Drawing.Size(370, 20);
             this.textBox_ScsalSII.TabIndex = 22;
@@ -240,7 +242,7 @@
             // label_ScsalSII
             // 
             this.label_ScsalSII.AutoSize = true;
-            this.label_ScsalSII.Location = new System.Drawing.Point(13, 364);
+            this.label_ScsalSII.Location = new System.Drawing.Point(13, 384);
             this.label_ScsalSII.Name = "label_ScsalSII";
             this.label_ScsalSII.Size = new System.Drawing.Size(64, 13);
             this.label_ScsalSII.TabIndex = 21;
@@ -248,7 +250,7 @@
             // 
             // textBox_NbreCertificado
             // 
-            this.textBox_NbreCertificado.Location = new System.Drawing.Point(128, 396);
+            this.textBox_NbreCertificado.Location = new System.Drawing.Point(128, 416);
             this.textBox_NbreCertificado.Name = "textBox_NbreCertificado";
             this.textBox_NbreCertificado.Size = new System.Drawing.Size(370, 20);
             this.textBox_NbreCertificado.TabIndex = 24;
@@ -256,7 +258,7 @@
             // label_NbreCertifficado
             // 
             this.label_NbreCertifficado.AutoSize = true;
-            this.label_NbreCertifficado.Location = new System.Drawing.Point(13, 396);
+            this.label_NbreCertifficado.Location = new System.Drawing.Point(13, 416);
             this.label_NbreCertifficado.Name = "label_NbreCertifficado";
             this.label_NbreCertifficado.Size = new System.Drawing.Size(97, 13);
             this.label_NbreCertifficado.TabIndex = 23;
@@ -264,7 +266,7 @@
             // 
             // textBox_Sucursales
             // 
-            this.textBox_Sucursales.Location = new System.Drawing.Point(128, 426);
+            this.textBox_Sucursales.Location = new System.Drawing.Point(128, 446);
             this.textBox_Sucursales.Name = "textBox_Sucursales";
             this.textBox_Sucursales.Size = new System.Drawing.Size(370, 20);
             this.textBox_Sucursales.TabIndex = 26;
@@ -272,7 +274,7 @@
             // label_Sucursales
             // 
             this.label_Sucursales.AutoSize = true;
-            this.label_Sucursales.Location = new System.Drawing.Point(13, 426);
+            this.label_Sucursales.Location = new System.Drawing.Point(13, 446);
             this.label_Sucursales.Name = "label_Sucursales";
             this.label_Sucursales.Size = new System.Drawing.Size(59, 13);
             this.label_Sucursales.TabIndex = 25;
@@ -353,11 +355,29 @@
             this.checkBox_condEntrega.Text = "Condición de entrega en pdf";
             this.checkBox_condEntrega.UseVisualStyleBackColor = true;
             // 
+            // textBox_DirOrigen
+            // 
+            this.textBox_DirOrigen.Location = new System.Drawing.Point(128, 356);
+            this.textBox_DirOrigen.Name = "textBox_DirOrigen";
+            this.textBox_DirOrigen.Size = new System.Drawing.Size(370, 20);
+            this.textBox_DirOrigen.TabIndex = 36;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 356);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(86, 13);
+            this.label4.TabIndex = 35;
+            this.label4.Text = "Dirección Origen";
+            // 
             // FormEmisor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(821, 487);
+            this.ClientSize = new System.Drawing.Size(821, 498);
+            this.Controls.Add(this.textBox_DirOrigen);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.checkBox_condEntrega);
             this.Controls.Add(this.label_NotaSucursales);
             this.Controls.Add(this.textBox_NumResol);
@@ -438,5 +458,7 @@
         private System.Windows.Forms.Label label_NotaSucursales;
         private System.Windows.Forms.TextBox textBox_RznSoc;
         private System.Windows.Forms.CheckBox checkBox_condEntrega;
+        private System.Windows.Forms.TextBox textBox_DirOrigen;
+        private System.Windows.Forms.Label label4;
     }
 }

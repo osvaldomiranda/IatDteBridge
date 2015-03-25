@@ -25,14 +25,14 @@ namespace IatDteBridge
 
                     String sql1 = "CREATE TABLE IF NOT EXISTS log (fch VARCHAR(20), suceso VARCHAR(255), estado VARCHAR(20)) ";
                     String sql2 = "CREATE TABLE IF NOT EXISTS reenvio (fch VARCHAR(20), jsonname VARCHAR(255), envunit VARCHAR(255), pdft VARCHAR(255), pdfc VARCHAR(255), estado VARCHAR(20)) ";
-                    String sql3 = "CREATE TABLE IF NOT EXISTS empresa (RutEmisor VARCHAR(10), RznSoc VARCHAR(255), GiroEmis VARCHAR(255), Telefono VARCHAR(255), CorreoEmisor VARCHAR(255), Acteco VARCHAR(50), CdgSIISucur VARCHAR(50), DirMatriz VARCHAR(255), CiudadOrigen VARCHAR(255), CmnaOrigen VARCHAR(255), SucurSII VARCHAR(100), NomCertificado VARCHAR(255), SucurEmisor VARCHAR(255), FchResol VARCHAR(50), RutCertificado VARCHAR(10), NumResol VARCHAR(20), CondEntrega VARCHAR(10)) ";
+                    String sql3 = "CREATE TABLE IF NOT EXISTS empresa (RutEmisor VARCHAR(10), RznSoc VARCHAR(255), GiroEmis VARCHAR(255), Telefono VARCHAR(255), CorreoEmisor VARCHAR(255), Acteco VARCHAR(50), CdgSIISucur VARCHAR(50), DirMatriz VARCHAR(255), CiudadOrigen VARCHAR(255), CmnaOrigen VARCHAR(255), DirOrigen VARCHAR(255), SucurSII VARCHAR(100), NomCertificado VARCHAR(255), SucurEmisor VARCHAR(255), FchResol VARCHAR(50), RutCertificado VARCHAR(10), NumResol VARCHAR(20), CondEntrega VARCHAR(10)) ";
 
                     //carga bd inicial
                     String sql4 = "insert into empresa " + 
                                         "(RutEmisor, RznSoc, GiroEmis,Telefono,CorreoEmisor,Acteco,CdgSIISucur,DirMatriz,"+
-                                        "CiudadOrigen,CmnaOrigen,SucurSII,NomCertificado,SucurEmisor,FchResol,RutCertificado,NumResol,CondEntrega)"+ 
+                                        "CiudadOrigen,CmnaOrigen,DirOrigen,SucurSII,NomCertificado,SucurEmisor,FchResol,RutCertificado,NumResol,CondEntrega)"+ 
                                         "values ('12891016-6','Razon Social','Giro Emisor','Telefonos casa matriz','Correo Emisor',0,0,'Dirección casa matriz',"+
-                                        "'Ciudad Origen','Comuna de origen','Sucursal de SII','Nombre del certificado','Sucursales del emisor',"+
+                                        "'Ciudad Origen','Comuna de origen','Dirección de Origen','Sucursal de SII','Nombre del certificado','Sucursales del emisor',"+
                                         "'Fecha de resolución','Rut del certificado','Numero de resolucion','False')";
 
                     String sql5 = "CREATE TABLE IF NOT EXISTS ultimodte (RutEmisor VARCHAR(10), RznSoc VARCHAR(255), CdgSIISucur INTEGER,   RutRecep VARCHAR(10), RznSocRecep VARCHAR(255), Folio INTEGER, TipoDTE INTEGER, fch VARCHAR(20) ) ";
@@ -68,7 +68,7 @@ namespace IatDteBridge
 
                     String sql1 = "CREATE TABLE IF NOT EXISTS log (fch VARCHAR(20), suceso VARCHAR(255), estado VARCHAR(20)) ";
                     String sql2 = "CREATE TABLE IF NOT EXISTS reenvio (fch VARCHAR(20), jsonname VARCHAR(255), envunit VARCHAR(255), pdft VARCHAR(255), pdfc VARCHAR(255), estado VARCHAR(20)) ";
-                    String sql3 = "CREATE TABLE IF NOT EXISTS empresa (RutEmisor VARCHAR(10), RznSoc VARCHAR(255), GiroEmis VARCHAR(255), Telefono VARCHAR(255), CorreoEmisor VARCHAR(255), Acteco VARCHAR(50), CdgSIISucur VARCHAR(50), DirMatriz VARCHAR(255), CiudadOrigen VARCHAR(255), CmnaOrigen VARCHAR(255), SucurSII VARCHAR(100), NomCertificado VARCHAR(255), DirOrigen VARCHAR(255), FchResol VARCHAR(50), RutCertificado VARCHAR(10), NumResol VARCHAR(20), CondEntrega VARCHAR(10)) ";
+                    String sql3 = "CREATE TABLE IF NOT EXISTS empresa (RutEmisor VARCHAR(10), RznSoc VARCHAR(255), GiroEmis VARCHAR(255), Telefono VARCHAR(255), CorreoEmisor VARCHAR(255), Acteco VARCHAR(50), CdgSIISucur VARCHAR(50), DirMatriz VARCHAR(255), CiudadOrigen VARCHAR(255), CmnaOrigen VARCHAR(255),DirOrigen VARCHAR(255), SucurSII VARCHAR(100), NomCertificado VARCHAR(255), DirOrigen VARCHAR(255), FchResol VARCHAR(50), RutCertificado VARCHAR(10), NumResol VARCHAR(20), CondEntrega VARCHAR(10)) ";
                     String sql4 = "CREATE TABLE IF NOT EXISTS ultimodte (RutEmisor VARCHAR(10), RznSoc VARCHAR(255), CdgSIISucur INTEGER,   RutRecep VARCHAR(10), RznSocRecep VARCHAR(255), Folio INTEGER, TipoDTE INTEGER, fch VARCHAR(20) ) ";
 
                     SQLiteCommand cmd = new SQLiteCommand(sql1, myConn);

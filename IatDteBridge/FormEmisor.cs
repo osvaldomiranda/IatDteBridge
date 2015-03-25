@@ -56,6 +56,7 @@ namespace IatDteBridge
                     textBox_DirMatriz.Text = reader["DirMatriz"].ToString();
                     textBox_CdadOrigen.Text = reader["CiudadOrigen"].ToString();
                     textBox_CmnaOrigen.Text = reader["CmnaOrigen"].ToString();
+                    textBox_DirOrigen.Text = reader["DirOrigen"].ToString();
                     textBox_ScsalSII.Text = reader["SucurSII"].ToString();
                     textBox_NbreCertificado.Text = reader["NomCertificado"].ToString();
                     textBox_Sucursales.Text = reader["SucurEmisor"].ToString();
@@ -96,6 +97,7 @@ namespace IatDteBridge
                                "DirMatriz = '" + textBox_DirMatriz.Text + "', " +
                                "CiudadOrigen = '" + textBox_CdadOrigen.Text + "', " +
                                "CmnaOrigen = '" + textBox_CmnaOrigen.Text + "', " +
+                               "DirOrigen = '" + textBox_DirOrigen.Text + "', " +
                                "SucurSII = '" + textBox_ScsalSII.Text + "', " +
                                "NomCertificado = '" + textBox_NbreCertificado.Text + "', " +
                                "SucurEmisor = '" + textBox_Sucursales.Text + "', " +

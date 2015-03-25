@@ -213,7 +213,7 @@ namespace IatDteBridge
 
                         
                         //envia documentos al core 
-                        conn.sendInvoice(docLectura, trib, ced, envU,envC,envF, "S");
+                         conn.sendInvoice(docLectura, trib, ced, envU,envC,envF, "S");
                         // *************  Envía json a server
                         log.addLog("Envia CORE TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
                         // ************  Crea regsitro del ultimo dte

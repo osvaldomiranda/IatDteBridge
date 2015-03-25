@@ -97,7 +97,7 @@ namespace IatDteBridge
                 sucu += s + "\n";
             }
 
-            PdfPCell celdaDatosEmisor = new PdfPCell(new Paragraph(doc.RznSoc + "\n" + doc.GiroEmis + "\n" + "FONOS: " + doc.Telefono + "\n" + "CASA MATRIZ: " + doc.DirOrigen + 
+            PdfPCell celdaDatosEmisor = new PdfPCell(new Paragraph(doc.RznSoc + "\n" + doc.GiroEmis + "\n" + "FONOS: " + doc.Telefono + "\n" + "CASA MATRIZ: " + doc.DirMatriz + 
                 "\n" + "SUCURSALES: \n" + sucu, fuenteNegra));
             celdaDatosEmisor.BorderWidth = 0;
             cabecera.AddCell(celdaDatosEmisor);
@@ -218,15 +218,15 @@ namespace IatDteBridge
 
             if (doc.TipoDTE == 52)
             {
-                PdfPCell celdaEtiquetaTelefono = new PdfPCell(new Paragraph("Bodega Origen: ", fuenteNegra));
-                celdaEtiquetaTelefono.HorizontalAlignment = 0;
-                celdaEtiquetaTelefono.BorderWidth = 0;
-                datosReceptor.AddCell(celdaEtiquetaTelefono);
+                PdfPCell celdaEtiquetaBodOrigen = new PdfPCell(new Paragraph("Bodega Origen: ", fuenteNegra));
+                celdaEtiquetaBodOrigen.HorizontalAlignment = 0;
+                celdaEtiquetaBodOrigen.BorderWidth = 0;
+                datosReceptor.AddCell(celdaEtiquetaBodOrigen);
 
-                PdfPCell celdaTelefonoRecep = new PdfPCell(new Paragraph(doc.BodEmis, fuenteNegra));
-                celdaTelefonoRecep.HorizontalAlignment = 0;
-                celdaTelefonoRecep.BorderWidth = 0;
-                datosReceptor.AddCell(celdaTelefonoRecep);
+                PdfPCell celdaBodOrigen = new PdfPCell(new Paragraph(doc.BodEmis, fuenteNegra));
+                celdaBodOrigen.HorizontalAlignment = 0;
+                celdaBodOrigen.BorderWidth = 0;
+                datosReceptor.AddCell(celdaBodOrigen);
             }
 
             // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Cuarta fila +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -244,7 +244,7 @@ namespace IatDteBridge
             // To Do si el docuento es guia de transferencia
             if (doc.TipoDTE == 52)
             {
-                PdfPCell celdaEtiquetaNomVendedor = new PdfPCell(new Paragraph("Bodega Destino: ", fuenteNegra)); // esta disponible para agregar datos
+                PdfPCell celdaEtiquetaNomVendedor = new PdfPCell(new Paragraph("Bodega Destino: ", fuenteNegra)); 
                 celdaEtiquetaNomVendedor.HorizontalAlignment = 0;
                 celdaEtiquetaNomVendedor.BorderWidth = 0;
                 datosReceptor.AddCell(celdaEtiquetaNomVendedor);
@@ -801,7 +801,7 @@ namespace IatDteBridge
                     sucu += s + "\n";
                 }
 
-                PdfPCell celdaDatosEmisor = new PdfPCell(new Paragraph(doc.RznSoc + "\n" + doc.GiroEmis + "\n" + "FONOS: " + doc.Telefono + "\n" + "CASA MATRIZ: " + doc.DirOrigen +
+                PdfPCell celdaDatosEmisor = new PdfPCell(new Paragraph(doc.RznSoc + "\n" + doc.GiroEmis + "\n" + "FONOS: " + doc.Telefono + "\n" + "CASA MATRIZ: " + doc.DirMatriz +
                     "\n" + "SUCURSALES: \n" + sucu, fuenteNegra));
                 celdaDatosEmisor.BorderWidth = 0;
                 cabecera.AddCell(celdaDatosEmisor);
@@ -849,7 +849,7 @@ namespace IatDteBridge
 
 
 
-                float[] anchosDatosReceptor = new float[] { 100f, 500f, 100f, 300f };
+                float[] anchosDatosReceptor = new float[] { 100f, 500f, 150f, 300f };
 
                 PdfPTable datosReceptor = new PdfPTable(4);
                 datosReceptor.SetWidths(anchosDatosReceptor);
@@ -920,10 +920,10 @@ namespace IatDteBridge
 
                 if (doc.TipoDTE == 52)
                 {
-                    PdfPCell celdaEtiquetaTelefono = new PdfPCell(new Paragraph("Bodega Origen: ", fuenteNegra));
-                    celdaEtiquetaTelefono.HorizontalAlignment = 0;
-                    celdaEtiquetaTelefono.BorderWidth = 0;
-                    datosReceptor.AddCell(celdaEtiquetaTelefono);
+                    PdfPCell celdaEtiquetaBodOrigen = new PdfPCell(new Paragraph("Bodega Origen: ", fuenteNegra));
+                    celdaEtiquetaBodOrigen.HorizontalAlignment = 0;
+                    celdaEtiquetaBodOrigen.BorderWidth = 0;
+                    datosReceptor.AddCell(celdaEtiquetaBodOrigen);
 
                     PdfPCell celdaTelefonoRecep = new PdfPCell(new Paragraph(doc.BodEmis, fuenteNegra));
                     celdaTelefonoRecep.HorizontalAlignment = 0;

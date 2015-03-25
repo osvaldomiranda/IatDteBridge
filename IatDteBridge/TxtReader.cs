@@ -83,6 +83,9 @@ namespace IatDteBridge
                             doc.Acteco = Convert.ToInt32(reader["Acteco"]);
                             doc.CdgSIISucur = Convert.ToInt32(reader["CdgSIISucur"]);
                             doc.DirMatriz = reader["DirMatriz"].ToString();
+                            doc.CmnaOrigen = reader["CmnaOrigen"].ToString();
+                            doc.CiudadOrigen = reader["CiudadOrigen"].ToString();
+                            doc.DirOrigen = reader["DirOrigen"].ToString();
                             doc.NombreCertificado = reader["NomCertificado"].ToString();
                             doc.SucurEmisor = reader["SucurEmisor"].ToString();
                             doc.FchResol = reader["FchResol"].ToString();
@@ -106,7 +109,7 @@ namespace IatDteBridge
                         SQLiteConnection myConn = new SQLiteConnection(strConn);
                         myConn.Open();
 
-                        string sql = "select * from empresa";
+                        string sql = "select * from empresa where empresa.RutEmisor = '"+ doc.RUTEmisor.ToString() +"'";
                         SQLiteCommand command = new SQLiteCommand(sql, myConn);
                         SQLiteDataReader reader = command.ExecuteReader();
                         while (reader.Read())
@@ -115,8 +118,8 @@ namespace IatDteBridge
                             doc.Telefono = reader["Telefono"].ToString();
                             doc.CorreoEmisor = reader["CorreoEmisor"].ToString();
                             doc.Acteco = Convert.ToInt32(reader["Acteco"]);
-                            doc.CdgSIISucur = Convert.ToInt32(reader["CdgSIISucur"]);
                             doc.DirRegionalSII = reader["sucurSII"].ToString();
+                            doc.DirMatriz = reader["DirMatriz"].ToString();
                             doc.NombreCertificado = reader["NomCertificado"].ToString();
                             doc.SucurEmisor = reader["SucurEmisor"].ToString();
                             doc.FchResol = reader["FchResol"].ToString();
