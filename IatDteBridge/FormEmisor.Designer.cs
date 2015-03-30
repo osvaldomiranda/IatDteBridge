@@ -354,6 +354,7 @@
             this.checkBox_condEntrega.TabIndex = 34;
             this.checkBox_condEntrega.Text = "Condición de entrega en pdf";
             this.checkBox_condEntrega.UseVisualStyleBackColor = true;
+            this.checkBox_condEntrega.CheckedChanged += new System.EventHandler(this.checkBox_condEntrega_CheckedChanged);
             // 
             // textBox_DirOrigen
             // 

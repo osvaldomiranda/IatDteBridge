@@ -130,6 +130,11 @@ namespace IatDteBridge
 
         }
 
+        private void checkBox_condEntrega_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
 
 
 

@@ -516,10 +516,15 @@ namespace IatDteBridge
             celdaEtiquetaDescuento.HorizontalAlignment = 2;
             totales.AddCell(celdaEtiquetaDescuento);
 
-            PdfPCell celdaDescuento = new PdfPCell(new Paragraph("$ 0", fuenteNegra));
-            celdaDescuento.BorderWidth = 1;
-            celdaDescuento.HorizontalAlignment = 2;
-            totales.AddCell(celdaDescuento);
+            //Descuentos globales
+
+            foreach (var dcto in doc.dscRcgGlobal)
+            {
+                PdfPCell celdaDescuento = new PdfPCell(new Paragraph(dcto.ValorDR +" %", fuenteNegra));
+                celdaDescuento.BorderWidth = 1;
+                celdaDescuento.HorizontalAlignment = 2;
+                totales.AddCell(celdaDescuento);
+            }
 
             PdfPCell celdaEtiquetaSubTotal = new PdfPCell(new Paragraph("Sub Total: ", fuenteNegra));
             celdaEtiquetaSubTotal.BorderWidth = 1;
@@ -1220,11 +1225,15 @@ namespace IatDteBridge
                 celdaEtiquetaDescuento.BorderWidth = 1;
                 celdaEtiquetaDescuento.HorizontalAlignment = 2;
                 totales.AddCell(celdaEtiquetaDescuento);
+                //Descuentos globales
 
-                PdfPCell celdaDescuento = new PdfPCell(new Paragraph("$ 0", fuenteNegra));
-                celdaDescuento.BorderWidth = 1;
-                celdaDescuento.HorizontalAlignment = 2;
-                totales.AddCell(celdaDescuento);
+                foreach (var dcto in doc.dscRcgGlobal)
+                {
+                    PdfPCell celdaDescuento = new PdfPCell(new Paragraph( dcto.ValorDR + " %"  , fuenteNegra));
+                    celdaDescuento.BorderWidth = 1;
+                    celdaDescuento.HorizontalAlignment = 2;
+                    totales.AddCell(celdaDescuento);
+                }
 
                 PdfPCell celdaEtiquetaSubTotal = new PdfPCell(new Paragraph("Sub Total: ", fuenteNegra));
                 celdaEtiquetaSubTotal.BorderWidth = 1;

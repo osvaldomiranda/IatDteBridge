@@ -380,7 +380,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(158, 13);
             this.label5.TabIndex = 35;
-            this.label5.Text = "VERSIÓN: 22032015-2330";
+            this.label5.Text = "VERSIÓN: 25032015-2330";
             // 
             // button17
             // 
