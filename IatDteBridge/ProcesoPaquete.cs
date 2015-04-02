@@ -37,11 +37,11 @@ namespace IatDteBridge
                 String fch = String.Format("{0:yyyy-MM-ddTHH:mm:ss}", thisDay);
                 String fchName = String.Format("{0:yyyyMMddTHHmmss}", thisDay);
 
-                int folio33 = 1000;
+                int folio33 = 735;
                 int folio34 = 1000; //Factura Exenta
-                int folio52 = 1000; //Guia Despacho
-                int folio61 = 1000;
-                int folio56 = 1000;
+                int folio52 = 10; //Guia Despacho
+                int folio61 = 15;
+                int folio56 = 15;
                 int folio = 0;
                 
                 int i = 0;
@@ -75,7 +75,7 @@ namespace IatDteBridge
 
                     tipos.Add(docLectura.TipoDTE);
 
-                    //docLectura.Folio = folio;
+                   // docLectura.Folio = folio;
 
                     String TimbreElec = xml.ted_to_xmlSii(docLectura,fch);
                     String docXmlSign = xml.doc_to_xmlSii(docLectura,TimbreElec,fch);

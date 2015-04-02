@@ -11,10 +11,12 @@ using System.Xml;
 
 
 
+
 namespace IatDteBridge
 {
     class Connect
     {
+        
 
         //  public static string server = "http://104.130.1.179";  // Staging
           public static string server = "http://192.168.1.37:3000";   // Localhost

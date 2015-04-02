@@ -11,6 +11,12 @@ namespace IatDteBridge
 {
     public partial class Administracion : Form
     {
+        
+        ProcesoPaquete propack = new ProcesoPaquete();
+        procesoLibroVenta procLibVta = new procesoLibroVenta();
+        ProcesoLibroCompra procLibComp = new ProcesoLibroCompra();
+        ProcesoLibroGuias procLibGuias = new ProcesoLibroGuias();
+
         public Administracion()
         {
             InitializeComponent();
@@ -36,6 +42,26 @@ namespace IatDteBridge
         private void Administracion_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void procesaPaqueteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            propack.procesoPaquete();
+        }
+
+        private void libroVentasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            procLibVta.doLibroVta();
+        }
+
+        private void libroComprasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            procLibComp.doLibroCompra();
+        }
+
+        private void libroGuiasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            procLibGuias.doLibroGuias();
         }
     }
 }

@@ -46,7 +46,7 @@ namespace IatDteBridge
 
                 objReader.Close();
                 ms.Close();
-                file.mvFile(fileName, "C:/IatFiles/file/libroventa/", "C:/IatFiles/fileProcess/");
+                file.mvFile(fileName, "C:/IatFiles/file/", "C:/IatFiles/fileProcess/");
                 return lib;
             }
             else

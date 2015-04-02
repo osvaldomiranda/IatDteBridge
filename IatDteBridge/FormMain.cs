@@ -16,10 +16,7 @@ namespace IatDteBridge
 
         PingProcess ping = new PingProcess();
         ProcesoIat proc = new ProcesoIat();
-        ProcesoPaquete propack = new ProcesoPaquete();
-        ProcesoLibroCompra procLibComp = new ProcesoLibroCompra();
-        procesoLibroVenta procLibVta = new procesoLibroVenta();
-        ProcesoLibroGuias procLibGuias = new ProcesoLibroGuias();
+
         ProcesoPaqueteXml procFromXml = new ProcesoPaqueteXml();
         ProcesoContingencia procContig = new ProcesoContingencia();
         public CheckBox checkbox1 = new CheckBox();
@@ -109,10 +106,6 @@ namespace IatDteBridge
             procContig.StartProcessConting();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            propack.procesoPaquete();
-        }
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -124,20 +117,6 @@ namespace IatDteBridge
             
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            procLibComp.doLibroCompra();
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            procLibVta.doLibroVta();
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-            procLibGuias.doLibroGuias();
-        }
 
         private void button9_Click(object sender, EventArgs e)
         {

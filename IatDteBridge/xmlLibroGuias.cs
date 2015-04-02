@@ -90,7 +90,7 @@ namespace IatDteBridge
                 String libroGuia = cabeceraLibro + resumen + finResumen + detall + finLibro;
 
 
-                X509Certificate2 cert = FuncionesComunes.obtenerCertificado(doc.NombreCertificado);
+                X509Certificate2 cert = FuncionesComunes.obtenerCertificado("YAMAHL NASER GONZALEZ");
 
                 String signLibro = firmarLibroGuias(libroGuia, cert);
 

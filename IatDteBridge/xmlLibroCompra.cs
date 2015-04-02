@@ -185,7 +185,7 @@ namespace IatDteBridge
 
             String LibroCom = cabeceraLibro + resumen  + TotalesP +  finResumen + detalleaux + finLibro;
 
-            X509Certificate2 cert = FuncionesComunes.obtenerCertificado(doc.NombreCertificado);
+            X509Certificate2 cert = FuncionesComunes.obtenerCertificado("YAMAHL NASER GONZALEZ");
 
             String signLibro = firmarLibro(LibroCom, cert);
 
