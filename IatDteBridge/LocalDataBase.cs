@@ -126,11 +126,14 @@ namespace IatDteBridge
                     String sql1 = "ALTER TABLE reenvio ADD COLUMN filecliente VARCHAR(255) ";
                     String sql2 = "ALTER TABLE reenvio ADD COLUMN filefactura VARCHAR(255) ";
 
+
+
                     SQLiteCommand cmd = new SQLiteCommand(sql1, myConn);
                     cmd.ExecuteNonQuery();
 
                     SQLiteCommand cmd2 = new SQLiteCommand(sql2, myConn);
                     cmd2.ExecuteNonQuery();
+
                 }
 
                 myConn.Close();

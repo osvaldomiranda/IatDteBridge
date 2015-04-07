@@ -82,6 +82,7 @@
     </Compile>
     <Compile Include="Caf.cs" />
     <Compile Include="CargaDb.cs" />
+    <Compile Include="ConnectDb.cs" />
     <Compile Include="Documento.cs" />
     <Compile Include="Empresa.cs" />
     <Compile Include="EnvioMasivo.cs" />

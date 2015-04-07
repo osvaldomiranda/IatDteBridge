@@ -16,12 +16,7 @@ namespace IatDteBridge
 {
     class Connect
     {
-        
-
-        //  public static string server = "http://104.130.1.179";  // Staging
-          public static string server = "http://192.168.1.37:3000";   // Localhost
-        //  public static string server = "http://200.72.145.75"; // produccion
-
+        ConnectDb cdb = new ConnectDb();
 
 
         public static string version = "/api/v1";
@@ -42,8 +37,11 @@ namespace IatDteBridge
                 UltimoDteSql uDTE = new UltimoDteSql();
                 String udte = uDTE.getUltimoDte().ToString();
 
+                
+
                 string getUrl = string.Format("{0}{1}/iat_ping/1.json?udte={2}",
-                                    server,
+                                   // server,
+                                   cdb.GetUrl().ToString(),
                                     version,
                                     udte);
 
@@ -71,7 +69,8 @@ namespace IatDteBridge
             {
                 string HtmlResult = String.Empty;
                 string postUri = string.Format("{0}{1}/iat_doc.json",
-                                    server,
+                                   // server,
+                                    cdb.GetUrl().ToString(),
                                     version);
 
                 String parameters = string.Format("id={0}&docxml={1}&filename={2}&auth_token={3}", "1", xml, filename, auth_token);
@@ -101,7 +100,8 @@ namespace IatDteBridge
             {
             string HtmlResult = String.Empty;
             string postUri = string.Format("{0}{1}/invoice.json",
-                                server,
+                                //server,
+                                cdb.GetUrl().ToString(),
                                 version);
 
             MemoryStream stream = new MemoryStream();
@@ -174,7 +174,8 @@ namespace IatDteBridge
         public String sendToServer(int folio, String fileCliente, String fileFactura, String fileJson, String fileName, String json, String pdfTfileName, String pdfCfileName, String conEnvio)
         {
             string url = string.Format("{0}{1}/invoice.json",
-                    server,
+                    //server,
+                    cdb.GetUrl().ToString(),
                     version);
 
             Console.WriteLine("Url = {0}.  {1}", url, fileName);

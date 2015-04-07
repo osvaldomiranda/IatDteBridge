@@ -63,6 +63,7 @@ namespace IatDteBridge
                     textBox_FchResol.Text = reader["FchResol"].ToString();
                     textBox_RutCertificado.Text = reader["RutCertificado"].ToString();
                     textBox_NumResol.Text = reader["NumResol"].ToString();
+                    textBox_UrlCore.Text = reader["UrlCore"].ToString();
                     checkBox_condEntrega.Checked = Convert.ToBoolean(reader["CondEntrega"]);
 
                 }
@@ -104,7 +105,8 @@ namespace IatDteBridge
                                "FchResol = '" + textBox_FchResol.Text + "', " +
                                "RutCertificado = '" + textBox_RutCertificado.Text + "', " +
                                "NumResol = '" + textBox_NumResol.Text + "', " +
-                               "CondEntrega = '" + checkBox_condEntrega.Checked.ToString() + "';";
+                               "CondEntrega = '" + checkBox_condEntrega.Checked.ToString() + "', "+
+                                "UrlCore = '" + textBox_UrlCore.Text + "';";
 
                 SQLiteCommand command = new SQLiteCommand(sql, myConn);
                 command.ExecuteNonQuery();
