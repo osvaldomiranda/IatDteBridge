@@ -324,7 +324,11 @@ namespace IatDteBridge
             {
                 firstNmbItem = firstNmbItem.Substring(0, 39);
             }
-           
+            
+            if(rznsocrecep.Length >40)
+            {
+                rznsocrecep = rznsocrecep.Substring(0, 39);
+            }
 
             String inicioTed = "<TED version=\"1.0\">\r\n";
             // nodo DD

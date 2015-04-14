@@ -51,6 +51,8 @@ namespace IatDteBridge
                     "<CiudadOrigen>" + doc.CiudadOrigen + "</CiudadOrigen>\n" +
                     "</Emisor>\n";
 
+
+
             String receptor = "<Receptor>\n" +
                     "<RUTRecep>" + doc.RUTRecep + "</RUTRecep>\n" +
                     "<RznSocRecep>" + doc.RznSocRecep + "</RznSocRecep>\n" +
@@ -282,18 +284,31 @@ namespace IatDteBridge
 
 
             String inicioTed = "<TED version=\"1.0\">\r\n";
+
             // nodo DD
             String ampersan = firstNmbItem.Replace("&", "&amp;");
+            String rznsocrecep = doc.RznSocRecep.Substring(0, 39);
+
+            if (ampersan.Length > 40)
+            {
+                ampersan = ampersan.Substring(0, 39);
+            }
+
+            if (rznsocrecep.Length > 40)
+            {
+                rznsocrecep = rznsocrecep.Substring(0, 39);
+            }
+
             String dd = "<DD>" +
                     "<RE>" + doc.RUTEmisor + "</RE>" +
                     "<TD>" + doc.TipoDTE + "</TD>" +
                     "<F>" + doc.Folio + "</F>" +
                     "<FE>" + doc.FchEmis + "</FE>" +
                     "<RR>" + doc.RUTRecep + "</RR>" +
-                    "<RSR>" + doc.RznSocRecep + "</RSR>" +
+                    "<RSR>" + rznsocrecep + "</RSR>" +
                     "<MNT>" + doc.MntTotal + "</MNT>" +
 
-                    "<IT1>" + ampersan.Substring(0,39) +"</IT1>" +
+                    "<IT1>" + ampersan +"</IT1>" +
 
                     getXmlFolio("CAF", doc.TipoDTE) +
 

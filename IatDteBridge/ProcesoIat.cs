@@ -85,8 +85,7 @@ namespace IatDteBridge
                                     break;
                                 case 3: impresora = fc.GetPrinter(2);
                                     break;
-                                case 4: impresora = fc.GetPrinter(3);
-                                    break;
+
                             }
 
                             fc.printPdf(fileNamePDFRePrint, impresora);
@@ -150,12 +149,11 @@ namespace IatDteBridge
                         {
                             case 1: impresora = fc.GetDefaultPrinter();
                                 break;
-                            case 2: impresora = fc.GetPrinter(1);
+                            case 2: impresora = fc.GetPrinter(2);
                                 break;
-                            case 3: impresora = fc.GetPrinter(2);
+                            case 3: impresora = fc.GetPrinter(3);
                                 break;
-                            case 4: impresora = fc.GetPrinter(3);
-                                break;
+
                         }
 
                         fc.printPdf(fileNamePDFPrint, impresora);

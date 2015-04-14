@@ -256,6 +256,7 @@ namespace IatDteBridge
         {
             String printer = String.Empty;
             String lineEmisor = String.Empty;
+
             try 
             {
                 using (StreamReader sr = new StreamReader(@"c:\IatFiles\config\printer" + ".txt"))
@@ -271,6 +272,7 @@ namespace IatDteBridge
                             case 3: printer = lineEmisor;
                                 break;
                         }
+
                     }
                     sr.Close();
                 }

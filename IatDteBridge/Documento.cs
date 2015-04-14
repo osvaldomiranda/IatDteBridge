@@ -377,7 +377,7 @@ namespace IatDteBridge
          [DataMember]
          public string TpoValor { get; set; }
          [DataMember]
-         public int ValorDR { get; set; }
+         public decimal ValorDR { get; set; }
          [DataMember]
          public int IndExeDR { get; set; }
 

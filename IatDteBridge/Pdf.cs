@@ -261,7 +261,7 @@ namespace IatDteBridge
             contenedorDatosReceptor.AddCell(celdaContDatRecep);
 
             //+++++++++++++++++++++++++++++++++++++++++++++++++++++ Detalle +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-            float[] anchosDetalle = new float[] { 30f, 30f, 200f, 30f, 30f, 30f, 30f, 40f };
+            float[] anchosDetalle = new float[] { 15f, 30f, 200f, 30f, 25f, 50f, 30f, 50f };
 
             PdfPTable detalle = new PdfPTable(8);
             detalle.SetWidths(anchosDetalle);
@@ -333,7 +333,7 @@ namespace IatDteBridge
                     puntero = puntero + 1;
                     datosDetalle[puntero] = Convert.ToString(det.UnmdItem);
                     puntero = puntero + 1;
-                    datosDetalle[puntero] = det.PrcItem.ToString("N0", CultureInfo.CreateSpecificCulture("es-ES"));
+                    datosDetalle[puntero] = det.PrcItem.ToString("N4", CultureInfo.CreateSpecificCulture("es-ES"));
                     puntero = puntero + 1;
                     datosDetalle[puntero] = Convert.ToString(det.DescuentoMonto);
                     puntero = puntero + 1;
@@ -969,7 +969,7 @@ namespace IatDteBridge
 
 
                 //+++++++++++++++++++++++++++++++++++++++++++++++++++++ Detalle +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-                float[] anchosDetalle = new float[] { 30f, 30f, 200f, 30f, 30f, 30f, 30f, 40f };
+                float[] anchosDetalle = new float[] { 15f, 30f, 200f, 30f, 25f, 50f, 30f, 50f };
 
                 PdfPTable detalle = new PdfPTable(8);
                 detalle.SetWidths(anchosDetalle);
@@ -1041,7 +1041,7 @@ namespace IatDteBridge
                         puntero = puntero + 1;
                         datosDetalle[puntero] = Convert.ToString(det.UnmdItem);
                         puntero = puntero + 1;
-                        datosDetalle[puntero] = det.PrcItem.ToString("N0", CultureInfo.CreateSpecificCulture("es-ES"));
+                        datosDetalle[puntero] = det.PrcItem.ToString("N4", CultureInfo.CreateSpecificCulture("es-ES"));
                         puntero = puntero + 1;
                         datosDetalle[puntero] = Convert.ToString(det.DescuentoMonto);
                         puntero = puntero + 1;
