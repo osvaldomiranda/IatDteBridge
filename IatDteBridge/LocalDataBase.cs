@@ -36,7 +36,7 @@ namespace IatDteBridge
                                         "'Fecha de resolución','Rut del certificado','Numero de resolucion','False')";
 
                     String sql5 = "CREATE TABLE IF NOT EXISTS ultimodte (RutEmisor VARCHAR(10), RznSoc VARCHAR(255), CdgSIISucur INTEGER,   RutRecep VARCHAR(10), RznSocRecep VARCHAR(255), Folio INTEGER, TipoDTE INTEGER, fch VARCHAR(20) ) ";
-                    String sql6 = "CREATE TABLE IF NOT EXISTS pinters (printername VARCHAR(255), directory VARCHAR(255)) ";
+                    String sql6 = "CREATE TABLE IF NOT EXISTS printers (printername VARCHAR(255), directory VARCHAR(255)) ";
 
                     SQLiteCommand cmd = new SQLiteCommand(sql1, myConn);
                     cmd.ExecuteNonQuery();
@@ -74,7 +74,7 @@ namespace IatDteBridge
                     String sql2 = "CREATE TABLE IF NOT EXISTS reenvio (fch VARCHAR(20), jsonname VARCHAR(255), envunit VARCHAR(255), pdft VARCHAR(255), pdfc VARCHAR(255), estado VARCHAR(20)) ";
                     String sql3 = "CREATE TABLE IF NOT EXISTS empresa (RutEmisor VARCHAR(10), RznSoc VARCHAR(255), GiroEmis VARCHAR(255), Telefono VARCHAR(255), CorreoEmisor VARCHAR(255), Acteco VARCHAR(50), CdgSIISucur VARCHAR(50), DirMatriz VARCHAR(255), CiudadOrigen VARCHAR(255), CmnaOrigen VARCHAR(255),DirOrigen VARCHAR(255), SucurSII VARCHAR(100), NomCertificado VARCHAR(255), DirOrigen VARCHAR(255), FchResol VARCHAR(50), RutCertificado VARCHAR(10), NumResol VARCHAR(20), CondEntrega VARCHAR(10)) ";
                     String sql4 = "CREATE TABLE IF NOT EXISTS ultimodte (RutEmisor VARCHAR(10), RznSoc VARCHAR(255), CdgSIISucur INTEGER,   RutRecep VARCHAR(10), RznSocRecep VARCHAR(255), Folio INTEGER, TipoDTE INTEGER, fch VARCHAR(20) ) ";
-                    String sql5 = "CREATE TABLE IF NOT EXISTS pinters (printername VARCHAR(255), directory VARCHAR(255)) ";
+                    String sql5 = "CREATE TABLE IF NOT EXISTS printers (printername VARCHAR(255), directory VARCHAR(255)) ";
 
                     SQLiteCommand cmd = new SQLiteCommand(sql1, myConn);
                     cmd.ExecuteNonQuery();

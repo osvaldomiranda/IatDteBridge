@@ -7,6 +7,8 @@ using System.Security.Cryptography.Xml;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography;
 using System.Diagnostics;
+using System.IO;
+using System.Windows.Forms;
 
 
 namespace IatDteBridge
@@ -19,6 +21,11 @@ namespace IatDteBridge
             
             PrinterDir print = new PrinterDir();
             List<PrinterDir> printerList = print.printerList();
+
+            if (printerList.Count == 0)
+            {
+                MessageBox.Show(@"No hay impresoras configuradas, se usará DefaultPrinter");
+            }
 
             int i = 0;
             int j = 0;
@@ -34,6 +41,7 @@ namespace IatDteBridge
 
                 String paquete = String.Empty;
                 String dirCurrentFile = String.Empty;
+                String Impresora = String.Empty; 
 
                 // instancia fileadmin, para tener las herramientas para mover archivos
                 fileAdmin fileAdm = new fileAdmin();
@@ -42,13 +50,27 @@ namespace IatDteBridge
                 TxtReader lec = new TxtReader();
 
                 Documento docLectura = new Documento();
+                FuncionesComunes fc = new FuncionesComunes();
+
+                if (printerList.Count == 0)
+                {
+                    dirCurrentFile = @"C:\IatFiles\file";
+                    Impresora = fc.GetDefaultPrinter();
+                }
+                else
+                {
+                    PrinterDir printDir = printerList.ElementAt(j);
+                    dirCurrentFile = printDir.directory;
+                    Impresora = printDir.printerName;
+                }
+
+
+                
 
                 // Ejecuta metodo de txt_reader que llena y obtienen Clase Documento
-                j++;
 
-                PrinterDir printDir = printerList.ElementAt(j);
-                docLectura = lec.lectura("",false, printDir.directory );
-                dirCurrentFile = printDir.directory;
+                docLectura = lec.lectura("", false, dirCurrentFile);
+                
                 
       
                 // instancia XML_admin
@@ -73,8 +95,7 @@ namespace IatDteBridge
 
                         if(System.IO.File.Exists(fileNamePDFRePrint))
                         {
-                            FuncionesComunes fc = new FuncionesComunes();
-                            fc.printPdf(fileNamePDFRePrint, printDir.printerName);
+                            fc.printPdf(fileNamePDFRePrint, Impresora);
                         }
                         fileAdm.mvFile(docLectura.fileName, dirCurrentFile, @"C:\IatFiles\fileprocess\");
                     }
@@ -130,9 +151,7 @@ namespace IatDteBridge
                         log.addLog("Crea PDF PRINT TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
 
 
-                        FuncionesComunes fc = new FuncionesComunes();
-
-                        fc.printPdf(fileNamePDFPrint, printDir.printerName);
+                        fc.printPdf(fileNamePDFPrint, Impresora);
 
                         log.addLog("IMPRIME TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
 
