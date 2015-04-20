@@ -63,16 +63,13 @@ namespace IatDteBridge
                     dirCurrentFile = printDir.directory;
                     Impresora = printDir.printerName;
                 }
-
-
+                Console.WriteLine("Buscando Json en "+ dirCurrentFile);
+                j++;
                 
 
                 // Ejecuta metodo de txt_reader que llena y obtienen Clase Documento
-
                 docLectura = lec.lectura("", false, dirCurrentFile);
                 
-                
-      
                 // instancia XML_admin
                 xmlPaquete xml = new xmlPaquete();
 
@@ -215,9 +212,9 @@ namespace IatDteBridge
                         uDTE.addUltmoDte(docLectura);
 
                     }
-                }
+                } 
                 if (j == printerList.Count() ) { j = 0; } 
-            }
+            } 
             Console.WriteLine("ProcessIat thread: terminating gracefully.");
         }
 
