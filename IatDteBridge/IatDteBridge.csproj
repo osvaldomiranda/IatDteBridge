@@ -94,7 +94,7 @@
     <Compile Include="LocalDataBase.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="PdfMasivo.cs" />
-    <Compile Include="Printer.cs" />
+    <Compile Include="PrinterDir.cs" />
     <Compile Include="ProcesoContingencia.cs" />
     <Compile Include="ProcesoLibroCompra.cs" />
     <Compile Include="ProcesoLibroGuias.cs" />
