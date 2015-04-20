@@ -76,6 +76,8 @@ namespace IatDteBridge
                     String sql4 = "CREATE TABLE IF NOT EXISTS ultimodte (RutEmisor VARCHAR(10), RznSoc VARCHAR(255), CdgSIISucur INTEGER,   RutRecep VARCHAR(10), RznSocRecep VARCHAR(255), Folio INTEGER, TipoDTE INTEGER, fch VARCHAR(20) ) ";
                     String sql5 = "CREATE TABLE IF NOT EXISTS printers (printername VARCHAR(255), directory VARCHAR(255)) ";
 
+
+
                     SQLiteCommand cmd = new SQLiteCommand(sql1, myConn);
                     cmd.ExecuteNonQuery();
 
@@ -89,7 +91,7 @@ namespace IatDteBridge
                     cmd4.ExecuteNonQuery();
 
                     SQLiteCommand cmd5 = new SQLiteCommand(sql5, myConn);
-                    cmd4.ExecuteNonQuery();
+                    cmd5.ExecuteNonQuery();
 
                     //agrega campos
                     addCollumnToReenvio();
