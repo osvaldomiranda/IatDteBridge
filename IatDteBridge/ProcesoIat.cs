@@ -16,14 +16,19 @@ namespace IatDteBridge
 
         public void DoProcessIat()
         {
+            
+            PrinterDir print = new PrinterDir();
+            List<PrinterDir> printerList = print.printerList();
+
             int i = 0;
             int j = 0;
+            
+
             while (!_shouldStop)
             {
                 Console.WriteLine("ProcessIat thread: working...");
 
                 Thread.Sleep(5000);
-
 
                 i++;
 
@@ -40,17 +45,10 @@ namespace IatDteBridge
 
                 // Ejecuta metodo de txt_reader que llena y obtienen Clase Documento
                 j++;
-                
-                if (j == 4)
-                {
-                    docLectura = lec.lectura("",false, @"C:\IatFiles\file");
-                    dirCurrentFile = @"C:\IatFiles\file";
-                }
-                else
-                {
-                    docLectura = lec.lectura("",false, @"C:\IatFiles\cajas\caj" + j + @"\");
-                    dirCurrentFile = @"C:\IatFiles\cajas\caj" + j + @"\";
-                }
+
+                PrinterDir printDir = printerList.ElementAt(j);
+                docLectura = lec.lectura("",false, printDir.directory );
+                dirCurrentFile = printDir.directory;
                 
       
                 // instancia XML_admin
@@ -76,19 +74,7 @@ namespace IatDteBridge
                         if(System.IO.File.Exists(fileNamePDFRePrint))
                         {
                             FuncionesComunes fc = new FuncionesComunes();
-                            String impresora = String.Empty;
-                            switch (j)
-                            {
-                                case 1: impresora = fc.GetDefaultPrinter();
-                                    break;
-                                case 2: impresora = fc.GetPrinter(1);
-                                    break;
-                                case 3: impresora = fc.GetPrinter(2);
-                                    break;
-
-                            }
-
-                            fc.printPdf(fileNamePDFRePrint, impresora);
+                            fc.printPdf(fileNamePDFRePrint, printDir.printerName);
                         }
                         fileAdm.mvFile(docLectura.fileName, dirCurrentFile, @"C:\IatFiles\fileprocess\");
                     }
@@ -143,20 +129,11 @@ namespace IatDteBridge
                         docpdf.OpenPdfPrint(TimbreElec, docLectura, fileNamePDFPrint);
                         log.addLog("Crea PDF PRINT TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
 
+
                         FuncionesComunes fc = new FuncionesComunes();
-                        String impresora = String.Empty;
-                        switch (j)
-                        {
-                            case 1: impresora = fc.GetDefaultPrinter();
-                                break;
-                            case 2: impresora = fc.GetPrinter(2);
-                                break;
-                            case 3: impresora = fc.GetPrinter(3);
-                                break;
 
-                        }
+                        fc.printPdf(fileNamePDFPrint, printDir.printerName);
 
-                        fc.printPdf(fileNamePDFPrint, impresora);
                         log.addLog("IMPRIME TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
 
                         // Agrega el DTE timbrado al paquete
@@ -220,7 +197,7 @@ namespace IatDteBridge
 
                     }
                 }
-                if (j == 4) { j = 0; } 
+                if (j == printerList.Count() ) { j = 0; } 
             }
             Console.WriteLine("ProcessIat thread: terminating gracefully.");
         }
