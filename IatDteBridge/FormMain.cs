@@ -297,5 +297,10 @@ namespace IatDteBridge
             this.timer1.Stop();
 
         }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

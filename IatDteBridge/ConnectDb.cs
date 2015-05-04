@@ -22,8 +22,7 @@ namespace IatDteBridge
                 SQLiteDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                   // url = reader["UrlCore"].ToString();
-                    url = String.Empty;
+                    url = reader["UrlCore"].ToString();
                 }
 
                 myConn.Close();

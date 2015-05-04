@@ -69,14 +69,34 @@ namespace IatDteBridge
             String rznsocrecep = doc.RznSocRecep.Replace("&", "&amp;");
             String rutrecep = doc.RUTRecep.Replace("k","K");
             String dirrecep = doc.DirRecep.Replace("#"," ");
+            String cmnarecep = String.Empty;
+            String ciudadrecep = String.Empty;
+            
+            if (doc.CmnaRecep.Length < 20)
+            {
+                cmnarecep = doc.CmnaRecep;
+            }
+            else
+            {
+                cmnarecep = doc.CmnaRecep.Substring(0, 20);
+            }
+
+            if (doc.CiudadRecep.Length < 20)
+            {
+                ciudadrecep = doc.CiudadRecep;
+            }
+            else
+            {
+                ciudadrecep = doc.CiudadRecep.Substring(0, 20);
+            }
 
             String receptor = "<Receptor>\n" +
                     "<RUTRecep>" + rutrecep + "</RUTRecep>\n" +
                     "<RznSocRecep>" + rznsocrecep + "</RznSocRecep>\n" +
                     "<GiroRecep>" + giroreceptor + "</GiroRecep>\n" +
                     "<DirRecep>" + dirrecep + "</DirRecep>\n" +
-                    "<CmnaRecep>" + doc.CmnaRecep + "</CmnaRecep>\n" +
-                    "<CiudadRecep>" + doc.CiudadRecep + "</CiudadRecep>\n" +
+                    "<CmnaRecep>" + cmnarecep + "</CmnaRecep>\n" +
+                    "<CiudadRecep>" + ciudadrecep + "</CiudadRecep>\n" +
                 "</Receptor>\n";
             
             String impreten = String.Empty;
