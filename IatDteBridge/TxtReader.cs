@@ -126,6 +126,10 @@ namespace IatDteBridge
                             doc.RutEnvia = reader["RutCertificado"].ToString();
                             doc.NumResol = reader["NumResol"].ToString();
                             doc.CondEntrega = reader["CondEntrega"].ToString();
+                            doc.PrnMtoNeto = reader["PrnMtoNeto"].ToString();
+                            doc.PrnTwoCopy = reader["PrnTwoCopy"].ToString();
+
+
                         }
 
                         myConn.Close();

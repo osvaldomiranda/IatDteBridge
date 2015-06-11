@@ -38,6 +38,7 @@ namespace IatDteBridge
                     String sql5 = "CREATE TABLE IF NOT EXISTS ultimodte (RutEmisor VARCHAR(10), RznSoc VARCHAR(255), CdgSIISucur INTEGER,   RutRecep VARCHAR(10), RznSocRecep VARCHAR(255), Folio INTEGER, TipoDTE INTEGER, fch VARCHAR(20) ) ";
                     String sql6 = "CREATE TABLE IF NOT EXISTS printers (printername VARCHAR(255), directory VARCHAR(255)) ";
 
+
                     SQLiteCommand cmd = new SQLiteCommand(sql1, myConn);
                     cmd.ExecuteNonQuery();
 
@@ -95,9 +96,10 @@ namespace IatDteBridge
 
                     //agrega campos
                     addCollumnToReenvio();
+                    addColPrnMtoNetoToEmpresa();
+                    addColPrnTwoCopyToEmpresa();
 
                     myConn.Close();
-
 
                     return false;
                 }
@@ -133,16 +135,9 @@ namespace IatDteBridge
 
                 if (!existecampo)
                 {
-                    String sql1 = "ALTER TABLE reenvio ADD COLUMN filecliente VARCHAR(255) ";
-                    String sql2 = "ALTER TABLE reenvio ADD COLUMN filefactura VARCHAR(255) ";
-
-
-
+                    String sql1 = "ALTER TABLE reenvio ADD COLUMN filecliente VARCHAR(255)";
                     SQLiteCommand cmd = new SQLiteCommand(sql1, myConn);
                     cmd.ExecuteNonQuery();
-
-                    SQLiteCommand cmd2 = new SQLiteCommand(sql2, myConn);
-                    cmd2.ExecuteNonQuery();
 
                 }
 
@@ -158,5 +153,87 @@ namespace IatDteBridge
             return true;
         }
 
+        public bool addColPrnMtoNetoToEmpresa()
+        {
+
+            try
+            {
+                SQLiteConnection myConn = new SQLiteConnection(strConn);
+                myConn.Open();
+
+                string sql = "PRAGMA table_info(empresa)";
+                SQLiteCommand command = new SQLiteCommand(sql, myConn);
+                SQLiteDataReader reader = command.ExecuteReader();
+
+                bool existecampo = false;
+                while (reader.Read())
+                {
+                    if (@"PrnMtoNeto" == reader["name"].ToString())
+                    {
+                        existecampo = true;
+                    }
+                }
+
+                if (!existecampo)
+                {
+                    String sql1 = "ALTER TABLE empresa ADD COLUMN PrnMtoNeto VARCHAR(5) DEFAULT 'True' ";
+                    SQLiteCommand cmd = new SQLiteCommand(sql1, myConn);
+                    cmd.ExecuteNonQuery();
+                    
+
+                }
+
+                myConn.Close();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("ERROR: {0}", e.ToString());
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool addColPrnTwoCopyToEmpresa()
+        {
+
+            try
+            {
+                SQLiteConnection myConn = new SQLiteConnection(strConn);
+                myConn.Open();
+
+                string sql = "PRAGMA table_info(empresa)";
+                SQLiteCommand command = new SQLiteCommand(sql, myConn);
+                SQLiteDataReader reader = command.ExecuteReader();
+
+                bool existecampo = false;
+                while (reader.Read())
+                {
+                    if (@"PrnTwoCopy" == reader["name"].ToString())
+                    {
+                        existecampo = true;
+                    }
+                }
+
+                if (!existecampo)
+                {
+                    String sql1 = "ALTER TABLE empresa ADD COLUMN PrnTwoCopy VARCHAR(5) DEFAULT 'False' ";
+                    SQLiteCommand cmd = new SQLiteCommand(sql1, myConn);
+                    cmd.ExecuteNonQuery();
+
+                }
+
+                myConn.Close();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("ERROR: {0}", e.ToString());
+                return false;
+            }
+
+            return true;
+        }
     }
 }

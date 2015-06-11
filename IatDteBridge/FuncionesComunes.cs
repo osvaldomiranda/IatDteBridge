@@ -274,6 +274,7 @@ namespace IatDteBridge
             p.WaitForInputIdle();
 
             System.Threading.Thread.Sleep(10000);
+            
             if (false == p.CloseMainWindow())
             {
                 p.Kill();
