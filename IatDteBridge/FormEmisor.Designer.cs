@@ -67,6 +67,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBox_UrlCore = new System.Windows.Forms.TextBox();
             this.label_UrlCore = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.checkBox_PrnMtoNeto = new System.Windows.Forms.CheckBox();
+            this.checkBox_PrnTwoCopy = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label_Rutempresa
@@ -161,7 +164,7 @@
             // 
             // button_guardar
             // 
-            this.button_guardar.Location = new System.Drawing.Point(734, 448);
+            this.button_guardar.Location = new System.Drawing.Point(823, 448);
             this.button_guardar.Name = "button_guardar";
             this.button_guardar.Size = new System.Drawing.Size(75, 20);
             this.button_guardar.TabIndex = 12;
@@ -270,7 +273,7 @@
             // 
             this.textBox_Sucursales.Location = new System.Drawing.Point(126, 448);
             this.textBox_Sucursales.Name = "textBox_Sucursales";
-            this.textBox_Sucursales.Size = new System.Drawing.Size(370, 20);
+            this.textBox_Sucursales.Size = new System.Drawing.Size(470, 20);
             this.textBox_Sucursales.TabIndex = 26;
             // 
             // label_Sucursales
@@ -284,7 +287,7 @@
             // 
             // textBox_FchResol
             // 
-            this.textBox_FchResol.Location = new System.Drawing.Point(624, 17);
+            this.textBox_FchResol.Location = new System.Drawing.Point(713, 17);
             this.textBox_FchResol.Name = "textBox_FchResol";
             this.textBox_FchResol.Size = new System.Drawing.Size(165, 20);
             this.textBox_FchResol.TabIndex = 28;
@@ -292,7 +295,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(513, 17);
+            this.label1.Location = new System.Drawing.Point(602, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(93, 13);
             this.label1.TabIndex = 27;
@@ -300,7 +303,7 @@
             // 
             // textBox_RutCertificado
             // 
-            this.textBox_RutCertificado.Location = new System.Drawing.Point(624, 52);
+            this.textBox_RutCertificado.Location = new System.Drawing.Point(713, 52);
             this.textBox_RutCertificado.Name = "textBox_RutCertificado";
             this.textBox_RutCertificado.Size = new System.Drawing.Size(165, 20);
             this.textBox_RutCertificado.TabIndex = 30;
@@ -308,7 +311,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(513, 52);
+            this.label2.Location = new System.Drawing.Point(602, 52);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 13);
             this.label2.TabIndex = 29;
@@ -316,7 +319,7 @@
             // 
             // textBox_NumResol
             // 
-            this.textBox_NumResol.Location = new System.Drawing.Point(624, 87);
+            this.textBox_NumResol.Location = new System.Drawing.Point(713, 87);
             this.textBox_NumResol.Name = "textBox_NumResol";
             this.textBox_NumResol.Size = new System.Drawing.Size(165, 20);
             this.textBox_NumResol.TabIndex = 32;
@@ -324,7 +327,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(513, 87);
+            this.label3.Location = new System.Drawing.Point(602, 90);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(100, 13);
             this.label3.TabIndex = 31;
@@ -333,7 +336,7 @@
             // label_NotaSucursales
             // 
             this.label_NotaSucursales.AutoSize = true;
-            this.label_NotaSucursales.Location = new System.Drawing.Point(506, 434);
+            this.label_NotaSucursales.Location = new System.Drawing.Point(602, 451);
             this.label_NotaSucursales.Name = "label_NotaSucursales";
             this.label_NotaSucursales.Size = new System.Drawing.Size(154, 13);
             this.label_NotaSucursales.TabIndex = 33;
@@ -350,13 +353,12 @@
             // checkBox_condEntrega
             // 
             this.checkBox_condEntrega.AutoSize = true;
-            this.checkBox_condEntrega.Location = new System.Drawing.Point(624, 195);
+            this.checkBox_condEntrega.Location = new System.Drawing.Point(713, 195);
             this.checkBox_condEntrega.Name = "checkBox_condEntrega";
             this.checkBox_condEntrega.Size = new System.Drawing.Size(160, 17);
             this.checkBox_condEntrega.TabIndex = 34;
             this.checkBox_condEntrega.Text = "Condición de entrega en pdf";
             this.checkBox_condEntrega.UseVisualStyleBackColor = true;
-            this.checkBox_condEntrega.CheckedChanged += new System.EventHandler(this.checkBox_condEntrega_CheckedChanged);
             // 
             // textBox_DirOrigen
             // 
@@ -376,7 +378,7 @@
             // 
             // textBox_UrlCore
             // 
-            this.textBox_UrlCore.Location = new System.Drawing.Point(624, 122);
+            this.textBox_UrlCore.Location = new System.Drawing.Point(713, 122);
             this.textBox_UrlCore.Name = "textBox_UrlCore";
             this.textBox_UrlCore.Size = new System.Drawing.Size(165, 20);
             this.textBox_UrlCore.TabIndex = 38;
@@ -384,17 +386,50 @@
             // label_UrlCore
             // 
             this.label_UrlCore.AutoSize = true;
-            this.label_UrlCore.Location = new System.Drawing.Point(513, 122);
+            this.label_UrlCore.Location = new System.Drawing.Point(602, 125);
             this.label_UrlCore.Name = "label_UrlCore";
             this.label_UrlCore.Size = new System.Drawing.Size(45, 13);
             this.label_UrlCore.TabIndex = 37;
             this.label_UrlCore.Text = "Url Core";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(504, 16);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 39;
+            this.button1.Text = "Buscar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // checkBox_PrnMtoNeto
+            // 
+            this.checkBox_PrnMtoNeto.AutoSize = true;
+            this.checkBox_PrnMtoNeto.Location = new System.Drawing.Point(713, 219);
+            this.checkBox_PrnMtoNeto.Name = "checkBox_PrnMtoNeto";
+            this.checkBox_PrnMtoNeto.Size = new System.Drawing.Size(131, 17);
+            this.checkBox_PrnMtoNeto.TabIndex = 40;
+            this.checkBox_PrnMtoNeto.Text = "Imprime Valores Netos";
+            this.checkBox_PrnMtoNeto.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_PrnTwoCopy
+            // 
+            this.checkBox_PrnTwoCopy.AutoSize = true;
+            this.checkBox_PrnTwoCopy.Location = new System.Drawing.Point(713, 243);
+            this.checkBox_PrnTwoCopy.Name = "checkBox_PrnTwoCopy";
+            this.checkBox_PrnTwoCopy.Size = new System.Drawing.Size(116, 17);
+            this.checkBox_PrnTwoCopy.TabIndex = 41;
+            this.checkBox_PrnTwoCopy.Text = "Imprime dos copias";
+            this.checkBox_PrnTwoCopy.UseVisualStyleBackColor = true;
+            // 
             // FormEmisor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(821, 498);
+            this.ClientSize = new System.Drawing.Size(952, 498);
+            this.Controls.Add(this.checkBox_PrnTwoCopy);
+            this.Controls.Add(this.checkBox_PrnMtoNeto);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox_UrlCore);
             this.Controls.Add(this.label_UrlCore);
             this.Controls.Add(this.textBox_DirOrigen);
@@ -483,5 +518,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox_UrlCore;
         private System.Windows.Forms.Label label_UrlCore;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox checkBox_PrnMtoNeto;
+        private System.Windows.Forms.CheckBox checkBox_PrnTwoCopy;
     }
 }

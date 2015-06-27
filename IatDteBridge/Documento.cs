@@ -106,8 +106,11 @@ namespace IatDteBridge
         public string BodEmis { get; set; }
         // Dirección de casa Matriz
         [DataMember]
-        public string DirMatriz { get; set; } 
+        public string DirMatriz { get; set; }
 
+        public string PrnMtoNeto { get; set; }
+
+        public string PrnTwoCopy { get; set; }
 
         //este atributo es una ista la cual carga las sucursales de la empresa certificada
         // debe ser llenado al momento de cargar la clase, ya que no es un atributo serializable
@@ -320,15 +323,21 @@ namespace IatDteBridge
         [DataMember]
         public string UnmdItem { get; set; } // unidad de medidas
         [DataMember]
-        public decimal PrcItem { get; set; } // Precio
+        public decimal PrcItem { get; set; } // Precio neto
+        [DataMember]
+        public decimal PrcBruItem { get; set; } // Precio Bruto
         [DataMember] 
         public decimal DescuentoPct { get; set; } // Descuento (%) en 3 enteros y 2 decimales
         [DataMember] 
         public int DescuentoMonto { get; set; } //Correspondiente al anterior. Totaliza todos los descuentos otorgados al ítem
         [DataMember]
+        public int DescuentoBruMonto { get; set; } //Correspondiente al anterior. Totaliza todos los descuentos otorgados al ítem Bruto
+        [DataMember]
         public string CodImpAdic { get; set; } //Indica el código según tabla de códigos (Ver en Índice 4.- Codificación Tipos de Impuesto).
         [DataMember]
         public int MontoItem { get; set; } //(Precio Unitario * Cantidad ) – Monto Descuento + Monto Recargo
+        [DataMember]
+        public int MontoBruItem { get; set; } //(Precio Unitario * Cantidad ) – Monto Descuento + Monto Recargo
 
       
     }

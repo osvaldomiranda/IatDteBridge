@@ -61,6 +61,7 @@
             this.button18 = new System.Windows.Forms.Button();
             this.button19 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -332,7 +333,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(158, 13);
             this.label5.TabIndex = 35;
-            this.label5.Text = "VERSIÓN: 02052015-1300";
+            this.label5.Text = "VERSIÓN: 04062015-1500";
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // button17
@@ -378,12 +379,23 @@
             this.button13.UseVisualStyleBackColor = true;
             this.button13.Click += new System.EventHandler(this.button13_Click_1);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(312, 223);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 40;
+            this.button2.Text = "Get Caf";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(940, 402);
             this.ControlBox = false;
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button13);
             this.Controls.Add(this.button19);
             this.Controls.Add(this.button18);
@@ -459,6 +471,7 @@
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.Button button19;
         private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button button2;
 
     }
 }

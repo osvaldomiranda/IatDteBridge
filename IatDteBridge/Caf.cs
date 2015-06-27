@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Xml;
 
 namespace IatDteBridge
 {
@@ -108,5 +109,70 @@ namespace IatDteBridge
 
             return valid;
         }
+
+        public Folio getCaf(String rut, String tipoDte)
+        {
+
+            XmlDocument xDoc = new XmlDocument();
+            Folio folio = new Folio();
+
+            //La ruta del documento XML permite rutas relativas 
+            //respecto del ejecutable!
+
+            xDoc.Load(@"C:/IatFiles/cafs/77398570-7/notacredito/FoliosSII77398570611382015691252.xml");
+
+            XmlNodeList lista = xDoc.GetElementsByTagName("AUTORIZACION");
+
+            XmlNodeList lista1 = ((XmlElement)lista[0]).GetElementsByTagName("CAF");
+
+            XmlNodeList lista2 = ((XmlElement)lista1[0]).GetElementsByTagName("DA");
+
+            XmlNodeList lista3 = ((XmlElement)lista2[0]).GetElementsByTagName("RNG");
+
+            foreach (XmlElement nodo in lista)
+            {
+
+                int i = 0;
+
+                XmlNodeList rutCaf =
+                nodo.GetElementsByTagName("RE");
+
+                XmlNodeList rzSoc =
+                nodo.GetElementsByTagName("RS");
+
+                XmlNodeList tpoDte =
+                nodo.GetElementsByTagName("TD");
+
+                XmlNodeList folioIni =
+                nodo.GetElementsByTagName("D");
+
+                XmlNodeList folioFinal =
+                nodo.GetElementsByTagName("H");
+
+                folio.rut = rutCaf[i].InnerText;
+                folio.rsnsocial = rzSoc[i].InnerText;
+                folio.tpoDte = tpoDte[i].InnerText;
+                folio.folioIni = folioIni[i].InnerText;
+                folio.folioFin = folioFinal[i].InnerText;
+                int final = Convert.ToInt32(folioFinal[i].InnerText);
+                int inicial = Convert.ToInt32(folioIni[i].InnerText);
+                folio.rango = final - inicial + 1;
+
+                Console.WriteLine(" Rut: {0} Razon Social: {1} Tipo Dte {2} Folio Inicial: {3} Folio Final {4} Rango {5}",
+                                             folio.rut,
+                                             folio.rsnsocial,
+                                             folio.tpoDte,
+                                             folio.folioIni,
+                                             folio.folioFin,
+                                             folio.rango);                                             ;
+
+
+            }
+
+            return folio;
+            
+        }
+
     }
+
 }

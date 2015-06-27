@@ -33,6 +33,8 @@ namespace IatDteBridge
 
             switch (doc.TipoDTE)
             {
+                case 30: nombreDocumento = "FACTURA";
+                break;
                 case 33: nombreDocumento = "FACTURA ELECTRÓNICA";
                 break;
                 case 34: nombreDocumento = "FACTURA NO AFECTA O EXENTA ELECTRÓNICA";
@@ -360,12 +362,36 @@ namespace IatDteBridge
                     puntero = puntero + 1;
                     datosDetalle[puntero] = Convert.ToString(det.UnmdItem);
                     puntero = puntero + 1;
-                    datosDetalle[puntero] = det.PrcItem.ToString("N4", CultureInfo.CreateSpecificCulture("es-ES"));
+                    if (doc.PrnMtoNeto == "True")
+                    {
+                        datosDetalle[puntero] = det.PrcItem.ToString("N4", CultureInfo.CreateSpecificCulture("es-ES"));
+                    }
+                    else
+                    {
+                        datosDetalle[puntero] = det.PrcBruItem.ToString("N0", CultureInfo.CreateSpecificCulture("es-ES"));
+                    }
                     puntero = puntero + 1;
-                    datosDetalle[puntero] = Convert.ToString(det.DescuentoMonto);
+                    if (doc.PrnMtoNeto == "True")
+                    {
+                        datosDetalle[puntero] = Convert.ToString(det.DescuentoMonto);
+                    }
+                    else
+                    {
+                        datosDetalle[puntero] = Convert.ToString(det.DescuentoBruMonto);
+                    }
                     puntero = puntero + 1;
-                    datosDetalle[puntero] = det.MontoItem.ToString("N0", CultureInfo.CreateSpecificCulture("es-ES"));
+
+                    if (doc.PrnMtoNeto == "True")
+                    {
+                        datosDetalle[puntero] = det.MontoItem.ToString("N0", CultureInfo.CreateSpecificCulture("es-ES"));
+
+                    }
+                    else
+                    {
+                        datosDetalle[puntero] = det.MontoBruItem.ToString("N0", CultureInfo.CreateSpecificCulture("es-ES"));
+                    }
                     puntero = puntero + 1;
+
 
                 }
 
@@ -440,6 +466,8 @@ namespace IatDteBridge
 
                                 switch (Convert.ToInt32(b.TpoDocRef))
                                 {
+                                    case 30: tipoDocRef = "FACTURA";
+                                        break;
                                     case 33: tipoDocRef = "FACTURA ELECTRÓNICA";
                                         break;
                                     case 34: tipoDocRef = "FACTURA NO AFECTA O EXENTA ELECTRÓNICA";
@@ -761,10 +789,13 @@ namespace IatDteBridge
             pdf.Open();
 
 
-            for(int i = 0; i<3 ;i++){
+            for( int copies = 0 ; copies<3 ;copies++){
                 // setear el tipo de copia para i = 0,1 tributable, i=2 cedible
                 //if (i == 0 || i == 1) { tipoCopia = " "; }
-                if (i == 2) 
+                if (doc.PrnTwoCopy == "True")
+                    copies = 1;
+                doc.PrnTwoCopy = "False";
+                if (copies == 2) 
                 { 
                     if (doc.TipoDTE == 33 || doc.TipoDTE == 34)
                     {
@@ -784,6 +815,8 @@ namespace IatDteBridge
 
                 switch (doc.TipoDTE)
                 {
+                    case 30: nombreDocumento = "FACTURA";
+                        break;
                     case 33: nombreDocumento = "FACTURA ELECTRÓNICA";
                         break;
                     case 34: nombreDocumento = "FACTURA NO AFECTA O EXENTA ELECTRÓNICA";
@@ -903,7 +936,7 @@ namespace IatDteBridge
                 celdaEtiquetaRut.BorderWidth = 0;
                 datosReceptor.AddCell(celdaEtiquetaRut);
 
-                // Agraga separadores al rut
+                // Agrega separadores al rut
 
                 String rutrecep = doc.RUTRecep;
                 rutrecep = rutrecep.Insert(2, ".");
@@ -1093,11 +1126,34 @@ namespace IatDteBridge
                         puntero = puntero + 1;
                         datosDetalle[puntero] = Convert.ToString(det.UnmdItem);
                         puntero = puntero + 1;
-                        datosDetalle[puntero] = det.PrcItem.ToString("N4", CultureInfo.CreateSpecificCulture("es-ES"));
+                        if (doc.PrnMtoNeto == "True")
+                        {
+                            datosDetalle[puntero] = det.PrcItem.ToString("N4", CultureInfo.CreateSpecificCulture("es-ES"));
+                        }
+                        else
+                        {
+                            datosDetalle[puntero] = det.PrcBruItem.ToString("N0", CultureInfo.CreateSpecificCulture("es-ES"));
+                        }
                         puntero = puntero + 1;
-                        datosDetalle[puntero] = Convert.ToString(det.DescuentoMonto);
-                        puntero = puntero + 1;
-                        datosDetalle[puntero] = det.MontoItem.ToString("N0", CultureInfo.CreateSpecificCulture("es-ES"));
+                        if (doc.PrnMtoNeto == "True")
+                        {
+                            datosDetalle[puntero] = Convert.ToString(det.DescuentoMonto);
+                        }
+                        else
+                        {
+                            datosDetalle[puntero] = Convert.ToString(det.DescuentoBruMonto);
+                        }
+                            puntero = puntero + 1;
+                        
+                        if (doc.PrnMtoNeto == "True")
+                        {
+                            datosDetalle[puntero] = det.MontoItem.ToString("N0", CultureInfo.CreateSpecificCulture("es-ES"));
+                            
+                        }
+                        else
+                        {
+                            datosDetalle[puntero] = det.MontoBruItem.ToString("N0", CultureInfo.CreateSpecificCulture("es-ES"));
+                        }
                         puntero = puntero + 1;
 
                     }
@@ -1173,6 +1229,8 @@ namespace IatDteBridge
 
                                 switch (Convert.ToInt32(b.TpoDocRef))
                                 {
+                                    case 30: tipoDocRef = "FACTURA";
+                                        break;
                                     case 33: tipoDocRef = "FACTURA ELECTRÓNICA";
                                         break;
                                     case 34: tipoDocRef = "FACTURA NO AFECTA O EXENTA ELECTRÓNICA";
@@ -1387,7 +1445,7 @@ namespace IatDteBridge
                 tablaRecibido.AddCell(celdaRecibido2);
 
                 // si la copia es la numero 3 agrega Acuse de recibo
-                if (i == 2)
+                if (copies == 2)
                 {
                     PdfPCell celdaRecibido3 = new PdfPCell(new Paragraph("El acuse de recibo que se declara en este acto, de acuerdo a lo dispuesto en la letra b) del Art. 4º y letra c) del Art. 5º de la ley 19383, acredita la entrega de mercaderia(s) o servicio(s).", fuenteNegra));
                     celdaRecibido3.BorderWidth = 0;

@@ -302,5 +302,11 @@ namespace IatDteBridge
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Caf caf = new Caf();
+            caf.getCaf("77888630-8","33");
+        }
     }
 }

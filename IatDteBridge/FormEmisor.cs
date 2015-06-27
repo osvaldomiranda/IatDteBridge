@@ -65,6 +65,8 @@ namespace IatDteBridge
                     textBox_NumResol.Text = reader["NumResol"].ToString();
                     textBox_UrlCore.Text = reader["UrlCore"].ToString();
                     checkBox_condEntrega.Checked = Convert.ToBoolean(reader["CondEntrega"]);
+                    checkBox_PrnMtoNeto.Checked = Convert.ToBoolean(reader["PrnMtoNeto"]);
+                    checkBox_PrnTwoCopy.Checked = Convert.ToBoolean(reader["PrnTwoCopy"]);                      
 
                 }
                 myConn.Close();
@@ -106,7 +108,10 @@ namespace IatDteBridge
                                "RutCertificado = '" + textBox_RutCertificado.Text + "', " +
                                "NumResol = '" + textBox_NumResol.Text + "', " +
                                "CondEntrega = '" + checkBox_condEntrega.Checked.ToString() + "', "+
-                                "UrlCore = '" + textBox_UrlCore.Text + "';";
+                               "PrnMtoNeto = '" + checkBox_PrnMtoNeto.Checked.ToString() + "', " +
+                               "PrnTwoCopy = '" + checkBox_PrnTwoCopy.Checked.ToString() + "', " +
+                                "UrlCore = '" + textBox_UrlCore.Text + "'" +
+                                "WHERE empresa.RutEmisor = '" + textBox_RUTEmisor.Text + "';";
 
                 SQLiteCommand command = new SQLiteCommand(sql, myConn);
                 command.ExecuteNonQuery();
@@ -132,8 +137,55 @@ namespace IatDteBridge
 
         }
 
-        private void checkBox_condEntrega_CheckedChanged(object sender, EventArgs e)
+
+
+        private void button1_Click(object sender, EventArgs e)
         {
+            string bcaemp = Microsoft.VisualBasic.Interaction.InputBox(
+        "Ingrese Rut de la empresa \nEjemplo: 12891016-6",
+        "Busca Empresa",
+        "00000000-0");
+
+            try
+            {
+
+                SQLiteConnection myConn = new SQLiteConnection(strConn);
+                myConn.Open();
+
+                string sql = "select * from empresa WHERE empresa.RutEmisor = '" + bcaemp.ToString() + "';";
+                SQLiteCommand command = new SQLiteCommand(sql, myConn);
+                SQLiteDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+
+                    textBox_RUTEmisor.Text = reader["RutEmisor"].ToString();
+                    textBox_RznSoc.Text = reader["RznSoc"].ToString();
+                    textBox_GiroEmis.Text = reader["GiroEmis"].ToString();
+                    textBox_Telefono.Text = reader["Telefono"].ToString();
+                    textBox_CorreoEmisor.Text = reader["CorreoEmisor"].ToString();
+                    textBox_Acteco.Text = Convert.ToString(reader["Acteco"]);
+                    textBox_CdgSIISucur.Text = Convert.ToString(reader["CdgSIISucur"]);
+                    textBox_DirMatriz.Text = reader["DirMatriz"].ToString();
+                    textBox_CdadOrigen.Text = reader["CiudadOrigen"].ToString();
+                    textBox_CmnaOrigen.Text = reader["CmnaOrigen"].ToString();
+                    textBox_DirOrigen.Text = reader["DirOrigen"].ToString();
+                    textBox_ScsalSII.Text = reader["SucurSII"].ToString();
+                    textBox_NbreCertificado.Text = reader["NomCertificado"].ToString();
+                    textBox_Sucursales.Text = reader["SucurEmisor"].ToString();
+                    textBox_FchResol.Text = reader["FchResol"].ToString();
+                    textBox_RutCertificado.Text = reader["RutCertificado"].ToString();
+                    textBox_NumResol.Text = reader["NumResol"].ToString();
+                    textBox_UrlCore.Text = reader["UrlCore"].ToString();
+                    checkBox_condEntrega.Checked = Convert.ToBoolean(reader["CondEntrega"]);
+
+                }
+                myConn.Close();
+            }
+            catch (Exception s)
+            {
+                Console.WriteLine("ERROR: {0}" + s.ToString());
+                MessageBox.Show("ERROR: {0}" + s.ToString());
+            }
 
         }
 

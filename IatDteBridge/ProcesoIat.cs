@@ -197,7 +197,7 @@ namespace IatDteBridge
                         String envC = @"EnvioUnitCliente_" + docLectura.RUTEmisor + "_" + docLectura.Folio + "_" + fchName + ".xml";
                         String envF = @"DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".xml";
                         String ced = String.Empty;
-                        if (docLectura.TipoDTE != 61)
+                        if (docLectura.TipoDTE != 61 && docLectura.TipoDTE != 56)
                         {
                             ced = @"DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf";
                         }
