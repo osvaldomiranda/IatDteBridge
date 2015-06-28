@@ -37,7 +37,6 @@ namespace IatDteBridge
                 "</IdDoc>\n";
 
 
-
             String emisor = "<Emisor>\n" +
                     "<RUTEmisor>" + doc.RUTEmisor + "</RUTEmisor>\n" +
                     "<RznSoc>" + doc.RznSoc + "</RznSoc>\n" +
@@ -58,12 +57,22 @@ namespace IatDteBridge
             giroreceptor = doc.GiroRecep.Substring(0, 40);
             }
 
-            if (doc.CiudadRecep == " " || doc.CmnaRecep == " " || doc.DirRecep == "")
+            if (doc.DirRecep == " ")
             {
                 Console.WriteLine("ERROR EN  DATOS DEL RECEPTOR");
-                Environment.Exit(0);
+                doc.CmnaRecep = "SIN DIRECCIÓN";              
+            }
 
-                
+            if (doc.CiudadRecep == " ")
+            {
+                Console.WriteLine("ERROR EN  DATOS DEL RECEPTOR");
+                doc.CiudadRecep = "SIN CIUDAD";
+            }
+
+            if (doc.CmnaRecep == " ")
+            {
+                Console.WriteLine("ERROR EN  DATOS DEL RECEPTOR");
+                doc.CmnaRecep = "SIN COMUNA";
             }
 
             String rznsocrecep = doc.RznSocRecep.Replace("&", "&amp;");
@@ -195,7 +204,7 @@ namespace IatDteBridge
                 if (det.CodImpAdic == "" || det.CodImpAdic == "0")
                     codimpadic = "";
 
-                String nmbItem = det.NmbItem.Replace("&", "&amp;");
+                String nmbItem = det.NmbItem.Replace("&", " ");
 
  
 
@@ -217,7 +226,7 @@ namespace IatDteBridge
                 "</Detalle>\n";
 
                 documento = documento + detalle;
-                if (i == 0) firstNmbItem = nmbItem;
+                if (i == 0) firstNmbItem = nmbItem.Replace("&"," ");
                 i++;
             }
 
@@ -330,7 +339,7 @@ namespace IatDteBridge
             foreach (var det in doc.detalle)
             {
                
-                String nmbItem = det.NmbItem.Replace("&", "&amp;");
+                String nmbItem = det.NmbItem.Replace("&", " ");
 
                 if (i == 0) firstNmbItem = nmbItem;
                 i++;
@@ -588,6 +597,7 @@ namespace IatDteBridge
 
         public string firmarDocumento(string documento, X509Certificate2 certificado)
         {
+            
             XmlDocument doc = new XmlDocument();
             doc.PreserveWhitespace = true;
             doc.LoadXml(documento);

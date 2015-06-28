@@ -333,7 +333,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(158, 13);
             this.label5.TabIndex = 35;
-            this.label5.Text = "VERSIÓN: 04062015-1500";
+            this.label5.Text = "VERSIÓN: 26062015-1400";
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // button17
@@ -387,6 +387,7 @@
             this.button2.TabIndex = 40;
             this.button2.Text = "Get Caf";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // FormMain
