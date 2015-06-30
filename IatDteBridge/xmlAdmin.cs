@@ -150,7 +150,7 @@ namespace IatDteBridge
                 if (det.CodImpAdic == "" || det.CodImpAdic == "0")
                     codimpadic = "";
 
-                String nmbItem = det.NmbItem.Replace("&", "&amp;");
+                String nmbItem = det.NmbItem.Replace("&", " ");
 
 
 
@@ -172,7 +172,7 @@ namespace IatDteBridge
                 "</Detalle>\n";
 
                 documento = documento + detalle;
-                if (i == 0) firstNmbItem = nmbItem;
+                if (i == 0) firstNmbItem = nmbItem.Replace("&"," ");
                 i++;
             }
 

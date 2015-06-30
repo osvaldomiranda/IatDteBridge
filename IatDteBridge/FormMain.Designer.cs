@@ -62,6 +62,7 @@
             this.button19 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -121,12 +122,12 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.archivosMaestrosToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(163, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(172, 26);
             // 
             // archivosMaestrosToolStripMenuItem
             // 
             this.archivosMaestrosToolStripMenuItem.Name = "archivosMaestrosToolStripMenuItem";
-            this.archivosMaestrosToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.archivosMaestrosToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.archivosMaestrosToolStripMenuItem.Text = "Archivos Maestros";
             // 
             // menuStrip1
@@ -143,7 +144,7 @@
             // datosEmpresaToolStripMenuItem
             // 
             this.datosEmpresaToolStripMenuItem.Name = "datosEmpresaToolStripMenuItem";
-            this.datosEmpresaToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
+            this.datosEmpresaToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
             this.datosEmpresaToolStripMenuItem.Text = "Administración";
             this.datosEmpresaToolStripMenuItem.Click += new System.EventHandler(this.datosEmpresaToolStripMenuItem_Click);
             // 
@@ -333,7 +334,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(158, 13);
             this.label5.TabIndex = 35;
-            this.label5.Text = "VERSIÓN: 04062015-1500";
+            this.label5.Text = "VERSIÓN: 26062015-1400";
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // button17
@@ -387,7 +388,18 @@
             this.button2.TabIndex = 40;
             this.button2.Text = "Get Caf";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(312, 315);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 41;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // FormMain
             // 
@@ -395,6 +407,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(940, 402);
             this.ControlBox = false;
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button13);
             this.Controls.Add(this.button19);
@@ -472,6 +485,7 @@
         private System.Windows.Forms.Button button19;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button4;
 
     }
 }

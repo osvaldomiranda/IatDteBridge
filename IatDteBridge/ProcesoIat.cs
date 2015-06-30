@@ -69,6 +69,48 @@ namespace IatDteBridge
 
                 // Ejecuta metodo de txt_reader que llena y obtienen Clase Documento
                 docLectura = lec.lectura("", false, dirCurrentFile);
+
+                // Proceso de validación de Folio, si este proceso no tiene exito se dejará el json en directorio errorFolio
+                // se dejará el objeto docLectura para que no sea procesado
+                // ************************************************
+                // Obtener folioSiguiente
+                Folio folio = new Folio();
+                folio = folio.getFolio(docLectura.TipoDTE, docLectura.RUTEmisor);
+
+    
+                // comparar folio siguiente con docLectura.folio
+                if (folio.folioSgte == docLectura.Folio)
+                {
+                    // Si son iguales
+                    //      Continuar con el proceso normal
+                }
+                else
+                {
+                    // Si no son iguales
+                    //      Verificar que quedan folios
+                    if (folio.folioSgte > folio.folioFin)
+                    {
+                        //      si quedan folios
+                        //          Avisar a Cajero
+                        SocketClient sc = new SocketClient();
+                        sc.StartClient("El Folio "+docLectura.Folio+" ha cambiado por el "+folio.folioSgte);
+                        //          docLectura.Folio = FolioSiguiente
+                        docLectura.Folio = folio.folioSgte;
+                        // TO DO; UpdatearADM
+
+                    }
+                    else
+                    {
+                        //      si no quedan folios
+                        //          Mover el Json a directorio errorFolio
+                        fileAdm.mvFile(docLectura.fileName, dirCurrentFile, @"C:\IatFiles\errorFolio\");
+                        //          dejar docLectura en Null para que no se imprima
+                        docLectura = null;
+                    }
+                }
+
+               
+                //*************************************************
                 
                 // instancia XML_admin
                 xmlPaquete xml = new xmlPaquete();
@@ -251,6 +293,7 @@ namespace IatDteBridge
             Console.WriteLine("main thread: ProcessIat thread has terminated.");
 
         }
+
 
 
     }

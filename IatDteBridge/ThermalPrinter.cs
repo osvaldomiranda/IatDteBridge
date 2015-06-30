@@ -5,10 +5,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
-using PrinterClassDll;
-
-
-
 namespace IatDteBridge
 {
     class ThermalPrinter
@@ -17,7 +13,7 @@ namespace IatDteBridge
         {
             try
             {
-                Win32Print thermalPrinter = new Win32Print();
+/*                Win32Print thermalPrinter = new Win32Print();
 
                thermalPrinter.SetPrinterName("BIXOLON SAMSUNG RP-350");
 
@@ -25,6 +21,7 @@ namespace IatDteBridge
                 thermalPrinter.PrintText("IMPRIMIENDO desde IAT DteBridge");
                 thermalPrinter.PrintImage("Timbre.bmp");
                 thermalPrinter.EndDoc();
+ */ 
             }
             catch (Exception e)
             {

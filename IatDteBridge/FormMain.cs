@@ -308,5 +308,12 @@ namespace IatDteBridge
             Caf caf = new Caf();
             caf.getCaf("77888630-8","33");
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            SocketClient sc = new SocketClient();
+
+            sc.StartClient();
+        }
     }
 }
