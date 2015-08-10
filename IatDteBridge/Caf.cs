@@ -151,17 +151,17 @@ namespace IatDteBridge
 
                 folio.rut = rutCaf[i].InnerText;
                 folio.rsnsocial = rzSoc[i].InnerText;
-                folio.tpoDte = tpoDte[i].InnerText;
-                folio.folioIni = folioIni[i].InnerText;
-                folio.folioFin = folioFinal[i].InnerText;
+              //  folio.tipoDte = tipoDte[i].InnerText;
+              //  folio.folioIni = folioIni[i].InnerText;
+              //  folio.folioFin = folioFinal[i].InnerText;
                 int final = Convert.ToInt32(folioFinal[i].InnerText);
                 int inicial = Convert.ToInt32(folioIni[i].InnerText);
-                folio.rango = final - inicial + 1;
+              //  folio.rango = final - inicial + 1;
 
                 Console.WriteLine(" Rut: {0} Razon Social: {1} Tipo Dte {2} Folio Inicial: {3} Folio Final {4} Rango {5}",
                                              folio.rut,
                                              folio.rsnsocial,
-                                             folio.tpoDte,
+                                         //    folio.tpoDte,
                                              folio.folioIni,
                                              folio.folioFin,
                                              folio.rango);                                             ;
