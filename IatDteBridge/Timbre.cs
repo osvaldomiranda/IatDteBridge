@@ -17,20 +17,12 @@ namespace IatDteBridge
             BarcodePDF417 pdf417 = new BarcodePDF417();
             pdf417.Options= BarcodePDF417.PDF417_USE_ASPECT_RATIO;
             pdf417.ErrorLevel = 8;
-
             pdf417.Options = BarcodePDF417.PDF417_FORCE_BINARY;
-            // esta propiedad cambia el tamaño del TED
-           //  pdf417.YHeight = 2.3F; // codigo para imprimir en termica
             Encoding iso = Encoding.GetEncoding("ISO-8859-1");
             byte[] isoBytes = iso.GetBytes(dd);
-
             pdf417.Text = isoBytes;
-    
             System.Drawing.Bitmap imagen = new Bitmap(pdf417.CreateDrawingImage(Color.Black, Color.White));
             imagen.Save("Timbre.jpg");
-
-            // Guardo la imagen para imprimir en impresora termica
-            //imagen.Save("Timbre.bmp",System.Drawing.Imaging.ImageFormat.Bmp); // codigo para imprimir en termica
         }
     }
 }

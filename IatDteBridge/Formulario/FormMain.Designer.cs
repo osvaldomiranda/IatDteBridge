@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -63,6 +64,8 @@
             this.button13 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.button_Ocultar = new System.Windows.Forms.Button();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -122,12 +125,12 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.archivosMaestrosToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(172, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(163, 26);
             // 
             // archivosMaestrosToolStripMenuItem
             // 
             this.archivosMaestrosToolStripMenuItem.Name = "archivosMaestrosToolStripMenuItem";
-            this.archivosMaestrosToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.archivosMaestrosToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.archivosMaestrosToolStripMenuItem.Text = "Archivos Maestros";
             // 
             // menuStrip1
@@ -144,7 +147,7 @@
             // datosEmpresaToolStripMenuItem
             // 
             this.datosEmpresaToolStripMenuItem.Name = "datosEmpresaToolStripMenuItem";
-            this.datosEmpresaToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
+            this.datosEmpresaToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
             this.datosEmpresaToolStripMenuItem.Text = "Administración";
             this.datosEmpresaToolStripMenuItem.Click += new System.EventHandler(this.datosEmpresaToolStripMenuItem_Click);
             // 
@@ -401,12 +404,30 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // button_Ocultar
+            // 
+            this.button_Ocultar.Location = new System.Drawing.Point(650, 358);
+            this.button_Ocultar.Name = "button_Ocultar";
+            this.button_Ocultar.Size = new System.Drawing.Size(125, 22);
+            this.button_Ocultar.TabIndex = 42;
+            this.button_Ocultar.Text = "Ocultar Ventana";
+            this.button_Ocultar.UseVisualStyleBackColor = true;
+            this.button_Ocultar.Click += new System.EventHandler(this.button_Ocultar_Click);
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
+            this.notifyIcon1.DoubleClick += new System.EventHandler(this.notifyIcon1_DoubleClick);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(940, 402);
             this.ControlBox = false;
+            this.Controls.Add(this.button_Ocultar);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button13);
@@ -486,6 +507,8 @@
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button_Ocultar;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
 
     }
 }

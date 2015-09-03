@@ -9,19 +9,22 @@ using System.Security.Cryptography;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
+using System.Drawing.Printing;
+using System.Drawing;
+using System.Data.SQLite;
 
 
 namespace IatDteBridge
 {
     class ProcesoIat
     {
+        Empresa empresa = new Empresa();
 
         public void DoProcessIat()
         {
-            
+
             PrinterDir print = new PrinterDir();
             List<PrinterDir> printerList = print.printerList();
-
             if (printerList.Count == 0)
             {
                 MessageBox.Show(@"No hay impresoras configuradas, se usará DefaultPrinter");
@@ -29,7 +32,7 @@ namespace IatDteBridge
 
             int i = 0;
             int j = 0;
-            
+
 
             while (!_shouldStop)
             {
@@ -41,7 +44,7 @@ namespace IatDteBridge
 
                 String paquete = String.Empty;
                 String dirCurrentFile = String.Empty;
-                String Impresora = String.Empty; 
+                String Impresora = String.Empty;
 
                 // instancia fileadmin, para tener las herramientas para mover archivos
                 fileAdmin fileAdm = new fileAdmin();
@@ -63,9 +66,9 @@ namespace IatDteBridge
                     dirCurrentFile = printDir.directory;
                     Impresora = printDir.printerName;
                 }
-                Console.WriteLine("Buscando Json en "+ dirCurrentFile);
+                Console.WriteLine("Buscando Json en " + dirCurrentFile);
                 j++;
-                
+
 
                 // Ejecuta metodo de txt_reader que llena y obtienen Clase Documento
                 docLectura = lec.lectura("", false, dirCurrentFile);
@@ -74,44 +77,44 @@ namespace IatDteBridge
                 // se dejará el objeto docLectura para que no sea procesado
                 // ************************************************
                 // Obtener folioSiguiente
-                Folio folio = new Folio();
-                folio = folio.getFolio(docLectura.TipoDTE, docLectura.RUTEmisor);
+                /*   Folio folio = new Folio();
+                   folio = folio.getFolio(docLectura.TipoDTE, docLectura.RUTEmisor);
 
     
-                // comparar folio siguiente con docLectura.folio
-                if (folio.folioSgte == docLectura.Folio)
-                {
-                    // Si son iguales
-                    //      Continuar con el proceso normal
-                }
-                else
-                {
-                    // Si no son iguales
-                    //      Verificar que quedan folios
-                    if (folio.folioSgte > folio.folioFin)
-                    {
-                        //      si quedan folios
-                        //          Avisar a Cajero
-                        SocketClient sc = new SocketClient();
-                        sc.StartClient("El Folio "+docLectura.Folio+" ha cambiado por el "+folio.folioSgte);
-                        //          docLectura.Folio = FolioSiguiente
-                        docLectura.Folio = folio.folioSgte;
-                        // TO DO; UpdatearADM
+                   // comparar folio siguiente con docLectura.folio
+                   if (folio.folioSgte == docLectura.Folio)
+                   {
+                       // Si son iguales
+                       //      Continuar con el proceso normal
+                   }
+                   else
+                   {
+                       // Si no son iguales
+                       //      Verificar que quedan folios
+                       if (folio.folioSgte > folio.folioFin)
+                       {
+                           //      si quedan folios
+                           //          Avisar a Cajero
+                           SocketClient sc = new SocketClient();
+                           sc.StartClient("El Folio "+docLectura.Folio+" ha cambiado por el "+folio.folioSgte);
+                           //          docLectura.Folio = FolioSiguiente
+                           docLectura.Folio = folio.folioSgte;
+                           // TO DO; UpdatearADM
 
-                    }
-                    else
-                    {
-                        //      si no quedan folios
-                        //          Mover el Json a directorio errorFolio
-                        fileAdm.mvFile(docLectura.fileName, dirCurrentFile, @"C:\IatFiles\errorFolio\");
-                        //          dejar docLectura en Null para que no se imprima
-                        docLectura = null;
-                    }
-                }
+                       }
+                       else
+                       {
+                           //      si no quedan folios
+                           //          Mover el Json a directorio errorFolio
+                           fileAdm.mvFile(docLectura.fileName, dirCurrentFile, @"C:\IatFiles\errorFolio\");
+                           //          dejar docLectura en Null para que no se imprima
+                           docLectura = null;
+                       }
+                   }
+                   */
 
-               
                 //*************************************************
-                
+
                 // instancia XML_admin
                 xmlPaquete xml = new xmlPaquete();
 
@@ -128,11 +131,11 @@ namespace IatDteBridge
                 {
                     // Proceso de ReImpresión
                     // ir a directorio procesados y buscar el archivo docLectura.filename 
-                    if (System.IO.File.Exists(@"C:\IatFiles\fileprocess\"+docLectura.fileName)) // si ya existe, reimprimir
+                    if (System.IO.File.Exists(@"C:\IatFiles\fileprocess\" + docLectura.fileName)) // si ya existe, reimprimir
                     {
                         String fileNamePDFRePrint = @"C:/IatFiles/file/pdf/PRINT_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + ".pdf";
 
-                        if(System.IO.File.Exists(fileNamePDFRePrint))
+                        if (System.IO.File.Exists(fileNamePDFRePrint))
                         {
                             fc.printPdf(fileNamePDFRePrint, Impresora);
                         }
@@ -159,59 +162,80 @@ namespace IatDteBridge
                             file.WriteLine(docXmlSign);
                         }
 
-                        //Generar PDF                   
-                        Pdf docpdf = new Pdf();
 
-                        String fileNamePDF = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf";
-                        docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDF, " ");
-                        log.addLog("Crea PDF Trib TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
-
-                        String fileNamePDFCed = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf";
-
-                        if (docLectura.TipoDTE == 33 || docLectura.TipoDTE == 34)
+                        //-----------------------------------------------------------------THERMAL--------------------------------------------------------------
+                       empresa =  empresa.getEmpresa();
+                        if (empresa.PrnThermal == "True")
                         {
-                            docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDFCed, "CEDIBLE");
+                            Thermal thermal = new Thermal();
+                            thermal.doc = docLectura;
+                            thermal.dd = TimbreElec;
+                            //  
+                            PrintDocument pd = new PrintDocument();
+                            pd.DefaultPageSettings.PaperSize = new PaperSize("", 284, 1600);
+                            pd.PrintPage += new PrintPageEventHandler(thermal.OpenThermal);
+                            pd.PrinterSettings.PrinterName = "THERMAL Receipt Printer";
+                            Console.WriteLine(pd.ToString());
+                            pd.Print();
                         }
-
-                        if (docLectura.TipoDTE == 52)
+                        else
                         {
-                            docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDFCed, "CEDIBLE CON SU FACTURA");
+
+                            Pdf docpdf = new Pdf();
+
+                            String fileNamePDF = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf";
+                            docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDF, " ");
+                            log.addLog("Crea PDF Trib TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
+
+                            String fileNamePDFCed = @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf";
+
+                            if (docLectura.TipoDTE == 33 || docLectura.TipoDTE == 34)
+                            {
+                                docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDFCed, "CEDIBLE");
+                            }
+
+                            if (docLectura.TipoDTE == 52)
+                            {
+                                docpdf.OpenPdf(TimbreElec, docLectura, fileNamePDFCed, "CEDIBLE CON SU FACTURA");
+                            }
+                            log.addLog("Crea PDF C TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
+
+                            // para otro tipo de impresion
+                            // FuncionesComunes f = new FuncionesComunes();
+                            // f.PrintDocument(@"CutePDF Writer", @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf");
+
+                            //Imprime pdf
+
+                            String fileNamePDFPrint = @"C:/IatFiles/file/pdf/PRINT_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + ".pdf";
+                            docpdf.OpenPdfPrint(TimbreElec, docLectura, fileNamePDFPrint);
+                            log.addLog("Crea PDF PRINT TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
+
+
+
+                            fc.printPdf(fileNamePDFPrint, Impresora);
+
+                            log.addLog("IMPRIME TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
+
+                            // Agrega el DTE timbrado al paquete
+
+                            paquete = paquete + docXmlSign;
+
+                            //Estrae el rut del emisor de la primera factura del paquete
+                            if (i == 0) firsRut = docLectura.RUTEmisor;
+                            i++;
+
+
                         }
-                        log.addLog("Crea PDF C TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
-
-                        // para otro tipo de impresion
-                        // FuncionesComunes f = new FuncionesComunes();
-                        // f.PrintDocument(@"CutePDF Writer", @"C:/IatFiles/file/pdf/DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + ".pdf");
-
-                        //Imprime pdf
-
-                        String fileNamePDFPrint = @"C:/IatFiles/file/pdf/PRINT_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + ".pdf";
-                        docpdf.OpenPdfPrint(TimbreElec, docLectura, fileNamePDFPrint);
-                        log.addLog("Crea PDF PRINT TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
-
-
-                        fc.printPdf(fileNamePDFPrint, Impresora);
-
-                        log.addLog("IMPRIME TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
-
-                        // Agrega el DTE timbrado al paquete
-                        paquete = paquete + docXmlSign;
-
-                        //Estrae el rut del emisor de la primera factura del paquete
-                        if (i == 0) firsRut = docLectura.RUTEmisor;
-                        i++;
-
-
                         // Firma POaquete unitario   
                         String envioCliente = xml.creaEnvio(paquete, docLectura.RUTEmisor, docLectura.RUTRecep, tipos, docLectura.RutEnvia, docLectura.FchResol, docLectura.RUTRecep, docLectura.NumResol);
 
-                        String envioSII = xml.creaEnvio(paquete, docLectura.RUTEmisor, docLectura.RUTRecep, tipos, docLectura.RutEnvia, docLectura.FchResol, "",docLectura.NumResol);
+                        String envioSII = xml.creaEnvio(paquete, docLectura.RUTEmisor, docLectura.RUTRecep, tipos, docLectura.RutEnvia, docLectura.FchResol, "", docLectura.NumResol);
 
                         X509Certificate2 cert = FuncionesComunes.obtenerCertificado(docLectura.NombreCertificado);
 
                         String enviox509SII = xml.firmarDocumento(envioSII, cert);
                         String enviox509Cliente = xml.firmarDocumento(envioCliente, cert);
-                        
+
                         log.addLog("FIRMA ENVIO TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
 
                         enviox509SII = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n" + enviox509SII;
@@ -244,9 +268,9 @@ namespace IatDteBridge
                             ced = @"DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_" + fchName + "CEDIBLE.pdf";
                         }
 
-                        
+
                         //envia documentos al core 
-                         conn.sendInvoice(docLectura, trib, ced, envU,envC,envF, "S");
+                        conn.sendInvoice(docLectura, trib, ced, envU, envC, envF, "S");
                         // *************  Envía json a server
                         log.addLog("Envia CORE TipoDTE :" + docLectura.TipoDTE + " Folio :" + docLectura.Folio, "OK");
                         // ************  Crea regsitro del ultimo dte
@@ -254,13 +278,13 @@ namespace IatDteBridge
                         uDTE.addUltmoDte(docLectura);
 
                     }
-                } 
-                if (j == printerList.Count() ) { j = 0; } 
-            } 
+                }
+                if (j == printerList.Count()) { j = 0; }
+            }
             Console.WriteLine("ProcessIat thread: terminating gracefully.");
         }
 
-        
+
         public void RequestStop()
         {
             _shouldStop = true;

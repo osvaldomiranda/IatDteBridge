@@ -789,7 +789,8 @@ namespace IatDteBridge
             pdf.Open();
 
 
-            for( int copies = 0 ; copies<3 ;copies++){
+            for( int copies = 0 ; copies<3 ;copies++)
+            {
                 // setear el tipo de copia para i = 0,1 tributable, i=2 cedible
                 //if (i == 0 || i == 1) { tipoCopia = " "; }
                 if (doc.PrnTwoCopy == "True")

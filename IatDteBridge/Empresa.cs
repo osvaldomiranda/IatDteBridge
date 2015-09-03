@@ -9,6 +9,7 @@ namespace IatDteBridge
 {
     class Empresa
     {
+        String strConn = @"Data Source=C:/IatFiles/iatDB.sqlite;Pooling=true;FailIfMissing=false;Version=3";
         // Rut de la empresa
         public String RutEmisor { get; set; } 
         // Razon social de la empresa
@@ -33,6 +34,8 @@ namespace IatDteBridge
         public String SucurSII { get; set; }
         // Nombre del Certificado Electronico
         public String NomCertificado { get; set; }
+        // Nombre Sucursal del Emisor 
+        public String SucurEmisor { get; set; }
         // Direccion de la Sucursal de origen
         public String DirOrigen { get; set; }
         //Fecha de Resolución de la empresa
@@ -43,6 +46,16 @@ namespace IatDteBridge
         public String NumResol { get; set; }
         // Estado de la condiciónd e entrega en pdf
         public String CondEntrega { get; set; }
+        // Url Del Core
+        public String UrlCore { get; set; }
+        // condición para la impresion de documentos
+        public string PrnTwoCopy { get; set; }
+        // Condición para imprimir montos netos 
+        public string PrnMtoNeto { get; set; }
+        // condición de impresión thermica o PDF
+        public string PrnThermal { get; set; }
+
+
 
 
         public void creaTabla() 
@@ -77,6 +90,47 @@ namespace IatDteBridge
                    
 
 
+        }
+
+        public Empresa getEmpresa()
+        {
+            Empresa empresa = new Empresa();
+
+
+            SQLiteConnection myConn = new SQLiteConnection(strConn);
+            myConn.Open();
+
+            string sql = "select * from empresa";
+            SQLiteCommand command = new SQLiteCommand(sql, myConn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                empresa.RutEmisor = reader["RutEmisor"].ToString();
+                empresa.RznSoc = reader["RznSoc"].ToString();
+                empresa.GiroEmis = reader["GiroEmis"].ToString();
+                empresa.Telefono = reader["Telefono"].ToString();
+                empresa.CorreoEmisor = reader["CorreoEmisor"].ToString();
+                empresa.Acteco = reader["Acteco"].ToString();
+                empresa.CdgSIISucur = reader["CdgSIISucur"].ToString();
+                empresa.DirMatriz = reader["DirMatriz"].ToString();
+                empresa.CiudadOrigen = reader["CiudadOrigen"].ToString();
+                empresa.CmnaOrigen = reader["CmnaOrigen"].ToString();
+                empresa.DirOrigen = reader["DirOrigen"].ToString();
+                empresa.SucurSII = reader["SucurSII"].ToString();
+                empresa.NomCertificado = reader["NomCertificado"].ToString();
+                empresa.SucurEmisor = reader["SucurEmisor"].ToString();
+                empresa.FchResol = reader["FchResol"].ToString();
+                empresa.RutCertificado = reader["RutCertificado"].ToString();
+                empresa.NumResol = reader["NumResol"].ToString();
+                empresa.CondEntrega = reader["CondEntrega"].ToString();
+                empresa.UrlCore = reader["UrlCore"].ToString();
+                empresa.PrnTwoCopy = reader["PrnTwoCopy"].ToString();
+                empresa.PrnMtoNeto = reader["PrnMtoNeto"].ToString();
+                empresa.PrnThermal = reader["PrnThermal"].ToString();
+
+
+            }
+            return empresa;
         }
     }
 }

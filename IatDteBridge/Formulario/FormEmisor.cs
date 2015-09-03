@@ -66,7 +66,8 @@ namespace IatDteBridge
                     textBox_UrlCore.Text = reader["UrlCore"].ToString();
                     checkBox_condEntrega.Checked = Convert.ToBoolean(reader["CondEntrega"]);
                     checkBox_PrnMtoNeto.Checked = Convert.ToBoolean(reader["PrnMtoNeto"]);
-                    checkBox_PrnTwoCopy.Checked = Convert.ToBoolean(reader["PrnTwoCopy"]);                      
+                    checkBox_PrnTwoCopy.Checked = Convert.ToBoolean(reader["PrnTwoCopy"]);
+                    checkBox_PrnThermal.Checked = Convert.ToBoolean(reader["PrnThermal"]);   
 
                 }
                 myConn.Close();
@@ -110,8 +111,9 @@ namespace IatDteBridge
                                "CondEntrega = '" + checkBox_condEntrega.Checked.ToString() + "', "+
                                "PrnMtoNeto = '" + checkBox_PrnMtoNeto.Checked.ToString() + "', " +
                                "PrnTwoCopy = '" + checkBox_PrnTwoCopy.Checked.ToString() + "', " +
-                                "UrlCore = '" + textBox_UrlCore.Text + "'" +
-                                "WHERE empresa.RutEmisor = '" + textBox_RUTEmisor.Text + "';";
+                               "PrnThermal = '" + checkBox_PrnThermal.Checked.ToString() + "', " +
+                               "UrlCore = '" + textBox_UrlCore.Text + "'" +
+                               "WHERE empresa.RutEmisor = '" + textBox_RUTEmisor.Text + "';";
 
                 SQLiteCommand command = new SQLiteCommand(sql, myConn);
                 command.ExecuteNonQuery();

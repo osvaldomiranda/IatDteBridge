@@ -70,6 +70,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.checkBox_PrnMtoNeto = new System.Windows.Forms.CheckBox();
             this.checkBox_PrnTwoCopy = new System.Windows.Forms.CheckBox();
+            this.checkBox_PrnThermal = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label_Rutempresa
@@ -353,7 +354,7 @@
             // checkBox_condEntrega
             // 
             this.checkBox_condEntrega.AutoSize = true;
-            this.checkBox_condEntrega.Location = new System.Drawing.Point(713, 195);
+            this.checkBox_condEntrega.Location = new System.Drawing.Point(713, 170);
             this.checkBox_condEntrega.Name = "checkBox_condEntrega";
             this.checkBox_condEntrega.Size = new System.Drawing.Size(160, 17);
             this.checkBox_condEntrega.TabIndex = 34;
@@ -405,7 +406,7 @@
             // checkBox_PrnMtoNeto
             // 
             this.checkBox_PrnMtoNeto.AutoSize = true;
-            this.checkBox_PrnMtoNeto.Location = new System.Drawing.Point(713, 219);
+            this.checkBox_PrnMtoNeto.Location = new System.Drawing.Point(713, 190);
             this.checkBox_PrnMtoNeto.Name = "checkBox_PrnMtoNeto";
             this.checkBox_PrnMtoNeto.Size = new System.Drawing.Size(131, 17);
             this.checkBox_PrnMtoNeto.TabIndex = 40;
@@ -415,18 +416,29 @@
             // checkBox_PrnTwoCopy
             // 
             this.checkBox_PrnTwoCopy.AutoSize = true;
-            this.checkBox_PrnTwoCopy.Location = new System.Drawing.Point(713, 243);
+            this.checkBox_PrnTwoCopy.Location = new System.Drawing.Point(713, 210);
             this.checkBox_PrnTwoCopy.Name = "checkBox_PrnTwoCopy";
             this.checkBox_PrnTwoCopy.Size = new System.Drawing.Size(116, 17);
             this.checkBox_PrnTwoCopy.TabIndex = 41;
             this.checkBox_PrnTwoCopy.Text = "Imprime dos copias";
             this.checkBox_PrnTwoCopy.UseVisualStyleBackColor = true;
             // 
+            // checkBox_PrnThermal
+            // 
+            this.checkBox_PrnThermal.AutoSize = true;
+            this.checkBox_PrnThermal.Location = new System.Drawing.Point(713, 230);
+            this.checkBox_PrnThermal.Name = "checkBox_PrnThermal";
+            this.checkBox_PrnThermal.Size = new System.Drawing.Size(103, 17);
+            this.checkBox_PrnThermal.TabIndex = 42;
+            this.checkBox_PrnThermal.Text = "Imprime Térmico";
+            this.checkBox_PrnThermal.UseVisualStyleBackColor = true;
+            // 
             // FormEmisor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(952, 498);
+            this.Controls.Add(this.checkBox_PrnThermal);
             this.Controls.Add(this.checkBox_PrnTwoCopy);
             this.Controls.Add(this.checkBox_PrnMtoNeto);
             this.Controls.Add(this.button1);
@@ -521,5 +533,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.CheckBox checkBox_PrnMtoNeto;
         private System.Windows.Forms.CheckBox checkBox_PrnTwoCopy;
+        private System.Windows.Forms.CheckBox checkBox_PrnThermal;
     }
 }

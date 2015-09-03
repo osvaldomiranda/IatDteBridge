@@ -315,5 +315,24 @@ namespace IatDteBridge
 
           //  sc.StartClient();
         }
+
+        private void button_Ocultar_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            notifyIcon1.Text = "IAT Dte Bridge";
+            notifyIcon1.BalloonTipTitle = "IAT Dte Bridge";
+            notifyIcon1.BalloonTipText = "Puente para el S.I.I";
+            notifyIcon1.BalloonTipIcon = ToolTipIcon.Info;
+
+            notifyIcon1.Visible = true;
+            notifyIcon1.ShowBalloonTip(3000);
+        }
+
+        private void notifyIcon1_DoubleClick(object sender, EventArgs e)
+        {
+            this.Show();
+        }
+
+      
     }
 }

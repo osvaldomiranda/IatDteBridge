@@ -75,15 +75,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Administracion.cs">
+    <Compile Include="Formulario\Administracion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Administracion.Designer.cs">
+    <Compile Include="Formulario\Administracion.Designer.cs">
       <DependentUpon>Administracion.cs</DependentUpon>
     </Compile>
     <Compile Include="Caf.cs" />
-    <Compile Include="CargaDb.cs" />
-    <Compile Include="ConnectDb.cs" />
+    <Compile Include="ClasesDb\CargaDb.cs" />
+    <Compile Include="ClasesDb\ConnectDb.cs" />
     <Compile Include="Documento.cs" />
     <Compile Include="Empresa.cs" />
     <Compile Include="EnvioMasivo.cs" />
@@ -110,20 +110,20 @@
     <Compile Include="Service References\FormAdminCaf.Designer.cs">
       <DependentUpon>FormAdminCaf.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormEmisor.cs">
+    <Compile Include="Formulario\FormEmisor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormEmisor.Designer.cs">
+    <Compile Include="Formulario\FormEmisor.Designer.cs">
       <DependentUpon>FormEmisor.cs</DependentUpon>
     </Compile>
     <Compile Include="FuncionesComunes.cs" />
     <Compile Include="PingProcess.cs" />
     <Compile Include="Connect.cs" />
     <Compile Include="File.cs" />
-    <Compile Include="FormMain.cs">
+    <Compile Include="Formulario\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMain.Designer.cs">
+    <Compile Include="Formulario\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Pdf.cs" />
@@ -131,7 +131,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SocketClient.cs" />
-    <Compile Include="ThermalPrinter.cs" />
+    <Compile Include="Thermal.cs" />
     <Compile Include="Timbre.cs" />
     <Compile Include="TxtLiborCompra.cs" />
     <Compile Include="TxtLibroGuias.cs" />
@@ -143,18 +143,18 @@
     <Compile Include="xmlLibroCompra.cs" />
     <Compile Include="xmlLibroGuias.cs" />
     <Compile Include="xmlPaquete.cs" />
-    <EmbeddedResource Include="Administracion.resx">
+    <EmbeddedResource Include="Formulario\Administracion.resx">
       <DependentUpon>Administracion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Service References\FormAdminCaf.resx">
       <DependentUpon>FormAdminCaf.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormEmisor.resx">
+    <EmbeddedResource Include="Formulario\FormEmisor.resx">
       <DependentUpon>FormEmisor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormMain.resx">
+    <EmbeddedResource Include="Formulario\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
