@@ -69,7 +69,7 @@ namespace IatDteBridge
             logo.Alignment = iTextSharp.text.Image.ALIGN_LEFT;
 
 
-            iTextSharp.text.Image timbre = iTextSharp.text.Image.GetInstance("Timbre.jpg");
+            iTextSharp.text.Image timbre = iTextSharp.text.Image.GetInstance("Timbre.png");
             timbre.SetAbsolutePosition(10, 10);
             timbre.ScaleAbsolute(200f, 100f);
 
@@ -836,7 +836,7 @@ namespace IatDteBridge
                 logo.ScaleAbsolute(100f, 50f);
                 logo.Alignment = iTextSharp.text.Image.ALIGN_LEFT;
 
-                iTextSharp.text.Image timbre = iTextSharp.text.Image.GetInstance("Timbre.jpg");
+                iTextSharp.text.Image timbre = iTextSharp.text.Image.GetInstance("Timbre.png");
                 timbre.SetAbsolutePosition(10, 10);
                 timbre.ScaleAbsolute(200f, 100f);
 

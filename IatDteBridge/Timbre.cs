@@ -22,7 +22,8 @@ namespace IatDteBridge
             byte[] isoBytes = iso.GetBytes(dd);
             pdf417.Text = isoBytes;
             System.Drawing.Bitmap imagen = new Bitmap(pdf417.CreateDrawingImage(Color.Black, Color.White));
-            imagen.Save("Timbre.jpg");
+            imagen.Save("Timbre.png");
+            
         }
     }
 }

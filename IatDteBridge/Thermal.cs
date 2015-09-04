@@ -16,6 +16,7 @@ namespace IatDteBridge
 
         public void OpenThermal(object sender, PrintPageEventArgs ev)
         {
+
             String tipoCopia = String.Empty;
             String nombreDocumento = String.Empty;
             Timbre timbre1 = new Timbre();
@@ -192,10 +193,12 @@ namespace IatDteBridge
             ev.Graphics.DrawString("$ " + doc.MntTotal.ToString("N0", CultureInfo.CreateSpecificCulture("es-ES")), new Font("Arial", 8, FontStyle.Bold), Brushes.Black, new Rectangle(0, linea, 280, 15), alignLeft);
             linea += 30;
             //Timbre
-            ev.Graphics.DrawImage(Image.FromFile(@"Timbre.jpg"), new Rectangle(0, linea, 275, 123));
+            Image i = Image.FromFile(@"Timbre.png");
+            ev.Graphics.DrawImage(i , new Rectangle(0, linea, 275, 123));
             linea += 130;
             ev.Graphics.DrawString("Timbre Electronico S.I.I.", new Font("Arial", 8, FontStyle.Bold), Brushes.Black, new Rectangle(0, linea, 280, 15), alignCenter);
-
+            i.Dispose();
+            ev.Graphics.Dispose();
         }
 
 

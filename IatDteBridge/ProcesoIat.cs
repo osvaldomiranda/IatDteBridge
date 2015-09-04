@@ -127,17 +127,34 @@ namespace IatDteBridge
                 Log log = new Log();
 
                 String firsRut = String.Empty;
+                empresa = empresa.getEmpresa();
                 if (docLectura != null)
                 {
                     // Proceso de ReImpresión
                     // ir a directorio procesados y buscar el archivo docLectura.filename 
                     if (System.IO.File.Exists(@"C:\IatFiles\fileprocess\" + docLectura.fileName)) // si ya existe, reimprimir
                     {
-                        String fileNamePDFRePrint = @"C:/IatFiles/file/pdf/PRINT_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + ".pdf";
-
-                        if (System.IO.File.Exists(fileNamePDFRePrint))
+                        if (empresa.PrnThermal == "True")
                         {
-                            fc.printPdf(fileNamePDFRePrint, Impresora);
+                            String fileNameXML = @"DTE_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + "_";
+                            fileAdmin f = new fileAdmin();
+
+                            String fileXml = f.fileAprox(fileNameXML, @"C:/IatFiles/file/xml/", "*.xml");
+
+                            if (fileXml != null)
+                            {
+                                new ReimpThermal().reimp(docLectura, fileXml, Impresora);
+                            }
+                            
+                        }
+                        else
+                        {
+                            String fileNamePDFRePrint = @"C:/IatFiles/file/pdf/PRINT_" + docLectura.RUTEmisor + "_" + docLectura.TipoDTE + "_" + docLectura.Folio + ".pdf";
+
+                            if (System.IO.File.Exists(fileNamePDFRePrint))
+                            {
+                                fc.printPdf(fileNamePDFRePrint, Impresora);
+                            }
                         }
                         fileAdm.mvFile(docLectura.fileName, dirCurrentFile, @"C:\IatFiles\fileprocess\");
                     }
@@ -164,19 +181,33 @@ namespace IatDteBridge
 
 
                         //-----------------------------------------------------------------THERMAL--------------------------------------------------------------
-                       empresa =  empresa.getEmpresa();
+                      
                         if (empresa.PrnThermal == "True")
                         {
-                            Thermal thermal = new Thermal();
-                            thermal.doc = docLectura;
-                            thermal.dd = TimbreElec;
-                            //  
-                            PrintDocument pd = new PrintDocument();
-                            pd.DefaultPageSettings.PaperSize = new PaperSize("", 284, 1600);
-                            pd.PrintPage += new PrintPageEventHandler(thermal.OpenThermal);
-                            pd.PrinterSettings.PrinterName = "THERMAL Receipt Printer";
-                            Console.WriteLine(pd.ToString());
-                            pd.Print();
+                            try
+                            {
+                                Thermal thermal = new Thermal();
+                                thermal.doc = docLectura;
+                                thermal.dd = TimbreElec;
+                                //  
+                                PrintDocument pd = new PrintDocument();
+                                pd.DefaultPageSettings.PaperSize = new PaperSize("", 284, 1600);
+                                pd.PrintPage += new PrintPageEventHandler(thermal.OpenThermal);
+                                pd.PrinterSettings.PrinterName = Impresora;
+                                Console.WriteLine(pd.ToString());
+                                pd.Print();
+                                
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(""+ex);
+
+                            }
+                            finally
+                            {
+                               
+                            }
+
                         }
                         else
                         {

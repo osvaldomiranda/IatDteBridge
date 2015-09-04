@@ -104,6 +104,7 @@
     <Compile Include="ProcesoPaquete.cs" />
     <Compile Include="ProcesoPaqueteXml.cs" />
     <Compile Include="ReenvioSql.cs" />
+    <Compile Include="ReimpThermal.cs" />
     <Compile Include="Service References\FormAdminCaf.cs">
       <SubType>Form</SubType>
     </Compile>
