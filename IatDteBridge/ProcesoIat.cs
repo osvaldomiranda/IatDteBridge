@@ -185,17 +185,45 @@ namespace IatDteBridge
                         if (empresa.PrnThermal == "True")
                         {
                             try
-                            {
-                                Thermal thermal = new Thermal();
-                                thermal.doc = docLectura;
-                                thermal.dd = TimbreElec;
+                            {  
+                                
+                                                            
+                                 
+                                for (int copies = 0; copies < 3; copies++)
+                                {
+                                    Thermal thermal = new Thermal();
+                                    thermal.doc = docLectura;
+                                    thermal.dd = TimbreElec;
+                                    thermal.copias = copies;
+                                    if (docLectura.PrnTwoCopy == "True")
+                                        copies = 1;
+                                    docLectura.PrnTwoCopy = "False";
+                                    if (copies == 2)
+                                    {
+                                        if (docLectura.TipoDTE == 33 || docLectura.TipoDTE == 34)
+                                        {
+                                            thermal.tipoCopia = "CEDIBLE";
+                                        }
+                                        if (docLectura.TipoDTE == 52)
+                                        {
+                                            thermal.tipoCopia = "CEDIBLE CON SU FACTURA";
+                                        }
+
+                                        if (docLectura.TipoDTE == 61)
+                                        {
+                                            break;
+                                        }
+                                    }
+
+
                                 //  
                                 PrintDocument pd = new PrintDocument();
-                                pd.DefaultPageSettings.PaperSize = new PaperSize("", 284, 1600);
-                                pd.PrintPage += new PrintPageEventHandler(thermal.OpenThermal);
-                                pd.PrinterSettings.PrinterName = Impresora;
-                                Console.WriteLine(pd.ToString());
-                                pd.Print();
+                                pd.DefaultPageSettings.PaperSize = new PaperSize("", 284, 1800);
+                                 pd.PrintPage += new PrintPageEventHandler(thermal.OpenThermal);
+                                 pd.PrinterSettings.PrinterName = Impresora;
+                                 Console.WriteLine(pd.ToString());
+                                 pd.Print();
+                                }
                                 
                             }
                             catch (Exception ex)

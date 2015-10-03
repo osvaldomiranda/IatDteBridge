@@ -194,7 +194,7 @@ namespace IatDteBridge
 
         private void button14_Click(object sender, EventArgs e)
         {
-
+            notifyIcon1.Dispose();
             Environment.Exit(0);
         }
 
